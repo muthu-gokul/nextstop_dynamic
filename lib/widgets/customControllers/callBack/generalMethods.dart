@@ -36,6 +36,10 @@ void formSubmitMethod(dynamic guid,List<dynamic> widgets,Map clickEvent){
                   isValid=element.minLengthCheck(value);
                   validList.add(isValid);
                 }
+                else if(key=='MaximumLength'){
+                  isValid=element.maxLengthCheck(value);
+                  validList.add(isValid);
+                }
                 else if(key=='EmailValidation'){
                   isValid=element.emailValidation();
                   validList.add(isValid);

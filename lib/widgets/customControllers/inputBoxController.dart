@@ -101,6 +101,22 @@ class TextFormFieldController extends StatelessWidget implements MyCallback2{
     }
     return isValid.value;
   }
+
+  maxLengthCheck(dynamic max){
+    if(textEditingController.text.isEmpty){
+      isValid.value=false;
+      errorText.value="* Maximum Length is $max";
+    }
+    else if(textEditingController.text.length>int.parse(max.toString())){
+      isValid.value=false;
+      errorText.value="* Maximum Length is $max";
+
+    }
+    else{
+      isValid.value=true;
+    }
+    return isValid.value;
+  }
   emailValidation(){
 
     Pattern pattern =

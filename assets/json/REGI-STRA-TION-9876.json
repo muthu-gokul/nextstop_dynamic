@@ -1,0 +1,272 @@
+{
+  "Guid": "1",
+  "Widgets": [
+    {
+      "type": "imageController",
+      "orderBy": "1",
+      "image": "assets/loginpages/home.png",
+      "key": 10,
+      "width":200.0
+    },
+    {
+      "type":"sizedBox",
+      "orderBy": "2",
+      "height":20
+    },
+    {
+      "type": "text",
+      "orderBy": "3",
+      "value": "Sign Up",
+      "key": 1,
+      "style": {
+        "color": "primaryTextColor2",
+        "fontSize": 30.0,
+        "fontFamily": "RB"
+      }
+    },
+    {
+      "type":"sizedBox",
+      "orderBy": "4",
+      "height":10
+    },
+    {
+      "type": "text",
+      "orderBy": "5",
+      "value": "Please Enter your details",
+      "width":0.65,
+      "key": 1,
+      "style": {
+        "color": "primaryTextColor1",
+        "fontSize": 14.0,
+        "fontFamily": "RR"
+      }
+    },
+    {
+      "type":"sizedBox",
+      "orderBy": "6",
+      "height":10
+    },
+    {
+      "type": "textField",
+      "orderBy": "7",
+      "hintText": "First Name",
+      "hasInput": true,
+      "required": true,
+      "key": 1,
+      "margin": "10,0,10,10",
+      "groupValidation": [{"Required":"required"}],
+      "borderRadius": "5,5,5,5",
+      "borderColor": "textFieldBorderColor",
+      "focusedBorderColor": "textFieldBorderColor",
+      "disabledBorderColor": "FFF44336",
+      "color": "FFffffff",
+      "disableColor": "FFF5EFEE",
+      "enable": true,
+      "hintTextStyle": {
+        "color": "primaryTextColor1",
+        "fontSize": 14.0,
+        "fontFamily": "RR"
+      },
+      "errorTextStyle": {
+        "color": "errorTextColor",
+        "fontSize": 14.0,
+        "fontFamily": "RR"
+      },
+      "textStyle": {
+        "color": "primaryTextColor2",
+        "fontSize": 15.0,
+        "fontFamily": "RR"
+      }
+    },
+    {
+      "type": "textField",
+      "orderBy": "7",
+      "hintText": "Last Name",
+      "hasInput": true,
+      "required": false,
+      "key": 1,
+      "margin": "10,0,10,10",
+      "groupValidation": [{"Required":"required"}],
+      "borderRadius": "5,5,5,5",
+      "borderColor": "textFieldBorderColor",
+      "focusedBorderColor": "textFieldBorderColor",
+      "disabledBorderColor": "FFF44336",
+      "color": "FFffffff",
+      "disableColor": "FFF5EFEE",
+      "enable": true,
+      "hintTextStyle": {
+        "color": "primaryTextColor1",
+        "fontSize": 14.0,
+        "fontFamily": "RR"
+      },
+      "errorTextStyle": {
+        "color": "errorTextColor",
+        "fontSize": 14.0,
+        "fontFamily": "RR"
+      },
+      "textStyle": {
+        "color": "primaryTextColor2",
+        "fontSize": 15.0,
+        "fontFamily": "RR"
+      }
+    },
+    {
+      "type": "textField",
+      "orderBy": "7",
+      "hintText": "E-mail",
+      "hasInput": true,
+      "required": true,
+      "key": 1,
+      "margin": "10,0,10,10",
+      "groupValidation": [{"Required":"required"},{"EmailValidation":"email"}],
+      "borderRadius": "5,5,5,5",
+      "borderColor": "textFieldBorderColor",
+      "focusedBorderColor": "textFieldBorderColor",
+      "disabledBorderColor": "FFF44336",
+      "color": "FFffffff",
+      "disableColor": "FFF5EFEE",
+      "enable": true,
+      "hintTextStyle": {
+        "color": "primaryTextColor1",
+        "fontSize": 14.0,
+        "fontFamily": "RR"
+      },
+      "errorTextStyle": {
+        "color": "errorTextColor",
+        "fontSize": 14.0,
+        "fontFamily": "RR"
+      },
+      "textStyle": {
+        "color": "primaryTextColor2",
+        "fontSize": 15.0,
+        "fontFamily": "RR"
+      }
+    },
+    {
+      "type": "textField",
+      "orderBy": "8",
+      "hintText": "Phone Number",
+      "hasInput": true,
+      "required": true,
+      "key": 2,
+      "margin": "10,0,10,10",
+      "groupValidation": [{"Required":"required"},{"MaximumLength":"10"}],
+      "borderRadius": "5,5,5,5",
+      "borderColor": "textFieldBorderColor",
+      "focusedBorderColor": "textFieldBorderColor",
+      "disabledBorderColor": "FFF44336",
+      "color": "FFffffff",
+      "disableColor": "FFF5EFEE",
+      "enable": true,
+      "hintTextStyle": {
+        "color": "primaryTextColor1",
+        "fontSize": 14.0,
+        "fontFamily": "RR"
+      },
+      "errorTextStyle": {
+        "color": "errorTextColor",
+        "fontSize": 14.0,
+        "fontFamily": "RR"
+      },
+      "textStyle": {
+        "color": "primaryTextColor2",
+        "fontSize": 15.0,
+        "fontFamily": "RR"
+      }
+    },
+    {
+      "type":"hiddenController",
+      "orderBy": "19",
+      "key":3,
+      "hasInput": true,
+      "required":true,
+      "value":"Login0001"
+    },
+    {
+      "type":"sizedBox",
+      "orderBy": "9",
+      "height":10
+    },
+    {
+      "type": "button",
+      "orderBy": "12",
+      "clickEvent": {
+        "eventName":"FormSubmit",
+        "navigateToPage":"GetStart"
+      },
+      "key": 5,
+      "height":50,
+      "margin": "10,0,10,0",
+      "color":"primaryColor",
+      "borderRadius":"25,25,25,25",
+      "child":{
+        "type": "text",
+        "value": "Register",
+        "key": 1,
+        "style": {
+          "color": "#ffffff",
+          "fontSize": 16.0
+        }
+      }
+    },
+    {
+      "type":"sizedBox",
+      "orderBy": "13",
+      "height":20
+    },
+    {
+      "type":"rowController",
+      "orderBy": "14",
+      "mainAxisAlignment": "center",
+      "children":[
+        {
+          "type": "button",
+          "orderBy": "1",
+          "key": 5,
+          "clickEvent": {
+            "eventName":"Navigation",
+            "navigateToPage":"SecurityDetails",
+            "typeOfNavigation":2
+          },
+          "height":50.0,
+          "pixelWidth":50.0,
+          "borderRadius": "25,25,25,25",
+          "color":"#BABDA8"
+        },
+        {
+          "type":"sizedBox",
+          "orderBy": "2",
+          "width":10
+        },
+        {
+          "type": "button",
+          "orderBy": "3",
+          "key": 5,
+          "clickEvent": {
+            "eventName":"Navigation",
+            "navigateToPage":"SecurityReports",
+            "typeOfNavigation":1
+          },
+          "height":50.0,
+          "pixelWidth":50.0,
+          "borderRadius": "25,25,25,25",
+          "color":"#BABDC8"
+        },
+        {
+          "type":"sizedBox",
+          "orderBy": "4",
+          "width":10
+        },
+        {
+          "type": "button",
+          "orderBy": "5",
+          "key": 5,
+          "height":50.0,
+          "pixelWidth":50.0,
+          "borderRadius": "25,25,25,25",
+          "color":"#ff0000"
+        }
+      ]
+    }
+  ]
+}

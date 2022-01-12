@@ -10,8 +10,8 @@ import '../constants.dart';
 import '../widgets/customControllers/callBack/myCallback.dart';
 
 class DynamicPageInitiater extends StatefulWidget {
-  String json;
-  DynamicPageInitiater({required this.json});
+  String pageIdentifier;
+  DynamicPageInitiater({required this.pageIdentifier});
   @override
   _DynamicPageInitiaterState createState() => _DynamicPageInitiaterState();
 }
@@ -22,10 +22,21 @@ class _DynamicPageInitiaterState extends State<DynamicPageInitiater> implements 
   var parsedJson;
 
   String guid="";
+
+  parseJson() async{
+    String data = await DefaultAssetBundle.of(context).loadString("assets/json/${General.registrationPageIdentifier}.json");
+    parsedJson=jsonDecode(data);
+
+    guid=widget.pageIdentifier;
+    widgets=getWidgets(parsedJson['Widgets'],this);
+    setState(() {});
+    //log("${widgets}");
+  }
+
   @override
   void initState() {
     if(fromUrl){
-      WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+/*      WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
         Provider.of<GetUiNotifier>(context, listen: false).getUiJson(context,LOGINPAGE_ID).then((value){
           // log("$value");
           if(value!="null"){
@@ -37,12 +48,10 @@ class _DynamicPageInitiaterState extends State<DynamicPageInitiater> implements 
             widgets=getWidgets(parsedJson['Widgets'],this);
           }
         });
-      });
+      });*/
     }
     else{
-      parsedJson=jsonDecode(widget.json);
-      guid=parsedJson['Guid'];
-      widgets=getWidgets(parsedJson['Widgets'],this);
+      parseJson();
     }
     super.initState();
   }

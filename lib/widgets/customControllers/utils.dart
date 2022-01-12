@@ -3,6 +3,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:nextstop_dynamic/styles/style.dart';
 
 
 
@@ -221,11 +222,31 @@ Color parseHexColor(String? hexColorString) {
     return Colors.transparent;
   }
   hexColorString = hexColorString.toUpperCase().replaceAll("#", "");
-  if (hexColorString.length == 6) {
-    hexColorString = "FF" + hexColorString;
+
+  if(hexColorString=='primaryColor'.toUpperCase()){
+    return primaryColor;
   }
-  int colorInt = int.parse(hexColorString, radix: 16);
-  return Color(colorInt);
+  else if(hexColorString=='primaryTextColor1'.toUpperCase()){
+    return primaryTextColor1;
+  }
+  else if(hexColorString=='primaryTextColor2'.toUpperCase()){
+    return primaryTextColor2;
+  }
+  else if(hexColorString=='textFieldBorderColor'.toUpperCase()){
+    return textFieldBorderColor;
+  }
+  else if(hexColorString=='errorTextColor'.toUpperCase()){
+    return errorTextColor;
+  }
+  else{
+    if (hexColorString.length == 6) {
+      hexColorString = "FF" + hexColorString;
+    }
+    int colorInt = int.parse(hexColorString, radix: 16);
+    return Color(colorInt);
+  }
+
+
 }
 
 TextStyle? parseTextStyle(Map<String, dynamic>? map) {

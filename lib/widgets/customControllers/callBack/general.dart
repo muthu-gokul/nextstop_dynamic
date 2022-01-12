@@ -11,6 +11,7 @@ class General{
     navigateTo(page,typeOfNavigation);
   }
 
+  static String registrationPageIdentifier="REGI-STRA-TION-9876";
 }
 
 
