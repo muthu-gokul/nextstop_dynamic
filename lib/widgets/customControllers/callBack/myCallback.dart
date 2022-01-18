@@ -12,9 +12,11 @@ import '../rowController.dart';
 import '../sizedBoxController.dart';
 import '../templateController.dart';
 import '../textController.dart';
+import '../userRoleController.dart';
 
 abstract class MyCallback {
   void ontap(Map? clickEvent);
+  //void ontap2(Map? clickEvent);
 }
 
 abstract class MyCallback2 {
@@ -62,6 +64,9 @@ List<dynamic> getWidgets(List parsed,MyCallback myCallback){
     }
     else if(element['type']=='hiddenController'){
       widgets.add(HiddenController(map: element));
+    }
+    else if(element['type']=='userRoleController'){
+      widgets.add(UserRoleController(map: element, ontap: myCallback,));
     }
   });
   return widgets;

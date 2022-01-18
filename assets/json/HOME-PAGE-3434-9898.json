@@ -1,0 +1,74 @@
+{
+  "Guid": "1",
+  "Widgets": [
+    {
+      "type": "button",
+      "orderBy": "1",
+      "alignment": "centerLeft",
+      "clickEvent": {
+        "eventName":"HomePageNavigation",
+        "pageIndex":0
+      },
+      "key": 1,
+      "height":50,
+      "width":1,
+      "margin": "10,0,10,0",
+      "child":{
+        "type": "text",
+        "alignment": "centerLeft",
+        "value": "My Profile",
+        "key": 1,
+        "style": {
+          "color": "#ffffff",
+          "fontSize": 16.0
+        }
+      }
+    },
+    {
+      "type": "button",
+      "orderBy": "1",
+      "alignment": "centerLeft",
+      "clickEvent": {
+        "eventName":"HomePageNavigation",
+        "pageIndex":1
+      },
+      "key": 1,
+      "height":50,
+      "width":1,
+      "margin": "10,0,10,0",
+      "child":{
+        "type": "text",
+        "alignment": "centerLeft",
+        "value": "Bookings",
+        "key": 1,
+        "style": {
+          "color": "#ffffff",
+          "fontSize": 16.0
+        }
+      }
+    },
+    {
+      "type": "button",
+      "orderBy": "1",
+      "alignment": "centerLeft",
+      "clickEvent": {
+        "eventName":"HomePageNavigation",
+        "pageIndex":2
+      },
+      "key": 1,
+      "height":50,
+      "width":1,
+      "margin": "10,0,10,0",
+      "child":{
+        "type": "text",
+        "alignment": "centerLeft",
+        "value": "Your Rides",
+        "key": 1,
+        "style": {
+          "color": "#ffffff",
+          "fontSize": 16.0
+        }
+      }
+    }
+  ]
+}

@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:nextstop_dynamic/pages/homePage.dart';
 import 'dart:convert';
 
 import 'general.dart';
@@ -140,6 +141,9 @@ navigateTo(String page,int? typeOfNavigation,){
     }
     else if(page=="GetStart"){
    //   getXNavigation(typeOfNavigation, DesignationSelect());
+    }
+    else if(page=="HomePage"){
+      getXNavigation(typeOfNavigation, HomePage());
     }
     else{
       errorDialog(err002);
