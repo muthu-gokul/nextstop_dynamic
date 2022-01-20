@@ -422,6 +422,16 @@ BorderRadius parseBorderRadius(String? borderRadius) {
   );
 }
 
+BoxShape parseBoxShape(String? shape){
+  switch(shape){
+    case 'rectangle':
+     return BoxShape.rectangle;
+    case 'circle':
+     return BoxShape.circle;
+  }
+  return BoxShape.rectangle;
+}
+
 CrossAxisAlignment parseCrossAxisAlignment(String? crossAxisAlignmentString) {
   switch (crossAxisAlignmentString) {
     case 'start':

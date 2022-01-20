@@ -13,6 +13,7 @@ class General{
 
   static String registrationPageIdentifier="REGI-STRA-TION-9876";
   static String homePageIdentifier="HOME-PAGE-3434-9898";
+  static String profilePageIdentifier="PROF-ILE1-3434-6566";
 }
 
 

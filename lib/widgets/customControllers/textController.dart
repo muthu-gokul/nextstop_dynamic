@@ -13,7 +13,7 @@ class TextBoxController extends StatelessWidget {
     SizeConfig().init(context);
     return Container(
       margin: parseEdgeInsetsGeometry(map['margin']),
-      width:map.containsKey('pixelWidth')?double.parse(map['pixelWidth'].toString()): map.containsKey('width')?map['width']*SizeConfig.screenWidth:double.maxFinite,
+      width:map.containsKey('pixelWidth')?double.parse(map['pixelWidth'].toString()): map.containsKey('width')?map['width']*SizeConfig.screenWidth:null,
       alignment: parseAlignment(map['alignment']),
       padding: parseEdgeInsetsGeometry(map['padding']),
       child: Text(

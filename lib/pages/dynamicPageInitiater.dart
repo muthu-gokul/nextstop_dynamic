@@ -24,7 +24,7 @@ class _DynamicPageInitiaterState extends State<DynamicPageInitiater> implements 
   String guid="";
 
   parseJson() async{
-    String data = await DefaultAssetBundle.of(context).loadString("assets/json/${General.registrationPageIdentifier}.json");
+    String data = await DefaultAssetBundle.of(context).loadString("assets/json/${widget.pageIdentifier}.json");
     parsedJson=jsonDecode(data);
 
     guid=widget.pageIdentifier;
@@ -74,7 +74,7 @@ class _DynamicPageInitiaterState extends State<DynamicPageInitiater> implements 
       child: Scaffold(
         // resizeToAvoidBottomInset: false,
         body: Container(
-          alignment: Alignment.center,
+          alignment: Alignment.topCenter,
           height: SizeConfig.screenHeight!-topPad,
           width: SizeConfig.screenWidth,
           color: Colors.white,

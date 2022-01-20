@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:nextstop_dynamic/pages/homePage.dart';
 import 'package:nextstop_dynamic/pages/registrationPage.dart';
 
 void main() {
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: RegistrationPage()
+      home: HomePage()
     );
   }
 }

@@ -1,0 +1,81 @@
+{
+  "Guid": "1",
+  "Widgets": [
+    {
+      "type":"sizedBox",
+      "orderBy": "1",
+      "height":20
+    },
+    {
+      "type":"rowController",
+      "orderBy": "2",
+      "mainAxisAlignment": "start",
+      "children": [
+        {
+          "type":"sizedBox",
+          "orderBy": "1",
+          "width":20
+        },
+        {
+          "type": "text",
+          "orderBy": "2",
+          "value": "My Profile",
+          "key": 1,
+          "style": {
+            "color": "primaryTextColor2",
+            "fontSize": 20.0,
+            "fontFamily": "RB"
+          }
+        }
+      ]
+    },
+
+
+    {
+      "type":"sizedBox",
+      "orderBy": "4",
+      "height":20
+    },
+    {
+      "type":"propicController",
+      "imagePath":"assets/designation/security.svg",
+      "bgColor":"primaryColor",
+      "alignment":"center",
+      "orderBy":5
+    },
+    {
+      "type":"sizedBox",
+      "orderBy": "6",
+      "height":10
+    },
+    {
+      "type": "text",
+      "orderBy": "7",
+      "value": "Mr. End User",
+      "key": 1,
+      "style": {
+        "color": "primaryTextColor1",
+        "fontSize": 20.0,
+        "fontFamily": "RB"
+      }
+    },
+    {
+      "type":"sizedBox",
+      "orderBy": "8",
+      "height":10
+    },
+    {
+      "type": "text",
+      "orderBy": "9",
+      "value": "User",
+      "key": 1,
+      "style": {
+        "color": "primaryTextColor1",
+        "fontSize": 16.0,
+        "fontFamily": "RR"
+      }
+    }
+
+  ]
+}
+

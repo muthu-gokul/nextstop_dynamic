@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:nextstop_dynamic/pages/profilePage.dart';
 import 'package:nextstop_dynamic/styles/style.dart';
 import 'package:nextstop_dynamic/widgets/customControllers/callBack/general.dart';
 import 'package:nextstop_dynamic/widgets/customControllers/callBack/myCallback.dart';
@@ -62,9 +63,10 @@ class _HomePageState extends State<HomePage> implements MyCallback{
       top: true,
       child: Scaffold(
         key: scaffoldKey,
-        body: Container(
-          color: selectedPage==0?Colors.red:
-          selectedPage==1?Colors.blue:Colors.green,
+        body:selectedPage==0?ProfilePage(
+
+        ): Container(
+          color: selectedPage==1?Colors.blue:Colors.green,
         ),
         drawer: Container(
           height: SizeConfig.screenHeight,

@@ -191,8 +191,8 @@
       "type":"userRoleController",
       "orderBy": "9",
       "height":70,
-      "pixelWidth":70,
-      "color":"primaryColor",
+      "parentHeight":100,
+      "selectedColor":"primaryColor",
       "unselectColor":"#7E7E7E",
       "margin": "10,0,0,0",
       "selectedIndex": 0,
@@ -208,12 +208,43 @@
         {
           "imagePath": "",
           "title": "End User",
-          "value": "End User"
+          "value": [
+            {
+              "value":"End User"
+            }
+          ]
         },
         {
           "imagePath": "",
           "title": "Driver",
-          "value": "Driver"
+          "value": [
+            {
+              "value":"Driver"
+            }
+          ]
+        }
+      ],
+      "children": [
+        {
+          "type": "button",
+          "orderBy": "1",
+          "key": 1,
+          "isChangeColor": true,
+          "height":70,
+          "pixelWidth":70,
+          "shape": "circle",
+          "color":"#7E7E7E"
+        },
+        {
+          "type": "text",
+          "orderBy": "2",
+          "value": "",
+          "key": 2,
+          "style": {
+            "color": "primaryTextColor1",
+            "fontSize": 14.0,
+            "fontFamily": "RR"
+          }
         }
       ]
     },
