@@ -1186,3 +1186,11 @@ Map<String, dynamic> exportConstraints(BoxConstraints constraints) {
         : constraints.maxHeight,
   };
 }
+
+
+Icon parseIcon(Map map){
+  if(map['icon']=='phone'){
+    return Icon(Icons.phone,color: parseHexColor(map['color']),size: map['size'],);
+  }
+  return Icon(Icons.phone);
+}

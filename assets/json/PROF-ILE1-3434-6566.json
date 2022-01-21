@@ -1,10 +1,12 @@
 {
   "Guid": "1",
+  "alignment": "topCenter",
+  "mainAxisAlignment": "center",
   "Widgets": [
     {
       "type":"sizedBox",
       "orderBy": "1",
-      "height":20
+      "height":10
     },
     {
       "type":"rowController",
@@ -12,13 +14,26 @@
       "mainAxisAlignment": "start",
       "children": [
         {
-          "type":"sizedBox",
+          "type":"navIcon",
           "orderBy": "1",
+          "color": "primaryColor",
+          "margin": "20,0,0,0",
+          "padding": "10,0,0,0",
+          "borderRadius": "10,10,10,10",
+          "width":40,
+          "height":35,
+          "clickEvent": {
+            "eventName": "OpenDrawer"
+          }
+        },
+        {
+          "type":"sizedBox",
+          "orderBy": "2",
           "width":20
         },
         {
           "type": "text",
-          "orderBy": "2",
+          "orderBy": "3",
           "value": "My Profile",
           "key": 1,
           "style": {
@@ -29,51 +44,87 @@
         }
       ]
     },
-
-
     {
-      "type":"sizedBox",
-      "orderBy": "4",
-      "height":20
-    },
-    {
-      "type":"propicController",
-      "imagePath":"assets/designation/security.svg",
-      "bgColor":"primaryColor",
-      "alignment":"center",
-      "orderBy":5
-    },
-    {
-      "type":"sizedBox",
-      "orderBy": "6",
-      "height":10
-    },
-    {
-      "type": "text",
-      "orderBy": "7",
-      "value": "Mr. End User",
-      "key": 1,
-      "style": {
-        "color": "primaryTextColor1",
-        "fontSize": 20.0,
-        "fontFamily": "RB"
-      }
-    },
-    {
-      "type":"sizedBox",
-      "orderBy": "8",
-      "height":10
-    },
-    {
-      "type": "text",
-      "orderBy": "9",
-      "value": "User",
-      "key": 1,
-      "style": {
-        "color": "primaryTextColor1",
-        "fontSize": 16.0,
-        "fontFamily": "RR"
-      }
+      "type":"columnController",
+      "orderBy": "3",
+      "mainAxisAlignment": "center",
+      "reducedHeight": "100",
+      "children": [
+        {
+          "type":"propicController",
+          "imagePath":"assets/designation/security.svg",
+          "bgColor":"primaryColor",
+          "alignment":"center",
+          "orderBy":5
+        },
+        {
+          "type":"sizedBox",
+          "orderBy": "6",
+          "height":10
+        },
+        {
+          "type": "text",
+          "orderBy": "7",
+          "value": "Mr. End User",
+          "key": 1,
+          "style": {
+            "color": "primaryTextColor2",
+            "fontSize": 20.0,
+            "fontFamily": "RB"
+          }
+        },
+        {
+          "type":"sizedBox",
+          "orderBy": "8",
+          "height":5
+        },
+        {
+          "type": "text",
+          "orderBy": "9",
+          "value": "User",
+          "key": 1,
+          "style": {
+            "color": "primaryTextColor1",
+            "fontSize": 16.0,
+            "fontFamily": "RR"
+          }
+        },
+        {
+          "type":"sizedBox",
+          "orderBy": 10,
+          "height":15
+        },
+        {
+          "type": "button",
+          "orderBy": 11,
+          "height":60,
+          "pixelWidth":60,
+          "shape": "circle",
+          "color":"#7E7E7E",
+          "alignment": "center",
+          "child": {
+            "type": "icon",
+            "icon": "phone",
+            "color": "primaryColor",
+            "size": 30.0
+          }
+        },
+        {
+          "type":"sizedBox",
+          "orderBy": 12,
+          "height":5
+        },
+        {
+          "type": "text",
+          "orderBy": 13,
+          "value": "98565-65656",
+          "style": {
+            "color": "primaryTextColor2",
+            "fontSize": 20.0,
+            "fontFamily": "RB"
+          }
+        }
+      ]
     }
 
   ]

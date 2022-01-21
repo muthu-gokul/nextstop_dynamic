@@ -1,5 +1,6 @@
 {
   "Guid": "1",
+  "alignment": "center",
   "Widgets": [
     {
       "type": "imageController",

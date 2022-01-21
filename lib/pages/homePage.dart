@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:nextstop_dynamic/pages/bookingPage.dart';
 import 'package:nextstop_dynamic/pages/profilePage.dart';
 import 'package:nextstop_dynamic/styles/style.dart';
 import 'package:nextstop_dynamic/widgets/customControllers/callBack/general.dart';
@@ -58,15 +59,18 @@ class _HomePageState extends State<HomePage> implements MyCallback{
 
   @override
   Widget build(BuildContext context) {
+    log("bb ${MediaQuery.of(context).padding.bottom} ${MediaQuery.of(context).padding.top}");
     return SafeArea(
       bottom: true,
       top: true,
       child: Scaffold(
         key: scaffoldKey,
         body:selectedPage==0?ProfilePage(
-
+          myCallback: this,
+        ):selectedPage==1?BookingPage(
+          myCallback: this,
         ): Container(
-          color: selectedPage==1?Colors.blue:Colors.green,
+          color: Colors.green,
         ),
         drawer: Container(
           height: SizeConfig.screenHeight,
@@ -95,7 +99,7 @@ class _HomePageState extends State<HomePage> implements MyCallback{
 
   @override
   void ontap(Map? clickEvent) {
-    log("$clickEvent");
+    log("HOMEPAGE $clickEvent");
     if(clickEvent!=null){
       if(clickEvent.containsKey('eventName')){
         if(clickEvent['eventName']=='FormSubmit'){
@@ -109,6 +113,9 @@ class _HomePageState extends State<HomePage> implements MyCallback{
             selectedPage=clickEvent['pageIndex'];
           });
           scaffoldKey.currentState!.openEndDrawer();
+        }
+        else if(clickEvent['eventName']=='OpenDrawer'){
+          scaffoldKey.currentState!.openDrawer();
         }
 
       }

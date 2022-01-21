@@ -14,6 +14,7 @@ class UserRoleController extends StatelessWidget {
   List columnWidgets=[];
   List mainWidget=[];
   UserRoleController({required this.map,required this.ontap}){
+    log("Constructor");
     selectedIndex.value=map['selectedIndex'];
     if(map.containsKey('children')){
       map['value'].forEach((e){
@@ -24,16 +25,19 @@ class UserRoleController extends StatelessWidget {
           if(element.map['type']=='text'){
             element.map['value']=e['title'];
           }
-          log("e ${element.map}");
+         // log("e ${element.map}");
         });
         mainWidget.add(columnWidgets);
-        log("${e}");
+       // log("${e}");
       });
-      mainWidget[selectedIndex.value].forEach((e){
-        if(e.map['type']=='button' && e.map['isChangeColor']){
+      if(selectedIndex.value!=-1){
+        mainWidget[selectedIndex.value].forEach((e){
+          if(e.map['type']=='button' && e.map['isChangeColor']){
             e.color.value=map['selectedColor'];
-        }
-      });
+          }
+        });
+      }
+
     }
   }
 
@@ -66,6 +70,7 @@ class UserRoleController extends StatelessWidget {
                 });
                 k++;
               });
+
               // ontap.ontap(map['eventName']);
             //  ontap.ontap(map['clickEvent']);
             },

@@ -61,7 +61,7 @@ class TextFormFieldController extends StatelessWidget implements MyCallback2{
                         color: parseHexColor(map['disabledBorderColor'])
                     )
                 ),
-                contentPadding: EdgeInsets.only(top: 0,left: 10)
+                contentPadding: EdgeInsets.only(top: 0,left: map['leftContentPadding']??10.0)
             ),
           ),
           Obx(

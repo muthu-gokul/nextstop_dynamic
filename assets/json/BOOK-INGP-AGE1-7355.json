@@ -1,0 +1,205 @@
+{
+  "Guid": "1",
+  "alignment": "topCenter",
+  "mainAxisAlignment": "start",
+  "crossAxisAlignment": "start",
+  "Widgets": [
+    {
+      "type": "button",
+      "screenHeight": true,
+      "width": 1,
+      "orderBy": "1",
+      "child": {
+        "type":"stackController",
+        "orderBy": "1",
+        "children": [
+          {
+            "type":"positionController",
+            "left": 0,
+            "orderBy": 100,
+            "child": {
+              "type":"navIcon",
+              "color": "primaryColor",
+              "margin": "20,10,0,0",
+              "padding": "10,0,0,0",
+              "borderRadius": "10,10,10,10",
+              "width":40,
+              "height":35,
+              "clickEvent": {
+                "eventName": "OpenDrawer"
+              }
+            }
+          },
+          {
+            "type":"positionController",
+            "bottom": 0,
+            "orderBy": 1,
+            "child": {
+              "type": "button",
+              "height": 400,
+              "width": 1,
+              "orderBy": 1,
+              "borderRadius": "25,0,0,25",
+              "color": "#efefef",
+              "borderColor": "primaryTextColor2",
+              "child": {
+                "type": "columnController",
+                "children": [
+                  {
+                    "type": "svgController",
+                    "image": "assets/icons/next-stop-logo.svg",
+                    "width": 150.0,
+                    "orderBy": 1
+                  },
+                  {
+                    "type": "textField",
+                    "orderBy": 2,
+                    "hintText": "Enter Pick Up Location",
+                    "hasInput": true,
+                    "required": true,
+                    "key": 1,
+                    "margin": "15,15,15,0",
+                    "leftContentPadding": 20.0,
+                    "groupValidation": [{"Required":"required"}],
+                    "borderRadius": "25,25,25,25",
+                    "borderColor": "textFieldBorderColor",
+                    "focusedBorderColor": "textFieldBorderColor",
+                    "disabledBorderColor": "FFF44336",
+                    "color": "FFffffff",
+                    "disableColor": "FFF5EFEE",
+                    "enable": true,
+                    "hintTextStyle": {
+                      "color": "primaryTextColor1",
+                      "fontSize": 14.0,
+                      "fontFamily": "RR"
+                    },
+                    "errorTextStyle": {
+                      "color": "errorTextColor",
+                      "fontSize": 14.0,
+                      "fontFamily": "RR"
+                    },
+                    "textStyle": {
+                      "color": "primaryTextColor2",
+                      "fontSize": 15.0,
+                      "fontFamily": "RR"
+                    }
+                  },
+                  {
+                    "type": "textField",
+                    "orderBy": 3,
+                    "hintText": "Enter Drop Location",
+                    "hasInput": true,
+                    "required": true,
+                    "key": 2,
+                    "margin": "15,15,15,15",
+                    "leftContentPadding": 20.0,
+                    "groupValidation": [{"Required":"required"}],
+                    "borderRadius": "25,25,25,25",
+                    "borderColor": "textFieldBorderColor",
+                    "focusedBorderColor": "textFieldBorderColor",
+                    "disabledBorderColor": "FFF44336",
+                    "color": "FFffffff",
+                    "disableColor": "FFF5EFEE",
+                    "enable": true,
+                    "hintTextStyle": {
+                      "color": "primaryTextColor1",
+                      "fontSize": 14.0,
+                      "fontFamily": "RR"
+                    },
+                    "errorTextStyle": {
+                      "color": "errorTextColor",
+                      "fontSize": 14.0,
+                      "fontFamily": "RR"
+                    },
+                    "textStyle": {
+                      "color": "primaryTextColor2",
+                      "fontSize": 15.0,
+                      "fontFamily": "RR"
+                    }
+                  },
+                  {
+                    "type":"userRoleController",
+                    "orderBy": 4,
+                    "height":70,
+                    "parentHeight":100,
+                    "selectedColor":"primaryColor",
+                    "unselectColor":"#ffffff",
+                    "margin": "10,0,0,0",
+                    "selectedIndex": -1,
+                    "key": 20,
+                    "hasInput": true,
+                    "required":true,
+                    "textStyle": {
+                      "color": "primaryTextColor1",
+                      "fontSize": 14.0,
+                      "fontFamily": "RR"
+                    },
+                    "value": [
+                      {
+                        "imagePath": "",
+                        "title": "End User",
+                        "value": [
+                          {
+                            "value":"End User"
+                          }
+                        ]
+                      },
+                      {
+                        "imagePath": "",
+                        "title": "Driver",
+                        "value": [
+                          {
+                            "value":"Driver"
+                          }
+                        ]
+                      }
+                    ],
+                    "children": [
+                      {
+                        "type": "button",
+                        "orderBy": "1",
+                        "key": 1,
+                        "isChangeColor": true,
+                        "height":70,
+                        "pixelWidth":70,
+                        "shape": "circle",
+                        "color":"#ffffff",
+                        "alignment": "center",
+                        "child": {
+                          "type": "svgController",
+                          "image": "assets/icons/vehicle.svg",
+                          "width": 60.0
+                        }
+                      },
+                      {
+                        "type": "sizedBox",
+                        "height": 5,
+                        "orderBy": "2"
+                      },
+                      {
+                        "type": "text",
+                        "orderBy": 3,
+                        "value": "",
+                        "key": 2,
+                        "style": {
+                          "color": "primaryTextColor1",
+                          "fontSize": 14.0,
+                          "fontFamily": "RR"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+
+        ]
+      }
+    }
+
+
+
+  ]
+}
+
