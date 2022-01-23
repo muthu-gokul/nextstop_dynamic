@@ -53,7 +53,7 @@
       "alignment": "centerLeft",
       "clickEvent": {
         "eventName":"HomePageNavigation",
-        "pageIndex":2
+        "pageIndex":1
       },
       "key": 1,
       "height":50,
@@ -67,6 +67,33 @@
         "style": {
           "color": "#ffffff",
           "fontSize": 16.0
+        }
+      }
+    },
+    {
+      "type": "spacerController",
+      "orderBy": 4
+    },
+    {
+      "type": "button",
+      "orderBy": 5,
+      "alignment": "center",
+      "margin": "15,0,15,20",
+      "borderRadius": "25,25,25,25",
+      "height": 50,
+      "color": "#ffE23324",
+      "clickEvent": {
+        "eventName":"Navigation",
+        "typeOfNavigation":1,
+        "navigateToPage": "Registration"
+      },
+      "child": {
+        "type": "text",
+        "value": "Logout",
+        "style": {
+          "fontSize": 16.0,
+          "fontFamily": "RR",
+          "color": "#ffffff"
         }
       }
     }

@@ -15,7 +15,7 @@ class StackController extends StatelessWidget {
     if(map.containsKey('children')){
       widgets=getWidgets(map['children'], myCallback);
     }
-   // log("stavk $widgets");
+    log("stavk $widgets");
   }
 
   @override

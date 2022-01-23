@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nextstop_dynamic/pages/estimateBill.dart';
 import 'package:nextstop_dynamic/pages/homePage.dart';
+import 'package:nextstop_dynamic/pages/registrationPage.dart';
 import 'package:nextstop_dynamic/pages/scheduleRide.dart';
 import 'package:nextstop_dynamic/widgets/customControllers/callBack/myCallback.dart';
 import 'dart:convert';
@@ -202,6 +203,9 @@ navigateTo(String page,int? typeOfNavigation,){
     }
     else if(page=="ScheduleRide"){
       getXNavigation(typeOfNavigation, ScheduleRidePage());
+    }
+    else if(page=="Registration"){
+      getXNavigation(typeOfNavigation, RegistrationPage());
     }
     else{
       errorDialog(err002);

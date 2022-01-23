@@ -148,7 +148,7 @@
       "orderBy": "8",
       "hintText": "Phone Number",
       "hasInput": true,
-      "required": true,
+      "required": false,
       "key": 2,
       "margin": "10,0,10,10",
       "groupValidation": [{"Required":"required"},{"MaximumLength":"10"}],
@@ -207,7 +207,7 @@
       },
       "value": [
         {
-          "imagePath": "",
+          "imagePath": "assets/icons/user.svg",
           "title": "End User",
           "value": [
             {
@@ -216,7 +216,7 @@
           ]
         },
         {
-          "imagePath": "",
+          "imagePath": "assets/icons/driver.svg",
           "title": "Driver",
           "value": [
             {
@@ -234,7 +234,12 @@
           "height":70,
           "pixelWidth":70,
           "shape": "circle",
-          "color":"#7E7E7E"
+          "color":"#7E7E7E",
+          "child": {
+            "type": "svgController",
+            "valueKey": "imagePath",
+            "image": ""
+          }
         },
         {
           "type": "text",
@@ -261,7 +266,8 @@
       "orderBy": "12",
       "clickEvent": {
         "eventName":"FormSubmit",
-        "navigateToPage":"HomePage"
+        "navigateToPage":"HomePage",
+        "typeOfNavigation": 2
       },
       "key": 5,
       "height":50,

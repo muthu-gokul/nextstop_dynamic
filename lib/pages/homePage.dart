@@ -10,6 +10,7 @@ import 'package:nextstop_dynamic/widgets/customControllers/callBack/myCallback.d
 import 'package:nextstop_dynamic/widgets/sizeLocal.dart';
 
 import '../constants.dart';
+import 'dynamicPageInitiater.dart';
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -63,7 +64,10 @@ class _HomePageState extends State<HomePage> implements MyCallback{
 
   @override
   Widget build(BuildContext context) {
-    //log("bb ${MediaQuery.of(context).padding.bottom} ${MediaQuery.of(context).padding.top}");
+    setState(() {
+      keyboardVisible = MediaQuery.of(context).viewInsets.bottom != 0;
+    });
+    log("bb $keyboardVisible ${ MediaQuery.of(context).viewInsets.bottom != 0} ${MediaQuery.of(context).padding.bottom} ${MediaQuery.of(context).padding.top}");
     return SafeArea(
       bottom: true,
       top: true,

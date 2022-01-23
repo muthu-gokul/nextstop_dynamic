@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nextstop_dynamic/widgets/customControllers/template/mapTemplate.dart';
 import 'package:nextstop_dynamic/widgets/customControllers/template/pickerTemplate.dart';
 import 'package:nextstop_dynamic/widgets/customControllers/utils.dart';
 
@@ -100,6 +101,9 @@ List<dynamic> getWidgets(List parsed,MyCallback myCallback){
     else if(element['type']=='pickerTemplate'){
       widgets.add(PickerTemplate(map: element, myCallback: myCallback,));
     }
+    else if(element['type']=='mapTemplate'){
+      widgets.add(MapTemplate(map: element, myCallback: myCallback,));
+    }
     else if(element['type']=='icon'){
       widgets.add( parseIcon(element));
     }
@@ -170,6 +174,10 @@ Widget getChild(Map map, {MyCallback? myCallback}){
   else if(map['type']=='pickerTemplate'){
    // return ColumnController(map: map,myCallback: myCallback!,);
     widget=  PickerTemplate(map: map,myCallback: myCallback!,);
+  }
+  else if(map['type']=='mapTemplate'){
+   // return ColumnController(map: map,myCallback: myCallback!,);
+    widget=  MapTemplate(map: map,myCallback: myCallback!,);
   }
   //return Container();
   return widget;

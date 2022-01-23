@@ -27,7 +27,14 @@ class UserRoleController extends StatelessWidget {
             element.map['value']=e[element.map['valueKey']];
             element.text.value=e[element.map['valueKey']];
           }
-         // log("e ${element.map}");
+          if(element.map.containsKey('child')){
+            log("true");
+           if(element.map['child']['type']=='svgController'){
+            element.map['child']['image']=e[element.map['child']['valueKey']];
+           }
+          }
+
+          log("e ${element.map}");
         });
         mainWidget.add(columnWidgets);
        // log("${e}");

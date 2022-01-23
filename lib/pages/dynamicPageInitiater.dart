@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
@@ -11,11 +12,12 @@ import 'package:provider/provider.dart';
 
 import '../constants.dart';
 import '../widgets/customControllers/callBack/myCallback.dart';
-
+bool keyboardVisible = false;
 class DynamicPageInitiater extends StatefulWidget {
   String pageIdentifier;
   MyCallback? myCallback;
-  DynamicPageInitiater({required this.pageIdentifier,this.myCallback});
+  bool isScrollControll;
+  DynamicPageInitiater({required this.pageIdentifier,this.myCallback,this.isScrollControll=false});
   @override
   _DynamicPageInitiaterState createState() => _DynamicPageInitiaterState();
 }
@@ -85,6 +87,12 @@ class _DynamicPageInitiaterState extends State<DynamicPageInitiater> implements 
   Widget build(BuildContext context) {
     double topPad=MediaQuery.of(context).padding.top;
     double bottomPad=MediaQuery.of(context).padding.bottom;
+  /*  setState(() {
+      keyboardVisible = MediaQuery.of(context).viewInsets.bottom != 0;
+    });*/
+
+    log("_keyboardVisible $keyboardVisible ${widget.pageIdentifier} ${widget.isScrollControll} ${ widget.isScrollControll?keyboardVisible?AlwaysScrollableScrollPhysics():
+    NeverScrollableScrollPhysics():AlwaysScrollableScrollPhysics()}");
     SizeConfig().init(context);
     return SafeArea(
       bottom: true,
@@ -99,7 +107,8 @@ class _DynamicPageInitiaterState extends State<DynamicPageInitiater> implements 
           color: Colors.white,
           child: SingleChildScrollView(
             controller: scrollController,
-            // physics: NeverScrollableScrollPhysics(),
+            physics: widget.isScrollControll?keyboardVisible?AlwaysScrollableScrollPhysics():
+            NeverScrollableScrollPhysics():AlwaysScrollableScrollPhysics(),
             child: Column(
               crossAxisAlignment: parseCrossAxisAlignment(parsedJson['crossAxisAlignment']),
               mainAxisAlignment: parseMainAxisAlignment(parsedJson['mainAxisAlignment']),
@@ -173,7 +182,7 @@ class _DynamicPageInitiaterState extends State<DynamicPageInitiater> implements 
               80.17677200475224
           );
           log("_distanceInMeters $_distanceInMeters ${_distanceInMeters/1000}");*/
-          General().formSubmit(guid, widgets[0].widget.widgets[0].widget.widget.widgets,clickEvent,queryString,myCallback: this);
+          General().formSubmit(guid, widgets[0].widget.widgets[1].widget.widget.widgets,clickEvent,queryString,myCallback: this);
         }
         else if(clickEvent['eventName']=='Navigation'){
           General().navigation(clickEvent['navigateToPage'],clickEvent['typeOfNavigation']);

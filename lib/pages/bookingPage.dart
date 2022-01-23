@@ -13,19 +13,21 @@ import 'dynamicPageInitiater.dart';
 class BookingPage extends StatelessWidget {
   MyCallback myCallback;
   BookingPage({required this.myCallback}){
-      /*dynamicPageInitiater=DynamicPageInitiater(
+      dynamicPageInitiater=DynamicPageInitiater(
         pageIdentifier: General.bookingPageIdentifier,
         myCallback: myCallback,
-      );*/
+        isScrollControll: true,
+      );
   }
- // late DynamicPageInitiater dynamicPageInitiater;
+ late DynamicPageInitiater dynamicPageInitiater;
   @override
   Widget build(BuildContext context) {
-   // return dynamicPageInitiater;
-    return DynamicPageInitiater(
+    return dynamicPageInitiater;
+    /*return DynamicPageInitiater(
       pageIdentifier: General.bookingPageIdentifier,
       myCallback: myCallback,
-    );
+      isScrollControll: true,
+    );*/
   }
 }
 /*"child": {

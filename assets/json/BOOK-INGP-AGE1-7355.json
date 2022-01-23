@@ -41,9 +41,13 @@
             }
           },
           {
+            "type": "mapTemplate",
+            "orderBy": 1
+          },
+          {
             "type":"positionController",
             "bottom": 0,
-            "orderBy": 1,
+            "orderBy": 2,
             "child": {
               "type": "button",
               "height": 410,
@@ -184,7 +188,7 @@
                     },
                     "value": [
                       {
-                        "imagePath": "",
+                        "imagePath": "assets/icons/vehicle.svg",
                         "title1": "Tata Ace",
                         "title2": "105",
                         "value": [
@@ -194,7 +198,7 @@
                         ]
                       },
                       {
-                        "imagePath": "",
+                        "imagePath": "assets/icons/vehicle.svg",
                         "title1": "Tata Tempo",
                         "title2": "205",
                         "value": [
@@ -204,7 +208,7 @@
                         ]
                       },
                       {
-                        "imagePath": "",
+                        "imagePath": "assets/icons/vehicle.svg",
                         "title1": "Eicher",
                         "title2": "305",
                         "value": [
@@ -214,7 +218,7 @@
                         ]
                       },
                       {
-                        "imagePath": "",
+                        "imagePath": "assets/icons/vehicle.svg",
                         "title1": "Truck",
                         "title2": "405",
                         "value": [
@@ -238,6 +242,7 @@
                         "child": {
                           "type": "svgController",
                           "image": "assets/icons/vehicle.svg",
+                          "valueKey": "imagePath",
                           "width": 60.0
                         }
                       },

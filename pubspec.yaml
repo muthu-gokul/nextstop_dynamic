@@ -43,6 +43,8 @@ dependencies:
   geolocator:
   date_format:
   flutter_date_pickers:
+  google_maps_flutter:
+  geocoding:
 
 dev_dependencies:
   flutter_test:
