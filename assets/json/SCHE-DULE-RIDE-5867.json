@@ -1,0 +1,224 @@
+{
+  "Guid": "1",
+  "alignment": "topCenter",
+  "mainAxisAlignment": "center",
+  "Widgets": [
+    {
+      "type":"rowController",
+      "orderBy": "2",
+      "mainAxisAlignment": "start",
+      "children": [
+        {
+          "type": "button",
+          "orderBy": 1,
+          "height":50,
+          "pixelWidth":50,
+          "alignment": "center",
+          "clickEvent": {
+            "eventName": "Navigation",
+            "typeOfNavigation": 3,
+            "navigateToPage": ""
+          },
+          "child": {
+            "type": "svgController",
+            "image": "assets/icons/back-icon.svg",
+            "height": 25.0,
+            "width": 30.0,
+            "orderBy": 1
+          }
+        },
+        {
+          "type": "text",
+          "orderBy": 3,
+          "value": "Schedule your ride",
+          "key": 1,
+          "style": {
+            "color": "primaryTextColor2",
+            "fontSize": 18.0,
+            "fontFamily": "RM"
+          }
+        }
+      ]
+    },
+    {
+      "type":"columnController",
+      "orderBy": "3",
+      "mainAxisAlignment": "start",
+      "reducedHeight": "100",
+      "children": [
+
+        { "orderBy": 2,
+          "type": "spacerController"
+        },
+        {
+          "type": "columnController",
+          "crossAxisAlignment": "start",
+          "orderBy": 3,
+
+          "children": [
+
+            {
+              "type": "text",
+              "value": "Your Total Fare",
+              "orderBy": 1,
+              "onlyText": true,
+              "style": {
+                "fontSize": 14,
+                "fontFamily": "RR",
+                "color": "primaryTextColor1"
+              }
+            },
+            {
+              "type": "text",
+              "value": "28282",
+              "orderBy": 2,
+              "onlyText": true,
+              "style": {
+                "fontSize": 30,
+                "fontFamily": "RB",
+                "color": "primaryTextColor2"
+              }
+            }
+          ]
+        },
+        { "orderBy": 4,
+          "type": "spacerController"
+        },
+        { "orderBy": 1,
+          "type": "sizedBox",
+          "height": 10
+        },
+        {
+          "orderBy": 1,
+          "type": "pickerTemplate",
+          "hasInput": "true",
+          "required": "true",
+          "children": [
+            {
+              "type": "button",
+              "height": 50,
+              "margin": "15,0,15,0",
+              "color": "#FFffffff",
+              "orderBy": 1,
+              "borderRadius": "25,25,25,25",
+              "borderColor": "textFieldBorderColor",
+              "key": 1,
+              "clickEvent": {
+
+              },
+              "child": {
+                "type": "rowController",
+                "children": [
+                  {
+                    "type": "sizedBox",
+                    "width": 15,
+                    "orderBy": 1
+                  },
+                  {
+                    "type": "text",
+                    "value": "Select Time",
+                    "orderBy": 2,
+                    "style": {
+                      "color": "primaryTextColor1",
+                      "fontSize": 15.0,
+                      "fontFamily": "RR"
+                    }
+                  },
+                  {
+                    "type": "spacerController",
+                    "orderBy": 3
+                  },
+                  {
+                    "type": "imageController",
+                    "image": "assets/icons/clock.jpg",
+                    "orderBy": 4
+                  },
+                  {
+                    "type": "sizedBox",
+                    "width": 15,
+                    "orderBy": 5
+                  }
+                ]
+              }
+            },
+            {
+              "type": "sizedBox",
+              "orderBy": 2,
+              "key": 2,
+              "height": 10.0
+            },
+            {
+              "type": "button",
+              "orderBy": 3,
+              "margin": "15,15,15,0",
+              "borderRadius": "6,6,6,6",
+              "color": "#FFf2f2f2",
+              "height": 50,
+              "width": 1,
+              "key": 3,
+              "child": {
+                "type": "rowController",
+                "children": [
+                  {
+                    "type": "sizedBox",
+                    "width": 10,
+                    "orderBy": 1
+                  },
+                  {
+                    "type": "text",
+                    "value": "Jan 20,2022 / ",
+                    "orderBy": 2,
+                    "style": {
+                      "fontSize": 15,
+                      "fontFamily": "RM",
+                      "color": "primaryTextColor3"
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "value": "9.33 AM",
+                    "orderBy": 3,
+                    "style": {
+                      "fontSize": 15,
+                      "fontFamily": "RM",
+                      "color": "primaryTextColor3"
+                    }
+                  },
+                  {
+                    "type": "sizedBox",
+                    "width": 10,
+                    "orderBy": 3
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "button",
+          "orderBy": 5,
+          "clickEvent": {
+            "eventName":"FormSubmit",
+            "navigateToPage":"",
+            "typeOfNavigation": 4
+          },
+          "key": 11,
+          "height":50,
+          "margin": "10,0,10,0",
+          "color":"primaryColor",
+          "borderRadius":"25,25,25,25",
+          "child":{
+            "type": "text",
+            "value": "Confirm Ride",
+            "key": 1,
+            "style": {
+              "color": "#ffffff",
+              "fontSize": 16.0
+            }
+          }
+        }
+      ]
+    }
+
+  ]
+}

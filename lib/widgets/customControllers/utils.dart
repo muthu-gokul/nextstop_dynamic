@@ -232,6 +232,9 @@ Color parseHexColor(String? hexColorString) {
   else if(hexColorString=='primaryTextColor2'.toUpperCase()){
     return primaryTextColor2;
   }
+  else if(hexColorString=='primaryTextColor3'.toUpperCase()){
+    return primaryTextColor3;
+  }
   else if(hexColorString=='textFieldBorderColor'.toUpperCase()){
     return textFieldBorderColor;
   }
@@ -1203,6 +1206,9 @@ Icon parseIcon(Map map){
   }
   else if(map['icon']=='location'){
     return Icon(Icons.location_on_sharp,color: parseHexColor(map['color']),size: map['size'],);
+  }
+  else if(map['icon']=='mail'){
+    return Icon(Icons.mail,color: parseHexColor(map['color']),size: map['size'],);
   }
   return Icon(Icons.phone);
 }

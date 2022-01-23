@@ -10,7 +10,8 @@ class ImageController extends StatelessWidget {
   Widget build(BuildContext context) {
     return Image.asset(
       map['image'],
-      width: map['width'],
+      width: map.containsKey('width')?map['width']:null,
+      height: map.containsKey('height')?map['height']:null,
       fit: BoxFit.cover,
     );
   }

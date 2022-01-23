@@ -5,14 +5,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nextstop_dynamic/pages/estimateBill.dart';
 import 'package:nextstop_dynamic/pages/homePage.dart';
+import 'package:nextstop_dynamic/pages/scheduleRide.dart';
 import 'package:nextstop_dynamic/widgets/customControllers/callBack/myCallback.dart';
 import 'dart:convert';
 
 import 'general.dart';
 
 //FORM SUBMISSION CLICK EVENT AND RESULT JSON GENERATION
-void formSubmitMethod(dynamic guid,List<dynamic> widget,Map clickEvent,{MyCallback? myCallback}){
+void formSubmitMethod(dynamic guid,List<dynamic> widget,Map clickEvent,List queryString,{MyCallback? myCallback}){
   //log("widget $widget");
+  log("queryString $queryString");
   var result={
     "Guid":guid,
     "FieldArray":[]
@@ -131,12 +133,28 @@ void formSubmitMethod(dynamic guid,List<dynamic> widget,Map clickEvent,{MyCallba
     result["FieldArray"]=fields;
     print((result));
     String? resJson= resultToJson(result);
+    Map map;
     if(resJson==null){
       print("Invalid json");
       errorDialog(err001);
     }
+
+
     else{
       print("Valid json $resJson");
+      for(int i=0;i<queryString.length;i++){
+        for(int j=0;j<fields.length;j++){
+          if(fields[j].containsKey(queryString[i]['key'].toString())){
+            queryString[i]['value']=fields[j][queryString[i]['key'].toString()];
+            break;
+          }
+        }
+      }
+      log("query STring $queryString");
+      // fields.forEach((element) {
+      //   map.
+      //   log("ele $element ${element.get}");
+      // });
       if(clickEvent.containsKey('navigateToPage')){
         navigateTo(clickEvent['navigateToPage'],clickEvent['typeOfNavigation']);
       }
@@ -163,6 +181,9 @@ navigateTo(String page,int? typeOfNavigation,){
   if(typeOfNavigation==3){
     Get.back();
   }
+  else if(typeOfNavigation==4){
+    Get.close(2);
+  }
   else{
     if(page=="SecurityDetails"){
      // getXNavigation(typeOfNavigation, SecurityDetails());
@@ -178,6 +199,9 @@ navigateTo(String page,int? typeOfNavigation,){
     }
     else if(page=="EstimateBill"){
       getXNavigation(typeOfNavigation, EstimateBillPage());
+    }
+    else if(page=="ScheduleRide"){
+      getXNavigation(typeOfNavigation, ScheduleRidePage());
     }
     else{
       errorDialog(err002);
@@ -199,6 +223,9 @@ getXNavigation(int? typeOfNavigation,Widget widget){
   //Pop Current Page
   else if(typeOfNavigation==3){
     Get.back();
+  }
+  else if(typeOfNavigation==4){
+    Get.close(2);
   }
   else{
     Get.to(widget);

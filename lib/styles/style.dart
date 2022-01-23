@@ -4,10 +4,11 @@ import 'package:flutter/material.dart';
 Color primaryColor=Color(0xFFE65829);
 Color primaryTextColor1=Color(0xFF8C8C8C);
 Color primaryTextColor2=Color(0xFF383838);
+Color primaryTextColor3=Color(0xFF717171);
 Color textFieldBorderColor=Color(0xFFC8C8C8);
 Color errorTextColor=Color(0xFFF44336);
 
-
+//717171
 glowFunTransparent(BuildContext context){
   return Theme.of(context).copyWith(
       colorScheme: ColorScheme.fromSwatch().copyWith(

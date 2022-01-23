@@ -10,12 +10,14 @@ import 'utils.dart';
 class TextBoxController extends StatelessWidget {
   Map map;
   Rxn ts=Rxn();
+  Rxn text=Rxn();
 
   bool onlyText=false;
 
   TextBoxController({required this.map}){
 //    log("map['style'] ${map['style']}");
     ts.value=map['style'];
+    text.value=map['value'];
     if(map.containsKey('onlyText')){
       onlyText=map['onlyText'];
     }
@@ -26,7 +28,7 @@ class TextBoxController extends StatelessWidget {
     SizeConfig().init(context);
     return onlyText?Obx(
           ()=> Text(
-        "${map['value']}",
+        "${text.value??""}",
         style: map.containsKey('style') ? parseTextStyle(ts.value) : null,
       ),
     ):
@@ -37,7 +39,7 @@ class TextBoxController extends StatelessWidget {
       padding: parseEdgeInsetsGeometry(map['padding']),
       child: Obx(
         ()=> Text(
-          "${map['value']}",
+          "${text.value??""}",
           style: map.containsKey('style') ? parseTextStyle(ts.value) : null,
         ),
       ),

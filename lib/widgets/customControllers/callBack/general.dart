@@ -4,8 +4,8 @@ import 'generalMethods.dart';
 
 class General{
 
-  void formSubmit(dynamic guid,List<dynamic> widgets,Map clickEvent,{MyCallback? myCallback}){
-    formSubmitMethod(guid, widgets,clickEvent,myCallback: myCallback);
+  void formSubmit(dynamic guid,List<dynamic> widgets,Map clickEvent,List queryString,{MyCallback? myCallback}){
+    formSubmitMethod(guid, widgets,clickEvent,queryString,myCallback: myCallback);
   }
 
 
@@ -18,6 +18,7 @@ class General{
   static String profilePageIdentifier="PROF-ILE1-3434-6566";
   static String bookingPageIdentifier="BOOK-INGP-AGE1-7355";
   static String estimateBillPageIdentifier="ESTI-MATE-BILL-5698";
+  static String scheduleRidePageIdentifier="SCHE-DULE-RIDE-5867";
 }
 
 

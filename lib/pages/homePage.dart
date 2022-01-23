@@ -20,6 +20,7 @@ class _HomePageState extends State<HomePage> implements MyCallback{
   int selectedPage=0;
 
   List<dynamic> widgets=[];
+  List<dynamic> queryString=[];
   var parsedJson;
 
   String guid="";
@@ -30,6 +31,9 @@ class _HomePageState extends State<HomePage> implements MyCallback{
 
     //guid=widget.pageIdentifier;
     widgets=getWidgets(parsedJson['Widgets'],this);
+    if(parsedJson.containsKey('queryString')){
+      queryString=parsedJson['queryString'];
+    }
     setState(() {});
     //log("${widgets}");
   }
@@ -59,7 +63,7 @@ class _HomePageState extends State<HomePage> implements MyCallback{
 
   @override
   Widget build(BuildContext context) {
-    log("bb ${MediaQuery.of(context).padding.bottom} ${MediaQuery.of(context).padding.top}");
+    //log("bb ${MediaQuery.of(context).padding.bottom} ${MediaQuery.of(context).padding.top}");
     return SafeArea(
       bottom: true,
       top: true,
@@ -103,7 +107,7 @@ class _HomePageState extends State<HomePage> implements MyCallback{
     if(clickEvent!=null){
       if(clickEvent.containsKey('eventName')){
         if(clickEvent['eventName']=='FormSubmit'){
-          General().formSubmit(guid, widgets,clickEvent,myCallback: this);
+          General().formSubmit(guid, widgets,clickEvent,queryString,myCallback: this);
         }
         else if(clickEvent['eventName']=='Navigation'){
           General().navigation(clickEvent['navigateToPage'],clickEvent['typeOfNavigation']);

@@ -38,8 +38,8 @@
           "key": 1,
           "style": {
             "color": "primaryTextColor2",
-            "fontSize": 20.0,
-            "fontFamily": "RB"
+            "fontSize": 18.0,
+            "fontFamily": "RM"
           }
         }
       ]
@@ -68,9 +68,9 @@
           "value": "Mr. End User",
           "key": 1,
           "style": {
-            "color": "primaryTextColor2",
+            "color": "primaryTextColor3",
             "fontSize": 20.0,
-            "fontFamily": "RB"
+            "fontFamily": "RM"
           }
         },
         {
@@ -92,7 +92,7 @@
         {
           "type":"sizedBox",
           "orderBy": 10,
-          "height":15
+          "height":30
         },
         {
           "type": "button",
@@ -100,7 +100,7 @@
           "height":60,
           "pixelWidth":60,
           "shape": "circle",
-          "color":"#7E7E7E",
+          "color":"#F5CAB6",
           "alignment": "center",
           "child": {
             "type": "icon",
@@ -119,9 +119,44 @@
           "orderBy": 13,
           "value": "98565-65656",
           "style": {
-            "color": "primaryTextColor2",
+            "color": "primaryTextColor3",
             "fontSize": 20.0,
-            "fontFamily": "RB"
+            "fontFamily": "RM"
+          }
+        },
+        {
+          "type":"sizedBox",
+          "orderBy": 14,
+          "height":30
+        },
+        {
+          "type": "button",
+          "orderBy": 15,
+          "height":60,
+          "pixelWidth":60,
+          "shape": "circle",
+          "color":"#F5CAB6",
+          "alignment": "center",
+          "child": {
+            "type": "icon",
+            "icon": "mail",
+            "color": "primaryColor",
+            "size": 30.0
+          }
+        },
+        {
+          "type":"sizedBox",
+          "orderBy": 16,
+          "height":5
+        },
+        {
+          "type": "text",
+          "orderBy": 17,
+          "value": "enduser@gmail.com",
+          "style": {
+            "color": "primaryTextColor3",
+            "fontSize": 20.0,
+            "fontFamily": "RM"
           }
         }
       ]

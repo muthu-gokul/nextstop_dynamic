@@ -3,6 +3,16 @@
   "alignment": "topCenter",
   "mainAxisAlignment": "start",
   "crossAxisAlignment": "start",
+  "queryString": [
+    {
+      "key": 1,
+      "value": ""
+    },
+    {
+      "key": 2,
+      "value": ""
+    }
+  ],
   "Widgets": [
     {
       "type": "button",
@@ -55,6 +65,7 @@
                     "type": "textField",
                     "orderBy": 2,
                     "hintText": "Enter Pick Up Location",
+                    "value": "Theni",
                     "hasInput": true,
                     "required": true,
                     "key": 1,
@@ -101,6 +112,7 @@
                     "type": "textField",
                     "orderBy": 3,
                     "hintText": "Enter Drop Location",
+                    "value": "madurai",
                     "hasInput": true,
                     "required": true,
                     "key": 2,
@@ -161,7 +173,7 @@
                       "fontFamily": "RR"
                     },
                     "margin": "10,0,0,0",
-                    "selectedIndex": -1,
+                    "selectedIndex": 1,
                     "key": 20,
                     "hasInput": true,
                     "required":true,

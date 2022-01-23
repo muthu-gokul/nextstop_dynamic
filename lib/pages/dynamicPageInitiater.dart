@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:get/get.dart';
 import 'package:nextstop_dynamic/widgets/customControllers/utils.dart';
 import '../widgets/customControllers/callBack/general.dart';
 import '../widgets/sizeLocal.dart';
@@ -22,6 +23,7 @@ class DynamicPageInitiater extends StatefulWidget {
 class _DynamicPageInitiaterState extends State<DynamicPageInitiater> implements MyCallback{
 
   List<dynamic> widgets=[];
+  List<dynamic> queryString=[];
   var parsedJson;
 
   String guid="";
@@ -31,7 +33,13 @@ class _DynamicPageInitiaterState extends State<DynamicPageInitiater> implements 
     parsedJson=jsonDecode(data);
 
     guid=widget.pageIdentifier;
+   /* parsedJson['Widgets'].forEach((e){
+      log("eeee $e");
+    });*/
     widgets=getWidgets(parsedJson['Widgets'],this);
+    if(parsedJson.containsKey('queryString')){
+      queryString=parsedJson['queryString'];
+    }
 /*    if(widget.myCallback==null){
       widgets=getWidgets(parsedJson['Widgets'],this);
     }
@@ -147,13 +155,13 @@ class _DynamicPageInitiaterState extends State<DynamicPageInitiater> implements 
 
   @override
   void ontap(Map? clickEvent)  {
-    log("clickEvent $clickEvent");
+    log("dynamic Page clickEvent $clickEvent");
     //log("${}");
     if(clickEvent!=null){
       if(clickEvent.containsKey('eventName')){
         if(clickEvent['eventName']=='FormSubmit'){
         //  log("$widgets");
-          General().formSubmit(guid, widgets,clickEvent,myCallback: this);
+          General().formSubmit(guid, widgets,clickEvent,queryString,myCallback: this);
         }
         else if(clickEvent['eventName']=='FormSubmitBookingPage'){
         //  log("${widgets[0].widget.widgets[0].widget.widget.widgets}");13.063375644114803, 80.14215027634373    13.071144672850647, 80.18444206319955
@@ -165,7 +173,7 @@ class _DynamicPageInitiaterState extends State<DynamicPageInitiater> implements 
               80.17677200475224
           );
           log("_distanceInMeters $_distanceInMeters ${_distanceInMeters/1000}");*/
-          General().formSubmit(guid, widgets[0].widget.widgets[0].widget.widget.widgets,clickEvent,myCallback: this);
+          General().formSubmit(guid, widgets[0].widget.widgets[0].widget.widget.widgets,clickEvent,queryString,myCallback: this);
         }
         else if(clickEvent['eventName']=='Navigation'){
           General().navigation(clickEvent['navigateToPage'],clickEvent['typeOfNavigation']);

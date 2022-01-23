@@ -25,6 +25,7 @@ class UserRoleController extends StatelessWidget {
           if(element.map['type']=='text'){
           //  element.map['value']=e['title'];
             element.map['value']=e[element.map['valueKey']];
+            element.text.value=e[element.map['valueKey']];
           }
          // log("e ${element.map}");
         });

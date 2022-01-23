@@ -34,7 +34,7 @@
           "key": 1,
           "style": {
             "color": "primaryTextColor2",
-            "fontSize": 20.0,
+            "fontSize": 18.0,
             "fontFamily": "RM"
           }
         }
@@ -114,7 +114,7 @@
           "hintText": "Enter Pick Up Location",
           "hasInput": true,
           "required": true,
-          "key": 1,
+          "key": 2,
           "margin": "15,15,15,0",
           "leftContentPadding": 20.0,
           "groupValidation": [{"Required":"required"}],
@@ -242,7 +242,7 @@
         {
           "type": "columnController",
           "crossAxisAlignment": "start",
-          "orderBy": 5,
+          "orderBy": 6,
 
           "children": [
 
@@ -270,8 +270,76 @@
             }
           ]
         },
-        { "orderBy": 5,
+        { "orderBy": 6,
           "type": "spacerController"
+        },
+        {
+          "type": "button",
+          "orderBy": 7,
+          "clickEvent": {
+            "eventName":"Navigation",
+            "navigateToPage":"ScheduleRide",
+            "typeOfNavigation": 1
+          },
+          "key": 11,
+          "height":90,
+          "margin": "10,0,10,10",
+          "child":{
+            "type": "columnController",
+            "children": [
+              {
+                "type": "button",
+                "shape": "circle",
+                "height": 60,
+                "pixelWidth": 60,
+                "color": "#F5CAB6",
+                "orderBy": 1,
+                "alignment": "center",
+                "child": {
+                  "type": "imageController",
+                  "image": "assets/icons/clock.jpg"
+                }
+              },
+              {
+                "type": "sizedBox",
+                "height": 10,
+                "orderBy": 2
+              },
+              {
+                "type": "text",
+                "orderBy": 3,
+                "value": "Schedule your ride",
+                "key": 1,
+                "style": {
+                  "color": "primaryTextColor1",
+                  "fontSize": 14.0
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "button",
+          "orderBy": 8,
+          "clickEvent": {
+            "eventName":"Navigation",
+            "navigateToPage":"",
+            "typeOfNavigation": 3
+          },
+          "key": 11,
+          "height":50,
+          "margin": "10,0,10,0",
+          "color":"primaryColor",
+          "borderRadius":"25,25,25,25",
+          "child":{
+            "type": "text",
+            "value": "Book Now",
+            "key": 1,
+            "style": {
+              "color": "#ffffff",
+              "fontSize": 16.0
+            }
+          }
         }
       ]
     }

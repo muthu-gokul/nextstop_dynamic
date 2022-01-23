@@ -41,6 +41,8 @@ dependencies:
   flutter_svg:
   carousel_slider:
   geolocator:
+  date_format:
+  flutter_date_pickers:
 
 dev_dependencies:
   flutter_test:
