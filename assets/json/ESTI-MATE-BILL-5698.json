@@ -1,0 +1,280 @@
+{
+  "Guid": "1",
+  "alignment": "topCenter",
+  "mainAxisAlignment": "center",
+  "Widgets": [
+    {
+      "type":"rowController",
+      "orderBy": "2",
+      "mainAxisAlignment": "start",
+      "children": [
+        {
+          "type": "button",
+          "orderBy": 1,
+          "height":50,
+          "pixelWidth":50,
+          "alignment": "center",
+          "clickEvent": {
+            "eventName": "Navigation",
+            "typeOfNavigation": 3,
+            "navigateToPage": ""
+          },
+          "child": {
+            "type": "svgController",
+            "image": "assets/icons/back-icon.svg",
+            "height": 25.0,
+            "width": 30.0,
+            "orderBy": 1
+          }
+        },
+        {
+          "type": "text",
+          "orderBy": 3,
+          "value": "Estimate Bill",
+          "key": 1,
+          "style": {
+            "color": "primaryTextColor2",
+            "fontSize": 20.0,
+            "fontFamily": "RM"
+          }
+        }
+      ]
+    },
+    {
+      "type":"columnController",
+      "orderBy": "3",
+      "mainAxisAlignment": "start",
+      "reducedHeight": "100",
+      "children": [
+
+        {
+          "type": "textField",
+          "orderBy": 2,
+          "hintText": "Enter Pick Up Location",
+          "hasInput": true,
+          "required": true,
+          "key": 1,
+          "margin": "15,15,15,0",
+          "leftContentPadding": 20.0,
+          "groupValidation": [{"Required":"required"}],
+          "borderRadius": "25,25,25,25",
+          "borderColor": "textFieldBorderColor",
+          "focusedBorderColor": "textFieldBorderColor",
+          "disabledBorderColor": "textFieldBorderColor",
+          "color": "FFffffff",
+          "value": "Madurai",
+          "disableColor": "FFffffff",
+          "enable": true,
+          "readOnly": true,
+          "hintTextStyle": {
+            "color": "primaryTextColor1",
+            "fontSize": 14.0,
+            "fontFamily": "RR"
+          },
+          "errorTextStyle": {
+            "color": "errorTextColor",
+            "fontSize": 14.0,
+            "fontFamily": "RR"
+          },
+          "textStyle": {
+            "color": "primaryTextColor2",
+            "fontSize": 15.0,
+            "fontFamily": "RR"
+          },
+          "suffix": {
+            "type": "button",
+            "orderBy": 1,
+            "height":50,
+            "pixelWidth":50,
+            "alignment": "center",
+            "child": {
+              "type": "icon",
+              "icon": "markLocation",
+              "color": "red",
+              "size": 20.0
+            }
+          },
+          "prefix": {
+            "type": "button",
+            "orderBy": 1,
+            "height":50,
+            "pixelWidth":50,
+            "alignment": "center",
+            "child": {
+              "type": "icon",
+              "icon": "location",
+              "color": "green",
+              "size": 20.0
+            }
+          }
+        },
+        {
+          "type": "textField",
+          "orderBy": 3,
+          "hintText": "Enter Pick Up Location",
+          "hasInput": true,
+          "required": true,
+          "key": 1,
+          "margin": "15,15,15,0",
+          "leftContentPadding": 20.0,
+          "groupValidation": [{"Required":"required"}],
+          "borderRadius": "25,25,25,25",
+          "borderColor": "textFieldBorderColor",
+          "focusedBorderColor": "textFieldBorderColor",
+          "disabledBorderColor": "textFieldBorderColor",
+          "color": "FFffffff",
+          "value": "Theni  jbjfkgjjb jkjghk jhbjkgh jb gjhjgh jjn jkgjk gnjk  nkjgnh kjghnhkgn kghnnkn",
+          "disableColor": "FFffffff",
+          "enable": true,
+          "readOnly": true,
+          "hintTextStyle": {
+            "color": "primaryTextColor1",
+            "fontSize": 14.0,
+            "fontFamily": "RR"
+          },
+          "errorTextStyle": {
+            "color": "errorTextColor",
+            "fontSize": 14.0,
+            "fontFamily": "RR"
+          },
+          "textStyle": {
+            "color": "primaryTextColor2",
+            "fontSize": 15.0,
+            "fontFamily": "RR"
+          },
+          "suffix": {
+            "type": "button",
+            "orderBy": 1,
+            "height":50,
+            "pixelWidth":50,
+            "alignment": "center",
+            "child": {
+              "type": "icon",
+              "icon": "markLocation",
+              "color": "red",
+              "size": 20.0
+            }
+          },
+          "prefix": {
+            "type": "button",
+            "orderBy": 1,
+            "height":50,
+            "pixelWidth":50,
+            "alignment": "center",
+            "child": {
+              "type": "icon",
+              "icon": "location",
+              "color": "red",
+              "size": 20.0
+            }
+          }
+        },
+        {
+          "type": "button",
+          "orderBy": 4,
+          "margin": "15,15,15,0",
+          "borderRadius": "6,6,6,6",
+          "color": "#FFf2f2f2",
+          "height": 50,
+          "width": 1,
+          "child": {
+            "type": "rowController",
+            "children": [
+              {
+                "type": "sizedBox",
+                "width": 10,
+                "orderBy": 1
+              },
+              {
+                "type": "svgController",
+                "orderBy": 1,
+                "image": "assets/icons/user.svg",
+                "width": 60.0,
+                "height": 40.0
+              },
+              {
+                "type": "text",
+                "value": "Mr. End User",
+                "orderBy": 2,
+                "style": {
+                  "fontSize": 14,
+                  "fontFamily": "RR",
+                  "color": "primaryTextColor2"
+                }
+              },
+              {
+                "type": "spacerController",
+                "orderBy": 3
+              },
+              {
+                "type": "icon",
+                "orderBy": 4,
+                "icon": "phone",
+                "color": "primaryColor",
+                "size": 18.0
+              },
+              {
+                "type": "sizedBox",
+                "width": 5,
+                "orderBy": 5
+              },
+              {
+                "type": "text",
+                "orderBy": 5,
+                "value": "98565-65656",
+                "style": {
+                  "color": "primaryTextColor2",
+                  "fontSize": 15.0,
+                  "fontFamily": "RR"
+                }
+              },
+              {
+                "type": "sizedBox",
+                "width": 10,
+                "orderBy": 6
+              }
+            ]
+          }
+        },
+        { "orderBy": 5,
+          "type": "spacerController"
+        },
+        {
+          "type": "columnController",
+          "crossAxisAlignment": "start",
+          "orderBy": 5,
+
+          "children": [
+
+            {
+              "type": "text",
+              "value": "Your Total Fare",
+              "orderBy": 1,
+              "onlyText": true,
+              "style": {
+                "fontSize": 14,
+                "fontFamily": "RR",
+                "color": "primaryTextColor1"
+              }
+            },
+            {
+              "type": "text",
+              "value": "28282",
+              "orderBy": 2,
+              "onlyText": true,
+              "style": {
+                "fontSize": 30,
+                "fontFamily": "RB",
+                "color": "primaryTextColor2"
+              }
+            }
+          ]
+        },
+        { "orderBy": 5,
+          "type": "spacerController"
+        }
+      ]
+    }
+
+  ]
+}

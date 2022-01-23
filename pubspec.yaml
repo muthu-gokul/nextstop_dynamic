@@ -40,6 +40,7 @@ dependencies:
   http:
   flutter_svg:
   carousel_slider:
+  geolocator:
 
 dev_dependencies:
   flutter_test:
@@ -81,6 +82,58 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
+  fonts:
+    - family: QuickSand
+      fonts:
+        - asset: fonts/Quicksand-Medium.ttf
+    - family: QB
+      fonts:
+        - asset: fonts/Quicksand-Bold.ttf
+    - family: QL
+      fonts:
+        - asset: fonts/Quicksand-Light.ttf
+    - family: QR
+      fonts:
+        - asset: fonts/Quicksand-Regular.ttf
+    - family: QSB
+      fonts:
+        - asset: fonts/Quicksand-SemiBold.ttf
+    - family: Rb
+      fonts:
+        - asset: fonts/Roboto-Black.ttf
+    - family: RbI
+      fonts:
+        - asset: fonts/Roboto-BlackItalic.ttf
+    - family: RB
+      fonts:
+        - asset: fonts/Roboto-Bold.ttf
+    - family: RBI
+      fonts:
+        - asset: fonts/Roboto-BoldItalic.ttf
+    - family: RI
+      fonts:
+        - asset: fonts/Roboto-Italic.ttf
+    - family: RL
+      fonts:
+        - asset: fonts/Roboto-Light.ttf
+    - family: RLI
+      fonts:
+        - asset: fonts/Roboto-LightItalic.ttf
+    - family: RM
+      fonts:
+        - asset: fonts/Roboto-Medium.ttf
+    - family: RMI
+      fonts:
+        - asset: fonts/Roboto-MediumItalic.ttf
+    - family: RR
+      fonts:
+        - asset: fonts/Roboto-Regular.ttf
+    - family: RT
+      fonts:
+        - asset: fonts/Roboto-Thin.ttf
+    - family: RTI
+      fonts:
+        - asset: fonts/Roboto-ThinItalic.ttf
   # fonts:
   #   - family: Schyler
   #     fonts:

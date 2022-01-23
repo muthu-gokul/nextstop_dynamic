@@ -52,7 +52,7 @@
       "children": [
         {
           "type":"propicController",
-          "imagePath":"assets/designation/security.svg",
+          "imagePath":"assets/icons/user.svg",
           "bgColor":"primaryColor",
           "alignment":"center",
           "orderBy":5

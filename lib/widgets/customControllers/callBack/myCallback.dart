@@ -15,6 +15,7 @@ import '../profiePicController.dart';
 import '../registrationPageController.dart';
 import '../rowController.dart';
 import '../sizedBoxController.dart';
+import '../spacerController.dart';
 import '../stackController.dart';
 import '../templateController.dart';
 import '../textController.dart';
@@ -41,8 +42,11 @@ List<dynamic> getWidgets(List parsed,MyCallback myCallback){
     if(element['type']=='text'){
       widgets.add(TextBoxController(map: element));
     }
+    else if(element['type']=='spacerController'){
+      widgets.add(SpacerController());
+    }
     else if(element['type']=='textField'){
-      widgets.add(TextFormFieldController(map: element));
+      widgets.add(TextFormFieldController(map: element,myCallback: myCallback,));
     }
     else if(element['type']=='button'){
       widgets.add(ButtonController(map: element, ontap: myCallback,));
@@ -107,9 +111,13 @@ Widget getChild(Map map, {MyCallback? myCallback}){
   // return TextBoxController(map: map);
     widget= TextBoxController(map: map);
   }
+  else if(map['type']=='spacerController'){
+  //  return TextFormFieldController(map: map);
+    widget=  SpacerController();
+  }
   else if(map['type']=='textField'){
   //  return TextFormFieldController(map: map);
-    widget=  TextFormFieldController(map: map);
+    widget=  TextFormFieldController(map: map,myCallback: myCallback!,);
   }
   else if(map['type']=='sizedBox'){
     //return SizedBoxController(map: map);
@@ -150,6 +158,10 @@ Widget getChild(Map map, {MyCallback? myCallback}){
   else if(map['type']=='columnController'){
    // return ColumnController(map: map,myCallback: myCallback!,);
     widget=  ColumnController(map: map,myCallback: myCallback!,);
+  }
+  else if(map['type']=='rowController'){
+   // return ColumnController(map: map,myCallback: myCallback!,);
+    widget=  RowController(map: map,myCallback: myCallback!,);
   }
   //return Container();
   return widget;

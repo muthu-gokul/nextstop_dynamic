@@ -103,7 +103,7 @@ class _HomePageState extends State<HomePage> implements MyCallback{
     if(clickEvent!=null){
       if(clickEvent.containsKey('eventName')){
         if(clickEvent['eventName']=='FormSubmit'){
-         // General().formSubmit(guid, widgets,clickEvent);
+          General().formSubmit(guid, widgets,clickEvent,myCallback: this);
         }
         else if(clickEvent['eventName']=='Navigation'){
           General().navigation(clickEvent['navigateToPage'],clickEvent['typeOfNavigation']);

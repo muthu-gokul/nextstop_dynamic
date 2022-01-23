@@ -11,7 +11,7 @@ class ColumnController extends StatelessWidget {
   List widgets=[];
   ColumnController({required this.map,required this.myCallback})
   {
-    log("Column Constructor");
+   // log("Column Constructor");
     if(map.containsKey('children')){
       widgets=getWidgets(map['children'], myCallback);
     }
@@ -22,8 +22,10 @@ class ColumnController extends StatelessWidget {
     return Container(
       height: map.containsKey('height')?double.parse(map['height'].toString()):
       map.containsKey('reducedHeight')?SizeConfig.screenHeight!-double.parse(map['reducedHeight'].toString()):null,
-      // width: SizeConfig.screenWidth,
+     // width: SizeConfig.screenWidth,
       child: Column(
+       /* mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.end,*/
         crossAxisAlignment: parseCrossAxisAlignment(map['crossAxisAlignment']),
         mainAxisAlignment: parseMainAxisAlignment(map['mainAxisAlignment']),
         children: [

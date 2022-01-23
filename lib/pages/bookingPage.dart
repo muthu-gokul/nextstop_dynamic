@@ -9,68 +9,19 @@ import 'package:nextstop_dynamic/widgets/sizeLocal.dart';
 
 import 'dynamicPageInitiater.dart';
 
-/*class BookingPage extends StatefulWidget {
-  MyCallback myCallback;
-  BookingPage({required this.myCallback});
-
-  @override
-  State<BookingPage> createState() => _BookingPageState();
-}
-
-class _BookingPageState extends State<BookingPage> {
-
-  List<dynamic> widgets=[];
-  var parsedJson;
-
-  String guid="";
-
-  parseJson() async{
-    String data = await DefaultAssetBundle.of(context).loadString("assets/json/${ General.bookingPageIdentifier}.json");
-    parsedJson=jsonDecode(data);
-
-    guid= General.bookingPageIdentifier;
-    if(widget.myCallback==null){
-      widgets=getWidgets(parsedJson['Widgets'],widget.myCallback);
-    }
-    else{
-      widgets=getWidgets(parsedJson['Widgets'],widget.myCallback);
-    }
-
-    setState(() {});
-    log("$widgets");
-  }
-
-  @override
-  void initState() {
-    parseJson();
-    super.initState();
-  }
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: SizeConfig.screenHeight,
-      width: SizeConfig.screenWidth,
-      child:Stack(
-
-        children: [
-          Container(
-            height: 30,
-          ),
-          Positioned(child: Text("hello")),
-          for(int i=0;i<widgets.length;i++)
-            widgets[i]
-        ],
-      )
-    );
-   // return widgets.isNotEmpty?widgets[0]:Container();
-  }
-}*/
 
 class BookingPage extends StatelessWidget {
   MyCallback myCallback;
-  BookingPage({required this.myCallback});
+  BookingPage({required this.myCallback}){
+      /*dynamicPageInitiater=DynamicPageInitiater(
+        pageIdentifier: General.bookingPageIdentifier,
+        myCallback: myCallback,
+      );*/
+  }
+ // late DynamicPageInitiater dynamicPageInitiater;
   @override
   Widget build(BuildContext context) {
+   // return dynamicPageInitiater;
     return DynamicPageInitiater(
       pageIdentifier: General.bookingPageIdentifier,
       myCallback: myCallback,

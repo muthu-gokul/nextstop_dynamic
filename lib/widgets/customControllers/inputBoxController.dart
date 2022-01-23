@@ -7,8 +7,17 @@ import 'package:get/get.dart';
 class TextFormFieldController extends StatelessWidget implements MyCallback2{
   Map map;
   late TextEditingController textEditingController;
-  TextFormFieldController({required this.map}){
+  Widget? suffix;
+  Widget? prefix;
+  MyCallback myCallback;
+  TextFormFieldController({required this.map,required this.myCallback}){
     textEditingController= new TextEditingController(text: map['value']);
+    if(map.containsKey('suffix')){
+      suffix=getChild(map['suffix'],myCallback: myCallback);
+    }
+    if(map.containsKey('prefix')){
+      prefix=getChild(map['prefix'],myCallback: myCallback);
+    }
   }
 
   var isValid=true.obs;
@@ -31,10 +40,12 @@ class TextFormFieldController extends StatelessWidget implements MyCallback2{
             scrollPadding: EdgeInsets.only(bottom: 100),
             obscureText: map.containsKey('obscureText')?map['obscureText']:false,
             obscuringCharacter: '*',
+            readOnly: map.containsKey('readOnly')?map['readOnly']:false,
             decoration: InputDecoration(
                 hintText: map['hintText'],
                 hintStyle: map.containsKey('hintTextStyle') ? parseTextStyle(map['hintTextStyle']) : null,
                 enabled: map.containsKey('enable')?map['enable']:true,
+
                 filled: true,
                 fillColor: map.containsKey('enable')?map['enable']?parseHexColor(map['color']):parseHexColor(map['disableColor']):parseHexColor(map['color']),
                 border: OutlineInputBorder(
@@ -61,7 +72,14 @@ class TextFormFieldController extends StatelessWidget implements MyCallback2{
                         color: parseHexColor(map['disabledBorderColor'])
                     )
                 ),
-                contentPadding: EdgeInsets.only(top: 0,left: map['leftContentPadding']??10.0)
+                contentPadding: EdgeInsets.only(top: 0,left: map['leftContentPadding']??10.0),
+                suffixIcon: suffix,
+                prefixIcon: prefix
+                /*prefixIcon: Container(
+                  height: 50,
+                  width: 50,
+                  child: Icon(Icons.location_on_sharp),
+                ),*/
             ),
           ),
           Obx(

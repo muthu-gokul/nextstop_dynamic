@@ -24,7 +24,8 @@ class SvgController extends StatelessWidget {
   Widget build(BuildContext context) {
     return SvgPicture.asset(
       map['image'],
-      width: map['width'],
+      width: map.containsKey('width')?map['width']:null,
+      height: map.containsKey('height')?map['height']:null,
       fit: BoxFit.cover,
     );
   }

@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:nextstop_dynamic/widgets/customControllers/utils.dart';
 import '../widgets/customControllers/callBack/general.dart';
 import '../widgets/sizeLocal.dart';
@@ -30,15 +31,16 @@ class _DynamicPageInitiaterState extends State<DynamicPageInitiater> implements 
     parsedJson=jsonDecode(data);
 
     guid=widget.pageIdentifier;
-    if(widget.myCallback==null){
+    widgets=getWidgets(parsedJson['Widgets'],this);
+/*    if(widget.myCallback==null){
       widgets=getWidgets(parsedJson['Widgets'],this);
     }
     else{
       widgets=getWidgets(parsedJson['Widgets'],widget.myCallback!);
-    }
+    }*/
 
     setState(() {});
-    log("${parsedJson}");
+    //log("${parsedJson}");
   }
 
   @override
@@ -144,15 +146,32 @@ class _DynamicPageInitiaterState extends State<DynamicPageInitiater> implements 
 */
 
   @override
-  void ontap(Map? clickEvent) {
+  void ontap(Map? clickEvent)  {
     log("clickEvent $clickEvent");
+    //log("${}");
     if(clickEvent!=null){
       if(clickEvent.containsKey('eventName')){
         if(clickEvent['eventName']=='FormSubmit'){
-          General().formSubmit(guid, widgets,clickEvent);
+        //  log("$widgets");
+          General().formSubmit(guid, widgets,clickEvent,myCallback: this);
+        }
+        else if(clickEvent['eventName']=='FormSubmitBookingPage'){
+        //  log("${widgets[0].widget.widgets[0].widget.widget.widgets}");13.063375644114803, 80.14215027634373    13.071144672850647, 80.18444206319955
+          //13.06711414347586, 80.20565429830474
+          //13.067951392583117, 80.17677200475224 from
+          /*var _distanceInMeters = Geolocator.distanceBetween(
+              10.10171792889313, 77.47002031632144,
+              13.067951392583117,
+              80.17677200475224
+          );
+          log("_distanceInMeters $_distanceInMeters ${_distanceInMeters/1000}");*/
+          General().formSubmit(guid, widgets[0].widget.widgets[0].widget.widget.widgets,clickEvent,myCallback: this);
         }
         else if(clickEvent['eventName']=='Navigation'){
           General().navigation(clickEvent['navigateToPage'],clickEvent['typeOfNavigation']);
+        }
+        else if(clickEvent['eventName']=='OpenDrawer'){
+          widget.myCallback?.ontap(clickEvent);
         }
       }
     }

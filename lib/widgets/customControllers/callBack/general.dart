@@ -1,9 +1,11 @@
+import 'package:nextstop_dynamic/widgets/customControllers/callBack/myCallback.dart';
+
 import 'generalMethods.dart';
 
 class General{
 
-  void formSubmit(dynamic guid,List<dynamic> widgets,Map clickEvent){
-    formSubmitMethod(guid, widgets,clickEvent);
+  void formSubmit(dynamic guid,List<dynamic> widgets,Map clickEvent,{MyCallback? myCallback}){
+    formSubmitMethod(guid, widgets,clickEvent,myCallback: myCallback);
   }
 
 
@@ -15,6 +17,7 @@ class General{
   static String homePageIdentifier="HOME-PAGE-3434-9898";
   static String profilePageIdentifier="PROF-ILE1-3434-6566";
   static String bookingPageIdentifier="BOOK-INGP-AGE1-7355";
+  static String estimateBillPageIdentifier="ESTI-MATE-BILL-5698";
 }
 
 

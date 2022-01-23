@@ -240,6 +240,8 @@
           "type": "text",
           "orderBy": "2",
           "value": "",
+          "valueKey": "title",
+          "isChangeColor": false,
           "key": 2,
           "style": {
             "color": "primaryTextColor1",

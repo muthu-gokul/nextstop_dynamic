@@ -23,7 +23,8 @@ class UserRoleController extends StatelessWidget {
         columnWidgets=getWidgets(temp, ontap);
         columnWidgets.forEach((element) {
           if(element.map['type']=='text'){
-            element.map['value']=e['title'];
+          //  element.map['value']=e['title'];
+            element.map['value']=e[element.map['valueKey']];
           }
          // log("e ${element.map}");
         });
@@ -34,6 +35,9 @@ class UserRoleController extends StatelessWidget {
         mainWidget[selectedIndex.value].forEach((e){
           if(e.map['type']=='button' && e.map['isChangeColor']){
             e.color.value=map['selectedColor'];
+          }
+          else if(e.map['type']=='text' && e.map['isChangeColor']){
+            e.ts.value=map['selectedTextStyle'];
           }
         });
       }
@@ -55,7 +59,8 @@ class UserRoleController extends StatelessWidget {
           return  GestureDetector(
             onTap: (){
               selectedIndex.value=i;
-              log("tap ${mainWidget[i]}");
+              map['selectedIndex']=selectedIndex.value;
+              //log("tap ${mainWidget[i]}");
               int k=0;
               mainWidget.forEach((ele){
                 ele.forEach((e){
@@ -65,6 +70,14 @@ class UserRoleController extends StatelessWidget {
                     }
                     else{
                       e.color.value=map['unselectColor'];
+                    }
+                  }
+                 else if(e.map['type']=='text' && e.map['isChangeColor']){
+                    if(k==selectedIndex.value) {
+                      e.ts.value=map['selectedTextStyle'];
+                    }
+                    else{
+                      e.ts.value=map['unselectedTextStyle'];
                     }
                   }
                 });
@@ -111,6 +124,9 @@ class UserRoleController extends StatelessWidget {
   }
 
   getValue(){
+    if(selectedIndex.value==-1){
+     return "";
+    }
     return map['value'][selectedIndex.value]['value'];
   }
 

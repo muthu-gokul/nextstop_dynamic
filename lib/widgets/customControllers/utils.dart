@@ -238,6 +238,12 @@ Color parseHexColor(String? hexColorString) {
   else if(hexColorString=='errorTextColor'.toUpperCase()){
     return errorTextColor;
   }
+  else if(hexColorString=='red'.toUpperCase()){
+    return Colors.red;
+  }
+  else if(hexColorString=='green'.toUpperCase()){
+    return Colors.green;
+  }
   else{
     if (hexColorString.length == 6) {
       hexColorString = "FF" + hexColorString;
@@ -270,7 +276,7 @@ TextStyle? parseTextStyle(Map<String, dynamic>? map) {
     fontSize: fontSize,
     fontFamily: fontFamily,
     fontStyle: fontStyle,
-    fontWeight: parseFontWeight(fontWeight),
+ //   fontWeight: parseFontWeight(fontWeight),
   );
 }
 
@@ -1191,6 +1197,12 @@ Map<String, dynamic> exportConstraints(BoxConstraints constraints) {
 Icon parseIcon(Map map){
   if(map['icon']=='phone'){
     return Icon(Icons.phone,color: parseHexColor(map['color']),size: map['size'],);
+  }
+  else if(map['icon']=='markLocation'){
+    return Icon(Icons.my_location_rounded,color: parseHexColor(map['color']),size: map['size'],);
+  }
+  else if(map['icon']=='location'){
+    return Icon(Icons.location_on_sharp,color: parseHexColor(map['color']),size: map['size'],);
   }
   return Icon(Icons.phone);
 }

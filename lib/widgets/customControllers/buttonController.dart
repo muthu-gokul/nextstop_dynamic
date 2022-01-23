@@ -16,7 +16,7 @@ class ButtonController extends StatelessWidget {
   ButtonController({required this.map,required this.ontap}){
     color.value=map['color'];
     widget=map.containsKey('child')?getChild(map['child'],myCallback: ontap):Container();
-    log("Button Constructor");
+ //  log("Button Constructor");
   }
 
   @override

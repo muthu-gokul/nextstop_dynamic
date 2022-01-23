@@ -1,26 +1,57 @@
 
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:nextstop_dynamic/pages/estimateBill.dart';
 import 'package:nextstop_dynamic/pages/homePage.dart';
+import 'package:nextstop_dynamic/widgets/customControllers/callBack/myCallback.dart';
 import 'dart:convert';
 
 import 'general.dart';
 
 //FORM SUBMISSION CLICK EVENT AND RESULT JSON GENERATION
-void formSubmitMethod(dynamic guid,List<dynamic> widgets,Map clickEvent){
-
+void formSubmitMethod(dynamic guid,List<dynamic> widget,Map clickEvent,{MyCallback? myCallback}){
+  //log("widget $widget");
   var result={
     "Guid":guid,
     "FieldArray":[]
   };
+  List<dynamic> widgets=[];
+  /*checkWid(dynamic element){
+    if(element.map.containsKey('hasInput')){
+      return element;
+    }
+    return null;
+  }
+  widget.forEach((element) {
+    var eleRes=checkWid(element);
+    if(eleRes!=null){
+      widgets.add(element);
+    }
+    log("ele $eleRes");
+
+   *//* if(element.map.containsKey('hasInput')){
+     // widgets.add(element);
+    }*//*
+   // log("element.map $element ${element.runtimeType} ${element.map.containsKey('child')} ${element.map.containsKey('children')} ${element.map}");
+    if(element.map.containsKey('child')){
+      var eee=getChild(element.map['child'],myCallback: myCallback);
+      log("child $eee ${element.map['child'].runtimeType} ${element.map['child']}");
+    }
+  });*/
+
+  widgets=widget;
+
   List<bool> validList=[];
   bool isValid=true;
 
   result["FieldArray"]=[];
   List<dynamic> fields=[];
   validList=[];
+
   widgets.forEach((element) {
-    //print(element);
+   // print(element);
     if(element.map.containsKey('hasInput')){
       // print(element.map["key"]);
       if(element.map['hasInput']){
@@ -144,6 +175,9 @@ navigateTo(String page,int? typeOfNavigation,){
     }
     else if(page=="HomePage"){
       getXNavigation(typeOfNavigation, HomePage());
+    }
+    else if(page=="EstimateBill"){
+      getXNavigation(typeOfNavigation, EstimateBillPage());
     }
     else{
       errorDialog(err002);
