@@ -2,12 +2,13 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:nextstop_dynamic/widgets/customControllers/callBack/myCallback.dart';
 
 
 import '../sizeLocal.dart';
 import 'utils.dart';
 
-class TextBoxController extends StatelessWidget {
+class TextBoxController extends StatelessWidget implements MyCallback2{
   Map map;
   Rxn ts=Rxn();
   Rxn text=Rxn();
@@ -44,5 +45,22 @@ class TextBoxController extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  @override
+  getType() {
+    return map['type'];
+  }
+
+  @override
+  getValue() {
+    // TODO: implement getValue
+    throw UnimplementedError();
+  }
+
+  @override
+  validate() {
+    // TODO: implement validate
+    throw UnimplementedError();
   }
 }

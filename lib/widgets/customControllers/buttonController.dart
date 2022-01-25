@@ -6,7 +6,7 @@ import 'callBack/myCallback.dart';
 import 'utils.dart';
 import 'package:get/get.dart';
 
-class ButtonController extends StatelessWidget {
+class ButtonController extends StatelessWidget implements MyCallback2{
   Map map;
   MyCallback ontap;
 
@@ -47,4 +47,25 @@ class ButtonController extends StatelessWidget {
       )
     );
   }
+
+
+
+
+  @override
+  getValue() {
+    // TODO: implement getValue
+    throw UnimplementedError();
+  }
+
+  @override
+  validate() {
+    // TODO: implement validate
+    throw UnimplementedError();
+  }
+
+  @override
+  getType() {
+    return map['type'];
+  }
+
 }

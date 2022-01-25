@@ -31,6 +31,7 @@ abstract class MyCallback {
 abstract class MyCallback2 {
   validate();
   getValue();
+  getType();
 }
 
 
@@ -66,7 +67,7 @@ List<dynamic> getWidgets(List parsed,MyCallback myCallback){
       widgets.add(RegistrationTemplate(element['templateName']).getWidget(element,myCallback));
     }
     else if(element['type']=='propicController'){
-      widgets.add(ProfilePicController(data: element));
+      widgets.add(ProfilePicController(map: element));
     }
     else if(element['type']=='imageController'){
       widgets.add(ImageController(map: element));

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-class HiddenController extends StatelessWidget {
+import 'package:nextstop_dynamic/widgets/customControllers/callBack/myCallback.dart';
+class HiddenController extends StatelessWidget implements MyCallback2{
   Map map;
   HiddenController({required this.map});
   @override
@@ -9,11 +10,19 @@ class HiddenController extends StatelessWidget {
     );
   }
 
+
+  @override
   validate(){
     return true;
   }
 
+  @override
   getValue(){
     return map['value'];
+  }
+
+  @override
+  getType() {
+    return map['type'];
   }
 }

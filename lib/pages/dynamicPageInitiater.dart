@@ -190,12 +190,85 @@ class _DynamicPageInitiaterState extends State<DynamicPageInitiater> implements 
         else if(clickEvent['eventName']=='OpenDrawer'){
           widget.myCallback?.ontap(clickEvent);
         }
+        else if(clickEvent['eventName']=='iconClick'){
+          log("$widgets");
+          findWidget(widgets);
+          findWidgetByKey(widgets,clickEvent['key']);
+        }
       }
     }
   }
 }
 
 
+findWidget(List<dynamic> widgets){
+   log("widgets ${widgets}");
+  for(int i=0;i<widgets.length;i++){
+    func1(widgets[i]);
+  }
+}
+
+func1(dynamic widget){
+  if(widget.map.containsKey("child")){
+    log("${widget.getType()} ${widget.widget} ${widget.map['key']}");
+    func1(widget.widget);
+  }
+  else if(widget.map.containsKey("children")){
+   // log("${widget.getType()}");
+    if(widget.getType()!='userRoleController') {
+      log("___ ${widget.getType()} ${widget.widgets}");
+      findWidget(widget.widgets);
+    }
+    else{
+      log("else ${widget.getType()}");
+    }
+  }
+  else{
+    log("else2 ${widget.getType()}");
+  }
+}
+
+findWidgetByKey(List<dynamic> widgets,dynamic key){
+  //log("widgets ${widgets}");
+  var a;
+  for(int i=0;i<widgets.length;i++){
+    a= func1ByKey(widgets[i],key);
+    log("aaaaa $a ");
+    if(a!=null){
+      a.textEditingController.text="Heelo";
+      a.map['value']="Heelo";
+      break;
+
+    }
+  }
+
+}
+
+func1ByKey(dynamic widget,dynamic key){
+  if(widget.map.containsKey("child")){
+   // log("${widget.getType()} ${widget.widget} ${widget.map['key']}");
+    func1ByKey(widget.widget,key);
+  }
+  else if(widget.map.containsKey("children")){
+    // log("${widget.getType()}");
+    if(widget.getType()!='userRoleController') {
+    //  log("___ ${widget.getType()} ${widget.widgets}");
+      findWidgetByKey(widget.widgets,key);
+    }
+    else{
+      log("else ${widget.getType()}");
+    }
+  }
+  else{
+    if(widget.map.containsKey('key')){
+      if(widget.map['key']==key){
+        return widget;
+      }
+      log("else2 ${widget.getType()}  has key ${widget.map['key']}    $key");
+    }
+  }
+  return null;
+}
 
 
 

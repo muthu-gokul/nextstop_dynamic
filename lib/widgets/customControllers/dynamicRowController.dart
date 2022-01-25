@@ -103,4 +103,9 @@ class DynamicTextBox extends StatelessWidget implements MyCallback2{
     });
     return res;
   }
+
+  @override
+  getType() {
+    return map['type'];
+  }
 }

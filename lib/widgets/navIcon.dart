@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'customControllers/callBack/myCallback.dart';
 import 'customControllers/utils.dart';
 
-class NavIcon extends StatelessWidget {
+class NavIcon extends StatelessWidget implements MyCallback2{
   MyCallback ontap;
   Map map;
   NavIcon({required this.ontap,required this.map});
@@ -60,5 +60,22 @@ class NavIcon extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  @override
+  getType() {
+    return map['type'];
+  }
+
+  @override
+  getValue() {
+    // TODO: implement getValue
+    throw UnimplementedError();
+  }
+
+  @override
+  validate() {
+    // TODO: implement validate
+    throw UnimplementedError();
   }
 }

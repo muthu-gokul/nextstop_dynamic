@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'callBack/myCallback.dart';
 import 'utils.dart';
 
-class RowController extends StatelessWidget {
+class RowController extends StatelessWidget implements MyCallback2{
   Map map;
   MyCallback myCallback;
   List widgets=[];
@@ -26,6 +26,23 @@ class RowController extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  @override
+  getType() {
+    return map['type'];
+  }
+
+  @override
+  getValue() {
+    // TODO: implement getValue
+    throw UnimplementedError();
+  }
+
+  @override
+  validate() {
+    // TODO: implement validate
+    throw UnimplementedError();
   }
 
 

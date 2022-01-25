@@ -4,12 +4,12 @@ import 'callBack/myCallback.dart';
 import 'utils.dart';
 
 class ProfilePicController extends StatelessWidget implements MyCallback2{
-  Map data;
-  ProfilePicController({required this.data});
+  Map map;
+  ProfilePicController({required this.map});
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: parseAlignment(data['alignment']),
+      alignment: parseAlignment(map['alignment']),
       child: Stack(
         children: [
           Container(
@@ -19,12 +19,12 @@ class ProfilePicController extends StatelessWidget implements MyCallback2{
             clipBehavior: Clip.antiAlias,
             decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: parseHexColor(data['bgColor']),
-                border: Border.all(color: parseHexColor(data['borderColor']),width: 3),
+                color: parseHexColor(map['bgColor']),
+                border: Border.all(color: parseHexColor(map['borderColor']),width: 3),
                 //  color: AppTheme.yellowColor,
                 boxShadow: []
             ),
-            child:SvgPicture.asset(data['imagePath']),
+            child:SvgPicture.asset(map['imagePath']),
           ),
           Positioned(
               bottom: 0,
@@ -54,5 +54,10 @@ class ProfilePicController extends StatelessWidget implements MyCallback2{
   validate() {
     // TODO: implement validate
     throw UnimplementedError();
+  }
+
+  @override
+  getType() {
+    return map['type'];
   }
 }

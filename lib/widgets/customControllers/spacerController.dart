@@ -1,8 +1,26 @@
 import 'package:flutter/material.dart';
-class SpacerController extends StatelessWidget {
+import 'package:nextstop_dynamic/widgets/customControllers/callBack/myCallback.dart';
+class SpacerController extends StatelessWidget implements MyCallback2{
 
   @override
   Widget build(BuildContext context) {
     return Spacer();
+  }
+
+  @override
+  getType() {
+    return 'spacerController';
+  }
+
+  @override
+  getValue() {
+    // TODO: implement getValue
+    throw UnimplementedError();
+  }
+
+  @override
+  validate() {
+    // TODO: implement validate
+    throw UnimplementedError();
   }
 }

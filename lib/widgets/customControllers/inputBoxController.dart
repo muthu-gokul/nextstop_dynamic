@@ -93,6 +93,7 @@ class TextFormFieldController extends StatelessWidget implements MyCallback2{
     );
   }
 
+  @override
   validate(){
     if(textEditingController.text.isEmpty){
       isValid.value=false;
@@ -151,8 +152,14 @@ class TextFormFieldController extends StatelessWidget implements MyCallback2{
     return isValid.value;
   }
 
+  @override
   getValue(){
     return textEditingController.text;
+  }
+
+  @override
+  getType() {
+    return map['type'];
   }
 
 }

@@ -5,7 +5,7 @@ import 'package:nextstop_dynamic/widgets/sizeLocal.dart';
 import 'callBack/myCallback.dart';
 import 'utils.dart';
 
-class ColumnController extends StatelessWidget {
+class ColumnController extends StatelessWidget implements MyCallback2{
   Map map;
   MyCallback myCallback;
   List widgets=[];
@@ -34,6 +34,23 @@ class ColumnController extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  @override
+  getType() {
+    return map['type'];
+  }
+
+  @override
+  getValue() {
+    // TODO: implement getValue
+    throw UnimplementedError();
+  }
+
+  @override
+  validate() {
+    // TODO: implement validate
+    throw UnimplementedError();
   }
 
 

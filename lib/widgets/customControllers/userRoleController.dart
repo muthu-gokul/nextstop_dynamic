@@ -7,7 +7,7 @@ import 'callBack/myCallback.dart';
 import 'utils.dart';
 import 'package:get/get.dart';
 
-class UserRoleController extends StatelessWidget {
+class UserRoleController extends StatelessWidget implements MyCallback2{
   Map map;
   MyCallback ontap;
   var selectedIndex=(-1).obs;
@@ -124,6 +124,7 @@ class UserRoleController extends StatelessWidget {
     );
   }
 
+  @override
   validate(){
     if(selectedIndex.value==-1){
       return false;
@@ -131,11 +132,17 @@ class UserRoleController extends StatelessWidget {
     return true;
   }
 
+  @override
   getValue(){
     if(selectedIndex.value==-1){
      return "";
     }
     return map['value'][selectedIndex.value]['value'];
+  }
+
+  @override
+  getType() {
+    return map['type'];
   }
 
 }

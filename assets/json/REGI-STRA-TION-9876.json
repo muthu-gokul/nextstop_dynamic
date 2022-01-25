@@ -85,7 +85,7 @@
       "hintText": "Last Name",
       "hasInput": true,
       "required": false,
-      "key": 1,
+      "key": 2,
       "margin": "10,0,10,10",
       "groupValidation": [{"Required":"required"}],
       "borderRadius": "5,5,5,5",
@@ -117,7 +117,7 @@
       "hintText": "E-mail",
       "hasInput": true,
       "required": true,
-      "key": 1,
+      "key": 3,
       "margin": "10,0,10,10",
       "groupValidation": [{"Required":"required"},{"EmailValidation":"email"}],
       "borderRadius": "5,5,5,5",
@@ -149,7 +149,7 @@
       "hintText": "Phone Number",
       "hasInput": true,
       "required": false,
-      "key": 2,
+      "key": 4,
       "margin": "10,0,10,10",
       "groupValidation": [{"Required":"required"},{"MaximumLength":"10"}],
       "borderRadius": "5,5,5,5",
@@ -211,7 +211,8 @@
           "title": "End User",
           "value": [
             {
-              "value":"End User"
+              "value":"End User",
+              "id": 1
             }
           ]
         },
@@ -220,7 +221,8 @@
           "title": "Driver",
           "value": [
             {
-              "value":"Driver"
+              "value":"Driver",
+              "id": 2
             }
           ]
         }
