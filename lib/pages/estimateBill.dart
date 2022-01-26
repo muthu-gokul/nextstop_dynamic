@@ -5,12 +5,15 @@ import 'package:nextstop_dynamic/widgets/customControllers/callBack/myCallback.d
 import 'dynamicPageInitiater.dart';
 
 class EstimateBillPage extends StatelessWidget {
-/*  MyCallback myCallback;
-  EstimateBillPage({required this.myCallback});*/
+  List<dynamic> fromQueryString;
+ // MyCallback myCallback;
+  EstimateBillPage({required this.fromQueryString,});
   @override
   Widget build(BuildContext context) {
     return DynamicPageInitiater(
       pageIdentifier: General.estimateBillPageIdentifier,
+     fromQueryString: fromQueryString,
+    // myCallback: myCallback,
      // myCallback: myCallback,
     );
   }

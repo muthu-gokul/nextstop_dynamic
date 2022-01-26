@@ -1,3 +1,4 @@
+import 'package:geolocator/geolocator.dart';
 import 'package:nextstop_dynamic/widgets/customControllers/callBack/myCallback.dart';
 
 import 'generalMethods.dart';
@@ -25,3 +26,23 @@ class General{
 
 String err001="Error 001";//INVALID JSON RESULT SET
 String err002="No Page Found";
+
+Future<Position> determinePosition() async {
+  bool serviceEnabled;
+  LocationPermission permission;
+  serviceEnabled = await Geolocator.isLocationServiceEnabled();
+  /*if (!serviceEnabled) {
+      return Future.error('Location services are disabled ${serviceEnabled}.');
+    }*/
+  permission = await Geolocator.checkPermission();
+  if (permission == LocationPermission.denied) {
+    permission = await Geolocator.requestPermission();
+    if (permission == LocationPermission.denied) {
+      return Future.error('Location permissions are denied');
+    }
+  }
+  if (permission == LocationPermission.deniedForever) {
+    return Future.error('Location permissions are permanently denied, we cannot request permissions.');
+  }
+  return await Geolocator.getCurrentPosition();
+}

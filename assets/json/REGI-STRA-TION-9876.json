@@ -1,5 +1,5 @@
 {
-  "Guid": "1",
+  "Guid": "REGI-STRA-TION-9876",
   "alignment": "center",
   "Widgets": [
     {
@@ -116,7 +116,7 @@
       "orderBy": "7",
       "hintText": "E-mail",
       "hasInput": true,
-      "required": true,
+      "required": false,
       "key": 3,
       "margin": "10,0,10,10",
       "groupValidation": [{"Required":"required"},{"EmailValidation":"email"}],

@@ -2,47 +2,30 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:nextstop_dynamic/pages/estimateBill.dart';
 import 'package:nextstop_dynamic/pages/homePage.dart';
 import 'package:nextstop_dynamic/pages/registrationPage.dart';
 import 'package:nextstop_dynamic/pages/scheduleRide.dart';
+import 'package:nextstop_dynamic/widgets/calculation.dart';
 import 'package:nextstop_dynamic/widgets/customControllers/callBack/myCallback.dart';
 import 'dart:convert';
 
 import 'general.dart';
-
+List<dynamic> queryString=[];
+bool ISVALIDJSON=false;
 //FORM SUBMISSION CLICK EVENT AND RESULT JSON GENERATION
-void formSubmitMethod(dynamic guid,List<dynamic> widget,Map clickEvent,List queryString,{MyCallback? myCallback}){
+void formSubmitMethod(dynamic guid,List<dynamic> widget,Map clickEvent,List queryStr,{MyCallback? myCallback}){
   //log("widget $widget");
+  queryString=queryStr;
   log("queryString $queryString");
   var result={
     "Guid":guid,
     "FieldArray":[]
   };
   List<dynamic> widgets=[];
-  /*checkWid(dynamic element){
-    if(element.map.containsKey('hasInput')){
-      return element;
-    }
-    return null;
-  }
-  widget.forEach((element) {
-    var eleRes=checkWid(element);
-    if(eleRes!=null){
-      widgets.add(element);
-    }
-    log("ele $eleRes");
 
-   *//* if(element.map.containsKey('hasInput')){
-     // widgets.add(element);
-    }*//*
-   // log("element.map $element ${element.runtimeType} ${element.map.containsKey('child')} ${element.map.containsKey('children')} ${element.map}");
-    if(element.map.containsKey('child')){
-      var eee=getChild(element.map['child'],myCallback: myCallback);
-      log("child $eee ${element.map['child'].runtimeType} ${element.map['child']}");
-    }
-  });*/
 
   widgets=widget;
 
@@ -156,14 +139,35 @@ void formSubmitMethod(dynamic guid,List<dynamic> widget,Map clickEvent,List quer
       //   map.
       //   log("ele $element ${element.get}");
       // });
-      if(clickEvent.containsKey('navigateToPage')){
-        navigateTo(clickEvent['navigateToPage'],clickEvent['typeOfNavigation']);
+      if(guid==General.bookingPageIdentifier){
+        log("w $widgets");
+        log("w ${widgets[5].getValue()[0]['price']}");
+        var _distanceInMeters = Geolocator.distanceBetween(
+              queryString[1]['value'][0]['latitude'],
+              queryString[1]['value'][1]['longitude'],
+              queryString[3]['value'][0]['latitude'],
+              queryString[3]['value'][1]['longitude'],
+
+          );
+        queryString.add({"key":"totalFare","value":"${Calculation().mul(widgets[5].getValue()[0]['price'], _distanceInMeters/1000).toStringAsFixed(2)}"});
+          log("_distanceInMeters $_distanceInMeters ${_distanceInMeters/1000} ${Calculation().mul(widgets[5].getValue()[0]['price'], _distanceInMeters/1000).toStringAsFixed(2)}");
+        if(clickEvent.containsKey('navigateToPage')){
+          navigateTo(clickEvent['navigateToPage'],clickEvent['typeOfNavigation'],myCallback: myCallback);
+        }
       }
+      else{
+        if(clickEvent.containsKey('navigateToPage')){
+          navigateTo(clickEvent['navigateToPage'],clickEvent['typeOfNavigation']);
+        }
+      }
+      ISVALIDJSON=true;
     }
    // Provider.of<GetUiNotifier>(context, listen: false).postUiJson(context, guid, result.toString());
   }
   else{
+    ISVALIDJSON=false;
     print("INVALID ${fields}");
+
   }
 }
 
@@ -178,7 +182,7 @@ String? resultToJson(Map map){
 
 
 //NAVIGATION
-navigateTo(String page,int? typeOfNavigation,){
+navigateTo(String page,int? typeOfNavigation,{MyCallback? myCallback}){
   if(typeOfNavigation==3){
     Get.back();
   }
@@ -199,7 +203,7 @@ navigateTo(String page,int? typeOfNavigation,){
       getXNavigation(typeOfNavigation, HomePage());
     }
     else if(page=="EstimateBill"){
-      getXNavigation(typeOfNavigation, EstimateBillPage());
+      getXNavigation(typeOfNavigation, EstimateBillPage(fromQueryString: queryString,));
     }
     else if(page=="ScheduleRide"){
       getXNavigation(typeOfNavigation, ScheduleRidePage());

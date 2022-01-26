@@ -74,13 +74,17 @@ class TextFormFieldController extends StatelessWidget implements MyCallback2{
                 ),
                 contentPadding: EdgeInsets.only(top: 0,left: map['leftContentPadding']??10.0),
                 suffixIcon: suffix,
-                prefixIcon: prefix
+                prefixIcon: prefix,
+
                 /*prefixIcon: Container(
                   height: 50,
                   width: 50,
                   child: Icon(Icons.location_on_sharp),
                 ),*/
             ),
+            onChanged: (v){
+              myCallback.onTextChanged(v,map);
+            },
           ),
           Obx(
                   ()=>isValid.value?Container():Container(

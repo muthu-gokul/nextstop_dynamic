@@ -5,11 +5,23 @@
   "crossAxisAlignment": "start",
   "queryString": [
     {
-      "key": 1,
+      "key": "PickUp",
       "value": ""
     },
     {
-      "key": 2,
+      "key": "PickUp_Loc_Details",
+      "value": ""
+    },
+    {
+      "key": "Drop",
+      "value": ""
+    },
+    {
+      "key": "Drop_Loc_Details",
+      "value": ""
+    },
+    {
+      "key": "SelectedVehicle",
       "value": ""
     }
   ],
@@ -42,6 +54,7 @@
           },
           {
             "type": "mapTemplate",
+            "key": "map01",
             "orderBy": 1
           },
           {
@@ -69,7 +82,6 @@
                     "type": "textField",
                     "orderBy": 2,
                     "hintText": "Enter Pick Up Location",
-                    "value": "Theni",
                     "hasInput": true,
                     "required": true,
                     "key": "PickUp",
@@ -105,7 +117,7 @@
                       "pixelWidth":50,
                       "alignment": "center",
                       "clickEvent": {
-                        "eventName": "iconClick",
+                        "eventName": "locationClick",
                         "key": "PickUp"
                       },
                       "child": {
@@ -117,13 +129,27 @@
                     }
                   },
                   {
+                    "type": "hiddenController",
+                    "key": "PickUp_Loc_Details",
+                    "orderBy":2,
+                    "hasInput": true,
+                    "required": true,
+                    "value": [
+                      {
+                        "latitude": ""
+                      },
+                      {
+                        "longitude": ""
+                      }
+                    ]
+                  },
+                  {
                     "type": "textField",
                     "orderBy": 3,
                     "hintText": "Enter Drop Location",
-                    "value": "madurai",
                     "hasInput": true,
                     "required": true,
-                    "key": 2,
+                    "key": "Drop",
                     "margin": "15,15,15,15",
                     "leftContentPadding": 20.0,
                     "groupValidation": [{"Required":"required"}],
@@ -156,7 +182,8 @@
                       "pixelWidth":50,
                       "alignment": "center",
                       "clickEvent": {
-                        "eventName": "iconClick"
+                        "eventName": "locationClick",
+                        "key": "Drop"
                       },
                       "child": {
                         "type": "icon",
@@ -165,6 +192,21 @@
                         "size": 20.0
                       }
                     }
+                  },
+                  {
+                    "type": "hiddenController",
+                    "key": "Drop_Loc_Details",
+                    "orderBy":3,
+                    "hasInput": true,
+                    "required": true,
+                    "value": [
+                      {
+                        "latitude": ""
+                      },
+                      {
+                        "longitude": ""
+                      }
+                    ]
                   },
                   {
                     "type":"userRoleController",
@@ -185,7 +227,7 @@
                     },
                     "margin": "10,0,0,0",
                     "selectedIndex": 1,
-                    "key": 20,
+                    "key": "SelectedVehicle",
                     "hasInput": true,
                     "required":true,
                     "textStyle": {
@@ -200,7 +242,8 @@
                         "title2": "105",
                         "value": [
                           {
-                            "value":"Tata Ace"
+                            "vehicle":"Tata Ace",
+                            "price":"105"
                           }
                         ]
                       },
@@ -210,7 +253,8 @@
                         "title2": "205",
                         "value": [
                           {
-                            "value":"Tata Tempo"
+                            "vehicle":"Tata Tempo",
+                            "price":"205"
                           }
                         ]
                       },
@@ -220,7 +264,8 @@
                         "title2": "305",
                         "value": [
                           {
-                            "value":"Eicher"
+                            "vehicle":"Eicher",
+                            "price":"305"
                           }
                         ]
                       },
@@ -230,7 +275,8 @@
                         "title2": "405",
                         "value": [
                           {
-                            "value":"Truck"
+                            "vehicle":"Truck",
+                            "price":"405"
                           }
                         ]
                       }

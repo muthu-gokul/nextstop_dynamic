@@ -25,6 +25,8 @@ import '../userRoleController.dart';
 
 abstract class MyCallback {
   void ontap(Map? clickEvent);
+  void onTextChanged(String text, Map map,);
+  void onMapLocationChanged(Map map);
   //void ontap2(Map? clickEvent);
 }
 
@@ -32,6 +34,9 @@ abstract class MyCallback2 {
   validate();
   getValue();
   getType();
+}
+abstract class TestCallback{
+  onCameraChange();
 }
 
 
@@ -46,7 +51,7 @@ List<dynamic> getWidgets(List parsed,MyCallback myCallback){
       widgets.add(TextBoxController(map: element));
     }
     else if(element['type']=='spacerController'){
-      widgets.add(SpacerController());
+      widgets.add(SpacerController(map: element,));
     }
     else if(element['type']=='textField'){
       widgets.add(TextFormFieldController(map: element,myCallback: myCallback,));
@@ -122,7 +127,7 @@ Widget getChild(Map map, {MyCallback? myCallback}){
   }
   else if(map['type']=='spacerController'){
   //  return TextFormFieldController(map: map);
-    widget=  SpacerController();
+    widget=  SpacerController(map: map,);
   }
   else if(map['type']=='textField'){
   //  return TextFormFieldController(map: map);

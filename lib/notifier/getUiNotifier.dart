@@ -19,7 +19,7 @@ class GetUiNotifier extends ChangeNotifier{
     parameters=[
       ParameterModel(Key: "SpName", Type: "String", Value: "USP_GetPageInfo"),
       ParameterModel(Key: "PageId", Type: "String", Value: pageId),
-      ParameterModel(Key: "database", Type: "String", Value:"QMS"),
+      ParameterModel(Key: "database", Type: "String", Value:"Nextstop_Dev"),
     ];
     var body={
       "Fields": parameters.map((e) => e.toJson()).toList()
@@ -28,6 +28,8 @@ class GetUiNotifier extends ChangeNotifier{
     String val="";
     try{
       await ApiManager().ApiCallGetInvoke(body,context).then((value) {
+
+
       //  log("$value");
         val=value;
         /*if(value!="null"){
@@ -39,14 +41,14 @@ class GetUiNotifier extends ChangeNotifier{
     }catch(e){
           print("CATCH $e");
     }
-
   }
+
   Future<dynamic> postUiJson(BuildContext context,String responseId,String responseJson) async {
     parameters=[
-      ParameterModel(Key: "SpName", Type: "String", Value: "USP_PostPageInfo"),
+      ParameterModel(Key: "SpName", Type: "String", Value: "USP_GetPageInfo"),
       ParameterModel(Key: "PageId", Type: "String", Value: responseId),
       ParameterModel(Key: "PageJson", Type: "String", Value: responseJson),
-      ParameterModel(Key: "database", Type: "String", Value:"QMS"),
+      ParameterModel(Key: "database", Type: "String", Value:"Nextstop_Dev"),
     ];
     var body={
       "Fields": parameters.map((e) => e.toJson()).toList()

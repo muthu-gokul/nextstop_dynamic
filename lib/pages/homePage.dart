@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:nextstop_dynamic/pages/bookingPage.dart';
 import 'package:nextstop_dynamic/pages/profilePage.dart';
 import 'package:nextstop_dynamic/styles/style.dart';
@@ -35,9 +36,13 @@ class _HomePageState extends State<HomePage> implements MyCallback{
     if(parsedJson.containsKey('queryString')){
       queryString=parsedJson['queryString'];
     }
-    setState(() {});
+    setState(() {
+      bookingPage=BookingPage(myCallback: this);
+    });
     //log("${widgets}");
   }
+
+  late BookingPage? bookingPage;
 
   @override
   void initState() {
@@ -75,9 +80,8 @@ class _HomePageState extends State<HomePage> implements MyCallback{
         key: scaffoldKey,
         body:selectedPage==0?ProfilePage(
           myCallback: this,
-        ):selectedPage==1?BookingPage(
-          myCallback: this,
-        ): Container(
+        ):selectedPage==1?BookingPage(myCallback: this):
+        Container(
           color: Colors.green,
         ),
         drawer: Container(
@@ -121,12 +125,33 @@ class _HomePageState extends State<HomePage> implements MyCallback{
             selectedPage=clickEvent['pageIndex'];
           });
           scaffoldKey.currentState!.openEndDrawer();
+          if(selectedPage==1){
+            determinePosition();
+          }
         }
         else if(clickEvent['eventName']=='OpenDrawer'){
           scaffoldKey.currentState!.openDrawer();
+        }
+        else if(clickEvent['eventName']=='reloadBookingPage'){
+          log("reload");
+
         }
 
       }
     }
   }
+
+  @override
+  void onTextChanged(String text,Map map) {
+    // TODO: implement onTextChanged
+  }
+
+  @override
+  void onMapLocationChanged(Map map) {
+    // TODO: implement onMapLocationChanged
+  }
+
 }
+
+
+

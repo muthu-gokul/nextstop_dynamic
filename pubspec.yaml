@@ -45,6 +45,8 @@ dependencies:
   flutter_date_pickers:
   google_maps_flutter:
   geocoding:
+  rational:
+  decimal:
 
 dev_dependencies:
   flutter_test:

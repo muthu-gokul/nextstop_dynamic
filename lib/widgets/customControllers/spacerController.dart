@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:nextstop_dynamic/widgets/customControllers/callBack/myCallback.dart';
 class SpacerController extends StatelessWidget implements MyCallback2{
-
+  Map map;
+  SpacerController({required this.map});
   @override
   Widget build(BuildContext context) {
     return Spacer();

@@ -2,8 +2,10 @@ import 'dart:convert';
 import 'dart:developer';
 import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:nextstop_dynamic/widgets/customControllers/callBack/generalMethods.dart';
 import 'package:nextstop_dynamic/widgets/customControllers/utils.dart';
 import '../widgets/customControllers/callBack/general.dart';
 import '../widgets/sizeLocal.dart';
@@ -17,7 +19,8 @@ class DynamicPageInitiater extends StatefulWidget {
   String pageIdentifier;
   MyCallback? myCallback;
   bool isScrollControll;
-  DynamicPageInitiater({required this.pageIdentifier,this.myCallback,this.isScrollControll=false});
+  List<dynamic> fromQueryString;
+  DynamicPageInitiater({required this.pageIdentifier,this.myCallback,this.isScrollControll=false,this.fromQueryString=const []});
   @override
   _DynamicPageInitiaterState createState() => _DynamicPageInitiaterState();
 }
@@ -41,6 +44,16 @@ class _DynamicPageInitiaterState extends State<DynamicPageInitiater> implements 
     widgets=getWidgets(parsedJson['Widgets'],this);
     if(parsedJson.containsKey('queryString')){
       queryString=parsedJson['queryString'];
+    }
+
+    if(widget.fromQueryString.isNotEmpty){
+      log("contains fromQuery String ${widget.fromQueryString}");
+      widget.fromQueryString.forEach((element) {
+        findWidgetByKey(widgets,{"key":element['key']},(wid){
+          log("query wid $wid ${wid.getType()}");
+          updateByWidgetType(wid.getType(),widget: wid,clickEvent: element);
+        });
+      });
     }
 /*    if(widget.myCallback==null){
       widgets=getWidgets(parsedJson['Widgets'],this);
@@ -163,7 +176,7 @@ class _DynamicPageInitiaterState extends State<DynamicPageInitiater> implements 
 */
 
   @override
-  void ontap(Map? clickEvent)  {
+  Future<void> ontap(Map? clickEvent)  async {
     log("dynamic Page clickEvent $clickEvent");
     //log("${}");
     if(clickEvent!=null){
@@ -173,16 +186,18 @@ class _DynamicPageInitiaterState extends State<DynamicPageInitiater> implements 
           General().formSubmit(guid, widgets,clickEvent,queryString,myCallback: this);
         }
         else if(clickEvent['eventName']=='FormSubmitBookingPage'){
-        //  log("${widgets[0].widget.widgets[0].widget.widget.widgets}");13.063375644114803, 80.14215027634373    13.071144672850647, 80.18444206319955
-          //13.06711414347586, 80.20565429830474
-          //13.067951392583117, 80.17677200475224 from
-          /*var _distanceInMeters = Geolocator.distanceBetween(
-              10.10171792889313, 77.47002031632144,
-              13.067951392583117,
-              80.17677200475224
-          );
-          log("_distanceInMeters $_distanceInMeters ${_distanceInMeters/1000}");*/
-          General().formSubmit(guid, widgets[0].widget.widgets[1].widget.widget.widgets,clickEvent,queryString,myCallback: this);
+
+          General().formSubmit(guid, widgets[0].widget.widgets[1].widget.widget.widgets,clickEvent,queryString,myCallback: widget.myCallback);
+        }
+        else if(clickEvent['eventName']=='FormSubmitEstimateBill'){
+          log("www $ISVALIDJSON");
+          General().formSubmit(guid, widgets[1].widgets,clickEvent,queryString,myCallback: this);
+          if(ISVALIDJSON){
+
+            widget.myCallback?.ontap({"eventName":"reloadBookingPage"});
+
+            log("widget.pageIdentifier ${widget.pageIdentifier}");
+          }
         }
         else if(clickEvent['eventName']=='Navigation'){
           General().navigation(clickEvent['navigateToPage'],clickEvent['typeOfNavigation']);
@@ -190,12 +205,85 @@ class _DynamicPageInitiaterState extends State<DynamicPageInitiater> implements 
         else if(clickEvent['eventName']=='OpenDrawer'){
           widget.myCallback?.ontap(clickEvent);
         }
-        else if(clickEvent['eventName']=='iconClick'){
-          log("$widgets");
-          findWidget(widgets);
-          findWidgetByKey(widgets,clickEvent['key']);
+        else if(clickEvent['eventName']=='locationClick'){
+          // log("$widgets");
+          Position? position;
+          position=await determinePosition();
+          log("$position");
+          List<Placemark> placemarks = await placemarkFromCoordinates(position.latitude, position.longitude);
+          String location = placemarks.first.name.toString() + ", " +  placemarks.first.thoroughfare.toString()+", "+placemarks.first.subLocality.toString()+", "
+          +placemarks.first.administrativeArea.toString();
+         // log("$placemarks ${placemarks[0]}");
+          log("$location");
+
+          if(clickEvent['key']=='PickUp'){
+            clickEvent['value']=location;
+            findWidgetByKey(widgets,clickEvent,(wid){
+              findAndUpdateTextEditingController(wid,clickEvent);
+            });
+            findWidgetByKey(widgets,{"key":"map01"},(wid){
+              //log("wid $wid");
+              wid.isPickUpLocation.value=true;
+              wid.animateCamera(position);
+            });
+            findWidgetByKey(widgets,{"key":"PickUp_Loc_Details"},(wid){
+               wid.map['value'][0]['latitude']=position!.latitude;
+               wid.map['value'][1]['longitude']=position.longitude;
+            });
+
+          }
+          else if(clickEvent['key']=='Drop'){
+            clickEvent['value']=location;
+            findWidgetByKey(widgets,clickEvent,(wid){
+              findAndUpdateTextEditingController(wid,clickEvent);
+            });
+            findWidgetByKey(widgets,{"key":"map01"},(wid){
+              log("wid $wid");
+              wid.isPickUpLocation.value=false;
+              wid.animateCamera(position);
+            });
+            findWidgetByKey(widgets,{"key":"Drop_Loc_Details"},(wid){
+              wid.map['value'][0]['latitude']=position!.latitude;
+              wid.map['value'][1]['longitude']=position.longitude;
+            });
+          }
+
+
+
         }
       }
+    }
+  }
+
+  @override
+  void onTextChanged(String text,Map map) {
+    log("dynamic PAge text $text $map");
+    if(map['key']=="PickUp"){
+
+    }
+  }
+
+  @override
+  void onMapLocationChanged(Map map) {
+    log("dynamic PAge map  $map");
+    if(map['key']=="PickUp"){
+      findWidgetByKey(widgets,{"key":map['key'],"value":map['location']},(wid){
+        findAndUpdateTextEditingController(wid,{"key":map['key'],"value":map['location']});
+      });
+      findWidgetByKey(widgets,{"key":"PickUp_Loc_Details"},(wid){
+        wid.map['value'][0]['latitude']=map['latitude'];
+        wid.map['value'][1]['longitude']=map['longitude'];
+      });
+
+    }
+    else if(map['key']=="Drop"){
+      findWidgetByKey(widgets,{"key":map['key'],"value":map['location']},(wid){
+        findAndUpdateTextEditingController(wid,{"key":map['key'],"value":map['location']});
+      });
+      findWidgetByKey(widgets,{"key":"Drop_Loc_Details"},(wid){
+        wid.map['value'][0]['latitude']=map['latitude'];
+        wid.map['value'][1]['longitude']=map['longitude'];
+      });
     }
   }
 }
@@ -228,50 +316,85 @@ func1(dynamic widget){
   }
 }
 
-findWidgetByKey(List<dynamic> widgets,dynamic key){
-  //log("widgets ${widgets}");
+
+
+findWidgetByKey(List<dynamic> widgets,Map? clickEvent,Function(dynamic widget) returnFunction){
+ // log("key ${clickEvent} $widgets");
   var a;
   for(int i=0;i<widgets.length;i++){
-    a= func1ByKey(widgets[i],key);
-    log("aaaaa $a ");
+    a= func1ByKey(widgets[i],clickEvent,returnFunction);
+    // log("aaaaa $a ");
     if(a!=null){
-      a.textEditingController.text="Heelo";
-      a.map['value']="Heelo";
+      returnFunction(a);
+      // a.textEditingController.text=clickEvent!['value'];
+      // a.map['value']=clickEvent['value'];
       break;
 
-    }
-  }
-
-}
-
-func1ByKey(dynamic widget,dynamic key){
-  if(widget.map.containsKey("child")){
-   // log("${widget.getType()} ${widget.widget} ${widget.map['key']}");
-    func1ByKey(widget.widget,key);
-  }
-  else if(widget.map.containsKey("children")){
-    // log("${widget.getType()}");
-    if(widget.getType()!='userRoleController') {
-    //  log("___ ${widget.getType()} ${widget.widgets}");
-      findWidgetByKey(widget.widgets,key);
-    }
-    else{
-      log("else ${widget.getType()}");
-    }
-  }
-  else{
-    if(widget.map.containsKey('key')){
-      if(widget.map['key']==key){
-        return widget;
-      }
-      log("else2 ${widget.getType()}  has key ${widget.map['key']}    $key");
     }
   }
   return null;
 }
 
+func1ByKey(dynamic widget,Map? clickEvent,Function(dynamic widget) returnFunction){
+  // log("widget.map ${widget.runtimeType}");
+  if(widget.runtimeType==Icon){
+    return;
+  }
+  if(widget.map.containsKey("child")){
+   // log("${widget.getType()} ${widget.widget} ${widget.map['key']}");
+    func1ByKey(widget.widget,clickEvent,returnFunction);
+  }
+  else if(widget.map.containsKey("children")){
+    // log("${widget.getType()}");
+    if(widget.getType()!='userRoleController') {
+   //   log("___ ${widget.getType()} ${widget.widgets}");
+     findWidgetByKey(widget.widgets,clickEvent,returnFunction);
+
+    }
+    else{
+     // log("else ${widget.getType()}");
+    }
+  }
+  else{
+    // log("else3 ${widget.map}");
+    if(widget.map.containsKey('key')){
+      if(widget.map['key']==clickEvent!['key']){
+        return widget;
+      }
+     // log("else2 ${widget.getType()}  has key ${widget.map['key']}    ${clickEvent['key']}");
+    }
+  }
+  return null;
+}
+
+findAndUpdateTextEditingController(var widget,Map? clickEvent){
+  widget.textEditingController.text=clickEvent!['value'];
+  widget.map['value']=clickEvent['value'];
+}
 
 
+updateByWidgetType(String widgetType,{var widget,Map? clickEvent}){
+  switch (widgetType){
+    case 'textField':{
+      findAndUpdateTextEditingController( widget, clickEvent);
+    }
+    break;
+    case 'text':{
+      log("TEXT $widgetType $widget $clickEvent");
+      widget.text.value=clickEvent!['value'];
+      widget.map['value']=clickEvent['value'];
+    }
+    break;
+    case 'hiddenController':{
+      widget.map['value']=clickEvent!['value'];
+    }
+    break;
+    default: {
+      log("dfault");
+    }
+    break;
+  }
+}
 
 
 /*,

@@ -120,4 +120,14 @@ class PickerTemplate extends StatelessWidget implements MyCallback{
     log("pickerclickEvent ");
     _selectTime();
   }
+
+  @override
+  void onTextChanged(String text,Map map) {
+    // TODO: implement onTextChanged
+  }
+
+  @override
+  void onMapLocationChanged(Map map) {
+    // TODO: implement onMapLocationChanged
+  }
 }

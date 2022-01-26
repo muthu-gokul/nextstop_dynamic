@@ -36,12 +36,12 @@ class Home extends StatefulWidget{
 }
 
 class _HomeState extends State<Home> {
-  String googleApikey = "GOOGLE_MAP_API_KEY";
+
   GoogleMapController? mapController; //contrller for Google map
   CameraPosition? cameraPosition;
   LatLng startLocation = LatLng(27.6602292, 85.308027);
   String location = "Location Name:";
-
+  List<Marker> markers = <Marker>[].obs;
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -57,7 +57,7 @@ class _HomeState extends State<Home> {
                 mapToolbarEnabled: false,
                 myLocationEnabled: true,
                 myLocationButtonEnabled: true,
-
+                markers:  Set<Marker>.of(markers),
                 initialCameraPosition: CameraPosition( //innital position in map
                   target: startLocation, //initial position
                   zoom: 14.0, //initial zoom level
@@ -75,12 +75,27 @@ class _HomeState extends State<Home> {
                   List<Placemark> placemarks = await placemarkFromCoordinates(cameraPosition!.target.latitude, cameraPosition!.target.longitude);
                   setState(() { //get place name from lat and lang
                     location = placemarks.first.administrativeArea.toString() + ", " +  placemarks.first.street.toString();
+                    markers.clear();
+                    markers.add(
+                        Marker(
+                            markerId: MarkerId('hfhfhfhf'),
+                            position:LatLng(cameraPosition!.target.latitude, cameraPosition!.target.latitude),
+                            infoWindow: InfoWindow(
+                                title: 'hrllo'
+                            ),
+                            onTap: (){
+
+                            },
+                            visible: true,
+                            icon: BitmapDescriptor.defaultMarker
+                        )
+                    );
                   });
                   log("$location");
                 },
               ),
 
-              Center( //picker image on google map
+              /*Center( //picker image on google map
                 child: Image.asset("assets/images/picker.png", width: 80,),
               ),
 
@@ -101,7 +116,7 @@ class _HomeState extends State<Home> {
                       ),
                     ),
                   )
-              )
+              )*/
             ]
         )
     );

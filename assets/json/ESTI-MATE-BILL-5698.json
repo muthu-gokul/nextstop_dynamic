@@ -53,7 +53,7 @@
           "hintText": "Enter Pick Up Location",
           "hasInput": true,
           "required": true,
-          "key": 1,
+          "key": "PickUp",
           "margin": "15,15,15,0",
           "leftContentPadding": 20.0,
           "groupValidation": [{"Required":"required"}],
@@ -109,12 +109,27 @@
           }
         },
         {
+          "type": "hiddenController",
+          "key": "PickUp_Loc_Details",
+          "orderBy":2,
+          "hasInput": true,
+          "required": true,
+          "value": [
+            {
+              "latitude": ""
+            },
+            {
+              "longitude": ""
+            }
+          ]
+        },
+        {
           "type": "textField",
           "orderBy": 3,
           "hintText": "Enter Pick Up Location",
           "hasInput": true,
           "required": true,
-          "key": 2,
+          "key": "Drop",
           "margin": "15,15,15,0",
           "leftContentPadding": 20.0,
           "groupValidation": [{"Required":"required"}],
@@ -168,6 +183,31 @@
               "size": 20.0
             }
           }
+        },
+        {
+          "type": "hiddenController",
+          "key": "Drop_Loc_Details",
+          "orderBy":3,
+          "hasInput": true,
+          "required": true,
+          "value": [
+            {
+              "latitude": ""
+            },
+            {
+              "longitude": ""
+            }
+          ]
+        },
+        {
+          "type": "hiddenController",
+          "key": "SelectedVehicle",
+          "orderBy":3,
+          "hasInput": true,
+          "required": true,
+          "value": [
+
+          ]
         },
         {
           "type": "button",
@@ -261,6 +301,7 @@
               "type": "text",
               "value": "28282",
               "orderBy": 2,
+              "key": "totalFare",
               "onlyText": true,
               "style": {
                 "fontSize": 30,
@@ -322,7 +363,7 @@
           "type": "button",
           "orderBy": 8,
           "clickEvent": {
-            "eventName":"Navigation",
+            "eventName":"FormSubmitEstimateBill",
             "navigateToPage":"",
             "typeOfNavigation": 3
           },
