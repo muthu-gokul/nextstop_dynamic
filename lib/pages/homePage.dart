@@ -12,6 +12,7 @@ import 'package:nextstop_dynamic/widgets/sizeLocal.dart';
 
 import '../constants.dart';
 import 'dynamicPageInitiater.dart';
+import 'myTrips.dart';
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -81,9 +82,9 @@ class _HomePageState extends State<HomePage> implements MyCallback{
         body:selectedPage==0?ProfilePage(
           myCallback: this,
         ):selectedPage==1?BookingPage(myCallback: this):
-        Container(
-          color: Colors.green,
-        ),
+        selectedPage==2?MyTrips(
+          myCallback: this,
+        ):Container(),
         drawer: Container(
           height: SizeConfig.screenHeight,
           width: SizeConfig.screenWidth,

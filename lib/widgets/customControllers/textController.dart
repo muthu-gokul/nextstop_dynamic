@@ -31,6 +31,7 @@ class TextBoxController extends StatelessWidget implements MyCallback2{
           ()=> Text(
         "${text.value??""}",
         style: map.containsKey('style') ? parseTextStyle(ts.value) : null,
+            maxLines: 2,
       ),
     ):
     Container(

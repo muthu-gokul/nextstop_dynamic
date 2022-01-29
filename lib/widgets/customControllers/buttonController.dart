@@ -29,6 +29,7 @@ class ButtonController extends StatelessWidget implements MyCallback2{
       child: Obx(
           ()=>Container(
             margin: parseEdgeInsetsGeometry(map['margin']),
+            padding: parseEdgeInsetsGeometry(map['padding']),
             height: map.containsKey('height')?double.parse(map['height'].toString()):
             map.containsKey('reducedHeight')?SizeConfig.screenHeight!-double.parse(map['reducedHeight'].toString()):
             map.containsKey('screenHeight')?SizeConfig.screenHeight!-24:null,

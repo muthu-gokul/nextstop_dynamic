@@ -241,6 +241,9 @@ Color parseHexColor(String? hexColorString) {
   else if(hexColorString=='errorTextColor'.toUpperCase()){
     return errorTextColor;
   }
+  else if(hexColorString=='rating'.toUpperCase()){
+    return rating;
+  }
   else if(hexColorString=='red'.toUpperCase()){
     return Colors.red;
   }
@@ -1209,6 +1212,9 @@ Icon parseIcon(Map map){
   }
   else if(map['icon']=='mail'){
     return Icon(Icons.mail,color: parseHexColor(map['color']),size: map['size'],);
+  }
+  else if(map['icon']=='star'){
+    return Icon(Icons.star,color: parseHexColor(map['color']),size: map['size'],);
   }
   return Icon(Icons.phone);
 }

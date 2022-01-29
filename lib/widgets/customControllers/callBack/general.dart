@@ -20,6 +20,7 @@ class General{
   static String bookingPageIdentifier="BOOK-INGP-AGE1-7355";
   static String estimateBillPageIdentifier="ESTI-MATE-BILL-5698";
   static String scheduleRidePageIdentifier="SCHE-DULE-RIDE-5867";
+  static String myTripsPageIdentifier="YOUR-TRIP-6234-5867";
 }
 
 

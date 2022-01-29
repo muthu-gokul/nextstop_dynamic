@@ -1,0 +1,692 @@
+{
+  "Guid": "1",
+  "alignment": "topCenter",
+  "mainAxisAlignment": "center",
+  "Widgets": [
+    {
+      "type":"sizedBox",
+      "orderBy": "1",
+      "height":10
+    },
+    {
+      "type":"rowController",
+      "orderBy": "2",
+      "mainAxisAlignment": "start",
+      "children": [
+        {
+          "type":"navIcon",
+          "orderBy": "1",
+          "color": "primaryColor",
+          "margin": "20,0,0,0",
+          "padding": "10,0,0,0",
+          "borderRadius": "10,10,10,10",
+          "width":40,
+          "height":35,
+          "clickEvent": {
+            "eventName": "OpenDrawer"
+          }
+        },
+        {
+          "type":"sizedBox",
+          "orderBy": "2",
+          "width":20
+        },
+        {
+          "type": "text",
+          "orderBy": "3",
+          "value": "Your Rides",
+          "key": 1,
+          "style": {
+            "color": "primaryTextColor2",
+            "fontSize": 18.0,
+            "fontFamily": "RM"
+          }
+        }
+      ]
+    },
+    {
+      "type":"columnController",
+      "orderBy": "3",
+      "mainAxisAlignment": "start",
+      "reducedHeight": "100",
+      "children": [
+        {
+          "type":"sizedBox",
+          "orderBy": 1,
+          "height":10
+        },
+        {
+          "type": "button",
+          "orderBy": 1,
+          "margin": "10,0,10,10",
+          "padding": "10,10,10,10",
+          "borderRadius": "8,8,8,8",
+          "alignment": "center",
+          "borderColor": "textFieldBorderColor",
+          "child": {
+            "type": "rowController",
+            "crossAxisAlignment": "start",
+            "children": [
+              {
+                "type": "columnController",
+                "orderBy": 1,
+                "children": [
+                  {
+                    "type": "svgController",
+                    "image": "assets/icons/driver.svg",
+                    "height": 60.0,
+                    "orderBy": 1
+                  },
+                  {
+                    "type": "text",
+                    "orderBy": 2,
+                    "value": "Mr. Vijay Humar",
+                    "style": {
+                      "fontSize": 12,
+                      "fontFamily": "RM",
+                      "color": "primaryTextColor2"
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "orderBy": 3,
+                    "value": "4.5 (7856)",
+                    "style": {
+                      "fontSize": 11,
+                      "fontFamily": "RR",
+                      "color": "primaryTextColor1"
+                    }
+                  },
+                  {
+                    "type": "rowController",
+                    "orderBy": 4,
+                    "children": [
+                      {
+                        "type": "icon",
+                        "orderBy": 1,
+                        "icon": "star",
+                        "color": "rating",
+                        "size": 20.0
+                      },
+                      {
+                        "type": "icon",
+                        "orderBy": 2,
+                        "icon": "star",
+                        "color": "rating",
+                        "size": 20.0
+                      },
+                      {
+                        "type": "icon",
+                        "orderBy": 2,
+                        "icon": "star",
+                        "color": "rating",
+                        "size": 20.0
+                      },
+                      {
+                        "type": "icon",
+                        "orderBy": 2,
+                        "icon": "star",
+                        "color": "rating",
+                        "size": 20.0
+                      },
+                      {
+                        "type": "icon",
+                        "orderBy": 2,
+                        "icon": "star",
+                        "color": "textFieldBorderColor",
+                        "size": 20.0
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "columnController",
+                "mainAxisAlignment": "start",
+                "crossAxisAlignment": "start",
+                "orderBy": 2,
+                "children": [
+                  {
+                    "type": "rowController",
+                    "orderBy": 1,
+                    "children": [
+                      {
+                        "type": "text",
+                        "orderBy": 1,
+                        "onlyText": true,
+                        "value": "03-Jan-2022",
+                        "style": {
+                          "color": "primaryTextColor2",
+                          "fontSize": 14.0,
+                          "fontFamily": "RR"
+                        }
+                      },
+                      {
+                        "type": "sizedBox",
+                        "width": 15.0,
+                        "orderBy": 2
+                      },
+                      {
+                        "type": "text",
+                        "orderBy": 2,
+                        "value": "11:30AM",
+                        "onlyText": true,
+                        "style": {
+                          "color": "primaryTextColor2",
+                          "fontSize": 14.0,
+                          "fontFamily": "RR"
+                        }
+                      },
+                      {
+                        "type": "sizedBox",
+                        "width": 15.0,
+                        "orderBy": 4
+                      },
+                      {
+                        "type": "text",
+                        "orderBy": 4,
+                        "value": "120.00",
+                        "onlyText": true,
+                        "style": {
+                          "color": "primaryTextColor2",
+                          "fontSize": 14.0,
+                          "fontFamily": "RB"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "sizedBox",
+                    "height": 3.0,
+                    "orderBy": 1
+                  },
+                  {
+                    "type": "rowController",
+                    "orderBy": 2,
+                    "children": [
+                      {
+                        "type": "svgController",
+                        "image": "assets/icons/vehicle.svg",
+                        "height": 20.0,
+                        "orderBy": 1
+                      },
+                      {
+                        "type": "sizedBox",
+                        "width": 5.0,
+                        "orderBy": 2
+                      },
+                      {
+                        "type": "text",
+                        "orderBy": 2,
+                        "value": "Tata Ace",
+                        "onlyText": true,
+                        "style": {
+                          "color": "primaryTextColor1",
+                          "fontSize": 10.0,
+                          "fontFamily": "RR"
+                        }
+                      },
+                      {
+                        "type": "sizedBox",
+                        "width": 5.0,
+                        "orderBy": 4
+                      },
+                      {
+                        "type": "text",
+                        "orderBy": 4,
+                        "value": "TN 10 AB 6686",
+                        "onlyText": true,
+                        "style": {
+                          "color": "primaryTextColor3",
+                          "fontSize": 11.0,
+                          "fontFamily": "RR"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "sizedBox",
+                    "height": 3.0,
+                    "orderBy": 2
+                  },
+                  {
+                    "type": "rowController",
+                    "orderBy": 3,
+                    "crossAxisAlignment": "start",
+                    "children": [
+                      {
+                        "type": "imageController",
+                        "image": "assets/icons/location-02.png",
+                        "height": 15.0,
+                        "orderBy": 1
+                      },
+                      {
+                        "type": "sizedBox",
+                        "width": 5.0,
+                        "orderBy": 2
+                      },
+                      {
+                        "type": "columnController",
+                        "orderBy": 3,
+                        "crossAxisAlignment": "start",
+                        "children": [
+                          {
+                            "type": "text",
+                            "orderBy": 1,
+                            "value": "No: 4B/7, Sai Sadan, 1st Floor, MMDA 1st Main Rd, Maduravoyal",
+                            "onlyText": true,
+                            "style": {
+                              "color": "primaryTextColor2",
+                              "fontSize": 8.0,
+                              "fontFamily": "RR"
+                            }
+                          },
+                          {
+                            "type": "sizedBox",
+                            "height": 3.0,
+                            "orderBy": 2
+                          },
+                          {
+                            "type": "text",
+                            "orderBy": 4,
+                            "value": "Started at 11:30 AM",
+                            "onlyText": true,
+                            "style": {
+                              "color": "primaryTextColor3",
+                              "fontSize": 10.0,
+                              "fontFamily": "RR"
+                            }
+                          }
+                        ]
+                      }
+
+
+
+                    ]
+                  },
+                  {
+                    "type": "sizedBox",
+                    "height": 10.0,
+                    "orderBy": 3
+                  },
+                  {
+                    "type": "rowController",
+                    "orderBy": 4,
+                    "crossAxisAlignment": "start",
+                    "children": [
+                      {
+                        "type": "imageController",
+                        "image": "assets/icons/location-01.png",
+                        "height": 15.0,
+                        "orderBy": 1
+                      },
+                      {
+                        "type": "sizedBox",
+                        "width": 5.0,
+                        "orderBy": 2
+                      },
+                      {
+                        "type": "columnController",
+                        "orderBy": 3,
+                        "crossAxisAlignment": "start",
+                        "children": [
+                          {
+                            "type": "text",
+                            "orderBy": 1,
+                            "value": "No: 4B/7, Sai Sadan, 1st Floor, MMDA 1st Main Rd,",
+                            "onlyText": true,
+                            "style": {
+                              "color": "primaryTextColor2",
+                              "fontSize": 8.0,
+                              "fontFamily": "RR"
+                            }
+                          },
+                          {
+                            "type": "sizedBox",
+                            "height": 3.0,
+                            "orderBy": 2
+                          },
+                          {
+                            "type": "text",
+                            "orderBy": 4,
+                            "value": "Destination at 11:30 AM",
+                            "onlyText": true,
+                            "style": {
+                              "color": "primaryTextColor3",
+                              "fontSize": 10.0,
+                              "fontFamily": "RR"
+                            }
+                          }
+                        ]
+                      }
+
+
+
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "type": "button",
+          "orderBy": 1,
+          "margin": "10,0,10,10",
+          "padding": "10,10,10,10",
+          "borderRadius": "8,8,8,8",
+          "alignment": "center",
+          "borderColor": "textFieldBorderColor",
+          "child": {
+            "type": "rowController",
+            "crossAxisAlignment": "start",
+            "children": [
+              {
+                "type": "columnController",
+                "orderBy": 1,
+                "children": [
+                  {
+                    "type": "svgController",
+                    "image": "assets/icons/driver.svg",
+                    "height": 60.0,
+                    "orderBy": 1
+                  },
+                  {
+                    "type": "text",
+                    "orderBy": 2,
+                    "value": "Mr. Vijay Humar",
+                    "style": {
+                      "fontSize": 12,
+                      "fontFamily": "RM",
+                      "color": "primaryTextColor2"
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "orderBy": 3,
+                    "value": "4.5 (7856)",
+                    "style": {
+                      "fontSize": 11,
+                      "fontFamily": "RR",
+                      "color": "primaryTextColor1"
+                    }
+                  },
+                  {
+                    "type": "rowController",
+                    "orderBy": 4,
+                    "children": [
+                      {
+                        "type": "icon",
+                        "orderBy": 1,
+                        "icon": "star",
+                        "color": "rating",
+                        "size": 20.0
+                      },
+                      {
+                        "type": "icon",
+                        "orderBy": 2,
+                        "icon": "star",
+                        "color": "rating",
+                        "size": 20.0
+                      },
+                      {
+                        "type": "icon",
+                        "orderBy": 2,
+                        "icon": "star",
+                        "color": "rating",
+                        "size": 20.0
+                      },
+                      {
+                        "type": "icon",
+                        "orderBy": 2,
+                        "icon": "star",
+                        "color": "rating",
+                        "size": 20.0
+                      },
+                      {
+                        "type": "icon",
+                        "orderBy": 2,
+                        "icon": "star",
+                        "color": "textFieldBorderColor",
+                        "size": 20.0
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "columnController",
+                "mainAxisAlignment": "start",
+                "crossAxisAlignment": "start",
+                "orderBy": 2,
+                "children": [
+                  {
+                    "type": "rowController",
+                    "orderBy": 1,
+                    "children": [
+                      {
+                        "type": "text",
+                        "orderBy": 1,
+                        "onlyText": true,
+                        "value": "03-Jan-2022",
+                        "style": {
+                          "color": "primaryTextColor2",
+                          "fontSize": 14.0,
+                          "fontFamily": "RR"
+                        }
+                      },
+                      {
+                        "type": "sizedBox",
+                        "width": 15.0,
+                        "orderBy": 2
+                      },
+                      {
+                        "type": "text",
+                        "orderBy": 2,
+                        "value": "11:30AM",
+                        "onlyText": true,
+                        "style": {
+                          "color": "primaryTextColor2",
+                          "fontSize": 14.0,
+                          "fontFamily": "RR"
+                        }
+                      },
+                      {
+                        "type": "sizedBox",
+                        "width": 15.0,
+                        "orderBy": 4
+                      },
+                      {
+                        "type": "text",
+                        "orderBy": 4,
+                        "value": "120.00",
+                        "onlyText": true,
+                        "style": {
+                          "color": "primaryTextColor2",
+                          "fontSize": 14.0,
+                          "fontFamily": "RB"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "sizedBox",
+                    "height": 3.0,
+                    "orderBy": 1
+                  },
+                  {
+                    "type": "rowController",
+                    "orderBy": 2,
+                    "children": [
+                      {
+                        "type": "svgController",
+                        "image": "assets/icons/vehicle.svg",
+                        "height": 20.0,
+                        "orderBy": 1
+                      },
+                      {
+                        "type": "sizedBox",
+                        "width": 5.0,
+                        "orderBy": 2
+                      },
+                      {
+                        "type": "text",
+                        "orderBy": 2,
+                        "value": "Tata Ace",
+                        "onlyText": true,
+                        "style": {
+                          "color": "primaryTextColor1",
+                          "fontSize": 10.0,
+                          "fontFamily": "RR"
+                        }
+                      },
+                      {
+                        "type": "sizedBox",
+                        "width": 5.0,
+                        "orderBy": 4
+                      },
+                      {
+                        "type": "text",
+                        "orderBy": 4,
+                        "value": "TN 10 AB 6686",
+                        "onlyText": true,
+                        "style": {
+                          "color": "primaryTextColor3",
+                          "fontSize": 11.0,
+                          "fontFamily": "RR"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "sizedBox",
+                    "height": 3.0,
+                    "orderBy": 2
+                  },
+                  {
+                    "type": "rowController",
+                    "orderBy": 3,
+                    "crossAxisAlignment": "start",
+                    "children": [
+                      {
+                        "type": "imageController",
+                        "image": "assets/icons/location-02.png",
+                        "height": 15.0,
+                        "orderBy": 1
+                      },
+                      {
+                        "type": "sizedBox",
+                        "width": 5.0,
+                        "orderBy": 2
+                      },
+                      {
+                        "type": "columnController",
+                        "orderBy": 3,
+                        "crossAxisAlignment": "start",
+                        "children": [
+                          {
+                            "type": "text",
+                            "orderBy": 1,
+                            "value": "No: 4B/7, Sai Sadan, 1st Floor, MMDA 1st Main Rd, Maduravoyal",
+                            "onlyText": true,
+                            "style": {
+                              "color": "primaryTextColor2",
+                              "fontSize": 8.0,
+                              "fontFamily": "RR"
+                            }
+                          },
+                          {
+                            "type": "sizedBox",
+                            "height": 3.0,
+                            "orderBy": 2
+                          },
+                          {
+                            "type": "text",
+                            "orderBy": 4,
+                            "value": "Started at 11:30 AM",
+                            "onlyText": true,
+                            "style": {
+                              "color": "primaryTextColor3",
+                              "fontSize": 10.0,
+                              "fontFamily": "RR"
+                            }
+                          }
+                        ]
+                      }
+
+
+
+                    ]
+                  },
+                  {
+                    "type": "sizedBox",
+                    "height": 10.0,
+                    "orderBy": 3
+                  },
+                  {
+                    "type": "rowController",
+                    "orderBy": 4,
+                    "crossAxisAlignment": "start",
+                    "children": [
+                      {
+                        "type": "imageController",
+                        "image": "assets/icons/location-01.png",
+                        "height": 15.0,
+                        "orderBy": 1
+                      },
+                      {
+                        "type": "sizedBox",
+                        "width": 5.0,
+                        "orderBy": 2
+                      },
+                      {
+                        "type": "columnController",
+                        "orderBy": 3,
+                        "crossAxisAlignment": "start",
+                        "children": [
+                          {
+                            "type": "text",
+                            "orderBy": 1,
+                            "value": "No: 4B/7, Sai Sadan, 1st Floor, MMDA 1st Main Rd,",
+                            "onlyText": true,
+                            "style": {
+                              "color": "primaryTextColor2",
+                              "fontSize": 8.0,
+                              "fontFamily": "RR"
+                            }
+                          },
+                          {
+                            "type": "sizedBox",
+                            "height": 3.0,
+                            "orderBy": 2
+                          },
+                          {
+                            "type": "text",
+                            "orderBy": 4,
+                            "value": "Destination at 11:30 AM",
+                            "onlyText": true,
+                            "style": {
+                              "color": "primaryTextColor3",
+                              "fontSize": 10.0,
+                              "fontFamily": "RR"
+                            }
+                          }
+                        ]
+                      }
+
+
+
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+
+      ]
+    }
+
+  ]
+}
+

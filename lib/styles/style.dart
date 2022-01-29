@@ -7,6 +7,7 @@ Color primaryTextColor2=Color(0xFF383838);
 Color primaryTextColor3=Color(0xFF717171);
 Color textFieldBorderColor=Color(0xFFC8C8C8);
 Color errorTextColor=Color(0xFFF44336);
+Color rating=Color(0xFFE4BE49);
 
 //717171
 glowFunTransparent(BuildContext context){
