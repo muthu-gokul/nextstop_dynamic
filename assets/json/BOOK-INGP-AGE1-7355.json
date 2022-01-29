@@ -95,6 +95,10 @@
                     "color": "FFffffff",
                     "disableColor": "FFF5EFEE",
                     "enable": true,
+                    "clickEvent": {
+                      "eventName": "locationClick",
+                      "key": "PickUp"
+                    },
                     "hintTextStyle": {
                       "color": "primaryTextColor1",
                       "fontSize": 14.0,
@@ -160,6 +164,10 @@
                     "color": "FFffffff",
                     "disableColor": "FFF5EFEE",
                     "enable": true,
+                    "clickEvent": {
+                      "eventName": "locationClick",
+                      "key": "Drop"
+                    },
                     "hintTextStyle": {
                       "color": "primaryTextColor1",
                       "fontSize": 14.0,

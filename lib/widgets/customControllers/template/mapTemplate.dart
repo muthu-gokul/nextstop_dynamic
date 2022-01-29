@@ -115,6 +115,10 @@ class MapTemplate extends StatelessWidget implements MyCallback,MyCallback2,Test
                 onCameraChange();//when map drag stops
 
               },
+              onTap: (latlon){
+                print(latlon);
+                onMapTap(latlon);
+              },
             ),
           ),
           /*Obx(
@@ -173,9 +177,9 @@ class MapTemplate extends StatelessWidget implements MyCallback,MyCallback2,Test
         Marker(
             markerId: MarkerId('1'),
             position:LatLng(cameraPosition!.target.latitude, cameraPosition!.target.longitude),
-            infoWindow: InfoWindow(
+           /* infoWindow: InfoWindow(
                 title: isPickUpLocation.value?'Pickup Location':'Drop Location'
-            ),
+            ),*/
             onTap: (){
 
             },
@@ -183,11 +187,41 @@ class MapTemplate extends StatelessWidget implements MyCallback,MyCallback2,Test
           icon:  await BitmapDescriptor.fromAssetImage(ImageConfiguration(size: Size(100, 100)), isPickUpLocation.value?'assets/icons/location-01.png':'assets/icons/location-02.png')
         )
     );
-
   }
 
   @override
   void onMapLocationChanged(Map map) {
     // TODO: implement onMapLocationChanged
+  }
+
+  @override
+  onMapTap(LatLng latLng) async{
+    List<Placemark> placemarks = await placemarkFromCoordinates(latLng.latitude, latLng.longitude);
+    location = placemarks.first.name.toString() + ", " +  placemarks.first.thoroughfare.toString()+", "+placemarks.first.subLocality.toString()+", "
+        +placemarks.first.administrativeArea.toString();
+    log("$location ${placemarks.first}");
+    myCallback.onMapLocationChanged(
+        {
+          "key":isPickUpLocation.value?"PickUp":"Drop",
+          "location":location,
+          "latitude":latLng.latitude,
+          "longitude":latLng.longitude
+        }
+    );
+    markers.value=[];
+    markers.value.add(
+        Marker(
+            markerId: MarkerId('1'),
+            position:LatLng(latLng.latitude, latLng.longitude),
+            /*infoWindow: InfoWindow(
+                title: isPickUpLocation.value?'Pickup Location':'Drop Location'
+            ),*/
+            onTap: (){
+
+            },
+            visible: true,
+            icon:  await BitmapDescriptor.fromAssetImage(ImageConfiguration(size: Size(100, 100)), isPickUpLocation.value?'assets/icons/location-01.png':'assets/icons/location-02.png')
+    )
+    );
   }
 }

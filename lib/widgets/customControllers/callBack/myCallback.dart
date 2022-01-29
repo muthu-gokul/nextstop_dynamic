@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:nextstop_dynamic/widgets/customControllers/template/mapTemplate.dart';
 import 'package:nextstop_dynamic/widgets/customControllers/template/pickerTemplate.dart';
 import 'package:nextstop_dynamic/widgets/customControllers/utils.dart';
@@ -37,6 +38,7 @@ abstract class MyCallback2 {
 }
 abstract class TestCallback{
   onCameraChange();
+  onMapTap(LatLng latLng);
 }
 
 

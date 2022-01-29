@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
@@ -129,6 +130,52 @@ class _DynamicPageInitiaterState extends State<DynamicPageInitiater> implements 
               children: [
                 for(int i=0;i<widgets.length;i++)
                   widgets[i],
+                Container(
+                  padding: EdgeInsets.all(15),
+                  margin: EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    border: Border.all(color: Colors.green)
+                  ),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        flex: 1,
+                        child: Column(
+                          children: [
+                            SvgPicture.asset("assets/icons/driver.svg"),
+                            Text("Mr.Vijay Kumar hgjfngjfnjnjknfgjf ")
+                          ],
+                        ),
+                      ),
+                      Expanded(
+                        flex: 2,
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                Text("one"),
+                                Text("one"),
+                                Spacer(),
+                                Text("ii")
+                              ],
+                            ),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text("one"),
+                                SizedBox(width: 10,),
+                                Expanded(child: Text("Biyani of Big Bazaar, it is India's No. 1 retail store in one locality.")),
+
+                              ],
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                )
                 /*Container(
                   height: SizeConfig.screenHeight!-100,
                   child: Column(

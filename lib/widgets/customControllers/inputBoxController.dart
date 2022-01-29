@@ -41,6 +41,10 @@ class TextFormFieldController extends StatelessWidget implements MyCallback2{
             obscureText: map.containsKey('obscureText')?map['obscureText']:false,
             obscuringCharacter: '*',
             readOnly: map.containsKey('readOnly')?map['readOnly']:false,
+            onTap: map.containsKey('clickEvent')?(){
+              // ontap.ontap(map['eventName']);
+              myCallback.ontap(map['clickEvent']);
+            }:null,
             decoration: InputDecoration(
                 hintText: map['hintText'],
                 hintStyle: map.containsKey('hintTextStyle') ? parseTextStyle(map['hintTextStyle']) : null,
