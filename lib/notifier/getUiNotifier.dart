@@ -13,12 +13,15 @@ import '../constants.dart';
 
 
 
-class GetUiNotifier extends ChangeNotifier{
+class GetUiNotifier {
 
-  Future<dynamic> getUiJson(BuildContext context,String pageId) async {
+  Future<dynamic> getUiJson(BuildContext context,String pageId,int? loginUserId) async {
     parameters=[
       ParameterModel(Key: "SpName", Type: "String", Value: "USP_GetPageInfo"),
-      ParameterModel(Key: "PageId", Type: "String", Value: pageId),
+      ParameterModel(Key: "LoginUserId", Type: "int", Value: loginUserId),
+      ParameterModel(Key: "PageIdentifier", Type: "String", Value: pageId),
+      ParameterModel(Key: "DataJson", Type: "String", Value: null),
+      ParameterModel(Key: "ActionType", Type: "String", Value: "Get"),
       ParameterModel(Key: "database", Type: "String", Value:"Nextstop_Dev"),
     ];
     var body={
@@ -27,7 +30,7 @@ class GetUiNotifier extends ChangeNotifier{
     print(jsonEncode(body));
     String val="";
     try{
-      await ApiManager().ApiCallGetInvoke(body,context).then((value) {
+      await ApiManager().ApiCallGetInvoke(body).then((value) {
 
 
       //  log("$value");
@@ -43,11 +46,13 @@ class GetUiNotifier extends ChangeNotifier{
     }
   }
 
-  Future<dynamic> postUiJson(BuildContext context,String responseId,String responseJson) async {
+  Future<dynamic> postUiJson(int? loginUserId,String pageId,String dataJson) async {
     parameters=[
       ParameterModel(Key: "SpName", Type: "String", Value: "USP_GetPageInfo"),
-      ParameterModel(Key: "PageId", Type: "String", Value: responseId),
-      ParameterModel(Key: "PageJson", Type: "String", Value: responseJson),
+      ParameterModel(Key: "LoginUserId", Type: "int", Value: loginUserId),
+      ParameterModel(Key: "PageIdentifier", Type: "String", Value: pageId),
+      ParameterModel(Key: "DataJson", Type: "String", Value: dataJson),
+      ParameterModel(Key: "ActionType", Type: "String", Value: "Add"),
       ParameterModel(Key: "database", Type: "String", Value:"Nextstop_Dev"),
     ];
     var body={
@@ -56,7 +61,7 @@ class GetUiNotifier extends ChangeNotifier{
 
     String val="";
     try{
-      await ApiManager().ApiCallGetInvoke(body,context).then((value) {
+      await ApiManager().ApiCallGetInvoke(body).then((value) {
          log("$value");
         val=value;
         /*if(value!="null"){

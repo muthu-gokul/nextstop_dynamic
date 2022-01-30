@@ -9,7 +9,7 @@ import 'package:nextstop_dynamic/styles/style.dart';
 import 'package:nextstop_dynamic/widgets/customControllers/callBack/general.dart';
 import 'package:nextstop_dynamic/widgets/customControllers/callBack/myCallback.dart';
 import 'package:nextstop_dynamic/widgets/sizeLocal.dart';
-
+import 'package:get/get.dart';
 import '../constants.dart';
 import 'dynamicPageInitiater.dart';
 import 'myTrips.dart';
@@ -17,10 +17,10 @@ class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
 }
+var selectedPage=0.obs;
 
 class _HomePageState extends State<HomePage> implements MyCallback{
   GlobalKey <ScaffoldState> scaffoldKey=new GlobalKey<ScaffoldState>();
-  int selectedPage=0;
 
   List<dynamic> widgets=[];
   List<dynamic> queryString=[];
@@ -77,36 +77,38 @@ class _HomePageState extends State<HomePage> implements MyCallback{
     return SafeArea(
       bottom: true,
       top: true,
-      child: Scaffold(
-        key: scaffoldKey,
-        body:selectedPage==0?ProfilePage(
-          myCallback: this,
-        ):selectedPage==1?BookingPage(myCallback: this):
-        selectedPage==2?MyTrips(
-          myCallback: this,
-        ):Container(),
-        drawer: Container(
-          height: SizeConfig.screenHeight,
-          width: SizeConfig.screenWidth,
-          color: primaryColor,
-          child: Column(
-            children: [
-              SizedBox(height: 5,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      child: Obx(
+          ()=>Scaffold(
+            key: scaffoldKey,
+            body:selectedPage.value==0?ProfilePage(
+              myCallback: this,
+            ):selectedPage.value==1?BookingPage(myCallback: this):
+            selectedPage.value==2?MyTrips(
+              myCallback: this,
+            ):Container(),
+            drawer: Container(
+              height: SizeConfig.screenHeight,
+              width: SizeConfig.screenWidth,
+              color: primaryColor,
+              child: Column(
                 children: [
-                  IconButton(onPressed: (){
-                    scaffoldKey.currentState!.openEndDrawer();
-                    // Navigator.push(context, MaterialPageRoute(builder: (ctx)=>ThemeSettings()));
-                  }, icon: Icon(Icons.clear,color: Colors.white,size: 28,),),
+                  SizedBox(height: 5,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      IconButton(onPressed: (){
+                        scaffoldKey.currentState!.openEndDrawer();
+                        // Navigator.push(context, MaterialPageRoute(builder: (ctx)=>ThemeSettings()));
+                      }, icon: Icon(Icons.clear,color: Colors.white,size: 28,),),
+                    ],
+                  ),
+                  for(int i=0;i<widgets.length;i++)
+                    widgets[i],
                 ],
               ),
-              for(int i=0;i<widgets.length;i++)
-                widgets[i],
-            ],
+            ),
           ),
-        ),
-      ),
+      )
     );
   }
 
@@ -123,10 +125,10 @@ class _HomePageState extends State<HomePage> implements MyCallback{
         }
         else if(clickEvent['eventName']=='HomePageNavigation'){
           setState(() {
-            selectedPage=clickEvent['pageIndex'];
+            selectedPage.value=clickEvent['pageIndex'];
           });
           scaffoldKey.currentState!.openEndDrawer();
-          if(selectedPage==1){
+          if(selectedPage.value==1){
             determinePosition();
           }
         }

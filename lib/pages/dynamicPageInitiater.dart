@@ -15,6 +15,7 @@ import 'package:provider/provider.dart';
 
 import '../constants.dart';
 import '../widgets/customControllers/callBack/myCallback.dart';
+import 'homePage.dart';
 bool keyboardVisible = false;
 class DynamicPageInitiater extends StatefulWidget {
   String pageIdentifier;
@@ -70,19 +71,20 @@ class _DynamicPageInitiaterState extends State<DynamicPageInitiater> implements 
   @override
   void initState() {
     if(fromUrl){
-/*      WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
-        Provider.of<GetUiNotifier>(context, listen: false).getUiJson(context,LOGINPAGE_ID).then((value){
-          // log("$value");
+      WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+        GetUiNotifier().getUiJson(context,widget.pageIdentifier,null).then((value){
+           log("value $value");
           if(value!="null"){
             var parsed=jsonDecode(value);
             //  print(parsed['table'][0]['jsonData']);
-            parsedJson=jsonDecode(parsed['table'][0]['jsonData']);
+            parsedJson=jsonDecode(parsed['Table'][0]['PageJson']);
             print(parsedJson);
             guid=parsedJson['Guid'];
             widgets=getWidgets(parsedJson['Widgets'],this);
+            setState(() {});
           }
         });
-      });*/
+      });
     }
     else{
       parseJson();
@@ -130,7 +132,10 @@ class _DynamicPageInitiaterState extends State<DynamicPageInitiater> implements 
               children: [
                 for(int i=0;i<widgets.length;i++)
                   widgets[i],
-                Container(
+
+
+                //Expandend Concept Important
+                /*Container(
                   padding: EdgeInsets.all(15),
                   margin: EdgeInsets.all(10),
                   decoration: BoxDecoration(
@@ -175,7 +180,12 @@ class _DynamicPageInitiaterState extends State<DynamicPageInitiater> implements 
                       )
                     ],
                   ),
-                )
+                )*/
+
+
+
+
+
                 /*Container(
                   height: SizeConfig.screenHeight!-100,
                   child: Column(
@@ -238,12 +248,15 @@ class _DynamicPageInitiaterState extends State<DynamicPageInitiater> implements 
         }
         else if(clickEvent['eventName']=='FormSubmitEstimateBill'){
           log("www $ISVALIDJSON");
+          log("www ${ widget.myCallback}");
           General().formSubmit(guid, widgets[1].widgets,clickEvent,queryString,myCallback: this);
+          //setState(() {
+            selectedPage.value=2;
+          //});
           if(ISVALIDJSON){
-
-            widget.myCallback?.ontap({"eventName":"reloadBookingPage"});
-
-            log("widget.pageIdentifier ${widget.pageIdentifier}");
+          //  setState(() {
+              selectedPage.value=2;
+          //  });
           }
         }
         else if(clickEvent['eventName']=='Navigation'){
@@ -258,8 +271,13 @@ class _DynamicPageInitiaterState extends State<DynamicPageInitiater> implements 
           position=await determinePosition();
           log("$position");
           List<Placemark> placemarks = await placemarkFromCoordinates(position.latitude, position.longitude);
-          String location = placemarks.first.name.toString() + ", " +  placemarks.first.thoroughfare.toString()+", "+placemarks.first.subLocality.toString()+", "
-          +placemarks.first.administrativeArea.toString();
+          String delim1=placemarks.first.thoroughfare.toString().isNotEmpty?", ":"";
+          String delim2=placemarks.first.subLocality.toString().isNotEmpty?", ":"";
+          String delim3=placemarks.first.administrativeArea.toString().isNotEmpty?", ":"";
+          String location = placemarks.first.name.toString() +
+              delim1 +  placemarks.first.thoroughfare.toString()+
+              delim2+placemarks.first.subLocality.toString()+
+              delim3 +placemarks.first.administrativeArea.toString();
          // log("$placemarks ${placemarks[0]}");
           log("$location");
 

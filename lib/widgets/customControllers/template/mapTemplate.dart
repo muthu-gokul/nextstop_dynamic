@@ -161,8 +161,15 @@ class MapTemplate extends StatelessWidget implements MyCallback,MyCallback2,Test
   @override
   onCameraChange() async {
     List<Placemark> placemarks = await placemarkFromCoordinates(cameraPosition!.target.latitude, cameraPosition!.target.longitude);
-    location = placemarks.first.name.toString() + ", " +  placemarks.first.thoroughfare.toString()+", "+placemarks.first.subLocality.toString()+", "
-        +placemarks.first.administrativeArea.toString();
+/*    location = placemarks.first.name.toString() + ", " +  placemarks.first.thoroughfare.toString()+", "+placemarks.first.subLocality.toString()+", "
+        +placemarks.first.administrativeArea.toString();*/
+    String delim1=placemarks.first.thoroughfare.toString().isNotEmpty?", ":"";
+    String delim2=placemarks.first.subLocality.toString().isNotEmpty?", ":"";
+    String delim3=placemarks.first.administrativeArea.toString().isNotEmpty?", ":"";
+    location = placemarks.first.name.toString() +
+        delim1 +  placemarks.first.thoroughfare.toString()+
+        delim2+placemarks.first.subLocality.toString()+
+        delim3 +placemarks.first.administrativeArea.toString();
     log("$location ${placemarks.first}");
     myCallback.onMapLocationChanged(
         {
@@ -197,8 +204,15 @@ class MapTemplate extends StatelessWidget implements MyCallback,MyCallback2,Test
   @override
   onMapTap(LatLng latLng) async{
     List<Placemark> placemarks = await placemarkFromCoordinates(latLng.latitude, latLng.longitude);
-    location = placemarks.first.name.toString() + ", " +  placemarks.first.thoroughfare.toString()+", "+placemarks.first.subLocality.toString()+", "
-        +placemarks.first.administrativeArea.toString();
+/*    location = placemarks.first.name.toString() + ", " +  placemarks.first.thoroughfare.toString()+", "+placemarks.first.subLocality.toString()+", "
+        +placemarks.first.administrativeArea.toString();*/
+    String delim1=placemarks.first.thoroughfare.toString().isNotEmpty?", ":"";
+    String delim2=placemarks.first.subLocality.toString().isNotEmpty?", ":"";
+    String delim3=placemarks.first.administrativeArea.toString().isNotEmpty?", ":"";
+    location = placemarks.first.name.toString() +
+        delim1 +  placemarks.first.thoroughfare.toString()+
+        delim2+placemarks.first.subLocality.toString()+
+        delim3 +placemarks.first.administrativeArea.toString();
     log("$location ${placemarks.first}");
     myCallback.onMapLocationChanged(
         {

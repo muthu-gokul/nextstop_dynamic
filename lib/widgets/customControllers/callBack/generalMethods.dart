@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:nextstop_dynamic/notifier/getUiNotifier.dart';
 import 'package:nextstop_dynamic/pages/estimateBill.dart';
 import 'package:nextstop_dynamic/pages/homePage.dart';
 import 'package:nextstop_dynamic/pages/registrationPage.dart';
@@ -156,9 +157,17 @@ void formSubmitMethod(dynamic guid,List<dynamic> widget,Map clickEvent,List quer
         }
       }
       else{
-        if(clickEvent.containsKey('navigateToPage')){
-          navigateTo(clickEvent['navigateToPage'],clickEvent['typeOfNavigation']);
-        }
+        Get.defaultDialog(
+          title: "",
+          content: CircularProgressIndicator()
+        );
+        GetUiNotifier().postUiJson( null, result["Guid"], resJson).then((value){
+          Get.back();
+          if(clickEvent.containsKey('navigateToPage')){
+            navigateTo(clickEvent['navigateToPage'],clickEvent['typeOfNavigation']);
+          }
+        });
+
       }
       ISVALIDJSON=true;
     }

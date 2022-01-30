@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
 import '../sizeLocal.dart';
@@ -34,61 +36,71 @@ class TextFormFieldController extends StatelessWidget implements MyCallback2{
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          TextFormField(
-            controller: textEditingController,
-            style: map.containsKey('textStyle') ? parseTextStyle(map['textStyle']) : null,
-            scrollPadding: EdgeInsets.only(bottom: 100),
-            obscureText: map.containsKey('obscureText')?map['obscureText']:false,
-            obscuringCharacter: '*',
-            readOnly: map.containsKey('readOnly')?map['readOnly']:false,
-            onTap: map.containsKey('clickEvent')?(){
-              // ontap.ontap(map['eventName']);
-              myCallback.ontap(map['clickEvent']);
-            }:null,
-            decoration: InputDecoration(
-                hintText: map['hintText'],
-                hintStyle: map.containsKey('hintTextStyle') ? parseTextStyle(map['hintTextStyle']) : null,
-                enabled: map.containsKey('enable')?map['enable']:true,
+          FocusScope(
+            child: Focus(
+              onFocusChange: (focus){
+                if(focus && map.containsKey('clickEvent')){
+                  myCallback.ontap(map['clickEvent']);
+                }
+                log("focys $focus");
+              },
+              child: TextFormField(
+                controller: textEditingController,
+                style: map.containsKey('textStyle') ? parseTextStyle(map['textStyle']) : null,
+                scrollPadding: EdgeInsets.only(bottom: 100),
+                obscureText: map.containsKey('obscureText')?map['obscureText']:false,
+                obscuringCharacter: '*',
+                readOnly: map.containsKey('readOnly')?map['readOnly']:false,
+                // onTap: map.containsKey('clickEvent')?(){
+                //   // ontap.ontap(map['eventName']);
+                //   myCallback.ontap(map['clickEvent']);
+                // }:null,
+                decoration: InputDecoration(
+                    hintText: map['hintText'],
+                    hintStyle: map.containsKey('hintTextStyle') ? parseTextStyle(map['hintTextStyle']) : null,
+                    enabled: map.containsKey('enable')?map['enable']:true,
 
-                filled: true,
-                fillColor: map.containsKey('enable')?map['enable']?parseHexColor(map['color']):parseHexColor(map['disableColor']):parseHexColor(map['color']),
-                border: OutlineInputBorder(
-                    borderRadius: parseBorderRadius(map['borderRadius']),
-                    borderSide: BorderSide(
-                        color: parseHexColor(map['borderColor'])
-                    )
-                ),
-                enabledBorder: OutlineInputBorder(
-                    borderRadius: parseBorderRadius(map['borderRadius']),
-                    borderSide: BorderSide(
-                        color: parseHexColor(map['borderColor'])
-                    )
-                ),
-                focusedBorder: OutlineInputBorder(
-                    borderRadius: parseBorderRadius(map['borderRadius']),
-                    borderSide: BorderSide(
-                        color: parseHexColor(map['focusedBorderColor'])
-                    )
-                ),
-                disabledBorder: OutlineInputBorder(
-                    borderRadius: parseBorderRadius(map['borderRadius']),
-                    borderSide: BorderSide(
-                        color: parseHexColor(map['disabledBorderColor'])
-                    )
-                ),
-                contentPadding: EdgeInsets.only(top: 0,left: map['leftContentPadding']??10.0),
-                suffixIcon: suffix,
-                prefixIcon: prefix,
+                    filled: true,
+                    fillColor: map.containsKey('enable')?map['enable']?parseHexColor(map['color']):parseHexColor(map['disableColor']):parseHexColor(map['color']),
+                    border: OutlineInputBorder(
+                        borderRadius: parseBorderRadius(map['borderRadius']),
+                        borderSide: BorderSide(
+                            color: parseHexColor(map['borderColor'])
+                        )
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                        borderRadius: parseBorderRadius(map['borderRadius']),
+                        borderSide: BorderSide(
+                            color: parseHexColor(map['borderColor'])
+                        )
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                        borderRadius: parseBorderRadius(map['borderRadius']),
+                        borderSide: BorderSide(
+                            color: parseHexColor(map['focusedBorderColor'])
+                        )
+                    ),
+                    disabledBorder: OutlineInputBorder(
+                        borderRadius: parseBorderRadius(map['borderRadius']),
+                        borderSide: BorderSide(
+                            color: parseHexColor(map['disabledBorderColor'])
+                        )
+                    ),
+                    contentPadding: EdgeInsets.only(top: 0,left: map['leftContentPadding']??10.0),
+                    suffixIcon: suffix,
+                    prefixIcon: prefix,
 
-                /*prefixIcon: Container(
-                  height: 50,
-                  width: 50,
-                  child: Icon(Icons.location_on_sharp),
-                ),*/
+                    /*prefixIcon: Container(
+                      height: 50,
+                      width: 50,
+                      child: Icon(Icons.location_on_sharp),
+                    ),*/
+                ),
+                onChanged: (v){
+                  myCallback.onTextChanged(v,map);
+                },
+              ),
             ),
-            onChanged: (v){
-              myCallback.onTextChanged(v,map);
-            },
           ),
           Obx(
                   ()=>isValid.value?Container():Container(
