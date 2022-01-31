@@ -14,13 +14,13 @@ import 'package:nextstop_dynamic/widgets/customControllers/callBack/myCallback.d
 import 'dart:convert';
 
 import 'general.dart';
-List<dynamic> queryString=[];
+// List<dynamic> queryString=[];
 bool ISVALIDJSON=false;
 //FORM SUBMISSION CLICK EVENT AND RESULT JSON GENERATION
-void formSubmitMethod(dynamic guid,List<dynamic> widget,Map clickEvent,List queryStr,{MyCallback? myCallback}){
+formSubmitMethod(dynamic guid,List<dynamic> widget,Map clickEvent,List queryStr,{MyCallback? myCallback}){
   //log("widget $widget");
-  queryString=queryStr;
-  log("queryString $queryString");
+/*  queryString=queryStr;
+  log("queryString $queryString");*/
   var result={
     "Guid":guid,
     "FieldArray":[]
@@ -122,12 +122,11 @@ void formSubmitMethod(dynamic guid,List<dynamic> widget,Map clickEvent,List quer
     if(resJson==null){
       print("Invalid json");
       errorDialog(err001);
+      return null;
     }
-
-
     else{
       print("Valid json $resJson");
-      for(int i=0;i<queryString.length;i++){
+/*      for(int i=0;i<queryString.length;i++){
         for(int j=0;j<fields.length;j++){
           if(fields[j].containsKey(queryString[i]['key'].toString())){
             queryString[i]['value']=fields[j][queryString[i]['key'].toString()];
@@ -135,12 +134,13 @@ void formSubmitMethod(dynamic guid,List<dynamic> widget,Map clickEvent,List quer
           }
         }
       }
-      log("query STring $queryString");
+      log("query STring $queryString");*/
       // fields.forEach((element) {
       //   map.
       //   log("ele $element ${element.get}");
       // });
-      if(guid==General.bookingPageIdentifier){
+
+      /*if(guid==General.bookingPageIdentifier){
         log("w $widgets");
         log("w ${widgets[5].getValue()[0]['price']}");
         var _distanceInMeters = Geolocator.distanceBetween(
@@ -168,15 +168,17 @@ void formSubmitMethod(dynamic guid,List<dynamic> widget,Map clickEvent,List quer
           }
         });
 
-      }
+      }*/
+
       ISVALIDJSON=true;
+      return resJson;
     }
    // Provider.of<GetUiNotifier>(context, listen: false).postUiJson(context, guid, result.toString());
   }
   else{
     ISVALIDJSON=false;
     print("INVALID ${fields}");
-
+    return null;
   }
 }
 
@@ -189,6 +191,20 @@ String? resultToJson(Map map){
   }
 }
 
+
+parseQueryString(List fields,List qs){
+  List queryStringRes=[];
+  queryStringRes=qs;
+  for(int i=0;i<queryStringRes.length;i++){
+    for(int j=0;j<fields.length;j++){
+      if(fields[j].containsKey(queryStringRes[i]['key'].toString())){
+        queryStringRes[i]['value']=fields[j][queryStringRes[i]['key'].toString()];
+        break;
+      }
+    }
+  }
+  return queryStringRes;
+}
 
 //NAVIGATION
 navigateTo(String page,int? typeOfNavigation,{MyCallback? myCallback}){
@@ -211,9 +227,6 @@ navigateTo(String page,int? typeOfNavigation,{MyCallback? myCallback}){
     else if(page=="HomePage"){
       getXNavigation(typeOfNavigation, HomePage());
     }
-    else if(page=="EstimateBill"){
-      getXNavigation(typeOfNavigation, EstimateBillPage(fromQueryString: queryString,));
-    }
     else if(page=="ScheduleRide"){
       getXNavigation(typeOfNavigation, ScheduleRidePage());
     }
@@ -225,6 +238,17 @@ navigateTo(String page,int? typeOfNavigation,{MyCallback? myCallback}){
     }
   }
 
+}
+
+getPage(String page){
+  switch(page){
+    case 'HomePage':
+      return HomePage();
+    case 'ScheduleRide':
+      return ScheduleRidePage();
+    case 'Registration':
+      return RegistrationPage();
+  }
 }
 
 //GETX NAVIGATION

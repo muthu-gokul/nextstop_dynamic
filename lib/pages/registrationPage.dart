@@ -1,14 +1,68 @@
-import 'package:flutter/material.dart';
-import 'package:nextstop_dynamic/widgets/customControllers/callBack/general.dart';
+import 'dart:developer';
 
+import 'package:flutter/material.dart';
+import 'package:nextstop_dynamic/notifier/getUiNotifier.dart';
+import 'package:nextstop_dynamic/pages/homePage.dart';
+import 'package:nextstop_dynamic/pages/profilePage.dart';
+import 'package:nextstop_dynamic/widgets/customControllers/callBack/general.dart';
+import 'package:nextstop_dynamic/widgets/customControllers/callBack/generalMethods.dart';
+import 'package:nextstop_dynamic/widgets/customControllers/callBack/myCallback.dart';
+import 'package:get/get.dart';
 import 'dynamicPageInitiater.dart';
 
-class RegistrationPage extends StatelessWidget {
+class RegistrationPage extends StatelessWidget implements MyCallback{
+  RegistrationPage(){
+    log("reg PAge");
+    dynamicPageInitiater=DynamicPageInitiater(
+      pageIdentifier: General.registrationPageIdentifier,
+      myCallback: this,
+      key: GlobalKey<DynamicPageInitiaterState>(),
+    );
+  }
+  late DynamicPageInitiater dynamicPageInitiater;
   @override
   Widget build(BuildContext context) {
-    return DynamicPageInitiater(
-      pageIdentifier: General.registrationPageIdentifier,
-    );
+    return dynamicPageInitiater;
+  }
+
+  @override
+  void onMapLocationChanged(Map map) {
+    // TODO: implement onMapLocationChanged
+  }
+
+  @override
+  void onTextChanged(String text, Map map) {
+    // TODO: implement onTextChanged
+  }
+
+  @override
+  void ontap(Map? clickEvent) {
+    log("registration Click $clickEvent");
+    if(clickEvent!=null){
+      if(clickEvent.containsKey(General.eventName)){
+        if(clickEvent[General.eventName]==General.FormSubmit){
+          //  log("$widgets");
+          var res= General().formSubmit(General.registrationPageIdentifier, dynamicPageInitiater.dynamicPageInitiaterState.widgets,clickEvent,dynamicPageInitiater.dynamicPageInitiaterState.queryString,myCallback: this);
+          if(res!=null){
+
+            Get.defaultDialog(
+                title: "",
+                content: CircularProgressIndicator()
+            );
+            GetUiNotifier().postUiJson( null, General.registrationPageIdentifier, res).then((value){
+              Get.back();
+              log("registra $value");
+              if(clickEvent.containsKey(General.navigateToPage)){
+                getXNavigation(clickEvent[General.typeOfNavigation],getPage(clickEvent[General.navigateToPage]));
+              }
+            });
+
+
+          }
+          log("resultt $res");
+        }
+      }
+    }
   }
 }
 

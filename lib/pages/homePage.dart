@@ -47,6 +47,7 @@ class _HomePageState extends State<HomePage> implements MyCallback{
 
   @override
   void initState() {
+    parseJson();
     if(fromUrl){
 /*      WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
         Provider.of<GetUiNotifier>(context, listen: false).getUiJson(context,LOGINPAGE_ID).then((value){
@@ -63,7 +64,7 @@ class _HomePageState extends State<HomePage> implements MyCallback{
       });*/
     }
     else{
-      parseJson();
+    //  parseJson();
     }
     super.initState();
   }

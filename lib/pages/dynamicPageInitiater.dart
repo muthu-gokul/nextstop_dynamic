@@ -22,12 +22,17 @@ class DynamicPageInitiater extends StatefulWidget {
   MyCallback? myCallback;
   bool isScrollControll;
   List<dynamic> fromQueryString;
-  DynamicPageInitiater({required this.pageIdentifier,this.myCallback,this.isScrollControll=false,this.fromQueryString=const []});
+  DynamicPageInitiater({Key? key,required this.pageIdentifier,this.myCallback,this.isScrollControll=false,this.fromQueryString=const []}): super(key: key);
+  //DynamicPageInitiater({required this.pageIdentifier,this.myCallback,this.isScrollControll=false,this.fromQueryString=const []});
+
+  final DynamicPageInitiaterState dynamicPageInitiaterState=DynamicPageInitiaterState();
   @override
-  _DynamicPageInitiaterState createState() => _DynamicPageInitiaterState();
+  DynamicPageInitiaterState createState() => dynamicPageInitiaterState;
+
+
 }
 
-class _DynamicPageInitiaterState extends State<DynamicPageInitiater> implements MyCallback{
+class DynamicPageInitiaterState extends State<DynamicPageInitiater> implements MyCallback{
 
   List<dynamic> widgets=[];
   List<dynamic> queryString=[];
@@ -43,7 +48,15 @@ class _DynamicPageInitiaterState extends State<DynamicPageInitiater> implements 
    /* parsedJson['Widgets'].forEach((e){
       log("eeee $e");
     });*/
-    widgets=getWidgets(parsedJson['Widgets'],this);
+ //   widgets=getWidgets(parsedJson['Widgets'],this);
+
+    if(widget.myCallback==null){
+      widgets=getWidgets(parsedJson['Widgets'],this);
+    }
+    else{
+      widgets=getWidgets(parsedJson['Widgets'],widget.myCallback!);
+    }
+
     if(parsedJson.containsKey('queryString')){
       queryString=parsedJson['queryString'];
     }
@@ -72,7 +85,7 @@ class _DynamicPageInitiaterState extends State<DynamicPageInitiater> implements 
   void initState() {
     if(fromUrl){
       WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
-        GetUiNotifier().getUiJson(context,widget.pageIdentifier,null).then((value){
+        GetUiNotifier().getUiJson(context,widget.pageIdentifier,LOGINUSERID).then((value){
            log("value $value");
           if(value!="null"){
             var parsed=jsonDecode(value);
@@ -80,7 +93,12 @@ class _DynamicPageInitiaterState extends State<DynamicPageInitiater> implements 
             parsedJson=jsonDecode(parsed['Table'][0]['PageJson']);
             print(parsedJson);
             guid=parsedJson['Guid'];
-            widgets=getWidgets(parsedJson['Widgets'],this);
+            if(widget.myCallback==null){
+              widgets=getWidgets(parsedJson['Widgets'],this);
+            }
+            else{
+              widgets=getWidgets(parsedJson['Widgets'],widget.myCallback!);
+            }
             setState(() {});
           }
         });
@@ -107,8 +125,8 @@ class _DynamicPageInitiaterState extends State<DynamicPageInitiater> implements 
       keyboardVisible = MediaQuery.of(context).viewInsets.bottom != 0;
     });*/
 
-    log("_keyboardVisible $keyboardVisible ${widget.pageIdentifier} ${widget.isScrollControll} ${ widget.isScrollControll?keyboardVisible?AlwaysScrollableScrollPhysics():
-    NeverScrollableScrollPhysics():AlwaysScrollableScrollPhysics()}");
+    // log("_keyboardVisible $keyboardVisible ${widget.pageIdentifier} ${widget.isScrollControll} ${ widget.isScrollControll?keyboardVisible?AlwaysScrollableScrollPhysics():
+    // NeverScrollableScrollPhysics():AlwaysScrollableScrollPhysics()}");
     SizeConfig().init(context);
     return SafeArea(
       bottom: true,
@@ -240,7 +258,8 @@ class _DynamicPageInitiaterState extends State<DynamicPageInitiater> implements 
       if(clickEvent.containsKey('eventName')){
         if(clickEvent['eventName']=='FormSubmit'){
         //  log("$widgets");
-          General().formSubmit(guid, widgets,clickEvent,queryString,myCallback: this);
+         var res= General().formSubmit(guid, widgets,clickEvent,queryString,myCallback: this);
+         log("resultt $res");
         }
         else if(clickEvent['eventName']=='FormSubmitBookingPage'){
 
@@ -249,15 +268,11 @@ class _DynamicPageInitiaterState extends State<DynamicPageInitiater> implements 
         else if(clickEvent['eventName']=='FormSubmitEstimateBill'){
           log("www $ISVALIDJSON");
           log("www ${ widget.myCallback}");
-          General().formSubmit(guid, widgets[1].widgets,clickEvent,queryString,myCallback: this);
-          //setState(() {
-            selectedPage.value=2;
-          //});
-          if(ISVALIDJSON){
-          //  setState(() {
-              selectedPage.value=2;
-          //  });
-          }
+          var res = General().formSubmit(guid, widgets[1].widgets,clickEvent,queryString,myCallback: this);
+          log("ress $res ");
+          log("widgets[1].widgets ${widgets[1].widgets[7].widgets[1].text.value} ");
+            //selectedPage.value=2;
+
         }
         else if(clickEvent['eventName']=='Navigation'){
           General().navigation(clickEvent['navigateToPage'],clickEvent['typeOfNavigation']);
@@ -265,57 +280,7 @@ class _DynamicPageInitiaterState extends State<DynamicPageInitiater> implements 
         else if(clickEvent['eventName']=='OpenDrawer'){
           widget.myCallback?.ontap(clickEvent);
         }
-        else if(clickEvent['eventName']=='locationClick'){
-          // log("$widgets");
-          Position? position;
-          position=await determinePosition();
-          log("$position");
-          List<Placemark> placemarks = await placemarkFromCoordinates(position.latitude, position.longitude);
-          String delim1=placemarks.first.thoroughfare.toString().isNotEmpty?", ":"";
-          String delim2=placemarks.first.subLocality.toString().isNotEmpty?", ":"";
-          String delim3=placemarks.first.administrativeArea.toString().isNotEmpty?", ":"";
-          String location = placemarks.first.name.toString() +
-              delim1 +  placemarks.first.thoroughfare.toString()+
-              delim2+placemarks.first.subLocality.toString()+
-              delim3 +placemarks.first.administrativeArea.toString();
-         // log("$placemarks ${placemarks[0]}");
-          log("$location");
 
-          if(clickEvent['key']=='PickUp'){
-            clickEvent['value']=location;
-            findWidgetByKey(widgets,clickEvent,(wid){
-              findAndUpdateTextEditingController(wid,clickEvent);
-            });
-            findWidgetByKey(widgets,{"key":"map01"},(wid){
-              //log("wid $wid");
-              wid.isPickUpLocation.value=true;
-              wid.animateCamera(position);
-            });
-            findWidgetByKey(widgets,{"key":"PickUp_Loc_Details"},(wid){
-               wid.map['value'][0]['latitude']=position!.latitude;
-               wid.map['value'][1]['longitude']=position.longitude;
-            });
-
-          }
-          else if(clickEvent['key']=='Drop'){
-            clickEvent['value']=location;
-            findWidgetByKey(widgets,clickEvent,(wid){
-              findAndUpdateTextEditingController(wid,clickEvent);
-            });
-            findWidgetByKey(widgets,{"key":"map01"},(wid){
-              log("wid $wid");
-              wid.isPickUpLocation.value=false;
-              wid.animateCamera(position);
-            });
-            findWidgetByKey(widgets,{"key":"Drop_Loc_Details"},(wid){
-              wid.map['value'][0]['latitude']=position!.latitude;
-              wid.map['value'][1]['longitude']=position.longitude;
-            });
-          }
-
-
-
-        }
       }
     }
   }

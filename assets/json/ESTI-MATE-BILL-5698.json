@@ -138,7 +138,7 @@
           "focusedBorderColor": "textFieldBorderColor",
           "disabledBorderColor": "textFieldBorderColor",
           "color": "FFffffff",
-          "value": "Theni  jbjfkgjjb jkjghk jhbjkgh jb gjhjgh jjn jkgjk gnjk  nkjgnh kjghnhkgn kghnnkn",
+          "value": "",
           "disableColor": "FFffffff",
           "enable": true,
           "readOnly": true,
@@ -299,10 +299,12 @@
             },
             {
               "type": "text",
-              "value": "28282",
+              "value": "0.0",
               "orderBy": 2,
               "key": "totalFare",
               "onlyText": true,
+              "hasInput": true,
+              "required": true,
               "style": {
                 "fontSize": 30,
                 "fontFamily": "RB",

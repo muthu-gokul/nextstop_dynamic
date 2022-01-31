@@ -12,7 +12,7 @@ class EstimateBillPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return DynamicPageInitiater(
       pageIdentifier: General.estimateBillPageIdentifier,
-     fromQueryString: fromQueryString,
+      fromQueryString: fromQueryString,
     // myCallback: myCallback,
      // myCallback: myCallback,
     );

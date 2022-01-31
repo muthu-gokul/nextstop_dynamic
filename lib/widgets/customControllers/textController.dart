@@ -55,8 +55,7 @@ class TextBoxController extends StatelessWidget implements MyCallback2{
 
   @override
   getValue() {
-    // TODO: implement getValue
-    throw UnimplementedError();
+    return text.value;
   }
 
   @override
