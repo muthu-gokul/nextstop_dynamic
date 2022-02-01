@@ -134,8 +134,8 @@ class DynamicPageInitiaterState extends State<DynamicPageInitiater> implements M
       child: Scaffold(
         // resizeToAvoidBottomInset: false,
         body:parsedJson==null?Container(): Container(
-         // alignment: Alignment.topCenter,
-         // alignment: parseAlignment(parsedJson['alignment']),
+         // alignment: Alignment.center,
+          alignment: parseAlignment(parsedJson['alignment']),
           height: SizeConfig.screenHeight!-topPad,
           width: SizeConfig.screenWidth,
           color: Colors.white,
@@ -372,7 +372,26 @@ func1ByKey(dynamic widget,Map? clickEvent,Function(dynamic widget) returnFunctio
   }
   if(widget.map.containsKey("child")){
    // log("${widget.getType()} ${widget.widget} ${widget.map['key']}");
-    func1ByKey(widget.widget,clickEvent,returnFunction);
+   // func1ByKey(widget.widget,clickEvent,returnFunction);
+
+    if(widget.map.containsKey('key')){
+      if(widget.map['key']==clickEvent!['key']){
+        return widget;
+      }
+      else{
+        var aa= func1ByKey(widget.widget,clickEvent,returnFunction);
+        if(aa!=null){
+          return aa;
+        }
+      }
+    }
+    else{
+      var aa= func1ByKey(widget.widget,clickEvent,returnFunction);
+      if(aa!=null){
+        return aa;
+      }
+    }
+
   }
   else if(widget.map.containsKey("children")){
     // log("${widget.getType()}");

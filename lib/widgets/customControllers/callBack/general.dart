@@ -14,6 +14,7 @@ class General{
     navigateTo(page,typeOfNavigation);
   }
 
+  static String loginPageIdentifier="LOGI-N567-3457-9876";
   static String registrationPageIdentifier="REGI-STRA-TION-9876";
   static String homePageIdentifier="HOME-PAGE-3434-9898";
   static String profilePageIdentifier="PROF-ILE1-3434-6566";
@@ -31,6 +32,7 @@ class General{
   static String locationClick="locationClick";
   static String navigateToPage="navigateToPage";
   static String typeOfNavigation="typeOfNavigation";
+  static String actionType="actionType";
 }
 
 

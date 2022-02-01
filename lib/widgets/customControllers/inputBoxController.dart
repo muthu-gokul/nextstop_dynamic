@@ -65,25 +65,25 @@ class TextFormFieldController extends StatelessWidget implements MyCallback2{
                     border: OutlineInputBorder(
                         borderRadius: parseBorderRadius(map['borderRadius']),
                         borderSide: BorderSide(
-                            color: parseHexColor(map['borderColor'])
+                            color: parseHexColor(map['borderColor'])!
                         )
                     ),
                     enabledBorder: OutlineInputBorder(
                         borderRadius: parseBorderRadius(map['borderRadius']),
                         borderSide: BorderSide(
-                            color: parseHexColor(map['borderColor'])
+                            color: parseHexColor(map['borderColor'])!
                         )
                     ),
                     focusedBorder: OutlineInputBorder(
                         borderRadius: parseBorderRadius(map['borderRadius']),
                         borderSide: BorderSide(
-                            color: parseHexColor(map['focusedBorderColor'])
+                            color: parseHexColor(map['focusedBorderColor'])!
                         )
                     ),
                     disabledBorder: OutlineInputBorder(
                         borderRadius: parseBorderRadius(map['borderRadius']),
                         borderSide: BorderSide(
-                            color: parseHexColor(map['disabledBorderColor'])
+                            color: parseHexColor(map['disabledBorderColor'])!
                         )
                     ),
                     contentPadding: EdgeInsets.only(top: 0,left: map['leftContentPadding']??10.0),

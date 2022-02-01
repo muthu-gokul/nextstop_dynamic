@@ -34,14 +34,14 @@ class ButtonController extends StatelessWidget implements MyCallback2{
             map.containsKey('reducedHeight')?SizeConfig.screenHeight!-double.parse(map['reducedHeight'].toString()):
             map.containsKey('screenHeight')?SizeConfig.screenHeight!-24:null,
            // height: double.parse(map['height'].toString()),
-            width:map.containsKey('pixelWidth')?double.parse(map['pixelWidth'].toString()): map.containsKey('width')?map['width']*SizeConfig.screenWidth:double.maxFinite,
+            width:map.containsKey('pixelWidth')?double.parse(map['pixelWidth'].toString()): map.containsKey('width')?map['width']*SizeConfig.screenWidth:null,
             //width:map.containsKey('width')? double.parse(map['width'].toString()):double.maxFinite,
             alignment: parseAlignment(map['alignment']),
             decoration: BoxDecoration(
                 borderRadius:map.containsKey('shape')?null: parseBorderRadius(map['borderRadius']),
                 color: parseHexColor(color.value),
                 shape: parseBoxShape(map['shape']),
-                border: Border.all(color: parseHexColor(map['borderColor']))
+                border: Border.all(color: parseHexColor(map['borderColor'])!)
             ),
             child: widget
           ),

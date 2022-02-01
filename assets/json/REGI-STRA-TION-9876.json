@@ -269,7 +269,8 @@
       "clickEvent": {
         "eventName":"FormSubmit",
         "navigateToPage":"HomePage",
-        "typeOfNavigation": 2
+        "typeOfNavigation": 2,
+        "actionType": "Add"
       },
       "key": 5,
       "height":50,

@@ -10,6 +10,7 @@ import '../alignController.dart';
 import '../buttonController.dart';
 import '../columnController.dart';
 import '../dynamicRowController.dart';
+import '../expandedController.dart';
 import '../hiddenController.dart';
 import '../imageController.dart';
 import '../inputBoxController.dart';
@@ -112,6 +113,9 @@ List<dynamic> getWidgets(List parsed,MyCallback myCallback){
     else if(element['type']=='mapTemplate'){
       widgets.add(MapTemplate(map: element, myCallback: myCallback,));
     }
+    else if(element['type']=='expandedController'){
+      widgets.add(ExpandedController(map: element, ontap: myCallback,));
+    }
     else if(element['type']=='icon'){
       widgets.add( parseIcon(element));
     }
@@ -186,6 +190,10 @@ Widget getChild(Map map, {MyCallback? myCallback}){
   else if(map['type']=='mapTemplate'){
    // return ColumnController(map: map,myCallback: myCallback!,);
     widget=  MapTemplate(map: map,myCallback: myCallback!,);
+  }
+  else if(map['type']=='expandedController'){
+
+    widget=  ExpandedController(map: map, ontap: myCallback!,);
   }
   //return Container();
   return widget;

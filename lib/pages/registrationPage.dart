@@ -49,7 +49,7 @@ class RegistrationPage extends StatelessWidget implements MyCallback{
                 title: "",
                 content: CircularProgressIndicator()
             );
-            GetUiNotifier().postUiJson( null, General.registrationPageIdentifier, res).then((value){
+            GetUiNotifier().postUiJson( null, General.registrationPageIdentifier, res,clickEvent).then((value){
               Get.back();
               log("registra $value");
               if(clickEvent.containsKey(General.navigateToPage)){

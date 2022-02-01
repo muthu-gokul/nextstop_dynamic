@@ -3,6 +3,7 @@ import 'dart:developer';
 
 
 import 'package:flutter/material.dart';
+import 'package:nextstop_dynamic/widgets/customControllers/callBack/general.dart';
 import '../api/ApiManager.dart';
 import '../model/parameterMode.dart';
 
@@ -46,19 +47,19 @@ class GetUiNotifier {
     }
   }
 
-  Future<dynamic> postUiJson(int? loginUserId,String pageId,String dataJson) async {
+  Future<dynamic> postUiJson(int? loginUserId,String pageId,String dataJson,Map clickEvent) async {
     parameters=[
       ParameterModel(Key: "SpName", Type: "String", Value: "USP_GetPageInfo"),
       ParameterModel(Key: "LoginUserId", Type: "int", Value: loginUserId),
       ParameterModel(Key: "PageIdentifier", Type: "String", Value: pageId),
       ParameterModel(Key: "DataJson", Type: "String", Value: dataJson),
-      ParameterModel(Key: "ActionType", Type: "String", Value: "Add"),
+      ParameterModel(Key: "ActionType", Type: "String", Value: clickEvent[General.actionType]),
       ParameterModel(Key: "database", Type: "String", Value:"Nextstop_Dev"),
     ];
     var body={
       "Fields": parameters.map((e) => e.toJson()).toList()
     };
-
+    print(jsonEncode(body));
     String val="";
     try{
       await ApiManager().ApiCallGetInvoke(body).then((value) {

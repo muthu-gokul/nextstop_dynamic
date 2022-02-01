@@ -1,0 +1,179 @@
+{
+  "Guid": "LOGI-N567-3457-9876",
+  "mainAxisAlignment": "center",
+  "alignment": "center",
+  "Widgets": [
+    {
+      "type": "imageController",
+      "orderBy": "1",
+      "image": "assets/loginpages/home.png",
+      "key": 10,
+      "width":200.0
+    },
+    {
+      "type":"sizedBox",
+      "orderBy": "2",
+      "height":20
+    },
+    {
+      "type": "text",
+      "orderBy": "3",
+      "value": "Login Now",
+      "key": 1,
+      "style": {
+        "color": "#000000",
+        "fontSize": 30.0,
+        "fontFamily": "RB"
+      }
+    },
+    {
+      "type":"sizedBox",
+      "orderBy": "4",
+      "height":10
+    },
+    {
+      "type": "text",
+      "orderBy": "5",
+      "value": "Please login to continue using our app",
+      "width":0.65,
+      "key": 1,
+      "textAlign": "center",
+      "style": {
+        "color": "primaryTextColor3",
+        "fontSize": 14.0,
+        "fontFamily": "RR"
+      }
+    },
+    {
+      "type":"sizedBox",
+      "orderBy": "6",
+      "height":20
+    },
+    {
+      "type": "textField",
+      "orderBy": 7,
+      "hintText": "Phone Number",
+      "hasInput": true,
+      "required": true,
+      "key": "PhoneNumber",
+      "margin": "10,0,10,10",
+      "groupValidation":  [{"Required":"required"},{"MaximumLength":"10"}],
+      "borderRadius": "5,5,5,5",
+      "borderColor": "textFieldBorderColor",
+      "focusedBorderColor": "textFieldBorderColor",
+      "disabledBorderColor": "FFF44336",
+      "color": "FFffffff",
+      "disableColor": "FFF5EFEE",
+      "enable": true,
+      "hintTextStyle": {
+        "color": "primaryTextColor1",
+        "fontSize": 14.0,
+        "fontFamily": "RR"
+      },
+      "errorTextStyle": {
+        "color": "errorTextColor",
+        "fontSize": 14.0,
+        "fontFamily": "RR"
+      },
+      "textStyle": {
+        "color": "primaryTextColor2",
+        "fontSize": 15.0,
+        "fontFamily": "RR"
+      }
+    },
+    {
+      "type": "textField",
+      "orderBy": "8",
+      "hintText": "Password",
+      "hasInput": true,
+      "obscureText": true,
+      "required": false,
+      "key": "Password",
+      "margin": "10,0,10,10",
+      "groupValidation": [{"Required":"required"}],
+      "borderRadius": "5,5,5,5",
+      "borderColor": "textFieldBorderColor",
+      "focusedBorderColor": "textFieldBorderColor",
+      "disabledBorderColor": "FFF44336",
+      "color": "FFffffff",
+      "disableColor": "FFF5EFEE",
+      "enable": true,
+      "hintTextStyle": {
+        "color": "primaryTextColor1",
+        "fontSize": 14.0,
+        "fontFamily": "RR"
+      },
+      "errorTextStyle": {
+        "color": "errorTextColor",
+        "fontSize": 14.0,
+        "fontFamily": "RR"
+      },
+      "textStyle": {
+        "color": "primaryTextColor2",
+        "fontSize": 15.0,
+        "fontFamily": "RR"
+      }
+    },
+    {
+      "type":"sizedBox",
+      "orderBy": "11",
+      "height":20
+    },
+    {
+      "type": "button",
+      "orderBy": "12",
+      "alignment": "center",
+      "clickEvent": {
+        "eventName":"FormSubmit",
+        "navigateToPage":"HomePage",
+        "typeOfNavigation": 2,
+        "actionType": "SignIn"
+      },
+      "key": 5,
+      "height":50,
+      "margin": "10,0,10,0",
+      "color": "primaryColor",
+      "borderRadius":"25,25,25,25",
+      "child":{
+        "type": "text",
+        "alignment": "center",
+        "value": "Login",
+        "key": 1,
+        "style": {
+          "color": "#ffffff",
+          "fontSize": 16.0
+        }
+      }
+    },
+    {
+      "type":"sizedBox",
+      "orderBy": "13",
+      "height":20
+    },
+    {
+      "type": "button",
+      "orderBy": 13,
+      "alignment": "center",
+
+      "clickEvent": {
+        "eventName":"Navigation",
+        "typeOfNavigation": 1,
+        "navigateToPage": "Registration"
+      },
+      "child":{
+        "type": "text",
+        "alignment": "center",
+        "onlyText": true,
+        "value": "New User ? Register",
+        "key": 1,
+        "style": {
+          "shadowColor": "primaryTextColor3",
+          "decorationColor": "primaryColor",
+          "decoration": "underline",
+          "fontSize": 15.0,
+          "offsetDy": -3.0
+        }
+      }
+    }
+  ]
+}

@@ -3,4 +3,4 @@ import 'model/parameterMode.dart';
 List<ParameterModel> parameters=[];
 bool fromUrl=true;
 
-int LOGINUSERID=5;
+int LOGINUSERID=0;

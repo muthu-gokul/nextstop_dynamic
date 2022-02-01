@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:nextstop_dynamic/notifier/getUiNotifier.dart';
 import 'package:nextstop_dynamic/pages/estimateBill.dart';
 import 'package:nextstop_dynamic/pages/homePage.dart';
+import 'package:nextstop_dynamic/pages/loginPage.dart';
 import 'package:nextstop_dynamic/pages/registrationPage.dart';
 import 'package:nextstop_dynamic/pages/scheduleRide.dart';
 import 'package:nextstop_dynamic/widgets/calculation.dart';
@@ -37,10 +38,7 @@ formSubmitMethod(dynamic guid,List<dynamic> widget,Map clickEvent,List queryStr,
   List<dynamic> fields=[];
   validList=[];
 
-  widgets.forEach((element) {
-   // print(element);
-    if(element.map.containsKey('hasInput')){
-      // print(element.map["key"]);
+  addValidationResult(dynamic element){
       if(element.map['hasInput']){
         if(element.map['required']){
 
@@ -68,7 +66,7 @@ formSubmitMethod(dynamic guid,List<dynamic> widget,Map clickEvent,List queryStr,
                   widgets.forEach((e1) {
                     if(e1.map['key']==value){
                       v1=e1.getValue().toString();
-                     /* print("element.getValue ${v1} $v2");*/
+                      /* print("element.getValue ${v1} $v2");*/
                       if(v1==v2){
                         isValid=true;
                         validList.add(isValid);
@@ -90,7 +88,7 @@ formSubmitMethod(dynamic guid,List<dynamic> widget,Map clickEvent,List queryStr,
             }
             fields.add({
               "${element.map["key"]}":element.getValue()
-             // element.map["key"]:element.getValue()
+              // element.map["key"]:element.getValue()
             });
           }
           else{
@@ -98,18 +96,35 @@ formSubmitMethod(dynamic guid,List<dynamic> widget,Map clickEvent,List queryStr,
             validList.add(isValid);
             fields.add({
               "${element.map["key"]}":element.getValue()
-             // element.map["key"]:element.getValue()
+              // element.map["key"]:element.getValue()
             });
           }
         }
         else{
           fields.add({
-           "${element.map["key"]}":element.getValue()
-           // element.map["key"]:element.getValue()
+            "${element.map["key"]}":element.getValue()
+            // element.map["key"]:element.getValue()
           });
         }
       }
+  }
+
+  check1(dynamic eleCheck){
+    if(eleCheck.map.containsKey('hasInput')){
+      addValidationResult(eleCheck);
     }
+    else if(eleCheck.map.containsKey("child")){
+      check1(eleCheck.widget);
+    }
+    else if(eleCheck.map.containsKey("children")){
+        eleCheck.widgets.forEach((element) {
+          check1(element);
+        });
+    }
+  }
+
+  widgets.forEach((element) {
+    check1(element);
   });
 
   if(!validList.any((element) => element==false)){
@@ -233,6 +248,9 @@ navigateTo(String page,int? typeOfNavigation,{MyCallback? myCallback}){
     else if(page=="Registration"){
       getXNavigation(typeOfNavigation, RegistrationPage());
     }
+    else if(page=="Login"){
+      getXNavigation(typeOfNavigation, LoginPage());
+    }
     else{
       errorDialog(err002);
     }
@@ -248,6 +266,8 @@ getPage(String page){
       return ScheduleRidePage();
     case 'Registration':
       return RegistrationPage();
+    case 'Login':
+      return LoginPage();
   }
 }
 

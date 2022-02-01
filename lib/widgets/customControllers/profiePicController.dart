@@ -20,7 +20,7 @@ class ProfilePicController extends StatelessWidget implements MyCallback2{
             decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: parseHexColor(map['bgColor']),
-                border: Border.all(color: parseHexColor(map['borderColor']),width: 3),
+                border: Border.all(color: parseHexColor(map['borderColor'])!,width: 3),
                 //  color: AppTheme.yellowColor,
                 boxShadow: []
             ),
