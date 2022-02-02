@@ -65,7 +65,7 @@ class DynamicPageInitiaterState extends State<DynamicPageInitiater> implements M
       log("contains fromQuery String ${widget.fromQueryString}");
       widget.fromQueryString.forEach((element) {
         findWidgetByKey(widgets,{"key":element['key']},(wid){
-          log("query wid $wid ${wid.getType()}");
+          // log("query wid $wid ${wid.getType()}");
           updateByWidgetType(wid.getType(),widget: wid,clickEvent: element);
         });
       });
@@ -85,7 +85,7 @@ class DynamicPageInitiaterState extends State<DynamicPageInitiater> implements M
   void initState() {
     if(fromUrl){
       WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
-        GetUiNotifier().getUiJson(context,widget.pageIdentifier,LOGINUSERID).then((value){
+        GetUiNotifier().getUiJson(widget.pageIdentifier,LOGINUSERID).then((value){
            log("value $value");
           if(value!="null"){
             var parsed=jsonDecode(value);
@@ -98,6 +98,20 @@ class DynamicPageInitiaterState extends State<DynamicPageInitiater> implements M
             }
             else{
               widgets=getWidgets(parsedJson['Widgets'],widget.myCallback!);
+            }
+            if(parsedJson.containsKey('queryString')){
+              log("parsedJson.containsKey('queryString') ${parsedJson.containsKey('queryString')}");
+              queryString=parsedJson['queryString'];
+            }
+
+            if(widget.fromQueryString.isNotEmpty){
+              log("contains fromQuery String ${widget.fromQueryString}");
+              widget.fromQueryString.forEach((element) {
+                findWidgetByKey(widgets,{"key":element['key']},(wid){
+                  // log("query wid $wid ${wid.getType()}");
+                  updateByWidgetType(wid.getType(),widget: wid,clickEvent: element);
+                });
+              });
             }
             setState(() {});
           }
@@ -127,6 +141,8 @@ class DynamicPageInitiaterState extends State<DynamicPageInitiater> implements M
 
     // log("_keyboardVisible $keyboardVisible ${widget.pageIdentifier} ${widget.isScrollControll} ${ widget.isScrollControll?keyboardVisible?AlwaysScrollableScrollPhysics():
     // NeverScrollableScrollPhysics():AlwaysScrollableScrollPhysics()}");
+    log("dddd ${widget.isScrollControll?keyboardVisible?AlwaysScrollableScrollPhysics():
+    NeverScrollableScrollPhysics():AlwaysScrollableScrollPhysics()}");
     SizeConfig().init(context);
     return SafeArea(
       bottom: true,
@@ -266,11 +282,18 @@ class DynamicPageInitiaterState extends State<DynamicPageInitiater> implements M
           General().formSubmit(guid, widgets[0].widget.widgets[1].widget.widget.widgets,clickEvent,queryString,myCallback: widget.myCallback);
         }
         else if(clickEvent['eventName']=='FormSubmitEstimateBill'){
-          log("www $ISVALIDJSON");
-          log("www ${ widget.myCallback}");
+
           var res = General().formSubmit(guid, widgets[1].widgets,clickEvent,queryString,myCallback: this);
-          log("ress $res ");
-          log("widgets[1].widgets ${widgets[1].widgets[7].widgets[1].text.value} ");
+          log("ress $res");
+          if(res!=null){
+            GetUiNotifier().postUiJson(LOGINUSERID, widget.pageIdentifier, res, clickEvent).then((value){
+              log("sp value-- $value");
+              getXNavigation(3, Container());
+              selectedPage.value=0;
+            });
+          }
+          // log("ress $res ");
+          // log("widgets[1].widgets ${widgets[1].widgets[7].widgets[1].text.value} ");
             //selectedPage.value=2;
 
         }

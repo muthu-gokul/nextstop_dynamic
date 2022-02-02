@@ -90,6 +90,7 @@
       "child": {
         "type": "text",
         "value": "Logout",
+        "alignment": "center",
         "style": {
           "fontSize": 16.0,
           "fontFamily": "RR",

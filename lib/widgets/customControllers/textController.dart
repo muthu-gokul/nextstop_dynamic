@@ -62,7 +62,6 @@ class TextBoxController extends StatelessWidget implements MyCallback2{
 
   @override
   validate() {
-    // TODO: implement validate
-    throw UnimplementedError();
+    return true;
   }
 }

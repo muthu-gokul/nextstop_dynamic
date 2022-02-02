@@ -53,6 +53,7 @@ class BookingPage extends StatelessWidget implements MyCallback{
         wid.map['value'][1]['longitude']=map['longitude'];
       });
     }
+
   }
 
   @override
@@ -124,8 +125,9 @@ class BookingPage extends StatelessWidget implements MyCallback{
          log("res $res");
          if(res !=null){
            Map resMap=jsonDecode(res);
-           log("${dynamicPageInitiater.dynamicPageInitiaterState.widgets}");
+           log("${dynamicPageInitiater.dynamicPageInitiaterState.queryString}");
            List qs=parseQueryString(resMap['FieldArray'],dynamicPageInitiater.dynamicPageInitiaterState.queryString);
+           log("qs $qs");
         //   log("${parseQueryString(resMap['FieldArray'],dynamicPageInitiater.dynamicPageInitiaterState.queryString)}");
            var _distanceInMeters = Geolocator.distanceBetween(
              qs[1]['value'][0]['latitude'],
@@ -134,11 +136,12 @@ class BookingPage extends StatelessWidget implements MyCallback{
              qs[3]['value'][1]['longitude'],
 
            );
-           qs.add({"key":"totalFare","value":"${Calculation().mul(dynamicPageInitiater.dynamicPageInitiaterState.widgets[0].widget.widgets[1].widget.widget.widgets[5].getValue()[0]['price'], _distanceInMeters/1000).toStringAsFixed(2)}"});
+          // log("vv ${dynamicPageInitiater.dynamicPageInitiaterState.widgets[0].widget.widgets[1].widget.widget.widgets[5].getValue()}");
+           qs.add({"key":"totalFare","value":"${Calculation().mul(dynamicPageInitiater.dynamicPageInitiaterState.widgets[0].widget.widgets[1].widget.widget.widgets[5].getValue()['price'], _distanceInMeters/1000).toStringAsFixed(2)}"});
        //    log("_distanceInMeters $_distanceInMeters ${_distanceInMeters/1000} ${Calculation().mul(dynamicPageInitiater.dynamicPageInitiaterState.widgets[5].getValue()[0]['price'], _distanceInMeters/1000).toStringAsFixed(2)}");
            if(clickEvent.containsKey(General.navigateToPage)){
-            // navigateTo(clickEvent['navigateToPage'],clickEvent['typeOfNavigation'],myCallback: myCallback);
-            // getXNavigation(clickEvent[General.typeOfNavigation], EstimateBillPage(fromQueryString: qs,));
+
+             getXNavigation(clickEvent[General.typeOfNavigation], EstimateBillPage(fromQueryString: qs,));
            }
          }
         }

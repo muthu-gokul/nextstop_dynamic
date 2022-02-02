@@ -6,13 +6,14 @@ import 'dynamicPageInitiater.dart';
 
 class EstimateBillPage extends StatelessWidget {
   List<dynamic> fromQueryString;
- // MyCallback myCallback;
-  EstimateBillPage({required this.fromQueryString,});
+  MyCallback? myCallback;
+  EstimateBillPage({required this.fromQueryString, this.myCallback});
   @override
   Widget build(BuildContext context) {
     return DynamicPageInitiater(
       pageIdentifier: General.estimateBillPageIdentifier,
       fromQueryString: fromQueryString,
+      myCallback: myCallback,
     // myCallback: myCallback,
      // myCallback: myCallback,
     );

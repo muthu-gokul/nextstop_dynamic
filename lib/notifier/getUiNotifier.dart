@@ -16,7 +16,7 @@ import '../constants.dart';
 
 class GetUiNotifier {
 
-  Future<dynamic> getUiJson(BuildContext context,String pageId,int? loginUserId) async {
+  Future<dynamic> getUiJson(String pageId,int? loginUserId) async {
     parameters=[
       ParameterModel(Key: "SpName", Type: "String", Value: "USP_GetPageInfo"),
       ParameterModel(Key: "LoginUserId", Type: "int", Value: loginUserId),

@@ -42,8 +42,9 @@ class LoginPage extends StatelessWidget implements MyCallback{
     if(clickEvent!=null){
       if(clickEvent.containsKey(General.eventName)){
         if(clickEvent[General.eventName]==General.FormSubmit){
-          //  log("$widgets");
+            log("${dynamicPageInitiater.dynamicPageInitiaterState.widgets}");
           var res= General().formSubmit(General.loginPageIdentifier, dynamicPageInitiater.dynamicPageInitiaterState.widgets,clickEvent,dynamicPageInitiater.dynamicPageInitiaterState.queryString,myCallback: this);
+          log("login res $res");
           if(res!=null){
 
             if(fromUrl){
@@ -67,7 +68,7 @@ class LoginPage extends StatelessWidget implements MyCallback{
             }
 
           }
-          log("resultt $res");
+
         }
         else if(clickEvent[General.eventName]==General.Navigation){
           getXNavigation(clickEvent[General.typeOfNavigation],getPage(clickEvent[General.navigateToPage]));

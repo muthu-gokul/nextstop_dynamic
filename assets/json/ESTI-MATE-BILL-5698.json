@@ -235,6 +235,8 @@
               {
                 "type": "text",
                 "value": "Mr. End User",
+                "alignment": "center",
+                "key": "UserName",
                 "orderBy": 2,
                 "style": {
                   "fontSize": 14,
@@ -262,6 +264,8 @@
                 "type": "text",
                 "orderBy": 5,
                 "value": "98565-65656",
+                "key": "UserMobileNumber",
+                "alignment": "center",
                 "style": {
                   "color": "primaryTextColor2",
                   "fontSize": 15.0,
@@ -367,16 +371,19 @@
           "clickEvent": {
             "eventName":"FormSubmitEstimateBill",
             "navigateToPage":"",
-            "typeOfNavigation": 3
+            "typeOfNavigation": 3,
+            "actionType": "Add"
           },
           "key": 11,
           "height":50,
           "margin": "10,0,10,0",
           "color":"primaryColor",
+          "alignment": "center",
           "borderRadius":"25,25,25,25",
           "child":{
             "type": "text",
             "value": "Book Now",
+            "alignment": "center",
             "key": 1,
             "style": {
               "color": "#ffffff",

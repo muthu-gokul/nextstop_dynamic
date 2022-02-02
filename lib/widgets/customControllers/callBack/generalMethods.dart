@@ -110,6 +110,9 @@ formSubmitMethod(dynamic guid,List<dynamic> widget,Map clickEvent,List queryStr,
   }
 
   check1(dynamic eleCheck){
+    if(eleCheck.runtimeType==Icon){
+      return;
+    }
     if(eleCheck.map.containsKey('hasInput')){
       addValidationResult(eleCheck);
     }
