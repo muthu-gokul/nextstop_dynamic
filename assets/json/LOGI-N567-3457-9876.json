@@ -4,11 +4,11 @@
   "alignment": "center",
   "Widgets": [
     {
-      "type": "imageController",
+      "type": "svgController",
       "orderBy": "1",
-      "image": "assets/loginpages/home.png",
+      "image": "assets/icons/next-stop-logo.svg",
       "key": 10,
-      "width":200.0
+      "height": 80.0
     },
     {
       "type":"sizedBox",

@@ -36,6 +36,7 @@ class DynamicPageInitiaterState extends State<DynamicPageInitiater> implements M
 
   List<dynamic> widgets=[];
   List<dynamic> queryString=[];
+  List<dynamic> valueArray=[];
   var parsedJson;
 
   String guid="";
@@ -60,10 +61,23 @@ class DynamicPageInitiaterState extends State<DynamicPageInitiater> implements M
     if(parsedJson.containsKey('queryString')){
       queryString=parsedJson['queryString'];
     }
+    if(parsedJson.containsKey('valueArray')){
+      valueArray=parsedJson['valueArray'];
+    }
 
     if(widget.fromQueryString.isNotEmpty){
       log("contains fromQuery String ${widget.fromQueryString}");
       widget.fromQueryString.forEach((element) {
+        findWidgetByKey(widgets,{"key":element['key']},(wid){
+          // log("query wid $wid ${wid.getType()}");
+          updateByWidgetType(wid.getType(),widget: wid,clickEvent: element);
+        });
+      });
+    }
+
+    if(valueArray.isNotEmpty){
+      log("contains valueArray  ${valueArray}");
+      valueArray.forEach((element) {
         findWidgetByKey(widgets,{"key":element['key']},(wid){
           // log("query wid $wid ${wid.getType()}");
           updateByWidgetType(wid.getType(),widget: wid,clickEvent: element);
@@ -107,6 +121,15 @@ class DynamicPageInitiaterState extends State<DynamicPageInitiater> implements M
             if(widget.fromQueryString.isNotEmpty){
               log("contains fromQuery String ${widget.fromQueryString}");
               widget.fromQueryString.forEach((element) {
+                findWidgetByKey(widgets,{"key":element['key']},(wid){
+                  // log("query wid $wid ${wid.getType()}");
+                  updateByWidgetType(wid.getType(),widget: wid,clickEvent: element);
+                });
+              });
+            }
+            if(valueArray.isNotEmpty){
+              log("contains valueArray  ${valueArray}");
+              valueArray.forEach((element) {
                 findWidgetByKey(widgets,{"key":element['key']},(wid){
                   // log("query wid $wid ${wid.getType()}");
                   updateByWidgetType(wid.getType(),widget: wid,clickEvent: element);
@@ -289,7 +312,7 @@ class DynamicPageInitiaterState extends State<DynamicPageInitiater> implements M
             GetUiNotifier().postUiJson(LOGINUSERID, widget.pageIdentifier, res, clickEvent).then((value){
               log("sp value-- $value");
               getXNavigation(3, Container());
-              selectedPage.value=0;
+              selectedPage.value=2;
             });
           }
           // log("ress $res ");
@@ -341,7 +364,7 @@ class DynamicPageInitiaterState extends State<DynamicPageInitiater> implements M
   }
 }
 
-
+/*
 findWidget(List<dynamic> widgets){
    log("widgets ${widgets}");
   for(int i=0;i<widgets.length;i++){
@@ -367,7 +390,7 @@ func1(dynamic widget){
   else{
     log("else2 ${widget.getType()}");
   }
-}
+}*/
 
 
 
@@ -469,49 +492,4 @@ updateByWidgetType(String widgetType,{var widget,Map? clickEvent}){
 }
 
 
-/*,
-    {
-      "type":"sizedBox",
-      "orderBy": "4",
-      "height":20
-    },
-    {
-      "type":"propicController",
-      "imagePath":"assets/designation/security.svg",
-      "bgColor":"primaryColor",
-      "alignment":"center",
-      "orderBy":5
-    },
-    {
-      "type":"sizedBox",
-      "orderBy": "6",
-      "height":10
-    },
-    {
-      "type": "text",
-      "orderBy": "7",
-      "value": "Mr. End User",
-      "key": 1,
-      "style": {
-        "color": "primaryTextColor1",
-        "fontSize": 20.0,
-        "fontFamily": "RB"
-      }
-    },
-    {
-      "type":"sizedBox",
-      "orderBy": "8",
-      "height":10
-    },
-    {
-      "type": "text",
-      "orderBy": "9",
-      "value": "User",
-      "key": 1,
-      "style": {
-        "color": "primaryTextColor1",
-        "fontSize": 16.0,
-        "fontFamily": "RR"
-      }
-    }*/
 

@@ -12,11 +12,11 @@ import 'package:nextstop_dynamic/widgets/customControllers/callBack/myCallback.d
 import 'package:get/get.dart';
 import 'dynamicPageInitiater.dart';
 
-class LoginPage extends StatelessWidget implements MyCallback{
+class LoginPage extends StatelessWidget with General implements MyCallback{
   LoginPage(){
 
     dynamicPageInitiater=DynamicPageInitiater(
-      pageIdentifier: General.loginPageIdentifier,
+      pageIdentifier: loginPageIdentifier,
       myCallback: this,
     );
   }
@@ -37,44 +37,41 @@ class LoginPage extends StatelessWidget implements MyCallback{
   }
 
   @override
-  void ontap(Map? clickEvent) {
+  Future<void> ontap(Map? clickEvent) async {
     log("login Click $clickEvent");
     if(clickEvent!=null){
       if(clickEvent.containsKey(General.eventName)){
         if(clickEvent[General.eventName]==General.FormSubmit){
-            log("${dynamicPageInitiater.dynamicPageInitiaterState.widgets}");
-          var res= General().formSubmit(General.loginPageIdentifier, dynamicPageInitiater.dynamicPageInitiaterState.widgets,clickEvent,dynamicPageInitiater.dynamicPageInitiaterState.queryString,myCallback: this);
+          log("${dynamicPageInitiater.dynamicPageInitiaterState.widgets}");
+          var res= formSubmit(loginPageIdentifier, dynamicPageInitiater.dynamicPageInitiaterState.widgets,clickEvent,dynamicPageInitiater.dynamicPageInitiaterState.queryString,myCallback: this);
           log("login res $res");
           if(res!=null){
 
             if(fromUrl){
-              Get.defaultDialog(
-                  title: "",
-                  content: CircularProgressIndicator()
-              );
-              GetUiNotifier().postUiJson( 0, General.loginPageIdentifier, res,clickEvent).then((value){
-                Get.back();
-                log("login $value");
-                var parsed=jsonDecode(value);
-                log("$parsed");
+              var apires=await checkApiCall(clickEvent, res, loginPageIdentifier);
+              log("apires $apires");
+              if(apires.toString().isNotEmpty){
+                var parsed=jsonDecode(apires);
+                log("login parsed $parsed");
                 LOGINUSERID=parsed['Table'][0]['UserId'];
-                if(clickEvent.containsKey(General.navigateToPage)){
-                  getXNavigation(clickEvent[General.typeOfNavigation],getPage(clickEvent[General.navigateToPage]));
-                }
-              });
+                checkAndNavigate(clickEvent);
+              }
             }
             else{
-              getXNavigation(clickEvent[General.typeOfNavigation],getPage(clickEvent[General.navigateToPage]));
+              checkAndNavigate(clickEvent);
             }
 
           }
 
         }
         else if(clickEvent[General.eventName]==General.Navigation){
-          getXNavigation(clickEvent[General.typeOfNavigation],getPage(clickEvent[General.navigateToPage]));
+          checkAndNavigate(clickEvent);
+          //getXNavigation(clickEvent[General.typeOfNavigation],getPage(clickEvent[General.navigateToPage]));
         }
       }
     }
   }
+
+
 }
 

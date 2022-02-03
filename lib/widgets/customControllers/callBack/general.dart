@@ -1,8 +1,15 @@
+import 'dart:convert';
+import 'dart:developer';
+
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:nextstop_dynamic/notifier/getUiNotifier.dart';
 import 'package:nextstop_dynamic/widgets/customControllers/callBack/myCallback.dart';
 
+import '../../../constants.dart';
 import 'generalMethods.dart';
-
+import 'package:get/get.dart';
 class General{
 
    formSubmit(dynamic guid,List<dynamic> widgets,Map clickEvent,List queryString,{MyCallback? myCallback}){
@@ -14,7 +21,38 @@ class General{
     navigateTo(page,typeOfNavigation);
   }
 
-  static String loginPageIdentifier="LOGI-N567-3457-9876";
+  checkAndNavigate(Map clickEvent){
+    if(clickEvent.containsKey(navigateToPage)){
+      getXNavigation(clickEvent[typeOfNavigation],getPage(clickEvent[navigateToPage]));
+    }
+  }
+
+  checkApiCall(Map clickEvent,var res,String pageId) async{
+      var val="";
+      Get.defaultDialog(
+          title: "",
+          content: CircularProgressIndicator()
+      );
+      await GetUiNotifier().postUiJson( LOGINUSERID, pageId, res,clickEvent).then((value){
+        Get.back();
+        log("vvvvv $value");
+        if(value[0]){
+          val=value[1];
+        }
+        else{
+          Get.dialog(  CupertinoAlertDialog(
+            title: Icon(Icons.error_outline,color: Colors.red,size: 50,),
+            content: Text("${value[1]}",
+              style: TextStyle(fontSize: 18),),
+          ));
+        }
+        //val=value;
+
+      });
+      return val;
+  }
+
+   String loginPageIdentifier="LOGI-N567-3457-9876";
   static String registrationPageIdentifier="REGI-STRA-TION-9876";
   static String homePageIdentifier="HOME-PAGE-3434-9898";
   static String profilePageIdentifier="PROF-ILE1-3434-6566";

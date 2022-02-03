@@ -2,6 +2,20 @@
   "Guid": "1",
   "alignment": "topCenter",
   "mainAxisAlignment": "center",
+  "valueArray":[
+    {
+      "key": "Name",
+      "value": "Test Name"
+    },
+    {
+      "key": "MobileNumber",
+      "value": "9898868976"
+    },
+    {
+      "key": "Mail",
+      "value": "Test@gmail.com"
+    }
+  ],
   "Widgets": [
     {
       "type":"sizedBox",
@@ -66,7 +80,7 @@
           "type": "text",
           "orderBy": "7",
           "value": "Mr. End User",
-          "key": 1,
+          "key": "Name",
           "style": {
             "color": "primaryTextColor3",
             "fontSize": 20.0,
@@ -118,6 +132,7 @@
           "type": "text",
           "orderBy": 13,
           "value": "98565-65656",
+          "key": "MobileNumber",
           "style": {
             "color": "primaryTextColor3",
             "fontSize": 20.0,
@@ -153,6 +168,7 @@
           "type": "text",
           "orderBy": 17,
           "value": "enduser@gmail.com",
+          "key": "Mail",
           "style": {
             "color": "primaryTextColor3",
             "fontSize": 20.0,

@@ -1,13 +1,15 @@
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 
 //BuildContext context
 class ApiManager{
 
-  Future<String> ApiCallGetInvoke(var body,) async {
+   ApiCallGetInvoke(var body,) async {
     try{
      // var itemsUrl="http://183.82.32.76/restroApi///api/Mobile/GetInvoke";
     //  var itemsUrl="http://192.168.1.102//Quarry_Dev/QuarryApi_Dev///api/Mobile/GetInvoke";
@@ -20,24 +22,27 @@ class ApiManager{
           headers: {"Content-Type": "application/json"},
           body: json.encode(body)
       );
+      print("${response.statusCode} ${response.body}");
       if(response.statusCode==200){
-        return response.body;
+
+        return [true,response.body];
       }
       // else if(response.statusCode==500){
       //    // return response.body;
       //   print(response.body);
       // }
       else{
+
         var msg;
         // print(msg);
-         print(response.body);
+         print("${response.statusCode} ${response.body}");
         msg=json.decode(response.body);
-        return "null";
+        return [false,response.body];
         // return response.statusCode.toString();
       }
     }
     catch(e){
-      return "null";
+      return [false,"Catch Api"];
       print("NETWORK ISSUE--$e");
       // CustomAlert().commonErrorAlert(context, "Network Issue", "Your Internet Connectivity or Server is Slow..");
     }

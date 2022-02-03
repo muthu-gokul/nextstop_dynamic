@@ -14,6 +14,7 @@ import '../expandedController.dart';
 import '../hiddenController.dart';
 import '../imageController.dart';
 import '../inputBoxController.dart';
+import '../listviewBuilderController.dart';
 import '../positionController.dart';
 import '../profiePicController.dart';
 import '../registrationPageController.dart';
@@ -116,6 +117,9 @@ List<dynamic> getWidgets(List parsed,MyCallback myCallback){
     else if(element['type']=='expandedController'){
       widgets.add(ExpandedController(map: element, ontap: myCallback,));
     }
+    else if(element['type']=='listViewBuilderController'){
+      widgets.add(ListViewBuilderController(map: element, myCallback: myCallback,));
+    }
     else if(element['type']=='icon'){
       widgets.add( parseIcon(element));
     }
@@ -194,6 +198,10 @@ Widget getChild(Map map, {MyCallback? myCallback}){
   else if(map['type']=='expandedController'){
 
     widget=  ExpandedController(map: map, ontap: myCallback!,);
+  }
+  else if(map['type']=='listViewBuilderController'){
+
+    widget=  ListViewBuilderController(map: map, myCallback: myCallback!,);
   }
   //return Container();
   return widget;

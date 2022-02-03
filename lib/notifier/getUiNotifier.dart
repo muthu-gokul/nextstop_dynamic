@@ -35,7 +35,7 @@ class GetUiNotifier {
 
 
       //  log("$value");
-        val=value;
+        val=value[1];
         /*if(value!="null"){
         //  var parsed=json.decode(value);
 
@@ -60,7 +60,7 @@ class GetUiNotifier {
       "Fields": parameters.map((e) => e.toJson()).toList()
     };
     print(jsonEncode(body));
-    String val="";
+    var val=[];
     try{
       await ApiManager().ApiCallGetInvoke(body).then((value) {
          log("$value");
