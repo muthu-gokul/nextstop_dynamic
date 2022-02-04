@@ -36,9 +36,26 @@ class ListViewBuilderController extends StatelessWidget implements MyCallback2{
 
   @override
   Widget build(BuildContext context) {
+/*    return CustomScrollView(
+      shrinkWrap: true,
+      slivers: [
+        SliverFillRemaining(
+          hasScrollBody: false,
+          child: ListView.builder(
+              itemCount: widgets.length,
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              itemBuilder: (ctx,i){
+                return widgets[i];
+              },
+            ),
+        )
+      ],
+    );*/
     return ListView.builder(
       itemCount: widgets.length,
       shrinkWrap: true,
+      physics: NeverScrollableScrollPhysics(),
       itemBuilder: (ctx,i){
         return widgets[i];
       },

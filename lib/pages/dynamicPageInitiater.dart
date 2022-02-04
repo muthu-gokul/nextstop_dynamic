@@ -185,7 +185,7 @@ class DynamicPageInitiaterState extends State<DynamicPageInitiater> implements M
             child: Column(
               crossAxisAlignment: parseCrossAxisAlignment(parsedJson['crossAxisAlignment']),
               mainAxisAlignment: parseMainAxisAlignment(parsedJson['mainAxisAlignment']),
-              //mainAxisSize: MainAxisSize.min,
+              mainAxisSize: MainAxisSize.min,
               children: [
                 for(int i=0;i<widgets.length;i++)
                   widgets[i],

@@ -1,6 +1,6 @@
 import 'model/parameterMode.dart';
 
 List<ParameterModel> parameters=[];
-bool fromUrl=true;
+bool fromUrl=false;
 
 int LOGINUSERID=0;
