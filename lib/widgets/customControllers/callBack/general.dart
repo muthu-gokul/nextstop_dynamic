@@ -55,11 +55,14 @@ class General{
    String loginPageIdentifier="LOGI-N567-3457-9876";
   static String registrationPageIdentifier="REGI-STRA-TION-9876";
   static String homePageIdentifier="HOME-PAGE-3434-9898";
+  static String homePageDriverIdentifier="HOME-PAGE-DRIV-ER98";
   static String profilePageIdentifier="PROF-ILE1-3434-6566";
+  static String profilePageDriverIdentifier="PROF-ILE1-DRIV-ER66";
   static String bookingPageIdentifier="BOOK-INGP-AGE1-7355";
   static String estimateBillPageIdentifier="ESTI-MATE-BILL-5698";
   static String scheduleRidePageIdentifier="SCHE-DULE-RIDE-5867";
   static String myTripsPageIdentifier="YOUR-TRIP-6234-5867";
+  static String manageDocPageIdentifier="MANA-GEDO-CUME-5455";
 
 
 

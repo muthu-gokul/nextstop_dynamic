@@ -1,0 +1,102 @@
+{
+  "Guid": "1",
+  "Widgets": [
+    {
+      "type": "button",
+      "orderBy": "1",
+      "alignment": "centerLeft",
+      "clickEvent": {
+        "eventName":"HomePageDriverNavigation",
+        "pageIndex":0
+      },
+      "key": 1,
+      "height":50,
+      "width":1,
+      "margin": "10,0,10,0",
+      "child":{
+        "type": "text",
+        "alignment": "centerLeft",
+        "value": "My Profile",
+        "key": 1,
+        "style": {
+          "color": "#ffffff",
+          "fontSize": 16.0
+        }
+      }
+    },
+    {
+      "type": "button",
+      "orderBy": "1",
+      "alignment": "centerLeft",
+      "clickEvent": {
+        "eventName":"HomePageDriverNavigation",
+        "pageIndex":1
+      },
+      "key": 1,
+      "height":50,
+      "width":1,
+      "margin": "10,0,10,0",
+      "child":{
+        "type": "text",
+        "alignment": "centerLeft",
+        "value": "Home Page",
+        "key": 1,
+        "style": {
+          "color": "#ffffff",
+          "fontSize": 16.0
+        }
+      }
+    },
+    {
+      "type": "button",
+      "orderBy": "1",
+      "alignment": "centerLeft",
+      "clickEvent": {
+        "eventName":"HomePageDriverNavigation",
+        "pageIndex":2
+      },
+      "key": 1,
+      "height":50,
+      "width":1,
+      "margin": "10,0,10,0",
+      "child":{
+        "type": "text",
+        "alignment": "centerLeft",
+        "value": "Your Rides",
+        "key": 1,
+        "style": {
+          "color": "#ffffff",
+          "fontSize": 16.0
+        }
+      }
+    },
+    {
+      "type": "spacerController",
+      "orderBy": 4
+    },
+    {
+      "type": "button",
+      "orderBy": 5,
+      "alignment": "center",
+      "margin": "15,0,15,20",
+      "borderRadius": "25,25,25,25",
+      "height": 50,
+      "color": "#ffE23324",
+      "clickEvent": {
+        "eventName":"Navigation",
+        "typeOfNavigation":2,
+        "navigateToPage": "Login"
+      },
+      "child": {
+        "type": "text",
+        "value": "Logout",
+        "alignment": "center",
+        "style": {
+          "fontSize": 16.0,
+          "fontFamily": "RR",
+          "color": "#ffffff"
+        }
+      }
+    }
+  ]
+}

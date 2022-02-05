@@ -13,8 +13,8 @@ class ProfilePicController extends StatelessWidget implements MyCallback2{
       child: Stack(
         children: [
           Container(
-            height: 110,
-            width: 110,
+            height: map.containsKey('height')?map['height']:110,
+            width: map.containsKey('width')?map['width']:110,
             margin: EdgeInsets.only(top: 10),
             clipBehavior: Clip.antiAlias,
             decoration: BoxDecoration(

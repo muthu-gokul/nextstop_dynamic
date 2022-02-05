@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:nextstop_dynamic/notifier/getUiNotifier.dart';
+import 'package:nextstop_dynamic/pages/driver/homePageDriver.dart';
 import 'package:nextstop_dynamic/pages/estimateBill.dart';
 import 'package:nextstop_dynamic/pages/homePage.dart';
 import 'package:nextstop_dynamic/pages/loginPage.dart';
@@ -14,6 +15,7 @@ import 'package:nextstop_dynamic/widgets/calculation.dart';
 import 'package:nextstop_dynamic/widgets/customControllers/callBack/myCallback.dart';
 import 'dart:convert';
 
+import '../../../pages/driver/manageDocuments.dart';
 import 'general.dart';
 // List<dynamic> queryString=[];
 bool ISVALIDJSON=false;
@@ -239,11 +241,14 @@ navigateTo(String page,int? typeOfNavigation,{MyCallback? myCallback}){
     else if(page=="SecurityReports"){
     //  getXNavigation(typeOfNavigation, Reports());
     }
-    else if(page=="GetStart"){
-   //   getXNavigation(typeOfNavigation, DesignationSelect());
+    else if(page=="ManageDocuments"){
+      getXNavigation(typeOfNavigation, ManageDocuments());
     }
     else if(page=="HomePage"){
       getXNavigation(typeOfNavigation, HomePage());
+    }
+    else if(page=="HomePageDriver"){
+      getXNavigation(typeOfNavigation, HomePageDriver());
     }
     else if(page=="ScheduleRide"){
       getXNavigation(typeOfNavigation, ScheduleRidePage());
@@ -271,6 +276,10 @@ getPage(String page){
       return RegistrationPage();
     case 'Login':
       return LoginPage();
+    case 'HomePageDriver':
+      return HomePageDriver();
+    case 'ManageDocuments':
+      return ManageDocuments();
   }
 }
 

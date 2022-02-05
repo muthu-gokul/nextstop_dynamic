@@ -125,7 +125,7 @@
       "alignment": "center",
       "clickEvent": {
         "eventName":"FormSubmit",
-        "navigateToPage":"HomePage",
+        "navigateToPage":"HomePageDriver",
         "typeOfNavigation": 2,
         "actionType": "SignIn"
       },

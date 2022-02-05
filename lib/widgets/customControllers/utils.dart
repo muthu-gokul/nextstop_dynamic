@@ -144,6 +144,9 @@ Color? parseHexColor(String? hexColorString) {
   if(hexColorString=='primaryColor'.toUpperCase()){
     return primaryColor;
   }
+  else if(hexColorString=='primaryColor2'.toUpperCase()){
+    return primaryColor2;
+  }
   else if(hexColorString=='primaryTextColor1'.toUpperCase()){
     return primaryTextColor1;
   }

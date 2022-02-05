@@ -19,15 +19,32 @@ class ColumnController extends StatelessWidget implements MyCallback2{
 
   @override
   Widget build(BuildContext context) {
+/*    return CustomScrollView(
+      slivers: [
+        SliverFillRemaining(
+          hasScrollBody: false,
+          child: Column(
+            crossAxisAlignment: parseCrossAxisAlignment(map['crossAxisAlignment']),
+            mainAxisAlignment: parseMainAxisAlignment(map['mainAxisAlignment']),
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              for(int i=0;i<widgets.length;i++)
+                widgets[i]
+            ],
+          ),
+        ),
+      ],
+    );*/
+
+
     return Container(
       height: map.containsKey('height')?double.parse(map['height'].toString()):
       map.containsKey('reducedHeight')?SizeConfig.screenHeight!-double.parse(map['reducedHeight'].toString()):null,
      // width: SizeConfig.screenWidth,
       child: Column(
-       /* mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.end,*/
         crossAxisAlignment: parseCrossAxisAlignment(map['crossAxisAlignment']),
         mainAxisAlignment: parseMainAxisAlignment(map['mainAxisAlignment']),
+        mainAxisSize: MainAxisSize.min,
         children: [
           for(int i=0;i<widgets.length;i++)
             widgets[i]

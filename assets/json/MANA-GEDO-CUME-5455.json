@@ -1,0 +1,334 @@
+{
+  "Guid": "1",
+  "alignment": "topCenter",
+  "mainAxisAlignment": "center",
+
+  "Widgets": [
+    {
+      "type":"sizedBox",
+      "orderBy": "1",
+      "height":10
+    },
+    {
+      "type":"rowController",
+      "orderBy": "2",
+      "mainAxisAlignment": "start",
+      "children": [
+        {
+          "type": "button",
+          "orderBy": 1,
+          "height":50,
+          "pixelWidth":50,
+          "alignment": "center",
+          "clickEvent": {
+            "eventName": "Navigation",
+            "typeOfNavigation": 3,
+            "navigateToPage": ""
+          },
+          "child": {
+            "type": "svgController",
+            "image": "assets/icons/back-icon.svg",
+            "height": 25.0,
+            "width": 30.0,
+            "orderBy": 1
+          }
+        },
+        {
+          "type":"sizedBox",
+          "orderBy": "2",
+          "width":20
+        },
+        {
+          "type": "text",
+          "orderBy": "3",
+          "value": "Manage Documents",
+          "key": 1,
+          "style": {
+            "color": "primaryTextColor2",
+            "fontSize": 18.0,
+            "fontFamily": "RM"
+          }
+        }
+      ]
+    },
+    {
+      "type":"columnController",
+      "orderBy": "3",
+      "mainAxisAlignment": "start",
+      "reducedHeight": "100",
+      "children": [
+        {
+          "orderBy": 1,
+          "type": "spacerController"
+        },
+        {
+          "type": "button",
+          "orderBy": 1,
+          "clickEvent": {
+
+          },
+          "key": 5,
+          "height":90,
+          "color":"primaryColor2",
+          "alignment":"center",
+          "margin": "0,0,0,15",
+          "shape": "circle"
+        },
+        {
+          "type": "rowController",
+          "orderBy": 1,
+          "mainAxisAlignment": "center",
+          "children": [
+            {
+              "type": "text",
+              "orderBy": 1,
+              "value": "Upload your",
+              "onlyText": true,
+              "style": {
+                "color": "primaryTextColor1",
+                "fontSize": 14.0,
+                "fontFamily": "RM"
+              }
+            },
+            {
+              "type": "text",
+              "orderBy": 1,
+              "value": "  Driving License",
+              "onlyText": true,
+              "style": {
+                "color": "primaryColor",
+                "fontSize": 14.0,
+                "fontFamily": "RM"
+              }
+            }
+          ]
+        },
+
+
+        {
+          "orderBy": 2,
+          "type": "spacerController"
+        },
+        {
+          "type": "button",
+          "orderBy": 2,
+          "clickEvent": {
+
+          },
+          "key": 5,
+          "height":90,
+          "color":"primaryColor2",
+          "alignment":"center",
+          "margin": "0,0,0,15",
+          "shape": "circle"
+        },
+        {
+          "type": "rowController",
+          "orderBy": 2,
+          "mainAxisAlignment": "center",
+          "children": [
+            {
+              "type": "text",
+              "orderBy": 1,
+              "value": "Upload your",
+              "onlyText": true,
+              "style": {
+                "color": "primaryTextColor1",
+                "fontSize": 14.0,
+                "fontFamily": "RM"
+              }
+            },
+            {
+              "type": "text",
+              "orderBy": 1,
+              "value": "  RC Book",
+              "onlyText": true,
+              "style": {
+                "color": "primaryColor",
+                "fontSize": 14.0,
+                "fontFamily": "RM"
+              }
+            }
+          ]
+        },
+
+
+        {
+          "orderBy": 3,
+          "type": "spacerController"
+        },
+        {
+          "type": "button",
+          "orderBy": 3,
+          "clickEvent": {
+
+          },
+          "key": 5,
+          "height":90,
+          "color":"primaryColor2",
+          "alignment":"center",
+          "margin": "0,0,0,15",
+          "shape": "circle"
+        },
+        {
+          "type": "rowController",
+          "orderBy": 3,
+          "mainAxisAlignment": "center",
+          "children": [
+            {
+              "type": "text",
+              "orderBy": 1,
+              "value": "Upload your",
+              "onlyText": true,
+              "style": {
+                "color": "primaryTextColor1",
+                "fontSize": 14.0,
+                "fontFamily": "RM"
+              }
+            },
+            {
+              "type": "text",
+              "orderBy": 1,
+              "value": "  Bank PassBook",
+              "onlyText": true,
+              "style": {
+                "color": "primaryColor",
+                "fontSize": 14.0,
+                "fontFamily": "RM"
+              }
+            }
+          ]
+        },
+
+
+        {
+          "orderBy": 4,
+          "type": "spacerController"
+        },
+        {
+          "type": "button",
+          "orderBy": 4,
+          "clickEvent": {
+
+          },
+          "key": 5,
+          "height":90,
+          "color":"primaryColor2",
+          "alignment":"center",
+          "margin": "0,0,0,15",
+          "shape": "circle"
+        },
+        {
+          "type": "rowController",
+          "orderBy": 4,
+          "mainAxisAlignment": "center",
+          "children": [
+            {
+              "type": "text",
+              "orderBy": 1,
+              "value": "Upload your",
+              "onlyText": true,
+              "style": {
+                "color": "primaryTextColor1",
+                "fontSize": 14.0,
+                "fontFamily": "RM"
+              }
+            },
+            {
+              "type": "text",
+              "orderBy": 1,
+              "value": "  Work Permit",
+              "onlyText": true,
+              "style": {
+                "color": "primaryColor",
+                "fontSize": 14.0,
+                "fontFamily": "RM"
+              }
+            }
+          ]
+        },
+
+
+
+        {
+          "orderBy": 4,
+          "type": "spacerController"
+        },
+        {
+          "type": "button",
+          "orderBy": 4,
+          "clickEvent": {
+
+          },
+          "key": 5,
+          "height":90,
+          "color":"primaryColor2",
+          "alignment":"center",
+          "margin": "0,0,0,15",
+          "shape": "circle"
+        },
+        {
+          "type": "rowController",
+          "orderBy": 4,
+          "mainAxisAlignment": "center",
+          "children": [
+            {
+              "type": "text",
+              "orderBy": 1,
+              "value": "Upload your",
+              "onlyText": true,
+              "style": {
+                "color": "primaryTextColor1",
+                "fontSize": 14.0,
+                "fontFamily": "RM"
+              }
+            },
+            {
+              "type": "text",
+              "orderBy": 1,
+              "value": "  Work Permit",
+              "onlyText": true,
+              "style": {
+                "color": "primaryColor",
+                "fontSize": 14.0,
+                "fontFamily": "RM"
+              }
+            }
+          ]
+        },
+
+
+
+        {
+          "orderBy": 15,
+          "type": "spacerController"
+        },
+        {
+          "type": "button",
+          "orderBy": 16,
+          "clickEvent": {
+
+          },
+          "key": 5,
+          "height":50,
+          "margin": "10,0,10,0",
+          "color":"primaryColor",
+          "borderRadius":"25,25,25,25",
+          "alignment":"center",
+          "child":{
+            "type": "text",
+            "value": "Submit",
+            "alignment":"center",
+            "key": 1,
+            "style": {
+              "color": "#ffffff",
+              "fontSize": 16.0
+            }
+          }
+        }
+      ]
+    }
+
+  ]
+}
+
