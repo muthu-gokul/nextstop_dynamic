@@ -55,7 +55,7 @@ class ListViewBuilderController extends StatelessWidget implements MyCallback2{
     return ListView.builder(
       itemCount: widgets.length,
       shrinkWrap: true,
-      physics: NeverScrollableScrollPhysics(),
+      physics: map.containsKey('physics')?parseScrollPhysics(map['physics']):NeverScrollableScrollPhysics(),
       itemBuilder: (ctx,i){
         return widgets[i];
       },

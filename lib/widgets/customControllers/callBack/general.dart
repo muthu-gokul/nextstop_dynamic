@@ -63,6 +63,7 @@ class General{
   static String scheduleRidePageIdentifier="SCHE-DULE-RIDE-5867";
   static String myTripsPageIdentifier="YOUR-TRIP-6234-5867";
   static String manageDocPageIdentifier="MANA-GEDO-CUME-5455";
+  static String driverTripHomePageIdentifier="DRIV-ERTR-IPHO-ME33";
 
 
 

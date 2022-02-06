@@ -9,6 +9,7 @@ import '../../navIcon.dart';
 import '../alignController.dart';
 import '../buttonController.dart';
 import '../columnController.dart';
+import '../customScrollViewController.dart';
 import '../dynamicRowController.dart';
 import '../expandedController.dart';
 import '../hiddenController.dart';
@@ -120,6 +121,9 @@ List<dynamic> getWidgets(List parsed,MyCallback myCallback){
     else if(element['type']=='listViewBuilderController'){
       widgets.add(ListViewBuilderController(map: element, myCallback: myCallback,));
     }
+    else if(element['type']=='customScrollViewController'){
+      widgets.add(CustomScrollViewController(map: element, myCallback: myCallback,));
+    }
     else if(element['type']=='icon'){
       widgets.add( parseIcon(element));
     }
@@ -202,6 +206,10 @@ Widget getChild(Map map, {MyCallback? myCallback}){
   else if(map['type']=='listViewBuilderController'){
 
     widget=  ListViewBuilderController(map: map, myCallback: myCallback!,);
+  }
+  else if(map['type']=='customScrollViewController'){
+
+    widget=  CustomScrollViewController(map: map, myCallback: myCallback!,);
   }
   //return Container();
   return widget;

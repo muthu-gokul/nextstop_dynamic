@@ -175,10 +175,10 @@ class DynamicPageInitiaterState extends State<DynamicPageInitiater> implements M
         body:parsedJson==null?Container(): Container(
          // alignment: Alignment.center,
           alignment: parseAlignment(parsedJson['alignment']),
-          // height: SizeConfig.screenHeight!-topPad,
-          // width: SizeConfig.screenWidth,
+          height: SizeConfig.screenHeight!-topPad,
+          width: SizeConfig.screenWidth,
           color: Colors.white,
-          child: SingleChildScrollView(
+          child:parsedJson.containsKey('isOwnWidget')?widgets[0]: SingleChildScrollView(
             controller: scrollController,
             //physics: NeverScrollableScrollPhysics(),
             physics: widget.isScrollControll?keyboardVisible?AlwaysScrollableScrollPhysics():

@@ -13,6 +13,7 @@ import 'package:get/get.dart';
 
 import '../../constants.dart';
 import '../dynamicPageInitiater.dart';
+import 'driverTripHomePage.dart';
 import 'profilePageDriver.dart';
 
 class HomePageDriver extends StatefulWidget {
@@ -85,7 +86,7 @@ class _HomePageDriverState extends State<HomePageDriver> implements MyCallback{
             key: scaffoldKey,
             body:selectedPage.value==0?ProfilePageDriver(
               myCallback: this,
-            ):selectedPage.value==1?BookingPage(myCallback: this):Container(),
+            ):selectedPage.value==1?DriverTripHomePage(myCallback: this):Container(),
             drawer: Container(
               height: SizeConfig.screenHeight,
               width: SizeConfig.screenWidth,

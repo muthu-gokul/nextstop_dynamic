@@ -86,7 +86,7 @@ class MapTemplate extends StatelessWidget implements MyCallback,MyCallback2,Test
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: SizeConfig.screenHeight!-410,
+      height: SizeConfig.screenHeight!-double.parse(map['reducedHeight'].toString()),
       width: SizeConfig.screenWidth,
       child: Stack(
         alignment: Alignment.center,

@@ -35,6 +35,26 @@ TextAlign parseTextAlign(String? textAlignString) {
   return textAlign;
 }
 
+ScrollPhysics parseScrollPhysics(String? scrollPhysicsText) {
+  //left the system decide
+  ScrollPhysics scrollPhysics = AlwaysScrollableScrollPhysics();
+  switch (scrollPhysicsText) {
+    case "always":
+      scrollPhysics = AlwaysScrollableScrollPhysics();
+      break;
+    case "never":
+      scrollPhysics = NeverScrollableScrollPhysics();
+      break;
+    case "bouncing":
+      scrollPhysics = BouncingScrollPhysics();
+      break;
+
+    default:
+      scrollPhysics = AlwaysScrollableScrollPhysics();
+  }
+  return scrollPhysics;
+}
+
 
 
 TextOverflow parseTextOverflow(String? textOverflowString) {
