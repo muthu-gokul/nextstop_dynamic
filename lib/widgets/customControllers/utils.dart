@@ -238,6 +238,14 @@ TextStyle? parseTextStyle(Map<String, dynamic>? map) {
  //   fontWeight: parseFontWeight(fontWeight),
   );
 }
+BoxShadow parseBoxShadow(Map<String, dynamic> map) {
+  return BoxShadow(
+    color: parseHexColor(map['color'])!,
+    offset: Offset(map['x'], map['y']),
+    blurRadius: map['blurRadius'],
+    spreadRadius: map['spreadRadius'],
+  );
+}
 
 
 

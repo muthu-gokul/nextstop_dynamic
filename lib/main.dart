@@ -1,5 +1,7 @@
 import 'dart:developer';
 
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -12,8 +14,14 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geocoding/geocoding.dart';
 void main() {
   runApp(const MyApp());
+  getApnToken();
 }
-
+getApnToken() async{
+  await Firebase.initializeApp();
+  FirebaseMessaging.instance.getToken().then((value){
+    print("FirebaseMessaging.instance.getAPNSToken();  $value");
+  });
+}
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
@@ -27,7 +35,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomePageDriver()
+      home: HomePageDriver2()
     );
   }
 }

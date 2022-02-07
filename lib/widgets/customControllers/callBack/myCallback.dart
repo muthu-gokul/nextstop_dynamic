@@ -26,6 +26,7 @@ import '../stackController.dart';
 import '../templateController.dart';
 import '../textController.dart';
 import '../userRoleController.dart';
+import '../visibilityController.dart';
 
 abstract class MyCallback {
   void ontap(Map? clickEvent);
@@ -124,6 +125,9 @@ List<dynamic> getWidgets(List parsed,MyCallback myCallback){
     else if(element['type']=='customScrollViewController'){
       widgets.add(CustomScrollViewController(map: element, myCallback: myCallback,));
     }
+    else if(element['type']=='visibilityController'){
+      widgets.add(VisibilityController(map: element, ontap: myCallback,));
+    }
     else if(element['type']=='icon'){
       widgets.add( parseIcon(element));
     }
@@ -210,6 +214,10 @@ Widget getChild(Map map, {MyCallback? myCallback}){
   else if(map['type']=='customScrollViewController'){
 
     widget=  CustomScrollViewController(map: map, myCallback: myCallback!,);
+  }
+  else if(map['type']=='visibilityController'){
+
+    widget=  VisibilityController(map: map, ontap: myCallback!,);
   }
   //return Container();
   return widget;

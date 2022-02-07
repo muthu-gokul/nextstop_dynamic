@@ -47,6 +47,8 @@ dependencies:
   geocoding:
   rational:
   decimal:
+  firebase_messaging:
+  firebase_core:
 
 dev_dependencies:
   flutter_test:

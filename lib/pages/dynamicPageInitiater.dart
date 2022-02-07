@@ -485,6 +485,11 @@ updateByWidgetType(String widgetType,{var widget,Map? clickEvent}){
       widget.map['value']=clickEvent!['value'];
     }
     break;
+    case 'visibilityController':{
+      widget.map['isVisible']=clickEvent!['value'];
+      widget.isVisible.value=clickEvent['value'];
+    }
+    break;
     default: {
       log("dfault");
     }

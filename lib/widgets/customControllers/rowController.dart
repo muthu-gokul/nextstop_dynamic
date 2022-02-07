@@ -16,6 +16,7 @@ class RowController extends StatelessWidget implements MyCallback2{
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: parseEdgeInsetsGeometry(map['margin']),
      // width: SizeConfig.screenWidth,
       child: Row(
         crossAxisAlignment: parseCrossAxisAlignment(map['crossAxisAlignment']),

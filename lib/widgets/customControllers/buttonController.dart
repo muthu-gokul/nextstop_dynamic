@@ -41,7 +41,10 @@ class ButtonController extends StatelessWidget implements MyCallback2{
                 borderRadius:map.containsKey('shape')?null: parseBorderRadius(map['borderRadius']),
                 color: parseHexColor(color.value),
                 shape: parseBoxShape(map['shape']),
-                border: Border.all(color: parseHexColor(map['borderColor'])!)
+                border: Border.all(color: parseHexColor(map['borderColor'])!),
+                boxShadow:map.containsKey('boxShadow')? [
+                    parseBoxShadow(map['boxShadow'])
+                ]:null
             ),
             child: widget
           ),

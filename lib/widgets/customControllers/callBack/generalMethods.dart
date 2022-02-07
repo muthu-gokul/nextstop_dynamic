@@ -248,7 +248,7 @@ navigateTo(String page,int? typeOfNavigation,{MyCallback? myCallback}){
       getXNavigation(typeOfNavigation, HomePage());
     }
     else if(page=="HomePageDriver"){
-      getXNavigation(typeOfNavigation, HomePageDriver());
+      getXNavigation(typeOfNavigation, HomePageDriver2());
     }
     else if(page=="ScheduleRide"){
       getXNavigation(typeOfNavigation, ScheduleRidePage());
@@ -277,7 +277,7 @@ getPage(String page){
     case 'Login':
       return LoginPage();
     case 'HomePageDriver':
-      return HomePageDriver();
+      return HomePageDriver2();
     case 'ManageDocuments':
       return ManageDocuments();
   }

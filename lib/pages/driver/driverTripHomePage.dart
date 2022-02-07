@@ -1,16 +1,15 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:geocoding/geocoding.dart';
-import 'package:geolocator/geolocator.dart';
-import 'package:nextstop_dynamic/widgets/customControllers/callBack/general.dart';
-import 'package:nextstop_dynamic/widgets/customControllers/callBack/myCallback.dart';
+import '../../widgets/customControllers/callBack/common.dart';
+import '../../widgets/customControllers/callBack/general.dart';
+import '../../widgets/customControllers/callBack/myCallback.dart';
 
 import '../dynamicPageInitiater.dart';
 
 
 
-class DriverTripHomePage extends StatelessWidget implements MyCallback{
+class DriverTripHomePage extends StatelessWidget with Common implements MyCallback{
   MyCallback myCallback;
   DriverTripHomePage({required this.myCallback}){
     dynamicPageInitiater=DynamicPageInitiater(
@@ -45,7 +44,22 @@ class DriverTripHomePage extends StatelessWidget implements MyCallback{
         else if(clickEvent[General.eventName]==General.openDrawer){
           myCallback.ontap(clickEvent);
         }
+        else if(clickEvent[General.eventName]=="AcceptRide"){
+          findUpdateByKeyWidgetType(clickEvent['changeValues'], dynamicPageInitiater.dynamicPageInitiaterState.widgets);
+        }
+        else if(clickEvent[General.eventName]=="RejectRide"){
+          findUpdateByKeyWidgetType(clickEvent['changeValues'], dynamicPageInitiater.dynamicPageInitiaterState.widgets);
+        }
       }
     }
+  }
+
+  onNotificationReceived(List valueArray){
+    print("Noti Received $valueArray");
+    findUpdateByKeyWidgetType(valueArray, dynamicPageInitiater.dynamicPageInitiaterState.widgets);
+  }
+
+  reload(){
+    dynamicPageInitiater.dynamicPageInitiaterState.parseJson();
   }
 }
