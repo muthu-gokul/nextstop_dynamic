@@ -10,6 +10,7 @@ import 'package:nextstop_dynamic/widgets/customControllers/callBack/general.dart
 import 'package:nextstop_dynamic/widgets/customControllers/callBack/myCallback.dart';
 import 'package:nextstop_dynamic/widgets/sizeLocal.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../constants.dart';
 import 'dynamicPageInitiater.dart';
 import 'myTrips.dart';
@@ -114,7 +115,7 @@ class _HomePageState extends State<HomePage> implements MyCallback{
   }
 
   @override
-  void ontap(Map? clickEvent) {
+  Future<void> ontap(Map? clickEvent) async {
     log("HOMEPAGE $clickEvent");
     if(clickEvent!=null){
       if(clickEvent.containsKey('eventName')){
@@ -140,7 +141,11 @@ class _HomePageState extends State<HomePage> implements MyCallback{
           log("reload");
 
         }
-
+        else if(clickEvent[General.eventName]=='Logout'){
+          SharedPreferences sp=await SharedPreferences.getInstance();
+          sp.setBool(ISLOGGEDINKEY, false);
+          General().navigation(clickEvent[General.navigateToPage],clickEvent[General.typeOfNavigation]);
+        }
       }
     }
   }

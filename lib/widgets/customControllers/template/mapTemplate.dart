@@ -37,17 +37,18 @@ class MapTemplate extends StatelessWidget implements MyCallback,MyCallback2,Test
   getPos() async{
     position=await _determinePosition();
     animateCamera(position);
-    log("$position");
+    log("position $position");
   }
 
   animateCamera(Position? position ){
-    if(position!=null){
+    if(position!=null && mapController!=null){
       mapController!.animateCamera(CameraUpdate.newCameraPosition(
           CameraPosition(
               zoom: 12.4746,
               target: LatLng(position.latitude, position.longitude)
           )
       ));
+      onCameraChange();
     }
   }
 
@@ -106,6 +107,7 @@ class MapTemplate extends StatelessWidget implements MyCallback,MyCallback2,Test
               onMapCreated: (controller) { //method called when map is created
              //   setState(() {
                   mapController = controller;
+                  animateCamera(position);
              //   });
               },
               onCameraMove: (CameraPosition cameraPositiona) {

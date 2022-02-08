@@ -1,37 +1,49 @@
 {
-  "Guid": "1",
+  "Guid": "DRIV-ERTR-IPHO-ME33",
   "alignment": "topCenter",
   "mainAxisAlignment": "start",
   "crossAxisAlignment": "start",
   "isOwnWidget": true,
-  "queryString": [
+  "valueArray":[
     {
-      "key": "PickUp",
-      "value": ""
+      "key":"DriverDetails",
+      "value":true
     },
     {
-      "key": "PickUp_Loc_Details",
-      "value": ""
+      "key":"RideDetails",
+      "value":false
     },
     {
-      "key": "Drop",
-      "value": ""
+      "key":"AcceptRejectBtn",
+      "value":false
     },
     {
-      "key": "Drop_Loc_Details",
-      "value": ""
+      "key":"Name",
+      "value":"Mr. Prakash Kumar"
     },
     {
-      "key": "SelectedVehicle",
-      "value": ""
+      "key":"PhoneNumber",
+      "value":"9898989898"
     },
     {
-      "key": "UserName",
-      "value": "Dynamic name"
+      "key":"Date",
+      "value":"07-02-2022"
     },
     {
-      "key": "UserMobileNumber",
-      "value": "1234567890"
+      "key":"Time",
+      "value":"10:10PM"
+    },
+    {
+      "key":"PickupLocation",
+      "value":"No: 4C/7, Sai Sadan, 1st Floor, MMDA 1st Main Rd, Maduravoyal"
+    },
+    {
+      "key":"DropLocation",
+      "value":"No: 4B/7, Sai Sadan, 1st Floor, MMDA 1st Main Rd,"
+    },
+    {
+      "key":"totalFare",
+      "value":"545.00"
     }
   ],
   "Widgets": [

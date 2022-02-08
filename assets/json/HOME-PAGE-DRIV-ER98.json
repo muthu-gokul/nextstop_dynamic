@@ -1,5 +1,5 @@
 {
-  "Guid": "1",
+  "Guid": "HOME-PAGE-DRIV-ER98",
   "Widgets": [
     {
       "type": "button",
@@ -83,7 +83,7 @@
       "height": 50,
       "color": "#ffE23324",
       "clickEvent": {
-        "eventName":"Navigation",
+        "eventName":"Logout",
         "typeOfNavigation":2,
         "navigateToPage": "Login"
       },

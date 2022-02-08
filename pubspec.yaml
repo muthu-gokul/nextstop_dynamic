@@ -49,6 +49,7 @@ dependencies:
   decimal:
   firebase_messaging:
   firebase_core:
+  shared_preferences:
 
 dev_dependencies:
   flutter_test:

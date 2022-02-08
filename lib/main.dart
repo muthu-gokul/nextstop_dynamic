@@ -5,6 +5,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:nextstop_dynamic/constants.dart';
 import 'package:nextstop_dynamic/pages/driver/homePageDriver.dart';
 import 'package:nextstop_dynamic/pages/estimateBill.dart';
 import 'package:nextstop_dynamic/pages/homePage.dart';
@@ -12,13 +13,19 @@ import 'package:nextstop_dynamic/pages/loginPage.dart';
 import 'package:nextstop_dynamic/pages/registrationPage.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geocoding/geocoding.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import 'splashScreen.dart';
 void main() {
   runApp(const MyApp());
   getApnToken();
 }
 getApnToken() async{
   await Firebase.initializeApp();
+  SharedPreferences sp=await SharedPreferences.getInstance();
   FirebaseMessaging.instance.getToken().then((value){
+
+    sp.setString("token", value??"");
     print("FirebaseMessaging.instance.getAPNSToken();  $value");
   });
 }
@@ -35,10 +42,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomePageDriver2()
+      home: SplashScreen()
     );
   }
 }
+
+
+
 
 
 class Home extends StatefulWidget{

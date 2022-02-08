@@ -98,7 +98,7 @@ class DynamicPageInitiaterState extends State<DynamicPageInitiater> implements M
   @override
   void initState() {
     if(fromUrl){
-      WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+
         GetUiNotifier().getUiJson(widget.pageIdentifier,LOGINUSERID).then((value){
            log("value $value");
           if(value!="null"){
@@ -139,7 +139,7 @@ class DynamicPageInitiaterState extends State<DynamicPageInitiater> implements M
             setState(() {});
           }
         });
-      });
+
     }
     else{
       parseJson();

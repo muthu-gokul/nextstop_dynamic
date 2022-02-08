@@ -1,5 +1,5 @@
 {
-  "Guid": "YOUR-TRIP-6234-5867",
+  "Guid": "YOUR-TRIP-DRIV-ER89",
   "alignment": "topCenter",
   "mainAxisAlignment": "center",
   "isOwnWidget": true,
@@ -60,7 +60,7 @@
               "borderColor": "textFieldBorderColor",
               "child": {
                 "type": "rowController",
-                "crossAxisAlignment": "start",
+                "crossAxisAlignment": "center",
                 "children": [
                   {
                     "type": "expandedController",
@@ -72,7 +72,7 @@
                       "children": [
                         {
                           "type": "svgController",
-                          "image": "assets/icons/driver.svg",
+                          "image": "assets/icons/user.svg",
                           "height": 60.0,
                           "orderBy": 1
                         },
@@ -86,58 +86,6 @@
                             "fontFamily": "RM",
                             "color": "primaryTextColor2"
                           }
-                        },
-                        {
-                          "type": "text",
-                          "orderBy": 3,
-                          "key": "Rating",
-                          "value": "4.5 (7856)",
-                          "style": {
-                            "fontSize": 11,
-                            "fontFamily": "RR",
-                            "color": "primaryTextColor1"
-                          }
-                        },
-                        {
-                          "type": "rowController",
-                          "orderBy": 4,
-                          "children": [
-                            {
-                              "type": "icon",
-                              "orderBy": 1,
-                              "icon": "star",
-                              "color": "rating",
-                              "size": 20.0
-                            },
-                            {
-                              "type": "icon",
-                              "orderBy": 2,
-                              "icon": "star",
-                              "color": "rating",
-                              "size": 20.0
-                            },
-                            {
-                              "type": "icon",
-                              "orderBy": 2,
-                              "icon": "star",
-                              "color": "rating",
-                              "size": 20.0
-                            },
-                            {
-                              "type": "icon",
-                              "orderBy": 2,
-                              "icon": "star",
-                              "color": "rating",
-                              "size": 20.0
-                            },
-                            {
-                              "type": "icon",
-                              "orderBy": 2,
-                              "icon": "star",
-                              "color": "textFieldBorderColor",
-                              "size": 20.0
-                            }
-                          ]
                         }
                       ]
                     }
@@ -669,6 +617,7 @@
         }
       ]
     }
+
   ]
 }
 

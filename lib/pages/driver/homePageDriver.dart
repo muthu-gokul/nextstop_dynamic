@@ -13,10 +13,12 @@ import 'package:nextstop_dynamic/widgets/customControllers/callBack/general.dart
 import 'package:nextstop_dynamic/widgets/customControllers/callBack/myCallback.dart';
 import 'package:nextstop_dynamic/widgets/sizeLocal.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../constants.dart';
 import '../../model/push_notification.dart';
 import '../dynamicPageInitiater.dart';
+import 'driverMyTrips.dart';
 import 'driverTripHomePage.dart';
 import 'profilePageDriver.dart';
 
@@ -287,6 +289,7 @@ class HomePageDriver2 extends StatelessWidget  implements MyCallback{
 
       FirebaseMessaging.onMessage.listen((RemoteMessage message) {
         print('Message title Open: ${message.notification?.title}, body: ${message.notification?.body}, data: ${message.data['valueArray'].runtimeType} ${jsonDecode(message.data['valueArray'])}');
+
         onNotificationReceived(jsonDecode(message.data['valueArray']));
       });
 
@@ -306,12 +309,7 @@ class HomePageDriver2 extends StatelessWidget  implements MyCallback{
     RemoteMessage? initialMessage = await FirebaseMessaging.instance.getInitialMessage();
 
     if (initialMessage != null) {
-      PushNotification notification = PushNotification(
-        title: initialMessage.notification?.title,
-        body: initialMessage.notification?.body,
-        dataTitle: initialMessage.data['title'],
-        dataBody: initialMessage.data['body'],
-      );
+      onNotificationReceived(jsonDecode(initialMessage.data['valueArray']));
     }
   }
 
@@ -340,7 +338,8 @@ class HomePageDriver2 extends StatelessWidget  implements MyCallback{
               index: selectedPage.value,
               children: [
                 ProfilePageDriver(myCallback: this,),
-                driverTripHomePage
+                driverTripHomePage,
+                DriverMyTrips(myCallback: this,)
               ],
             ),
             // body:selectedPage.value==0?ProfilePageDriver(
@@ -376,7 +375,7 @@ class HomePageDriver2 extends StatelessWidget  implements MyCallback{
 
 
   @override
-  void ontap(Map? clickEvent) {
+  Future<void> ontap(Map? clickEvent) async {
     log("HOMEPAGE Driver $clickEvent");
     if(clickEvent!=null){
       if(clickEvent.containsKey(General.eventName)){
@@ -397,10 +396,16 @@ class HomePageDriver2 extends StatelessWidget  implements MyCallback{
         }
         else if(clickEvent[General.eventName]=='OpenDrawer'){
           scaffoldKey.currentState!.openDrawer();
+          FocusScope.of(Get.context!);
         }
         else if(clickEvent[General.eventName]=='reloadBookingPage'){
           log("reload");
 
+        }
+        else if(clickEvent[General.eventName]=='Logout'){
+          SharedPreferences sp=await SharedPreferences.getInstance();
+          sp.setBool(ISLOGGEDINKEY, false);
+          General().navigation(clickEvent[General.navigateToPage],clickEvent[General.typeOfNavigation]);
         }
 
       }

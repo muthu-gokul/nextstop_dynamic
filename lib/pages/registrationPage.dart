@@ -10,14 +10,16 @@ import 'package:nextstop_dynamic/widgets/customControllers/callBack/general.dart
 import 'package:nextstop_dynamic/widgets/customControllers/callBack/generalMethods.dart';
 import 'package:nextstop_dynamic/widgets/customControllers/callBack/myCallback.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../constants.dart';
+import 'driver/homePageDriver.dart';
 import 'dynamicPageInitiater.dart';
 
-class RegistrationPage extends StatelessWidget implements MyCallback{
+class RegistrationPage extends StatelessWidget with General implements MyCallback{
   RegistrationPage(){
     log("reg PAge");
     dynamicPageInitiater=DynamicPageInitiater(
-      pageIdentifier: General.registrationPageIdentifier,
+      pageIdentifier: registrationPageIdentifier,
       myCallback: this,
       key: GlobalKey<DynamicPageInitiaterState>(),
     );
@@ -39,41 +41,46 @@ class RegistrationPage extends StatelessWidget implements MyCallback{
   }
 
   @override
-  void ontap(Map? clickEvent) {
+  Future<void> ontap(Map? clickEvent) async {
     log("registration Click $clickEvent");
     if(clickEvent!=null){
       if(clickEvent.containsKey(General.eventName)){
         if(clickEvent[General.eventName]==General.FormSubmit){
           //  log("$widgets");
-          var res= General().formSubmit(General.registrationPageIdentifier, dynamicPageInitiater.dynamicPageInitiaterState.widgets,clickEvent,dynamicPageInitiater.dynamicPageInitiaterState.queryString,myCallback: this);
+          var res= General().formSubmit(registrationPageIdentifier, dynamicPageInitiater.dynamicPageInitiaterState.widgets,clickEvent,dynamicPageInitiater.dynamicPageInitiaterState.queryString,myCallback: this);
           if(res!=null){
 
-            Get.defaultDialog(
-                title: "",
-                content: CircularProgressIndicator()
-            );
-            GetUiNotifier().postUiJson( null, General.registrationPageIdentifier, res,clickEvent).then((value){
-              Get.back();
-              log("registra $value");
-
-              if(value[0]){
-                var parsed=jsonDecode(value[1]);
-
+            if(fromUrl){
+              var apires=await checkApiCall(clickEvent, res, registrationPageIdentifier);
+              log("apiregistration $apires");
+              if(apires.toString().isNotEmpty){
+                var parsed=jsonDecode(apires);
+                log("registration parsed $parsed");
                 LOGINUSERID=parsed['Table'][0]['UserId'];
-                if(clickEvent.containsKey(General.navigateToPage)){
-                  getXNavigation(clickEvent[General.typeOfNavigation],getPage(clickEvent[General.navigateToPage]));
+                isDriver=parsed['Table'][0]['IsDriver'];
+
+
+                SharedPreferences sp=await SharedPreferences.getInstance();
+                sp.setBool(ISLOGGEDINKEY, true);
+                sp.setBool(ISDRIVERKEY, isDriver);
+                sp.setInt(LOGINUSERIDKEY, LOGINUSERID);
+
+                if(isDriver){
+                  getXNavigation(2, HomePageDriver2());
                 }
-              }
-              else{
-                Get.dialog(  CupertinoAlertDialog(
-                  title: Icon(Icons.error_outline,color: Colors.red,size: 50,),
-                  content: Text("${value[1]}",
-                    style: TextStyle(fontSize: 18),),
-                ));
-              }
+                else{
+                  getXNavigation(2, HomePage());
+                }
 
-
-            });
+              }
+            }
+            else{
+              //checkAndNavigate(clickEvent);
+              SharedPreferences sp=await SharedPreferences.getInstance();
+              sp.setBool(ISLOGGEDINKEY, true);
+              sp.setInt(LOGINUSERIDKEY, 0);
+              getXNavigation(2, HomePageDriver2());
+            }
 
 
           }

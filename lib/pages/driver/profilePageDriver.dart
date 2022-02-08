@@ -5,6 +5,7 @@ import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:nextstop_dynamic/widgets/customControllers/callBack/general.dart';
 import 'package:nextstop_dynamic/widgets/customControllers/callBack/myCallback.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../dynamicPageInitiater.dart';
 
@@ -58,8 +59,12 @@ class ProfilePageDriver extends StatelessWidget implements MyCallback{
           log("$location");
 
           if(clickEvent['key']=='Address'){
-            clickEvent['value']=location;
+            log("hh ${dynamicPageInitiater.dynamicPageInitiaterState.widgets}");
+             clickEvent['value']=location;
+            // SharedPreferences sp=await SharedPreferences.getInstance();
+            // clickEvent['value']=sp.getString("token");
             findWidgetByKey(dynamicPageInitiater.dynamicPageInitiaterState.widgets,clickEvent,(wid){
+              log("wid $wid");
               findAndUpdateTextEditingController(wid,clickEvent);
             });
 
