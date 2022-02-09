@@ -13,7 +13,8 @@ class ApiManager{
     try{
      // var itemsUrl="http://183.82.32.76/restroApi///api/Mobile/GetInvoke";
     //  var itemsUrl="http://192.168.1.102//Quarry_Dev/QuarryApi_Dev///api/Mobile/GetInvoke";
-      var itemsUrl="http://192.168.1.102//nextStop_dev///api/Mobile/GetInvoke";
+    //  var itemsUrl="http://192.168.1.102//nextStop_dev///api/Mobile/GetInvoke";
+      var itemsUrl="http://45.126.252.78/nextStop_dev/api/Mobile/GetInvoke";
      // var itemsUrl="https://quarrydemoapi.herokuapp.com/api/users/login";
     //  var itemsUrl="https://spectacular-salty-meeting.glitch.me/api/users/login";
     //  var itemsUrl="http://10.0.2.2:8080/api/users/login";
@@ -24,13 +25,8 @@ class ApiManager{
       );
       print("${response.statusCode} ${response.body}");
       if(response.statusCode==200){
-
         return [true,response.body];
       }
-      // else if(response.statusCode==500){
-      //    // return response.body;
-      //   print(response.body);
-      // }
       else{
 
         var msg;
@@ -43,8 +39,7 @@ class ApiManager{
     }
     catch(e){
       return [false,"Catch Api"];
-      print("NETWORK ISSUE--$e");
-      // CustomAlert().commonErrorAlert(context, "Network Issue", "Your Internet Connectivity or Server is Slow..");
+
     }
   }
 }

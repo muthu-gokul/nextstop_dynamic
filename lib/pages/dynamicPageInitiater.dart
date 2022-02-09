@@ -94,56 +94,67 @@ class DynamicPageInitiaterState extends State<DynamicPageInitiater> implements M
     setState(() {});
     //log("${parsedJson}");
   }
-
-  @override
-  void initState() {
+  initSS(){
     if(fromUrl){
 
-        GetUiNotifier().getUiJson(widget.pageIdentifier,LOGINUSERID).then((value){
-           log("value $value");
-          if(value!="null"){
-            var parsed=jsonDecode(value);
-            //  print(parsed['table'][0]['jsonData']);
-            parsedJson=jsonDecode(parsed['Table'][0]['PageJson']);
-            print(parsedJson);
-            guid=parsedJson['Guid'];
-            if(widget.myCallback==null){
-              widgets=getWidgets(parsedJson['Widgets'],this);
-            }
-            else{
-              widgets=getWidgets(parsedJson['Widgets'],widget.myCallback!);
-            }
-            if(parsedJson.containsKey('queryString')){
-              log("parsedJson.containsKey('queryString') ${parsedJson.containsKey('queryString')}");
-              queryString=parsedJson['queryString'];
-            }
-
-            if(widget.fromQueryString.isNotEmpty){
-              log("contains fromQuery String ${widget.fromQueryString}");
-              widget.fromQueryString.forEach((element) {
-                findWidgetByKey(widgets,{"key":element['key']},(wid){
-                  // log("query wid $wid ${wid.getType()}");
-                  updateByWidgetType(wid.getType(),widget: wid,clickEvent: element);
-                });
-              });
-            }
-            if(valueArray.isNotEmpty){
-              log("contains valueArray  ${valueArray}");
-              valueArray.forEach((element) {
-                findWidgetByKey(widgets,{"key":element['key']},(wid){
-                  // log("query wid $wid ${wid.getType()}");
-                  updateByWidgetType(wid.getType(),widget: wid,clickEvent: element);
-                });
-              });
-            }
-            setState(() {});
+      GetUiNotifier().getUiJson(widget.pageIdentifier,LOGINUSERID).then((value){
+        log("value $value");
+        if(value!="null"){
+          var parsed=jsonDecode(value);
+          //  print(parsed['table'][0]['jsonData']);
+          parsedJson=jsonDecode(parsed['Table'][0]['PageJson']);
+          print(parsedJson);
+          guid=parsedJson['Guid'];
+          if(widget.myCallback==null){
+            widgets=getWidgets(parsedJson['Widgets'],this);
           }
-        });
+          else{
+            widgets=getWidgets(parsedJson['Widgets'],widget.myCallback!);
+          }
+          // if(parsedJson.containsKey('queryString')){
+          //   log("parsedJson.containsKey('queryString') ${parsedJson.containsKey('queryString')}");
+          //   queryString=parsedJson['queryString'];
+          // }
+
+          if(parsedJson.containsKey('queryString')){
+            queryString=parsedJson['queryString'];
+          }
+          if(parsedJson.containsKey('valueArray')){
+            valueArray=parsedJson['valueArray'];
+          }
+
+
+          if(widget.fromQueryString.isNotEmpty){
+            log("contains fromQuery String ${widget.fromQueryString}");
+            widget.fromQueryString.forEach((element) {
+              findWidgetByKey(widgets,{"key":element['key']},(wid){
+                // log("query wid $wid ${wid.getType()}");
+                updateByWidgetType(wid.getType(),widget: wid,clickEvent: element);
+              });
+            });
+          }
+          if(valueArray.isNotEmpty){
+            log("contains valueArray  ${valueArray}");
+            valueArray.forEach((element) {
+              findWidgetByKey(widgets,{"key":element['key']},(wid){
+                // log("query wid $wid ${wid.getType()}");
+                updateByWidgetType(wid.getType(),widget: wid,clickEvent: element);
+              });
+            });
+          }
+          setState(() {});
+        }
+      });
 
     }
     else{
       parseJson();
     }
+  }
+
+  @override
+  void initState() {
+    initSS();
     super.initState();
   }
 

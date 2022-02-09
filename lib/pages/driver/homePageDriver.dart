@@ -387,7 +387,7 @@ class HomePageDriver2 extends StatelessWidget  implements MyCallback{
         }
         else if(clickEvent[General.eventName]=='HomePageDriverNavigation'){
 
-            selectedPage.value=clickEvent['pageIndex'];
+          selectedPage.value=clickEvent['pageIndex'];
           scaffoldKey.currentState!.openEndDrawer();
           if(selectedPage.value==1){
             driverTripHomePage.reload();
@@ -397,6 +397,7 @@ class HomePageDriver2 extends StatelessWidget  implements MyCallback{
         else if(clickEvent[General.eventName]=='OpenDrawer'){
           scaffoldKey.currentState!.openDrawer();
           FocusScope.of(Get.context!);
+          FocusScope.of(Get.context!).unfocus();
         }
         else if(clickEvent[General.eventName]=='reloadBookingPage'){
           log("reload");

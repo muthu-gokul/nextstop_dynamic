@@ -60,6 +60,6 @@ class DriverTripHomePage extends StatelessWidget with Common implements MyCallba
   }
 
   reload(){
-    dynamicPageInitiater.dynamicPageInitiaterState.parseJson();
+    dynamicPageInitiater.dynamicPageInitiaterState.initSS();
   }
 }

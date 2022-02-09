@@ -51,6 +51,8 @@ dependencies:
   firebase_core:
   shared_preferences:
 
+
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -143,6 +145,7 @@ flutter:
     - family: RTI
       fonts:
         - asset: fonts/Roboto-ThinItalic.ttf
+
   # fonts:
   #   - family: Schyler
   #     fonts:

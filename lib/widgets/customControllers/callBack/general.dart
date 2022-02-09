@@ -22,11 +22,7 @@ class General{
     navigateTo(page,typeOfNavigation);
   }
 
-  checkAndNavigate(Map clickEvent){
-    if(clickEvent.containsKey(navigateToPage)){
-      getXNavigation(clickEvent[typeOfNavigation],getPage(clickEvent[navigateToPage]));
-    }
-  }
+
 
   checkApiCall(Map clickEvent,var res,String pageId) async{
       var val="";

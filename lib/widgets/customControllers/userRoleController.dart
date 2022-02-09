@@ -28,13 +28,13 @@ class UserRoleController extends StatelessWidget implements MyCallback2{
             element.text.value=e[element.map['valueKey']];
           }
           if(element.map.containsKey('child')){
-            log("true");
+           // log("true");
            if(element.map['child']['type']=='svgController'){
             element.map['child']['image']=e[element.map['child']['valueKey']];
            }
           }
 
-          log("e ${element.map}");
+          //log("e ${element.map}");
         });
         mainWidget.add(columnWidgets);
        // log("${e}");
