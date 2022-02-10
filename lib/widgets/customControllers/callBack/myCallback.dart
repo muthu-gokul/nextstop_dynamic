@@ -151,6 +151,9 @@ Widget getChild(Map map, {MyCallback? myCallback}){
   //  return TextFormFieldController(map: map);
     widget=  TextFormFieldController(map: map,myCallback: myCallback!,);
   }
+  else if(map['type']=='hiddenController'){
+      widget=HiddenController(map: map);
+    }
   else if(map['type']=='sizedBox'){
     //return SizedBoxController(map: map);
     widget=  SizedBoxController(map: map);

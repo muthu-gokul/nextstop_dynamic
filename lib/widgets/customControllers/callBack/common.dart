@@ -32,6 +32,15 @@ class Common{
         else if(clickEvent[General.eventName]==General.Navigation){
           return checkAndNavigate(clickEvent);
         }
+        else if(clickEvent[General.eventName]==General.openDrawer){
+          return openDrawer(myCallback!, clickEvent);
+        }
+        else if(clickEvent[General.eventName]==General.locationClick){
+           return locationClick(clickEvent);
+        }
+        else if(clickEvent[General.eventName]=='FormSubmitBookingPage'){
+          return formSubmitBookingPage(guid, widgets,clickEvent,queryString,myCallback: myCallback);
+        }
       }
     }
   }
@@ -48,4 +57,10 @@ class Common{
     }
   }
 
+  openDrawer(MyCallback myCallback,Map clickEvent){
+    myCallback.ontap(clickEvent);
+  }
+
+  locationClick(Map clickEvent){}
+  formSubmitBookingPage(dynamic guid,List<dynamic> widgets,Map clickEvent,List queryString,{MyCallback? myCallback}){}
 }

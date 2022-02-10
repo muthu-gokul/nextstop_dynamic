@@ -5,23 +5,22 @@ import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:nextstop_dynamic/widgets/calculation.dart';
+import 'package:nextstop_dynamic/widgets/customControllers/callBack/common.dart';
 import 'package:nextstop_dynamic/widgets/customControllers/callBack/general.dart';
 import 'package:nextstop_dynamic/widgets/customControllers/callBack/generalMethods.dart';
 import 'package:nextstop_dynamic/widgets/customControllers/callBack/myCallback.dart';
-import 'package:nextstop_dynamic/widgets/navIcon.dart';
-import 'package:nextstop_dynamic/widgets/sizeLocal.dart';
 
 import 'dynamicPageInitiater.dart';
 import 'estimateBill.dart';
 
 
-class BookingPage extends StatelessWidget implements MyCallback{
+class BookingPage extends StatelessWidget with Common  implements MyCallback{
   MyCallback myCallback;
   BookingPage({required this.myCallback}){
       dynamicPageInitiater=DynamicPageInitiater(
-        pageIdentifier: General.bookingPageIdentifier,
-        myCallback: this,
-        isScrollControll: true,
+ pageIdentifier: General.bookingPageIdentifier,
+ myCallback: this,
+ isScrollControll: true,
       );
   }
  late DynamicPageInitiater dynamicPageInitiater;
@@ -39,6 +38,7 @@ class BookingPage extends StatelessWidget implements MyCallback{
         findAndUpdateTextEditingController(wid,{"key":map['key'],"value":map['location']});
       });
       findWidgetByKey(dynamicPageInitiater.dynamicPageInitiaterState.widgets,{"key":"PickUp_Loc_Details"},(wid){
+        log("wid $wid ${wid.map}");
         wid.map['value'][0]['latitude']=map['latitude'];
         wid.map['value'][1]['longitude']=map['longitude'];
       });
@@ -64,7 +64,15 @@ class BookingPage extends StatelessWidget implements MyCallback{
   @override
   Future<void> ontap(Map? clickEvent) async {
     log("Booking PAge $clickEvent");
-    if(clickEvent!=null){
+    var res=splitByTapEvent(
+      clickEvent,
+      guid: General.bookingPageIdentifier,
+      widgets: dynamicPageInitiater.dynamicPageInitiaterState.widgets,
+      queryString: dynamicPageInitiater.dynamicPageInitiaterState.queryString,
+      myCallback: this
+    );
+    log("Booking PAge res $res");
+   /*  if(clickEvent!=null){
       if(clickEvent.containsKey(General.eventName)){
         if(clickEvent[General.eventName]==General.openDrawer){
           myCallback.ontap(clickEvent);
@@ -116,9 +124,6 @@ class BookingPage extends StatelessWidget implements MyCallback{
               wid.map['value'][1]['longitude']=position.longitude;
             });
           }
-
-
-
         }
         else if(clickEvent[General.eventName]=='FormSubmitBookingPage'){
          var res= General().formSubmit( General.bookingPageIdentifier, dynamicPageInitiater.dynamicPageInitiaterState.widgets[0].widget.widgets[1].widget.widget.widgets,clickEvent,dynamicPageInitiater.dynamicPageInitiaterState.queryString,myCallback: this);
@@ -146,50 +151,81 @@ class BookingPage extends StatelessWidget implements MyCallback{
          }
         }
       }
-    }
+    } */
   }
-}
-/*"child": {
-        "type":"navIcon",
-        "orderBy": "1",
-        "color": "primaryColor",
-        "margin": "20,0,0,0",
-        "padding": "10,0,0,0",
-        "borderRadius": "10,10,10,10",
-        "width":40,
-        "height":35,
-        "clickEvent": {
-          "eventName": "OpenDrawer"
-        }
-      }*/
-/*,
-    {
-      "type": "button",
-      "height": 400,
-      "width": 1,
-      "child": {
-        "type":"stackController",
-        "orderBy": "2",
-        "children": [
-          {
-            "type":"positionController",
-            "left": 0,
-            "child": {
-              "type":"navIcon",
-              "orderBy": "1",
-              "color": "primaryColor",
-              "margin": "20,0,0,0",
-              "padding": "10,0,0,0",
-              "borderRadius": "10,10,10,10",
-              "width":40,
-              "height":35,
-              "clickEvent": {
-                "eventName": "OpenDrawer"
-              }
-            }
-          }
+  @override
+  openDrawer(MyCallback mc, Map clickEvent) {
+    myCallback.ontap(clickEvent);
+  }
+  @override
+  locationClick(Map clickEvent) async {
+      Position? position;
+      position=await determinePosition();
+      // log("$position");
+      List<Placemark> placemarks = await placemarkFromCoordinates(position.latitude, position.longitude);
+      String delim1=placemarks.first.thoroughfare.toString().isNotEmpty?", ":"";
+      String delim2=placemarks.first.subLocality.toString().isNotEmpty?", ":"";
+      String delim3=placemarks.first.administrativeArea.toString().isNotEmpty?", ":"";
+      String location = placemarks.first.name.toString() +
+                        delim1 +  placemarks.first.thoroughfare.toString()+
+                        delim2+placemarks.first.subLocality.toString()+
+                        delim3 +placemarks.first.administrativeArea.toString();
+      // log("$placemarks ${placemarks[0]}");
+      //log("$location");
 
+      if(clickEvent['key']=='PickUp'){
+        clickEvent['value']=location;
+        findWidgetByKey(dynamicPageInitiater.dynamicPageInitiaterState.widgets,clickEvent,(wid){
+            findAndUpdateTextEditingController(wid,clickEvent);
+        });
+        findWidgetByKey(dynamicPageInitiater.dynamicPageInitiaterState.widgets,{"key":"map01"},(wid){
+            //log("wid $wid");
+            wid.isPickUpLocation.value=true;
+            wid.animateCamera(position);
+        });
+        findWidgetByKey(dynamicPageInitiater.dynamicPageInitiaterState.widgets,{"key":"PickUp_Loc_Details"},(wid){
+            wid.map['value'][0]['latitude']=position!.latitude;
+            wid.map['value'][1]['longitude']=position.longitude;
+        });
 
-        ]
       }
-    }*/
+      else if(clickEvent['key']=='Drop'){
+        clickEvent['value']=location;
+        findWidgetByKey(dynamicPageInitiater.dynamicPageInitiaterState.widgets,clickEvent,(wid){
+              findAndUpdateTextEditingController(wid,clickEvent);
+        });
+        findWidgetByKey(dynamicPageInitiater.dynamicPageInitiaterState.widgets,{"key":"map01"},(wid){
+              log("wid $wid");
+              wid.isPickUpLocation.value=false;
+              wid.animateCamera(position);
+        });
+        findWidgetByKey(dynamicPageInitiater.dynamicPageInitiaterState.widgets,{"key":"Drop_Loc_Details"},(wid){
+              wid.map['value'][0]['latitude']=position!.latitude;
+              wid.map['value'][1]['longitude']=position.longitude;
+        });
+      } 
+    }
+  @override
+  formSubmitBookingPage(dynamic guid,List<dynamic> widgets,Map clickEvent,List queryString,{MyCallback? myCallback}) {
+    var res= formSubmitMethodTFE(guid, dynamicPageInitiater.dynamicPageInitiaterState.widgets, clickEvent, queryString);
+    log("res1 $res");
+    if(res!=null){
+       Map resMap=jsonDecode(res);
+          
+           List qs=parseQueryString(resMap['FieldArray'],dynamicPageInitiater.dynamicPageInitiaterState.queryString);
+           log("qs ${dynamicPageInitiater.dynamicPageInitiaterState.queryString}");
+           var _distanceInMeters = Geolocator.distanceBetween(
+             qs[1]['value'][0]['latitude'],
+             qs[1]['value'][1]['longitude'],
+             qs[3]['value'][0]['latitude'],
+             qs[3]['value'][1]['longitude'],
+
+           );
+           qs.add({"key":"totalFare","value":"${Calculation().mul(dynamicPageInitiater.dynamicPageInitiaterState.widgets[0].widget.widgets[1].widget.widget.widgets[5].getValue()['price'], _distanceInMeters/1000).toStringAsFixed(2)}"});
+           if(clickEvent.containsKey(General.navigateToPage)){
+
+             getXNavigation(clickEvent[General.typeOfNavigation], EstimateBillPage(fromQueryString: qs,));
+           }
+    }
+  }  
+}

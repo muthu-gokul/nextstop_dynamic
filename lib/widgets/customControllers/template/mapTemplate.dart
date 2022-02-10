@@ -172,7 +172,7 @@ class MapTemplate extends StatelessWidget implements MyCallback,MyCallback2,Test
         delim1 +  placemarks.first.thoroughfare.toString()+
         delim2+placemarks.first.subLocality.toString()+
         delim3 +placemarks.first.administrativeArea.toString();
-    log("$location ${placemarks.first}");
+    //log("$location ${placemarks.first}");
     myCallback.onMapLocationChanged(
         {
           "key":isPickUpLocation.value?"PickUp":"Drop",
