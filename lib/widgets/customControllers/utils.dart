@@ -724,6 +724,19 @@ Clip parseClipBehavior(String? clipBehaviorString) {
   }
   return Clip.antiAlias;
 }
+TextInputType parseTextInputType(String? textInputTypeString) {
+  if (textInputTypeString == null) {
+    return TextInputType.emailAddress;
+  }
+  switch (textInputTypeString) {
+    case "email":
+      return TextInputType.emailAddress;
+    case "number":
+      return TextInputType.number;
+  }
+  return TextInputType.emailAddress;
+}
+
 
 
 
@@ -796,6 +809,12 @@ Icon parseIcon(Map map){
   }
   else if(map['icon']=='star'){
     return Icon(Icons.star,color: parseHexColor(map['color']),size: map['size'],);
+  }
+  else if(map['icon']=='visible'){
+    return Icon(Icons.visibility,color: parseHexColor(map['color']),size: map['size'],);
+  }
+  else if(map['icon']=='visibleOff'){
+    return Icon(Icons.visibility_off,color: parseHexColor(map['color']),size: map['size'],);
   }
   return Icon(Icons.phone);
 }

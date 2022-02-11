@@ -4,46 +4,62 @@
   "mainAxisAlignment": "start",
   "crossAxisAlignment": "start",
   "isOwnWidget": true,
-  "valueArray":[
+  "valueArray": [
     {
-      "key":"DriverDetails",
-      "value":true
+      "key": "DriverDetails",
+      "value": true
     },
     {
-      "key":"RideDetails",
-      "value":false
+      "key": "RideDetails",
+      "value": false
     },
     {
-      "key":"AcceptRejectBtn",
-      "value":false
+      "key": "AcceptRejectBtn",
+      "value": false
     },
     {
-      "key":"Name",
-      "value":"Mr. Prakash Kumar"
+      "key": "Name",
+      "value": "Mr. Prakash Kumar"
     },
     {
-      "key":"PhoneNumber",
-      "value":"9898989898"
+      "key": "MobileNumber",
+      "value": "9898989898"
     },
     {
-      "key":"Date",
-      "value":"07-02-2022"
+      "key": "Vehicle",
+      "value": "Tata ACE"
     },
     {
-      "key":"Time",
-      "value":"10:10PM"
+      "key": "VehicleNumber",
+      "value": "TN1234"
     },
     {
-      "key":"PickupLocation",
-      "value":"No: 4C/7, Sai Sadan, 1st Floor, MMDA 1st Main Rd, Maduravoyal"
+      "key": "CustomerName",
+      "value": "Mr. Prakash Kumar"
     },
     {
-      "key":"DropLocation",
-      "value":"No: 4B/7, Sai Sadan, 1st Floor, MMDA 1st Main Rd,"
+      "key": "CustomerPhoneNumber",
+      "value": "9898989898"
     },
     {
-      "key":"totalFare",
-      "value":"545.00"
+      "key": "Date",
+      "value": "07-02-2022"
+    },
+    {
+      "key": "Time",
+      "value": "10:10PM"
+    },
+    {
+      "key": "PickupLocation",
+      "value": "No: 4C/7, Sai Sadan, 1st Floor, MMDA 1st Main Rd, Maduravoyal"
+    },
+    {
+      "key": "DropLocation",
+      "value": "No: 4B/7, Sai Sadan, 1st Floor, MMDA 1st Main Rd,"
+    },
+    {
+      "key": "totalFare",
+      "value": "545.00"
     }
   ],
   "Widgets": [
@@ -53,21 +69,21 @@
       "width": 1,
       "orderBy": "1",
       "child": {
-        "type":"stackController",
+        "type": "stackController",
         "orderBy": "1",
         "children": [
           {
-            "type":"positionController",
+            "type": "positionController",
             "left": 0,
             "orderBy": 100,
             "child": {
-              "type":"navIcon",
+              "type": "navIcon",
               "color": "primaryColor",
               "margin": "20,10,0,0",
               "padding": "10,0,0,0",
               "borderRadius": "10,10,10,10",
-              "width":40,
-              "height":35,
+              "width": 40,
+              "height": 35,
               "clickEvent": {
                 "eventName": "OpenDrawer"
               }
@@ -80,12 +96,11 @@
             "orderBy": 1
           },
           {
-            "type":"positionController",
+            "type": "positionController",
             "bottom": 0,
             "orderBy": 2,
             "child": {
               "type": "button",
-
               "width": 1,
               "orderBy": 1,
               "borderRadius": "25,0,0,25",
@@ -133,9 +148,9 @@
                               }
                             },
                             {
-                              "type":"sizedBox",
+                              "type": "sizedBox",
                               "orderBy": 2,
-                              "height":5
+                              "height": 5
                             },
                             {
                               "type": "text",
@@ -157,10 +172,10 @@
                             {
                               "type": "button",
                               "orderBy": 11,
-                              "height":60,
-                              "pixelWidth":60,
+                              "height": 60,
+                              "pixelWidth": 60,
                               "shape": "circle",
-                              "color":"#F5CAB6",
+                              "color": "#F5CAB6",
                               "alignment": "center",
                               "child": {
                                 "type": "icon",
@@ -170,9 +185,9 @@
                               }
                             },
                             {
-                              "type":"sizedBox",
+                              "type": "sizedBox",
                               "orderBy": 12,
-                              "height":5
+                              "height": 5
                             },
                             {
                               "type": "text",
@@ -194,10 +209,10 @@
                             {
                               "type": "button",
                               "orderBy": 11,
-                              "height":60,
-                              "pixelWidth":60,
+                              "height": 60,
+                              "pixelWidth": 60,
                               "shape": "circle",
-                              "color":"#F5CAB6",
+                              "color": "#F5CAB6",
                               "alignment": "center",
                               "child": {
                                 "type": "svgController",
@@ -206,9 +221,9 @@
                               }
                             },
                             {
-                              "type":"sizedBox",
+                              "type": "sizedBox",
                               "orderBy": 12,
-                              "height":5
+                              "height": 5
                             },
                             {
                               "type": "text",
@@ -222,9 +237,9 @@
                               }
                             },
                             {
-                              "type":"sizedBox",
+                              "type": "sizedBox",
                               "orderBy": 12,
-                              "height":5
+                              "height": 5
                             },
                             {
                               "type": "text",
@@ -280,7 +295,7 @@
                                       "type": "text",
                                       "orderBy": 2,
                                       "value": "Mr. Vijay Humar",
-                                      "key": "Name",
+                                      "key": "CustomerName",
                                       "style": {
                                         "fontSize": 12,
                                         "fontFamily": "RM",
@@ -290,7 +305,7 @@
                                     {
                                       "type": "text",
                                       "orderBy": 3,
-                                      "key": "PhoneNumber",
+                                      "key": "CustomerPhoneNumber",
                                       "value": "9899888888",
                                       "style": {
                                         "fontSize": 11,
@@ -328,7 +343,6 @@
                                             "fontFamily": "RR"
                                           }
                                         },
-
                                         {
                                           "type": "text",
                                           "orderBy": 2,
@@ -348,7 +362,6 @@
                                       "height": 3.0,
                                       "orderBy": 1
                                     },
-
                                     {
                                       "type": "rowController",
                                       "orderBy": 3,
@@ -381,11 +394,8 @@
                                             }
                                           }
                                         }
-
-
                                       ]
                                     },
-
                                     {
                                       "type": "text",
                                       "orderBy": 3,
@@ -436,7 +446,6 @@
                                             }
                                           }
                                         }
-
                                       ]
                                     },
                                     {
@@ -455,8 +464,6 @@
                                   ]
                                 }
                               }
-
-
                             ]
                           }
                         },
@@ -473,9 +480,7 @@
                               "type": "columnController",
                               "crossAxisAlignment": "start",
                               "orderBy": 2,
-
                               "children": [
-
                                 {
                                   "type": "text",
                                   "value": "Your Total Fare",
@@ -519,15 +524,14 @@
                               "orderBy": 4,
                               "child": {
                                 "type": "button",
-
-                                "height":60,
-                                "pixelWidth":60,
+                                "height": 60,
+                                "pixelWidth": 60,
                                 "shape": "circle",
-                                "color":"primaryColor",
+                                "color": "primaryColor",
                                 "alignment": "center",
                                 "margin": "0,0,15,0",
                                 "boxShadow": {
-                                  "color":"primaryColor",
+                                  "color": "primaryColor",
                                   "x": 0.0,
                                   "y": 5.0,
                                   "blurRadius": 10.0,
@@ -541,7 +545,6 @@
                                 }
                               }
                             }
-
                           ]
                         },
                         {
@@ -549,7 +552,6 @@
                           "orderBy": 2,
                           "height": 15.0
                         },
-
                         {
                           "type": "visibilityController",
                           "isVisible": true,
@@ -563,7 +565,7 @@
                                 "orderBy": 1,
                                 "alignment": "center",
                                 "clickEvent": {
-                                  "eventName":"AcceptRide",
+                                  "eventName": "AcceptRide",
                                   "changeValues": [
                                     {
                                       "key": "AcceptRejectBtn",
@@ -576,11 +578,11 @@
                                   ]
                                 },
                                 "key": 5,
-                                "height":50,
+                                "height": 50,
                                 "margin": "10,0,10,0",
                                 "color": "primaryColor",
-                                "borderRadius":"25,25,25,25",
-                                "child":{
+                                "borderRadius": "25,25,25,25",
+                                "child": {
                                   "type": "text",
                                   "alignment": "center",
                                   "value": "Accept",
@@ -597,7 +599,7 @@
                                 "orderBy": 2,
                                 "alignment": "center",
                                 "clickEvent": {
-                                  "eventName":"RejectRide",
+                                  "eventName": "RejectRide",
                                   "changeValues": [
                                     {
                                       "key": "RideDetails",
@@ -610,11 +612,11 @@
                                   ]
                                 },
                                 "key": 5,
-                                "height":50,
+                                "height": 50,
                                 "margin": "10,10,10,10",
                                 "color": "textFieldBorderColor",
-                                "borderRadius":"25,25,25,25",
-                                "child":{
+                                "borderRadius": "25,25,25,25",
+                                "child": {
                                   "type": "text",
                                   "alignment": "center",
                                   "value": "Reject",
@@ -641,4 +643,3 @@
     }
   ]
 }
-

@@ -140,92 +140,68 @@ List<dynamic> getWidgets(List parsed,MyCallback myCallback){
 Widget getChild(Map map, {MyCallback? myCallback}){
   Widget widget=Container();
   if(map['type']=='text'){
-  // return TextBoxController(map: map);
     widget= TextBoxController(map: map);
   }
   else if(map['type']=='spacerController'){
-  //  return TextFormFieldController(map: map);
     widget=  SpacerController(map: map,);
   }
   else if(map['type']=='textField'){
-  //  return TextFormFieldController(map: map);
     widget=  TextFormFieldController(map: map,myCallback: myCallback!,);
   }
   else if(map['type']=='hiddenController'){
       widget=HiddenController(map: map);
     }
   else if(map['type']=='sizedBox'){
-    //return SizedBoxController(map: map);
     widget=  SizedBoxController(map: map);
   }
   else if(map['type']=='imageController'){
-    //return ImageController(map: map);
     widget=  ImageController(map: map);
   }
   else if(map['type']=='svgController'){
-   // return SvgController(map: map);
     widget=  SvgController(map: map);
   }
   else if(map['type']=='icon'){
-   // return parseIcon(map);
     widget=  parseIcon(map);
   }
   else if(map['type']=='stackController'){
- //   return StackController(map: map,myCallback: myCallback!,);
     widget=  StackController(map: map,myCallback: myCallback!,);
   }
   else if(map['type']=='positionController'){
-   // return PositionController(map: map,myCallback: myCallback!,);
     widget=  PositionController(map: map,myCallback: myCallback!,);
   }
   else if(map['type']=='alignController'){
- //   return AlignController(map: map,myCallback: myCallback!,);
     widget=  AlignController(map: map,myCallback: myCallback!,);
   }
   else if(map['type']=='navIcon'){
-    //return NavIcon(map: map, ontap: myCallback!,);
     widget=  NavIcon(map: map, ontap: myCallback!,);
   }
   else if(map['type']=='button'){
-   // return ButtonController(map: map, ontap: myCallback!,);
     widget=  ButtonController(map: map, ontap: myCallback!,);
   }
   else if(map['type']=='columnController'){
-   // return ColumnController(map: map,myCallback: myCallback!,);
     widget=  ColumnController(map: map,myCallback: myCallback!,);
   }
   else if(map['type']=='rowController'){
-   // return ColumnController(map: map,myCallback: myCallback!,);
     widget=  RowController(map: map,myCallback: myCallback!,);
   }
   else if(map['type']=='pickerTemplate'){
-   // return ColumnController(map: map,myCallback: myCallback!,);
     widget=  PickerTemplate(map: map,myCallback: myCallback!,);
   }
   else if(map['type']=='mapTemplate'){
-   // return ColumnController(map: map,myCallback: myCallback!,);
     widget=  MapTemplate(map: map,myCallback: myCallback!,);
   }
   else if(map['type']=='expandedController'){
-
     widget=  ExpandedController(map: map, ontap: myCallback!,);
   }
   else if(map['type']=='listViewBuilderController'){
-
     widget=  ListViewBuilderController(map: map, myCallback: myCallback!,);
   }
   else if(map['type']=='customScrollViewController'){
-
     widget=  CustomScrollViewController(map: map, myCallback: myCallback!,);
   }
   else if(map['type']=='visibilityController'){
-
     widget=  VisibilityController(map: map, ontap: myCallback!,);
   }
-  //return Container();
   return widget;
 
-/*  else if(element['type']=='button'){
-    widgets.add(Btn(map: map, ontap: myCallback,));
-  }*/
 }

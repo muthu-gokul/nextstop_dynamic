@@ -66,7 +66,7 @@ class _PopoverItemState extends State<PopoverItem> {
               scale: widget.animation,
               constraints: constraints,
               direction: widget.direction,
-              arrowHeight: widget.arrowHeight,
+              arrowHeight:0.0,
               child:widget.isCustom? Container(
                // height: 100,
                // width: 100,
@@ -78,6 +78,7 @@ class _PopoverItemState extends State<PopoverItem> {
                   color: widget.backgroundColor,
                   boxShadow: widget.boxShadow
                 ),
+                alignment: Alignment.topCenter,
                 child: Material(
                   type: MaterialType.transparency,
                   child: widget.child,
@@ -157,7 +158,7 @@ class _PopoverItemState extends State<PopoverItem> {
     offset = BuildContextExtension.getWidgetLocalToGlobal(widget.context!);
     bounds = BuildContextExtension.getWidgetBounds(widget.context!);
     attachRect = Rect.fromLTWH(
-      offset.dx + (widget.arrowDxOffset ?? 0.0),
+      offset.dx ,
       offset.dy + (widget.arrowDyOffset ?? 0.0),
       bounds.width,
       bounds.height + (widget.contentDyOffset ?? 0.0),

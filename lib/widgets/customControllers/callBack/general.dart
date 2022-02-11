@@ -69,6 +69,8 @@ class General{
   static String FormSubmit="FormSubmit";
   static String Navigation="Navigation";
   static String openDrawer="OpenDrawer";
+  static String changeValues="ChangeValues";
+  static String changeValuesArray="changeValuesArray";
   static String locationClick="locationClick";
   static String navigateToPage="navigateToPage";
   static String typeOfNavigation="typeOfNavigation";

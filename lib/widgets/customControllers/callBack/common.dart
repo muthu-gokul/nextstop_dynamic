@@ -16,7 +16,7 @@ class Common{
   findUpdateByKeyWidgetType(List valueArray ,List widgets){
      valueArray.forEach((element) {
       findWidgetByKey(widgets,element,(wid){
-        // log("query wid $wid ${wid.getType()}");
+         log("query wid $wid ${wid.getType()}");
         updateByWidgetType(wid.getType(),widget: wid,clickEvent: element);
       });
     });
@@ -40,6 +40,10 @@ class Common{
         }
         else if(clickEvent[General.eventName]=='FormSubmitBookingPage'){
           return formSubmitBookingPage(guid, widgets,clickEvent,queryString,myCallback: myCallback);
+        }
+        else if(clickEvent[General.eventName]==General.changeValues){
+          findUpdateByKeyWidgetType(clickEvent[General.changeValuesArray], widgets);
+           
         }
       }
     }

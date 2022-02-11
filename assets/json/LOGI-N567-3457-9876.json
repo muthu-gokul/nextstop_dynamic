@@ -57,13 +57,16 @@
       "required": true,
       "key": "PhoneNumber",
       "margin": "10,0,10,10",
-      "groupValidation":  [{"Required":"required"},{"MaximumLength":"10"}],
+      "groupValidation":  [{"Required":"required"},{"MinimumLength":"10"}],
       "borderRadius": "5,5,5,5",
       "borderColor": "textFieldBorderColor",
       "focusedBorderColor": "textFieldBorderColor",
       "disabledBorderColor": "FFF44336",
       "color": "FFffffff",
       "disableColor": "FFF5EFEE",
+      "textInputType":"number",
+      "regExp":"[0-9]",
+      "textLength":10,
       "enable": true,
       "hintTextStyle": {
         "color": "primaryTextColor1",
@@ -112,6 +115,87 @@
         "color": "primaryTextColor2",
         "fontSize": 15.0,
         "fontFamily": "RR"
+      },
+      "suffix":{
+        "type":"button",
+        "height":50.0,
+        "pixelWidth":50.0,
+        "child":{
+          "type":"stackController",
+            "children":[
+              {
+                "type":"visibilityController",
+                "isVisible":true,
+                "orderBy":1,
+                "key":"VisibleOff",
+                "child":{
+                  "type":"button",
+                  "height":50.0,
+                  "pixelWidth":50.0,
+                  "alignment":"center",
+                  "child":{
+                      "type":"icon",
+                      "icon":"visibleOff",
+                      "size":25.0,
+                      "color":"primaryTextColor1"
+                  },
+                  "clickEvent":{
+                    "eventName": "ChangeValues",
+                    "changeValuesArray":[
+                      {
+                        "key":"VisibleOff",
+                        "value":false
+                      },
+                      {
+                        "key":"Password",
+                        "obscureText":false
+                      },
+                      {
+                        "key":"VisibleOn",
+                        "value":true
+                      }
+                    ]
+                  }
+                }
+              },
+              {
+                "type":"visibilityController",
+                "isVisible":false,
+                "orderBy":2,
+                "key":"VisibleOn",
+                "child":{
+                  "type":"button",
+                  "height":50.0,
+                  "pixelWidth":50.0,
+                  "alignment":"center",
+                  "child":{
+                      "type":"icon",
+                      "icon":"visible",
+                      "size":25.0,
+                      "color":"primaryTextColor1"
+                  },
+                  "clickEvent":{
+                    "eventName": "ChangeValues",
+                    "changeValuesArray":[
+                      {
+                        "key":"VisibleOff",
+                        "value":true
+                      },
+                      {
+                        "key":"Password",
+                        "obscureText":true
+                      },
+                      {
+                        "key":"VisibleOn",
+                        "value":false
+                      }
+                    ]
+                  }
+                }
+              }
+              
+            ]
+        }
       }
     },
     {

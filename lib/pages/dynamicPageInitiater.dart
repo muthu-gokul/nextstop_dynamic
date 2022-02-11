@@ -462,6 +462,26 @@ func1ByKey(dynamic widget,Map? clickEvent,Function(dynamic widget) returnFunctio
      // log("else ${widget.getType()}");
     }
   }
+  if(widget.map.containsKey("suffix")){
+    if(widget.map.containsKey('key')){
+      if(widget.map['key']==clickEvent!['key']){
+        return widget;
+      }
+      else{
+        var aa= func1ByKey(widget.suffix,clickEvent,returnFunction);
+        if(aa!=null){
+          return aa;
+        }
+      }
+    }
+    else{
+      var aa= func1ByKey(widget.suffix,clickEvent,returnFunction);
+      if(aa!=null){
+        return aa;
+      }
+    }
+
+  }
   else{
     // log("else3 ${widget.map}");
     if(widget.map.containsKey('key')){
@@ -475,8 +495,16 @@ func1ByKey(dynamic widget,Map? clickEvent,Function(dynamic widget) returnFunctio
 }
 
 findAndUpdateTextEditingController(var widget,Map? clickEvent){
-  widget.textEditingController.text=clickEvent!['value'];
-  widget.map['value']=clickEvent['value'];
+  log("clickEvent['value'] ${clickEvent!['value']}");
+  if(clickEvent['value']!=null){
+     widget.textEditingController.text=clickEvent['value'];
+     widget.map['value']=clickEvent['value'];
+  }
+  if(clickEvent['obscureText']!=null){
+     widget.obscureText.value=clickEvent['obscureText'];
+     widget.map['obscureText']=clickEvent['obscureText'];
+  }
+ 
 }
 
 

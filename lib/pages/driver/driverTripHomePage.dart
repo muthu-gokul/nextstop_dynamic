@@ -45,10 +45,29 @@ class DriverTripHomePage extends StatelessWidget with Common implements MyCallba
           myCallback.ontap(clickEvent);
         }
         else if(clickEvent[General.eventName]=="AcceptRide"){
-          findUpdateByKeyWidgetType(clickEvent['changeValues'], dynamicPageInitiater.dynamicPageInitiaterState.widgets);
+          log("accept Ride $clickEvent");
+          var res=formSubmitMethodTFE(General.driverTripHomePageIdentifier, dynamicPageInitiater.dynamicPageInitiaterState.widgets, clickEvent, dynamicPageInitiater.dynamicPageInitiaterState.queryString);
+          log("accept Ride Result $res");
+          if(res!=null){
+            var apiRes=General().checkApiCall(clickEvent, res, General.driverTripHomePageIdentifier);
+            log("accept Ride apiRes $apiRes");
+            if(apiRes.toString().isNotEmpty){
+              dynamicPageInitiater.dynamicPageInitiaterState.initSS();
+            }
+          }
+          //findUpdateByKeyWidgetType(clickEvent['changeValues'], dynamicPageInitiater.dynamicPageInitiaterState.widgets);
         }
         else if(clickEvent[General.eventName]=="RejectRide"){
-          findUpdateByKeyWidgetType(clickEvent['changeValues'], dynamicPageInitiater.dynamicPageInitiaterState.widgets);
+          //log("accept Ride $clickEvent");
+          var res=formSubmitMethodTFE(General.driverTripHomePageIdentifier, dynamicPageInitiater.dynamicPageInitiaterState.widgets, clickEvent, dynamicPageInitiater.dynamicPageInitiaterState.queryString);
+          //log("accept Ride Result $res");
+          if(res!=null){
+            var apiRes=General().checkApiCall(clickEvent, res, General.driverTripHomePageIdentifier);
+            if(apiRes.toString().isNotEmpty){
+              dynamicPageInitiater.dynamicPageInitiaterState.initSS();
+            }
+          }
+          //findUpdateByKeyWidgetType(clickEvent['changeValues'], dynamicPageInitiater.dynamicPageInitiaterState.widgets);
         }
       }
     }
