@@ -50,6 +50,7 @@ dependencies:
   firebase_messaging:
   firebase_core:
   shared_preferences:
+  firebase_database:
 
 
 

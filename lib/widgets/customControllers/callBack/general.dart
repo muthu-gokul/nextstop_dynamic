@@ -70,6 +70,7 @@ class General{
   static String Navigation="Navigation";
   static String openDrawer="OpenDrawer";
   static String changeValues="ChangeValues";
+  static String formDataJson_ApiCall="formDataJson_ApiCall";
   static String changeValuesArray="changeValuesArray";
   static String locationClick="locationClick";
   static String navigateToPage="navigateToPage";

@@ -144,6 +144,7 @@ class _HomePageState extends State<HomePage> implements MyCallback{
         else if(clickEvent[General.eventName]=='Logout'){
           SharedPreferences sp=await SharedPreferences.getInstance();
           sp.setBool(ISLOGGEDINKEY, false);
+          sp.setString("token", "");
           General().navigation(clickEvent[General.navigateToPage],clickEvent[General.typeOfNavigation]);
         }
       }

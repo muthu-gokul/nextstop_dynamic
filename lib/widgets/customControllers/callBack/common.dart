@@ -43,7 +43,9 @@ class Common{
         }
         else if(clickEvent[General.eventName]==General.changeValues){
           findUpdateByKeyWidgetType(clickEvent[General.changeValuesArray], widgets);
-           
+        }
+        else if(clickEvent[General.eventName]==General.formDataJson_ApiCall){
+          formDataJsonApiCallResponse(guid, widgets, clickEvent, queryString);
         }
       }
     }
@@ -67,4 +69,21 @@ class Common{
 
   locationClick(Map clickEvent){}
   formSubmitBookingPage(dynamic guid,List<dynamic> widgets,Map clickEvent,List queryString,{MyCallback? myCallback}){}
+
+  formDataJsonApiCall(dynamic guid,List<dynamic> widgets,Map clickEvent,List queryString,{MyCallback? myCallback}) async {
+    var res=formSubmitMethodTFE(guid, widgets, clickEvent, queryString);
+    log("formDataJsonApiCall formSubmitMethodTFE $res");
+    if(res!=null){
+      var apiResponse=await General().checkApiCall(clickEvent, res, guid);
+      //log("accept Ride apiRes $apiRes");
+      if(apiResponse.toString().isNotEmpty){
+        return apiResponse.toString();
+      }
+      return null;
+    }
+    return null;
+  }
+  formDataJsonApiCallResponse(dynamic guid,List<dynamic> widgets,Map clickEvent,List queryString,{MyCallback? myCallback}){
+    return formDataJsonApiCall(guid, widgets, clickEvent, queryString);
+  }
 }

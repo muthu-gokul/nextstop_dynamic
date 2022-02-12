@@ -136,6 +136,7 @@ formSubmitMethod(dynamic guid,List<dynamic> widget,Map clickEvent,List queryStr,
    // print("VALID ${fields}");
     result["Guid"]=guid;
     result["FieldArray"]=fields;
+
     print((result));
     String? resJson= resultToJson(result);
     Map map;
@@ -146,50 +147,6 @@ formSubmitMethod(dynamic guid,List<dynamic> widget,Map clickEvent,List queryStr,
     }
     else{
       print("Valid json $resJson");
-/*      for(int i=0;i<queryString.length;i++){
-        for(int j=0;j<fields.length;j++){
-          if(fields[j].containsKey(queryString[i]['key'].toString())){
-            queryString[i]['value']=fields[j][queryString[i]['key'].toString()];
-            break;
-          }
-        }
-      }
-      log("query STring $queryString");*/
-      // fields.forEach((element) {
-      //   map.
-      //   log("ele $element ${element.get}");
-      // });
-
-      /*if(guid==General.bookingPageIdentifier){
-        log("w $widgets");
-        log("w ${widgets[5].getValue()[0]['price']}");
-        var _distanceInMeters = Geolocator.distanceBetween(
-              queryString[1]['value'][0]['latitude'],
-              queryString[1]['value'][1]['longitude'],
-              queryString[3]['value'][0]['latitude'],
-              queryString[3]['value'][1]['longitude'],
-
-          );
-        queryString.add({"key":"totalFare","value":"${Calculation().mul(widgets[5].getValue()[0]['price'], _distanceInMeters/1000).toStringAsFixed(2)}"});
-          log("_distanceInMeters $_distanceInMeters ${_distanceInMeters/1000} ${Calculation().mul(widgets[5].getValue()[0]['price'], _distanceInMeters/1000).toStringAsFixed(2)}");
-        if(clickEvent.containsKey('navigateToPage')){
-          navigateTo(clickEvent['navigateToPage'],clickEvent['typeOfNavigation'],myCallback: myCallback);
-        }
-      }
-      else{
-        Get.defaultDialog(
-          title: "",
-          content: CircularProgressIndicator()
-        );
-        GetUiNotifier().postUiJson( null, result["Guid"], resJson).then((value){
-          Get.back();
-          if(clickEvent.containsKey('navigateToPage')){
-            navigateTo(clickEvent['navigateToPage'],clickEvent['typeOfNavigation']);
-          }
-        });
-
-      }*/
-
       ISVALIDJSON=true;
       return resJson;
     }
@@ -214,7 +171,10 @@ String? resultToJson(Map map){
 
 parseQueryString(List fields,List qs){
   List queryStringRes=[];
-  queryStringRes=qs;
+  qs.forEach((element) {
+    queryStringRes.add(element);
+  });
+  //queryStringRes=qs;
   for(int i=0;i<queryStringRes.length;i++){
     for(int j=0;j<fields.length;j++){
       if(fields[j].containsKey(queryStringRes[i]['key'].toString())){

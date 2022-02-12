@@ -202,6 +202,9 @@ Widget getChild(Map map, {MyCallback? myCallback}){
   else if(map['type']=='visibilityController'){
     widget=  VisibilityController(map: map, ontap: myCallback!,);
   }
+  else if(map['type']=='userRoleController'){
+    widget=  UserRoleController(map: map, ontap: myCallback!,);
+  }
   return widget;
 
 }

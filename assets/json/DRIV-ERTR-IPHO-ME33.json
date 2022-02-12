@@ -15,51 +15,65 @@
     },
     {
       "key": "AcceptRejectBtn",
-      "value": false
+      "value": true
     },
     {
       "key": "Name",
-      "value": "Mr. Prakash Kumar"
+      "value": "Jos Ramu"
     },
     {
       "key": "MobileNumber",
-      "value": "9898989898"
+      "value": "9090909090"
     },
     {
-      "key": "Vehicle",
-      "value": "Tata ACE"
+      "key": "Vehicle"
     },
     {
-      "key": "VehicleNumber",
-      "value": "TN1234"
+      "key": "VehicleNumber"
     },
     {
       "key": "CustomerName",
-      "value": "Mr. Prakash Kumar"
+      "value": "mithu gokul"
     },
     {
       "key": "CustomerPhoneNumber",
-      "value": "9898989898"
+      "value": "9797979797"
     },
     {
       "key": "Date",
-      "value": "07-02-2022"
+      "value": "12-Feb-2022"
     },
     {
       "key": "Time",
-      "value": "10:10PM"
+      "value": "1:56AM"
     },
     {
       "key": "PickupLocation",
-      "value": "No: 4C/7, Sai Sadan, 1st Floor, MMDA 1st Main Rd, Maduravoyal"
+      "value": "357G+VXF, Maduravoyal, Tamil Nadu"
     },
     {
       "key": "DropLocation",
-      "value": "No: 4B/7, Sai Sadan, 1st Floor, MMDA 1st Main Rd,"
+      "value": "Shanthi Colony, Anna Nagar, Tamil Nadu"
     },
     {
       "key": "totalFare",
-      "value": "545.00"
+      "value": 401.98
+    },
+    {
+      "key": "LoginUserId",
+      "value": 6
+    },
+    {
+      "key": "ShippingRequestId",
+      "value": 48
+    },
+    {
+      "key": "EndRideBtn",
+      "value": false
+    },
+    {
+      "key": "CallBtn",
+      "value": false
     }
   ],
   "Widgets": [
@@ -88,6 +102,22 @@
                 "eventName": "OpenDrawer"
               }
             }
+          },
+          {
+            "type": "hiddenController",
+            "key": "LoginUserId",
+            "orderBy": 99,
+            "hasInput": true,
+            "required": true,
+            "value": ""
+          },
+          {
+            "type": "hiddenController",
+            "key": "ShippingRequestId",
+            "orderBy": 99,
+            "hasInput": true,
+            "required": true,
+            "value": ""
           },
           {
             "type": "mapTemplate",
@@ -498,8 +528,8 @@
                                   "orderBy": 2,
                                   "key": "totalFare",
                                   "onlyText": true,
-                                  "hasInput": true,
-                                  "required": true,
+                                  "hasInput": false,
+                                  "required": false,
                                   "style": {
                                     "fontSize": 30,
                                     "fontFamily": "RB",
@@ -565,7 +595,8 @@
                                 "orderBy": 1,
                                 "alignment": "center",
                                 "clickEvent": {
-                                  "eventName": "AcceptRide",
+                                  "eventName": "formDataJson_ApiCall",
+                                  "actionType": "Accept",
                                   "changeValues": [
                                     {
                                       "key": "AcceptRejectBtn",
@@ -599,7 +630,8 @@
                                 "orderBy": 2,
                                 "alignment": "center",
                                 "clickEvent": {
-                                  "eventName": "RejectRide",
+                                  "eventName": "formDataJson_ApiCall",
+                                  "actionType": "Reject",
                                   "changeValues": [
                                     {
                                       "key": "RideDetails",
@@ -623,6 +655,42 @@
                                   "key": 1,
                                   "style": {
                                     "color": "primaryTextColor2",
+                                    "fontSize": 16.0,
+                                    "fontFamily": "RR"
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "type": "visibilityController",
+                          "isVisible": true,
+                          "orderBy": 4,
+                          "key": "EndRideBtn",
+                          "child": {
+                            "type": "columnController",
+                            "children": [
+                              {
+                                "type": "button",
+                                "orderBy": 1,
+                                "alignment": "center",
+                                "clickEvent": {
+                                  "eventName": "formDataJson_ApiCall",
+                                  "actionType": "EndRide"
+                                },
+                                "key": 5,
+                                "height": 50,
+                                "margin": "10,0,10,0",
+                                "color": "primaryColor",
+                                "borderRadius": "25,25,25,25",
+                                "child": {
+                                  "type": "text",
+                                  "alignment": "center",
+                                  "value": "End Ride",
+                                  "key": 1,
+                                  "style": {
+                                    "color": "#ffffff",
                                     "fontSize": 16.0,
                                     "fontFamily": "RR"
                                   }

@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -18,16 +19,23 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'splashScreen.dart';
 void main() {
   runApp(const MyApp());
-  getApnToken();
+  // getApnToken();
 }
 getApnToken() async{
   await Firebase.initializeApp();
   SharedPreferences sp=await SharedPreferences.getInstance();
-  FirebaseMessaging.instance.getToken().then((value){
+  String token= sp.getString("token")??"";
+  if(token.isEmpty){
+    FirebaseMessaging.instance.getToken().then((value){
+      sp.setString("token", value??"");
+      print("FirebaseMessaging.instance.getAPNSToken();  $value");
+      FirebaseDatabase.instance.ref().push().set({"LoginUserId":LOGINUSERID,"token":value});
 
-    sp.setString("token", value??"");
-    print("FirebaseMessaging.instance.getAPNSToken();  $value");
-  });
+    });
+  }
+  else{
+    print("token Present");
+  }
 }
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);

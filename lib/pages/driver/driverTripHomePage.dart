@@ -36,7 +36,16 @@ class DriverTripHomePage extends StatelessWidget with Common implements MyCallba
   @override
   Future<void> ontap(Map? clickEvent) async {
     log("DriverTripHomePage  $clickEvent");
-    if(clickEvent!=null){
+    splitByTapEvent(
+        clickEvent,
+        guid: General.driverTripHomePageIdentifier,
+        widgets: dynamicPageInitiater.dynamicPageInitiaterState.widgets,
+        queryString: dynamicPageInitiater.dynamicPageInitiaterState.queryString,
+        myCallback: this
+    );
+
+
+/*    if(clickEvent!=null){
       if(clickEvent.containsKey(General.eventName)){
         if(clickEvent[General.eventName]==General.Navigation){
           General().navigation(clickEvent[General.navigateToPage],clickEvent[General.typeOfNavigation]);
@@ -70,8 +79,24 @@ class DriverTripHomePage extends StatelessWidget with Common implements MyCallba
           //findUpdateByKeyWidgetType(clickEvent['changeValues'], dynamicPageInitiater.dynamicPageInitiaterState.widgets);
         }
       }
+    }*/
+  }
+
+  @override
+  openDrawer(MyCallback mc, Map clickEvent) {
+    myCallback.ontap(clickEvent);
+  }
+
+  @override
+  formDataJsonApiCallResponse(dynamic guid,List<dynamic> widgets,Map clickEvent,List queryString,{MyCallback? myCallback}) async {
+    var apiResponse=await formDataJsonApiCall(guid, widgets, clickEvent, queryString);
+    log("apiResponse $apiResponse");
+    if(apiResponse!=null){
+      reload();
     }
   }
+
+
 
   onNotificationReceived(List valueArray){
     print("Noti Received $valueArray");

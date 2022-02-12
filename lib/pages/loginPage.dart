@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:nextstop_dynamic/main.dart';
 import 'package:nextstop_dynamic/widgets/customControllers/callBack/generalMethods.dart';
 import 'package:nextstop_dynamic/widgets/customPopUp.dart';
 import 'package:nextstop_dynamic/widgets/sizeLocal.dart';
@@ -94,7 +95,7 @@ class LoginPage extends StatelessWidget with General,Common  implements MyCallba
           else{
             getXNavigation(2, HomePage());
           }
-
+          getApnToken();
         }
       }
       else{
@@ -103,6 +104,7 @@ class LoginPage extends StatelessWidget with General,Common  implements MyCallba
         sp.setBool(ISLOGGEDINKEY, true);
         sp.setInt(LOGINUSERIDKEY, 0);
         getXNavigation(2, HomePageDriver2());
+        getApnToken();
       }
     }
   }

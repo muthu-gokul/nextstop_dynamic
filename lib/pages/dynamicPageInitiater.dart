@@ -96,7 +96,6 @@ class DynamicPageInitiaterState extends State<DynamicPageInitiater> implements M
   }
   initSS(){
     if(fromUrl){
-
       GetUiNotifier().getUiJson(widget.pageIdentifier,LOGINUSERID).then((value){
         log("value $value");
         if(value!="null"){
@@ -145,11 +144,19 @@ class DynamicPageInitiaterState extends State<DynamicPageInitiater> implements M
           setState(() {});
         }
       });
-
     }
     else{
       parseJson();
     }
+  }
+
+  reloadValueArray(List<dynamic> valueArray){
+    valueArray.forEach((element) {
+      findWidgetByKey(widgets,{"key":element['key']},(wid){
+        // log("query wid $wid ${wid.getType()}");
+        updateByWidgetType(wid.getType(),widget: wid,clickEvent: element);
+      });
+    });
   }
 
   @override

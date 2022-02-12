@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nextstop_dynamic/main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'constants.dart';
@@ -28,6 +29,7 @@ class _SplashScreenState extends State<SplashScreen> {
       else{
         Get.off(HomePage());
       }
+      getApnToken();
     }
     else{
       //Not Logged in
