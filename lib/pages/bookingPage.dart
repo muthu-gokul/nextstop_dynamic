@@ -293,8 +293,8 @@ class BookingPage extends StatelessWidget with Common  implements MyCallback{
              print("ele $element");
            });
            qs.add({"key":"totalFare","value":"${Calculation().mul(price, _distanceInMeters/1000).toStringAsFixed(2)}"});
+           qs.add({"key":"totalDistance","value":"${_distanceInMeters/1000}"});
            if(clickEvent.containsKey(General.navigateToPage)){
-
              getXNavigation(clickEvent[General.typeOfNavigation], EstimateBillPage(fromQueryString: qs,));
            }
     }

@@ -28,24 +28,41 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 var selectedPage=0.obs;
 
 
-class HomePageDriver2 extends StatelessWidget  implements MyCallback{
+class HomePageDriver2 extends StatefulWidget  {
+  @override
+  State<HomePageDriver2> createState() => _HomePageDriver2State();
+}
 
-  HomePageDriver2(){
-    print("constructor");
-    registerNotification();
-    checkForInitialMessage();
-    parseJson();
-    driverTripHomePage=DriverTripHomePage(myCallback: this);
-  }
-  late DriverTripHomePage driverTripHomePage;
+class _HomePageDriver2State extends State<HomePageDriver2> implements MyCallback{
   GlobalKey <ScaffoldState> scaffoldKey=new GlobalKey<ScaffoldState>();
 
   var widgets=[].obs;
+
   List<dynamic> queryString=[];
+
   var parsedJson;
 
   var isLoad=false.obs;
+
   String guid="";
+
+  // HomePageDriver2(){
+  //   print("constructor");
+  //   registerNotification();
+  //   checkForInitialMessage();
+  //   parseJson();
+  //   driverTripHomePage=DriverTripHomePage(myCallback: this);
+  // }
+  @override
+  initState(){
+      registerNotification();
+      checkForInitialMessage();
+      parseJson();
+      driverTripHomePage=DriverTripHomePage(myCallback: this);
+  }
+
+
+  late DriverTripHomePage driverTripHomePage;
 
   parseJson() async{
     isLoad.value=true;
@@ -63,9 +80,8 @@ class HomePageDriver2 extends StatelessWidget  implements MyCallback{
     //log("${widgets}");
   }
 
-
-
   late final FirebaseMessaging _messaging;
+
   void registerNotification() async {
     await Firebase.initializeApp();
     _messaging = FirebaseMessaging.instance;
@@ -100,6 +116,7 @@ class HomePageDriver2 extends StatelessWidget  implements MyCallback{
       print('User declined or has not accepted permission');
     }
   }
+
   // For handling notification when the app is in terminated state
   checkForInitialMessage() async {
     await Firebase.initializeApp();
@@ -109,13 +126,11 @@ class HomePageDriver2 extends StatelessWidget  implements MyCallback{
       onNotificationReceived(jsonDecode(initialMessage.data['valueArray']));
     }
   }
+
   onNotificationReceived(List valueArray){
     selectedPage.value=1;
     driverTripHomePage.onNotificationReceived(valueArray);
   }
-
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -167,7 +182,6 @@ class HomePageDriver2 extends StatelessWidget  implements MyCallback{
         )
     );
   }
-
 
   @override
   Future<void> ontap(Map? clickEvent) async {

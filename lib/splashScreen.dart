@@ -1,3 +1,4 @@
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:nextstop_dynamic/main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -18,6 +19,7 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
 
   checkLogin() async{
+    await initializeFirebase();
     SharedPreferences sp=await SharedPreferences.getInstance();
     if(sp.getBool(ISLOGGEDINKEY)??false){
       //Logged in
@@ -37,9 +39,13 @@ class _SplashScreenState extends State<SplashScreen> {
     }
   }
 
+
+
   @override
   void initState() {
     checkLogin();
+
+
     super.initState();
   }
 

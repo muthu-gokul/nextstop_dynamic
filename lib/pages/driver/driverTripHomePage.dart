@@ -87,6 +87,11 @@ class DriverTripHomePage extends StatelessWidget with Common implements MyCallba
     myCallback.ontap(clickEvent);
   }
 
+/*  @override
+  openMap(Map clickEvent) {
+    log("open Map $clickEvent");
+  }*/
+
   @override
   formDataJsonApiCallResponse(dynamic guid,List<dynamic> widgets,Map clickEvent,List queryString,{MyCallback? myCallback}) async {
     var apiResponse=await formDataJsonApiCall(guid, widgets, clickEvent, queryString);

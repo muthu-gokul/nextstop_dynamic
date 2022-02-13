@@ -7,11 +7,11 @@
   "valueArray": [
     {
       "key": "DriverDetails",
-      "value": true
+      "value": false
     },
     {
       "key": "RideDetails",
-      "value": false
+      "value": true
     },
     {
       "key": "AcceptRejectBtn",
@@ -120,7 +120,8 @@
             "value": ""
           },
           {
-            "type": "mapTemplate",
+            "type": "mapTemplateParent",
+            "templateName": "MapTemplateTwo",
             "key": "map01",
             "reducedHeight": 200.0,
             "orderBy": 1
@@ -423,6 +424,25 @@
                                               "fontFamily": "RR"
                                             }
                                           }
+                                        },
+                                        {
+                                          "type": "button",
+                                          "orderBy": 5,
+                                          "height": 30.0,
+                                          "pixelWidth": 30.0,
+                                          "child": {
+                                            "type": "imageController",
+                                            "image": "assets/icons/gMap.png",
+                                            "height": 30.0,
+                                            "orderBy": 5
+                                          },
+                                          "clickEvent": {
+                                            "eventName": "openMap",
+                                            "loc_Details": {
+                                              "lat": "27.6683619",
+                                              "long": "85.3101895"
+                                            }
+                                          }
                                         }
                                       ]
                                     },
@@ -475,6 +495,25 @@
                                               "fontFamily": "RR"
                                             }
                                           }
+                                        },
+                                        {
+                                          "type": "button",
+                                          "orderBy": 5,
+                                          "height": 30.0,
+                                          "pixelWidth": 30.0,
+                                          "child": {
+                                            "type": "imageController",
+                                            "image": "assets/icons/gMap.png",
+                                            "height": 30.0,
+                                            "orderBy": 5
+                                          },
+                                          "clickEvent": {
+                                            "eventName": "openMap",
+                                            "loc_Details": {
+                                              "lat": "27.6683619",
+                                              "long": "85.3101895"
+                                            }
+                                          }
                                         }
                                       ]
                                     },
@@ -494,6 +533,7 @@
                                   ]
                                 }
                               }
+
                             ]
                           }
                         },

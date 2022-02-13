@@ -113,8 +113,8 @@ List<dynamic> getWidgets(List parsed,MyCallback myCallback){
     else if(element['type']=='pickerTemplate'){
       widgets.add(PickerTemplate(map: element, myCallback: myCallback,));
     }
-    else if(element['type']=='mapTemplate'){
-      widgets.add(MapTemplate(map: element, myCallback: myCallback,));
+    else if(element['type']=='mapTemplateParent'){
+      widgets.add(MapTemplateParent(element['templateName'],element,myCallback,));
     }
     else if(element['type']=='expandedController'){
       widgets.add(ExpandedController(map: element, ontap: myCallback,));
@@ -187,9 +187,10 @@ Widget getChild(Map map, {MyCallback? myCallback}){
   else if(map['type']=='pickerTemplate'){
     widget=  PickerTemplate(map: map,myCallback: myCallback!,);
   }
-  else if(map['type']=='mapTemplate'){
-    widget=  MapTemplate(map: map,myCallback: myCallback!,);
+  else if(map['type']=='mapTemplateParent'){
+    widget=  MapTemplateParent(map['templateName'],map,myCallback!,);
   }
+
   else if(map['type']=='expandedController'){
     widget=  ExpandedController(map: map, ontap: myCallback!,);
   }

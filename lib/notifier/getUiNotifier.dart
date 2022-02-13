@@ -76,5 +76,58 @@ class GetUiNotifier {
     }
 
   }
+  Future<dynamic> notificationTokenUpdate(String token,int loginUserId) async {
+    parameters=[
+      ParameterModel(Key: "SpName", Type: "String", Value: "USP_UpdateNotificationDetail"),
+      ParameterModel(Key: "LoginUserId", Type: "int", Value: loginUserId),
+      ParameterModel(Key: "TokenNumber", Type: "String", Value: token),
+      ParameterModel(Key: "DeviceId", Type: "String", Value: null),
+      ParameterModel(Key: "database", Type: "String", Value:"Nextstop_Dev"),
+    ];
+    var body={
+      "Fields": parameters.map((e) => e.toJson()).toList()
+    };
+    var val=[];
+    try{
+      await ApiManager().ApiCallGetInvoke(body).then((value) {
+        log("$value");
+        val=value;
+        /*if(value!="null"){
+        //  var parsed=json.decode(value);
 
+        }*/
+      });
+      return val;
+    }catch(e){
+      print("CATCH $e");
+    }
+
+  }
+  Future<dynamic> errorLog(String e,String t) async {
+    parameters=[
+      ParameterModel(Key: "SpName", Type: "String", Value: "USP_InsertErrorLogMobileDetail"),
+      ParameterModel(Key: "LoginUserId", Type: "int", Value: LOGINUSERID),
+      ParameterModel(Key: "AppPage", Type: "String", Value: e),
+      ParameterModel(Key: "ErrorDescription", Type: "String", Value: t),
+      ParameterModel(Key: "database", Type: "String", Value:"Nextstop_Dev"),
+    ];
+    var body={
+      "Fields": parameters.map((e) => e.toJson()).toList()
+    };
+    var val=[];
+    try{
+      await ApiManager().ApiCallGetInvoke(body).then((value) {
+        log("$value");
+        val=value;
+        /*if(value!="null"){
+        //  var parsed=json.decode(value);
+
+        }*/
+      });
+      return val;
+    }catch(e){
+      print("CATCH $e");
+    }
+
+  }
 }

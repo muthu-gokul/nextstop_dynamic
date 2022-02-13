@@ -75,7 +75,8 @@
             }
           },
           {
-            "type": "mapTemplate",
+            "type": "mapTemplateParent",
+            "templateName": "MapTemplateOne",
             "key": "map01",
             "reducedHeight": 410.0,
             "orderBy": 1

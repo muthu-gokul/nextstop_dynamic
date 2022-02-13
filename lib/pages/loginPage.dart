@@ -80,8 +80,13 @@ class LoginPage extends StatelessWidget with General,Common  implements MyCallba
         if(apires.toString().isNotEmpty){
           var parsed=jsonDecode(apires);
           log("login parsed $parsed");
-          LOGINUSERID=parsed['Table'][0]['UserId'];
-          isDriver=parsed['Table'][0]['IsDriver'];
+          try{
+            LOGINUSERID=parsed['Table'][0]['UserId'];
+            isDriver=parsed['Table'][0]['IsDriver'];
+          }catch(e){
+
+          }
+
 
 
           SharedPreferences sp=await SharedPreferences.getInstance();
@@ -104,6 +109,7 @@ class LoginPage extends StatelessWidget with General,Common  implements MyCallba
         sp.setBool(ISLOGGEDINKEY, true);
         sp.setInt(LOGINUSERIDKEY, 0);
         getXNavigation(2, HomePageDriver2());
+       // getXNavigation(2, HomePage());
         getApnToken();
       }
     }

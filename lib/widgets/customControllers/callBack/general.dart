@@ -76,6 +76,7 @@ class General{
   static String navigateToPage="navigateToPage";
   static String typeOfNavigation="typeOfNavigation";
   static String actionType="actionType";
+  static String openMap="openMap";
 }
 
 

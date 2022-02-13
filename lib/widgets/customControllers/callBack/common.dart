@@ -3,6 +3,8 @@ import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../../pages/dynamicPageInitiater.dart';
 import 'general.dart';
 import 'generalMethods.dart';
@@ -47,6 +49,9 @@ class Common{
         else if(clickEvent[General.eventName]==General.formDataJson_ApiCall){
           formDataJsonApiCallResponse(guid, widgets, clickEvent, queryString);
         }
+        else if(clickEvent[General.eventName]==General.openMap){
+          openMap(clickEvent);
+        }
       }
     }
   }
@@ -85,5 +90,17 @@ class Common{
   }
   formDataJsonApiCallResponse(dynamic guid,List<dynamic> widgets,Map clickEvent,List queryString,{MyCallback? myCallback}){
     return formDataJsonApiCall(guid, widgets, clickEvent, queryString);
+  }
+
+  openMap(Map clickEvent) async{
+    log("open Map $clickEvent");
+    Position position=await determinePosition();
+    //String googleUrl = 'https://www.google.com/maps/search/?api=1&query=${clickEvent['loc_Details']['lat']},${clickEvent['loc_Details']['long']}';
+    String googleUrl ='https://www.google.com/maps/dir/?api=1&origin=${position.latitude},${position.longitude}&destination=${clickEvent['loc_Details']['lat']},${clickEvent['loc_Details']['long']}&travelmode=driving';
+    if (await canLaunch(googleUrl)) {
+      await launch(googleUrl);
+    } else {
+    throw 'Could not open the map.';
+    }
   }
 }

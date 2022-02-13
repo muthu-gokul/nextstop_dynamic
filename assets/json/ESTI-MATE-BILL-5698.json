@@ -317,6 +317,14 @@
             }
           ]
         },
+        {
+          "orderBy": 6,
+          "type": "hiddenController",
+          "key": "totalDistance",
+          "hasInput": true,
+          "required": true,
+          "value": ""
+        },
         { "orderBy": 6,
           "type": "spacerController"
         },
