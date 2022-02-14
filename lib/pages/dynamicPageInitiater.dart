@@ -46,6 +46,7 @@ class DynamicPageInitiaterState extends State<DynamicPageInitiater> implements M
     parsedJson=jsonDecode(data);
 
     guid=widget.pageIdentifier;
+    widgets.clear();
    /* parsedJson['Widgets'].forEach((e){
       log("eeee $e");
     });*/
@@ -95,6 +96,7 @@ class DynamicPageInitiaterState extends State<DynamicPageInitiater> implements M
     //log("${parsedJson}");
   }
   initSS(){
+    print("initSS");
     if(fromUrl){
       GetUiNotifier().getUiJson(widget.pageIdentifier,LOGINUSERID).then((value){
         log("value $value");
@@ -124,7 +126,7 @@ class DynamicPageInitiaterState extends State<DynamicPageInitiater> implements M
 
 
           if(widget.fromQueryString.isNotEmpty){
-            log("contains fromQuery String ${widget.fromQueryString}");
+           // log("contains fromQuery String ${widget.fromQueryString}");
             widget.fromQueryString.forEach((element) {
               findWidgetByKey(widgets,{"key":element['key']},(wid){
                 // log("query wid $wid ${wid.getType()}");
@@ -133,7 +135,7 @@ class DynamicPageInitiaterState extends State<DynamicPageInitiater> implements M
             });
           }
           if(valueArray.isNotEmpty){
-            log("contains valueArray  ${valueArray}");
+          //  log("contains valueArray  ${valueArray}");
             valueArray.forEach((element) {
               findWidgetByKey(widgets,{"key":element['key']},(wid){
                 // log("query wid $wid ${wid.getType()}");
@@ -319,10 +321,10 @@ class DynamicPageInitiaterState extends State<DynamicPageInitiater> implements M
          var res= General().formSubmit(guid, widgets,clickEvent,queryString,myCallback: this);
          log("resultt $res");
         }
-        else if(clickEvent['eventName']=='FormSubmitBookingPage'){
+        /*else if(clickEvent['eventName']=='FormSubmitBookingPage'){
 
           General().formSubmit(guid, widgets[0].widget.widgets[1].widget.widget.widgets,clickEvent,queryString,myCallback: widget.myCallback);
-        }
+        }*/
         else if(clickEvent['eventName']=='FormSubmitEstimateBill'){
 
           var res = General().formSubmit(guid, widgets[1].widgets,clickEvent,queryString,myCallback: this);
@@ -522,7 +524,7 @@ updateByWidgetType(String widgetType,{var widget,Map? clickEvent}){
     }
     break;
     case 'text':{
-      log("TEXT $widgetType $widget $clickEvent");
+     // log("TEXT $widgetType $widget $clickEvent");
       widget.text.value=clickEvent!['value'];
       widget.map['value']=clickEvent['value'];
     }

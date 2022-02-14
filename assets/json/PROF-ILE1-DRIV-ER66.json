@@ -64,6 +64,7 @@
       "mainAxisAlignment": "start",
       "reducedHeight": "100",
       "children": [
+
         {
           "type":"propicController",
           "imagePath":"assets/icons/user.svg",

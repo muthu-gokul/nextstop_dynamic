@@ -121,7 +121,7 @@
           },
           {
             "type": "mapTemplateParent",
-            "templateName": "MapTemplateTwo",
+            "templateName": "MapSample",
             "key": "map01",
             "reducedHeight": 200.0,
             "orderBy": 1

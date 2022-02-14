@@ -43,6 +43,9 @@ class Common{
         else if(clickEvent[General.eventName]=='FormSubmitBookingPage'){
           return formSubmitBookingPage(guid, widgets,clickEvent,queryString,myCallback: myCallback);
         }
+        else if(clickEvent[General.eventName]=='FormSubmitEstimateBill'){
+          return formSubmitEstimateBill(guid, widgets,clickEvent,queryString,myCallback: myCallback);
+        }
         else if(clickEvent[General.eventName]==General.changeValues){
           findUpdateByKeyWidgetType(clickEvent[General.changeValuesArray], widgets);
         }
@@ -74,6 +77,7 @@ class Common{
 
   locationClick(Map clickEvent){}
   formSubmitBookingPage(dynamic guid,List<dynamic> widgets,Map clickEvent,List queryString,{MyCallback? myCallback}){}
+  formSubmitEstimateBill(dynamic guid,List<dynamic> widgets,Map clickEvent,List queryString,{MyCallback? myCallback}){}
 
   formDataJsonApiCall(dynamic guid,List<dynamic> widgets,Map clickEvent,List queryString,{MyCallback? myCallback}) async {
     var res=formSubmitMethodTFE(guid, widgets, clickEvent, queryString);

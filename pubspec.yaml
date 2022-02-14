@@ -43,7 +43,7 @@ dependencies:
   geolocator:
   date_format:
   flutter_date_pickers:
-  google_maps_flutter:
+  google_maps_flutter: ^2.1.1
   geocoding:
   rational:
   decimal:

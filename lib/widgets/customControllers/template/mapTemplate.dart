@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:developer';
 
 import 'package:date_format/date_format.dart';
@@ -9,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:nextstop_dynamic/styles/style.dart';
+import 'package:nextstop_dynamic/widgets/customControllers/callBack/general.dart';
 import 'package:nextstop_dynamic/widgets/customControllers/callBack/myCallback.dart';
 import 'package:flutter_date_pickers/flutter_date_pickers.dart' as dp;
 import 'package:flutter_date_pickers/flutter_date_pickers.dart';
@@ -18,6 +20,9 @@ import 'package:nextstop_dynamic/widgets/sizeLocal.dart';
  MapTemplateParent(String templateName,Map map,MyCallback myCallback){
     if(templateName=='MapTemplateOne'){
       return MapTemplate(map: map,myCallback: myCallback,);
+    }
+    else if(templateName=="MapSample"){
+      return MapSample(map: map, myCallback: myCallback,key: mapKey,);
     }
     else{
       return MapTemplate2(map: map,myCallback: myCallback,);
@@ -99,6 +104,10 @@ class MapTemplate extends StatelessWidget implements MyCallback,MyCallback2,Test
     return await Geolocator.getCurrentPosition();
   }
   var markers = <Marker>[].obs;
+
+  reload(){
+    mapController!.setMapStyle("[]");
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -260,35 +269,54 @@ class MapTemplate extends StatelessWidget implements MyCallback,MyCallback2,Test
 }
 
 
-class MapTemplate2 extends StatelessWidget implements MyCallback,MyCallback2,TestCallback{
+class MapTemplate2 extends StatefulWidget {
   Map map;
   MyCallback myCallback;
   List widgets=[];
-  MapTemplate2({required this.map,required this.myCallback})
-  {
-    if(map.containsKey('children')){
+  MapTemplate2({required this.map,required this.myCallback});
+  final MapTemplate2State mapTemplate2State=MapTemplate2State();
+  @override
+  MapTemplate2State createState() => mapTemplate2State;
 
-      widgets=getWidgets(map['children'], this);
-    }
-    getPos();
-   // addMarkers();
-    //log("map");
+  getType(){
+    return map['type'];
+  }
+  reload(){
+    mapTemplate2State.reload();
   }
 
-  GoogleMapController? mapController; //contrller for Google map
+}
+
+class MapTemplate2State extends State<MapTemplate2>  implements MyCallback,MyCallback2,TestCallback{
+   GoogleMapController? mapController;
+ // var mapController= Rxn<GoogleMapController>(); 
+Completer<GoogleMapController> _controller = Completer();
   CameraPosition? cameraPosition;
 
   String location = "Location Name:";
+
   Position? position;
 
   var isPickUpLocation=true.obs;
 
   var markers = <Marker>[].obs;
+
   PolylinePoints polylinePoints = PolylinePoints();
-  RxMap<PolylineId, Polyline> polylines = <PolylineId, Polyline>{}.obs; //polylines to show direction
+
+  RxMap<PolylineId, Polyline> polylines = <PolylineId, Polyline>{}.obs; 
 
   LatLng startLocation = LatLng(27.6683619, 85.3101895);
+
   LatLng endLocation = LatLng(27.6688312, 85.3077329);
+
+  @override
+  initState(){
+    if(widget.map.containsKey('children')){
+
+      widget.widgets=getWidgets(widget.map['children'], this);
+    }
+    getPos();
+  }
 
   getPos() async{
     position=await _determinePosition();
@@ -296,8 +324,15 @@ class MapTemplate2 extends StatelessWidget implements MyCallback,MyCallback2,Tes
     log("position $position");
   }
 
-  animateCamera(Position? position ){
-    if(position!=null && mapController!=null){
+  animateCamera(Position? position ) async{
+      final GoogleMapController controller = await _controller.future;
+        controller.animateCamera(CameraUpdate.newCameraPosition(
+          CameraPosition(
+              zoom: 12.4746,
+              target: LatLng(position!.latitude, position.longitude)
+          )
+      ));
+    /* if(position!=null && mapController!=null){
       mapController!.animateCamera(CameraUpdate.newCameraPosition(
           CameraPosition(
               zoom: 12.4746,
@@ -305,22 +340,16 @@ class MapTemplate2 extends StatelessWidget implements MyCallback,MyCallback2,Tes
           )
       ));
       onCameraChange();
-    }
+    } */
   }
 
   Future<Position> _determinePosition() async {
     bool serviceEnabled;
     LocationPermission permission;
-
-    // Test if location services are enabled.
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
-      // Location services are not enabled don't continue
-      // accessing the position and request users of the
-      // App to enable the location services.
       return Future.error('Location services are disabled.');
     }
-
     permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
@@ -328,39 +357,34 @@ class MapTemplate2 extends StatelessWidget implements MyCallback,MyCallback2,Tes
         return Future.error('Location permissions are denied');
       }
     }
-
     if (permission == LocationPermission.deniedForever) {
-      // Permissions are denied forever, handle appropriately.
-      return Future.error(
-          'Location permissions are permanently denied, we cannot request permissions.');
+      return Future.error('Location permissions are permanently denied, we cannot request permissions.');
     }
-
-    // When we reach here, permissions are granted and we can
-    // continue accessing the position of the device.
     return await Geolocator.getCurrentPosition();
   }
 
   addMarkers() async {
-    markers.add(Marker( //add start location marker
+    markers.add(Marker(
       markerId: MarkerId(startLocation.toString()),
-      position: startLocation, //position of marker
-      infoWindow: InfoWindow( //popup info
+      position: startLocation,
+      infoWindow: InfoWindow(
         title: 'Starting Point ',
         snippet: 'Start Marker',
       ),
       icon: await BitmapDescriptor.fromAssetImage(ImageConfiguration(size: Size(100, 100)), 'assets/icons/location-01.png') //Icon for Marker
     ));
 
-    markers.add(Marker( //add distination location marker
+    markers.add(Marker(
       markerId: MarkerId(endLocation.toString()),
-      position: endLocation, //position of marker
-      infoWindow: InfoWindow( //popup info
+      position: endLocation,
+      infoWindow: InfoWindow(
         title: 'Destination Point ',
         snippet: 'Destination Marker',
       ),
       icon: await BitmapDescriptor.fromAssetImage(ImageConfiguration(size: Size(100, 100)),'assets/icons/location-02.png') //Icon for Marker
     ));
   }
+
   getDirections() async {
     List<LatLng> polylineCoordinates = [];
 
@@ -393,39 +417,53 @@ class MapTemplate2 extends StatelessWidget implements MyCallback,MyCallback2,Tes
 
   }
 
+  reload() async{
+     animateCamera(position);
+     print("mapReload ");
+   final GoogleMapController controller = await _controller.future;
+   controller.setMapStyle("[]");
+
+  
+    //mapController!.setMapStyle("[]");
+  }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: SizeConfig.screenHeight!-double.parse(map['reducedHeight'].toString()),
+      height: SizeConfig.screenHeight!-double.parse(widget.map['reducedHeight'].toString()),
       width: SizeConfig.screenWidth,
       child: Stack(
         alignment: Alignment.center,
         children: [
           Obx(
-            ()=> GoogleMap( //Map widget from google_maps_flutter package
-              zoomGesturesEnabled: true, //enable Zoom in, out on map
+            ()=> GoogleMap(
+              zoomGesturesEnabled: true,
               // mapToolbarEnabled: false,
               // myLocationEnabled: false,
               // myLocationButtonEnabled: false,
               markers: Set<Marker>.of(markers.value),
-              initialCameraPosition: CameraPosition( //innital position in map
-                target: startLocation, //initial position
-                zoom: 14.0, //initial zoom level
+              
+              initialCameraPosition: CameraPosition(
+                target: startLocation,
+                zoom: 14.0,
               ),
-              mapType: MapType.normal, //map t
-              //polylines: Set<Polyline>.of(polylines.values),// ype
-              onMapCreated: (controller) { //method called when map is created
-             //   setState(() {
-                  mapController = controller;
-                  animateCamera(position);
-             //   });
+              mapType: MapType.normal,
+              //polylines: Set<Polyline>.of(polylines.values),
+              onMapCreated: (controller) {
+                _controller.complete(controller);
+               /* setState(() {
+                  log("map created $controller");
+                 // mapController = controller;
+
+                  print("map Assignmed ${mapController}");
+                 // animateCamera(position);
+                });*/
               },
               onCameraMove: (CameraPosition cameraPositiona) {
-              //  cameraPosition = cameraPositiona; //when map is dragging
+              //  cameraPosition = cameraPositiona;
               },
               onCameraIdle: () async {
-              //  onCameraChange();//when map drag stops
+              //  onCameraChange();
 
               },
               onTap: (latlon){
@@ -451,7 +489,7 @@ class MapTemplate2 extends StatelessWidget implements MyCallback,MyCallback2,Tes
 
   @override
   getType() {
-    return map['type'];
+    return widget.map['type'];
   }
 
   @override
@@ -514,4 +552,104 @@ class MapTemplate2 extends StatelessWidget implements MyCallback,MyCallback2,Tes
     )
     );
   }
+}
+
+GlobalKey<MapSampleState> mapKey=GlobalKey();
+
+class MapSample extends StatefulWidget {
+  Map map;
+  MyCallback myCallback;
+  List widgets=[];
+  MapSample({Key? key,required this.map,required this.myCallback}) : super(key: key);
+
+/*  final MapSampleState mapSampleState=MapSampleState();
+  @override
+  MapSampleState createState() => mapSampleState;*/
+  @override
+  State<MapSample> createState() => MapSampleState();
+  getType(){
+    return map['type'];
+  }
+  reload(){
+    mapKey.currentState!.getPos();
+    // print("mainRElaod");
+    // MapSampleState()._goToTheLake();
+  //  _goToTheLake();
+  }
+}
+
+class MapSampleState extends State<MapSample> {
+  Completer<GoogleMapController> _controller = Completer();
+  Position? position;
+  static final CameraPosition _kGooglePlex = CameraPosition(
+    target: LatLng(37.42796133580664, -122.085749655962),
+    zoom: 14.4746,
+  );
+
+  static final CameraPosition _kLake = CameraPosition(
+      bearing: 192.8334901395799,
+      target: LatLng(37.43296265331129, -122.08832357078792),
+      tilt: 59.440717697143555,
+      zoom: 19.151926040649414);
+
+
+  @override
+  void initState() {
+    print("initMap");
+    getPos();
+    super.initState();
+  }
+
+  @override
+  didChangeDependencies(){
+    print("didChangeMap");
+  }
+
+
+  getPos() async{
+    position=await determinePosition();
+    animateCamera(position);
+  }
+
+  animateCamera(Position? position ) async{
+    final GoogleMapController controller = await _controller.future;
+    controller.setMapStyle("[]");
+    controller.animateCamera(CameraUpdate.newCameraPosition(
+        CameraPosition(
+            zoom: 12.4746,
+            target: LatLng(position!.latitude, position.longitude)
+        )
+    ));
+    /* if(position!=null && mapController!=null){
+      mapController!.animateCamera(CameraUpdate.newCameraPosition(
+          CameraPosition(
+              zoom: 12.4746,
+              target: LatLng(position.latitude, position.longitude)
+          )
+      ));
+      onCameraChange();
+    } */
+  }
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Stack(
+        children: [
+          GoogleMap(
+            mapType: MapType.normal,
+            initialCameraPosition: _kGooglePlex,
+            onMapCreated: (GoogleMapController controller) {
+              _controller.complete(controller);
+            },
+          ),
+
+        ],
+      ),
+    );
+  }
+
+
+
 }

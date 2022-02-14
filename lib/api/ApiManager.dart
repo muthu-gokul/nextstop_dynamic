@@ -43,3 +43,10 @@ class ApiManager{
     }
   }
 }
+/*
+http.post(url,
+body: json.encode(body),
+headers: { 'Content-type': 'application/json',
+'Accept': 'application/json',
+"Authorization": "Some token"},
+encoding: encoding)*/

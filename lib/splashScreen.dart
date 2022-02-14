@@ -1,4 +1,5 @@
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:nextstop_dynamic/main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -40,10 +41,24 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
 
+  localNav() async{
+     await initializeFirebase();
+     FirebaseMessaging.instance.getToken().then((value){
+       print("FirebaseMessaging.instance.getAPNSTokenLocal;  $value");
+     });
+    //  Get.off(HomePageDriver2());
+      Get.off(HomePage());
+  }
 
   @override
   void initState() {
-    checkLogin();
+    if(fromUrl){
+      checkLogin();
+    }
+    else{
+      localNav();
+    }
+    
 
 
     super.initState();

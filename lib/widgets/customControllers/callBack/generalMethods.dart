@@ -240,8 +240,8 @@ getPage(String page){
       return HomePageDriver2();
     case 'ManageDocuments':
       return ManageDocuments();
-
   }
+  return Container();
 }
 
 //GETX NAVIGATION

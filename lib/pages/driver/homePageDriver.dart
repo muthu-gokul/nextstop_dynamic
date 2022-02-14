@@ -6,6 +6,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:nextstop_dynamic/notifier/myNotification.dart';
 import 'package:nextstop_dynamic/pages/bookingPage.dart';
 import 'package:nextstop_dynamic/pages/profilePage.dart';
 import 'package:nextstop_dynamic/styles/style.dart';
@@ -21,10 +22,10 @@ import '../dynamicPageInitiater.dart';
 import 'driverMyTrips.dart';
 import 'driverTripHomePage.dart';
 import 'profilePageDriver.dart';
-
+/*
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   print("Handling a background message: ${message}");
-}
+}*/
 var selectedPage=0.obs;
 
 
@@ -33,7 +34,7 @@ class HomePageDriver2 extends StatefulWidget  {
   State<HomePageDriver2> createState() => _HomePageDriver2State();
 }
 
-class _HomePageDriver2State extends State<HomePageDriver2> implements MyCallback{
+class _HomePageDriver2State extends State<HomePageDriver2> with WidgetsBindingObserver implements MyCallback,MyNotificationCallBack{
   GlobalKey <ScaffoldState> scaffoldKey=new GlobalKey<ScaffoldState>();
 
   var widgets=[].obs;
@@ -46,6 +47,8 @@ class _HomePageDriver2State extends State<HomePageDriver2> implements MyCallback
 
   String guid="";
 
+  late MyNotification myNotification;
+
   // HomePageDriver2(){
   //   print("constructor");
   //   registerNotification();
@@ -55,10 +58,33 @@ class _HomePageDriver2State extends State<HomePageDriver2> implements MyCallback
   // }
   @override
   initState(){
-      registerNotification();
-      checkForInitialMessage();
+      print("driver initstate");
+      WidgetsBinding.instance?.addObserver(this);
+      myNotification=MyNotification();
+      myNotification.setMyCallBack(this);
+      myNotification.registerNotification();
+      myNotification.checkForInitialMessage();
       parseJson();
       driverTripHomePage=DriverTripHomePage(myCallback: this);
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if(state==AppLifecycleState.resumed){
+      print("resumed Driver");
+      if(selectedPage.value==1){
+        driverTripHomePage.reloadMap();
+      }
+    }
+    else if(state==AppLifecycleState.paused){
+      print("paused Driver");
+    }
+    else if(state==AppLifecycleState.detached){
+      print("dettach Driver");
+    }
+    else if(state==AppLifecycleState.inactive){
+      print("inactive Driver");
+    }
   }
 
 
@@ -80,53 +106,7 @@ class _HomePageDriver2State extends State<HomePageDriver2> implements MyCallback
     //log("${widgets}");
   }
 
-  late final FirebaseMessaging _messaging;
-
-  void registerNotification() async {
-    await Firebase.initializeApp();
-    _messaging = FirebaseMessaging.instance;
-    FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
-    NotificationSettings settings = await _messaging.requestPermission(
-      alert: true,
-      badge: true,
-      provisional: true,
-      sound: true,
-    );
-    await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
-      alert: true,
-      badge: true,
-      sound: true,
-    );
-
-    if (settings.authorizationStatus == AuthorizationStatus.authorized) {
-      print('User granted permission');
-
-      FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-        print('Message title Open: ${message.notification?.title}, body: ${message.notification?.body}, data: ${message.data['valueArray'].runtimeType} ${jsonDecode(message.data['valueArray'])}');
-
-        onNotificationReceived(jsonDecode(message.data['valueArray']));
-      });
-
-      FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
-        print('onMessage Click OpenedApp title: ${message.notification?.title}, body: ${message.notification?.body}, data: ${message.data}');
-        onNotificationReceived(jsonDecode(message.data['valueArray']));
-      });
-
-    } else {
-      print('User declined or has not accepted permission');
-    }
-  }
-
-  // For handling notification when the app is in terminated state
-  checkForInitialMessage() async {
-    await Firebase.initializeApp();
-    RemoteMessage? initialMessage = await FirebaseMessaging.instance.getInitialMessage();
-
-    if (initialMessage != null) {
-      onNotificationReceived(jsonDecode(initialMessage.data['valueArray']));
-    }
-  }
-
+  @override
   onNotificationReceived(List valueArray){
     selectedPage.value=1;
     driverTripHomePage.onNotificationReceived(valueArray);

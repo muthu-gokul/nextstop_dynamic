@@ -20,7 +20,11 @@ class DriverTripHomePage extends StatelessWidget with Common implements MyCallba
   late DynamicPageInitiater dynamicPageInitiater;
   @override
   Widget build(BuildContext context) {
-    return dynamicPageInitiater;
+    return Stack(
+      children: [
+        dynamicPageInitiater,
+      ],
+    );
   }
 
   @override
@@ -44,42 +48,6 @@ class DriverTripHomePage extends StatelessWidget with Common implements MyCallba
         myCallback: this
     );
 
-
-/*    if(clickEvent!=null){
-      if(clickEvent.containsKey(General.eventName)){
-        if(clickEvent[General.eventName]==General.Navigation){
-          General().navigation(clickEvent[General.navigateToPage],clickEvent[General.typeOfNavigation]);
-        }
-        else if(clickEvent[General.eventName]==General.openDrawer){
-          myCallback.ontap(clickEvent);
-        }
-        else if(clickEvent[General.eventName]=="AcceptRide"){
-          log("accept Ride $clickEvent");
-          var res=formSubmitMethodTFE(General.driverTripHomePageIdentifier, dynamicPageInitiater.dynamicPageInitiaterState.widgets, clickEvent, dynamicPageInitiater.dynamicPageInitiaterState.queryString);
-          log("accept Ride Result $res");
-          if(res!=null){
-            var apiRes=General().checkApiCall(clickEvent, res, General.driverTripHomePageIdentifier);
-            log("accept Ride apiRes $apiRes");
-            if(apiRes.toString().isNotEmpty){
-              dynamicPageInitiater.dynamicPageInitiaterState.initSS();
-            }
-          }
-          //findUpdateByKeyWidgetType(clickEvent['changeValues'], dynamicPageInitiater.dynamicPageInitiaterState.widgets);
-        }
-        else if(clickEvent[General.eventName]=="RejectRide"){
-          //log("accept Ride $clickEvent");
-          var res=formSubmitMethodTFE(General.driverTripHomePageIdentifier, dynamicPageInitiater.dynamicPageInitiaterState.widgets, clickEvent, dynamicPageInitiater.dynamicPageInitiaterState.queryString);
-          //log("accept Ride Result $res");
-          if(res!=null){
-            var apiRes=General().checkApiCall(clickEvent, res, General.driverTripHomePageIdentifier);
-            if(apiRes.toString().isNotEmpty){
-              dynamicPageInitiater.dynamicPageInitiaterState.initSS();
-            }
-          }
-          //findUpdateByKeyWidgetType(clickEvent['changeValues'], dynamicPageInitiater.dynamicPageInitiaterState.widgets);
-        }
-      }
-    }*/
   }
 
   @override
@@ -110,5 +78,12 @@ class DriverTripHomePage extends StatelessWidget with Common implements MyCallba
 
   reload(){
     dynamicPageInitiater.dynamicPageInitiaterState.initSS();
+    reloadMap();
+  }
+  reloadMap(){
+    print("Relaod MAp");
+    findWidgetByKey(dynamicPageInitiater.dynamicPageInitiaterState.widgets,{"key":"map01"},(wid){
+      wid.reload();
+    });
   }
 }
