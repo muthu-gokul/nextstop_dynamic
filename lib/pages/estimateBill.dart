@@ -1,5 +1,7 @@
+import 'dart:convert';
 import 'dart:developer';
 
+import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nextstop_dynamic/notifier/getUiNotifier.dart';
@@ -12,6 +14,7 @@ import 'package:nextstop_dynamic/widgets/customControllers/callBack/myCallback.d
 import '../constants.dart';
 import 'dynamicPageInitiater.dart';
 import 'homePage.dart';
+import 'scheduleRide.dart';
 
 class EstimateBillPage extends StatelessWidget with Common implements MyCallback{
   List<dynamic> fromQueryString;
@@ -22,11 +25,26 @@ class EstimateBillPage extends StatelessWidget with Common implements MyCallback
       fromQueryString: fromQueryString,
       myCallback: this,
     );
+    scheduleRidePage=ScheduleRidePage(myCallback: this);
   }
   late DynamicPageInitiater dynamicPageInitiater;
+  late ScheduleRidePage scheduleRidePage;
+  var isScheduleRide=false.obs;
   @override
   Widget build(BuildContext context) {
-    return dynamicPageInitiater ;
+    return Obx(
+      ()=> IndexedStack(
+        index: isScheduleRide.value?1:0,
+        children: [
+          dynamicPageInitiater,
+          scheduleRidePage
+          /*Obx(()=>Visibility(
+              visible: isScheduleRide.value,
+              child: ScheduleRidePage(myCallback: this)
+          ))*/
+        ],
+      ),
+    ) ;
   }
 
   @override
@@ -53,11 +71,16 @@ class EstimateBillPage extends StatelessWidget with Common implements MyCallback
   }
 
   @override
-  formSubmitEstimateBill(guid, List widgets, Map clickEvent, List queryString, {MyCallback? myCallback}) {
+  formSubmitEstimateBill(guid, List widgets, Map clickEvent, List queryString,List scheduleRideList ,{MyCallback? myCallback}) {
     print("EstimateBillPage formSubmitEstimateBill $guid $widgets");
     var res = General().formSubmit(guid, widgets,clickEvent,queryString,myCallback: this);
     log("ress $res");
     if(res!=null){
+      if(scheduleRideList.isNotEmpty){
+        var parsed=jsonDecode(res);
+        parsed['FieldArray'].addAll(scheduleRideList);
+        res=jsonEncode(parsed);
+      }
       if(fromUrl){
         GetUiNotifier().postUiJson(LOGINUSERID,guid, res, clickEvent).then((value){
           log("sp value-- $value");
@@ -138,7 +161,36 @@ class EstimateBillPage extends StatelessWidget with Common implements MyCallback
           ],
         ),));*/
       }
+    }
+  }
+
+  @override
+  checkAndNavigate(Map clickEvent) {
+    log("Estimate Bill Check And Navigate $clickEvent" );
+    if(clickEvent[General.navigateToPage]=='ScheduleRide'){
+      isScheduleRide.value=true;
+     // getXNavigation(clickEvent[General.typeOfNavigation], scheduleRidePage);
+    }
+    else if(clickEvent[General.typeOfNavigation]==3&&isScheduleRide.value){
+      isScheduleRide.value=false;
+    }
+    else {
+      Common().checkAndNavigate(clickEvent);
+    }
+  }
+
+  @override
+  formSubmitScheduledRide(guid, List widgets, Map clickEvent, List queryString) {
+    log("schedule foem ");
+    var res=Common().formSubmitMethodTFE(
+        scheduleRidePage.dynamicPageInitiater.pageIdentifier,
+        scheduleRidePage.dynamicPageInitiater.dynamicPageInitiaterState.widgets,
+        clickEvent,
+        scheduleRidePage.dynamicPageInitiater.dynamicPageInitiaterState.queryString
+    );
+    if(res!=null){
 
     }
+    log("sf res $res $queryString $guid $widgets");
   }
 }

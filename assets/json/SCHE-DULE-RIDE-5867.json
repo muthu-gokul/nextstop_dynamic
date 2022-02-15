@@ -91,8 +91,6 @@
         {
           "orderBy": 1,
           "type": "pickerTemplate",
-          "hasInput": "true",
-          "required": "true",
           "children": [
             {
               "type": "button",
@@ -167,6 +165,9 @@
                   {
                     "type": "text",
                     "value": "Jan 20,2022 / ",
+                    "hasInput": true,
+                    "required": true,
+                    "key": "ScheduledData",
                     "orderBy": 2,
                     "style": {
                       "fontSize": 15,
@@ -177,6 +178,9 @@
                   {
                     "type": "text",
                     "value": "9.33 AM",
+                    "hasInput": true,
+                    "required": true,
+                    "key": "ScheduledTime",
                     "orderBy": 3,
                     "style": {
                       "fontSize": 15,
@@ -198,7 +202,7 @@
           "type": "button",
           "orderBy": 5,
           "clickEvent": {
-            "eventName":"FormSubmit",
+            "eventName":"FormSubmitScheduleRide",
             "navigateToPage":"",
             "typeOfNavigation": 4
           },

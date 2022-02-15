@@ -44,7 +44,10 @@ class Common{
           return formSubmitBookingPage(guid, widgets,clickEvent,queryString,myCallback: myCallback);
         }
         else if(clickEvent[General.eventName]=='FormSubmitEstimateBill'){
-          return formSubmitEstimateBill(guid, widgets,clickEvent,queryString,myCallback: myCallback);
+          return formSubmitEstimateBill(guid, widgets,clickEvent,queryString,[],myCallback: myCallback);
+        }
+        else if(clickEvent[General.eventName]=='FormSubmitScheduleRide'){
+          return formSubmitScheduledRide(guid, widgets, clickEvent, queryString);
         }
         else if(clickEvent[General.eventName]==General.changeValues){
           findUpdateByKeyWidgetType(clickEvent[General.changeValuesArray], widgets);
@@ -77,7 +80,7 @@ class Common{
 
   locationClick(Map clickEvent){}
   formSubmitBookingPage(dynamic guid,List<dynamic> widgets,Map clickEvent,List queryString,{MyCallback? myCallback}){}
-  formSubmitEstimateBill(dynamic guid,List<dynamic> widgets,Map clickEvent,List queryString,{MyCallback? myCallback}){}
+  formSubmitEstimateBill(dynamic guid,List<dynamic> widgets,Map clickEvent,List queryString,List scheduleRideList,{MyCallback? myCallback}){}
 
   formDataJsonApiCall(dynamic guid,List<dynamic> widgets,Map clickEvent,List queryString,{MyCallback? myCallback}) async {
     var res=formSubmitMethodTFE(guid, widgets, clickEvent, queryString);
@@ -107,4 +110,6 @@ class Common{
     throw 'Could not open the map.';
     }
   }
+
+  formSubmitScheduledRide(dynamic guid,List<dynamic> widgets,Map clickEvent,List queryString){}
 }
