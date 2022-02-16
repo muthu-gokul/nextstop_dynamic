@@ -2,6 +2,12 @@
   "Guid": "ESTI-MATE-BILL-5698",
   "alignment": "topCenter",
   "mainAxisAlignment": "center",
+  "queryString": [
+    {
+      "key": "totalFare",
+      "value": 0.0
+    }
+  ],
   "Widgets": [
     {
       "type":"rowController",

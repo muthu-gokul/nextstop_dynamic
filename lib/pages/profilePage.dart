@@ -48,4 +48,10 @@ class ProfilePage extends StatelessWidget with Common implements MyCallback{
   openDrawer(MyCallback mc, Map clickEvent) {
     myCallback.ontap(clickEvent);
   }
+
+  @override
+  getCurrentPageWidgets() {
+    // TODO: implement getCurrentPageWidgets
+    throw UnimplementedError();
+  }
 }

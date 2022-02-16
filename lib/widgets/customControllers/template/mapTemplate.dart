@@ -188,6 +188,9 @@ class MapTemplate extends StatelessWidget implements MyCallback,MyCallback2,Test
 
   @override
   onCameraChange() async {
+    if(cameraPosition==null){
+      return;
+    }
     List<Placemark> placemarks = await placemarkFromCoordinates(cameraPosition!.target.latitude, cameraPosition!.target.longitude);
 /*    location = placemarks.first.name.toString() + ", " +  placemarks.first.thoroughfare.toString()+", "+placemarks.first.subLocality.toString()+", "
         +placemarks.first.administrativeArea.toString();*/
@@ -265,6 +268,12 @@ class MapTemplate extends StatelessWidget implements MyCallback,MyCallback2,Test
             icon:  await BitmapDescriptor.fromAssetImage(ImageConfiguration(size: Size(100, 100)), isPickUpLocation.value?'assets/icons/location-01.png':'assets/icons/location-02.png')
     )
     );
+  }
+
+  @override
+  getCurrentPageWidgets() {
+    // TODO: implement getCurrentPageWidgets
+    throw UnimplementedError();
   }
 }
 
@@ -551,6 +560,12 @@ Completer<GoogleMapController> _controller = Completer();
             icon:  await BitmapDescriptor.fromAssetImage(ImageConfiguration(size: Size(100, 100)), isPickUpLocation.value?'assets/icons/location-01.png':'assets/icons/location-02.png')
     )
     );
+  }
+
+  @override
+  getCurrentPageWidgets() {
+    // TODO: implement getCurrentPageWidgets
+    throw UnimplementedError();
   }
 }
 

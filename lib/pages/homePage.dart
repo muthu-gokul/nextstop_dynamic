@@ -161,6 +161,12 @@ class _HomePageState extends State<HomePage> implements MyCallback{
     // TODO: implement onMapLocationChanged
   }
 
+  @override
+  getCurrentPageWidgets() {
+    // TODO: implement getCurrentPageWidgets
+    throw UnimplementedError();
+  }
+
 }
 
 

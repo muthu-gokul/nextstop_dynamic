@@ -89,6 +89,12 @@ class RegistrationPage extends StatelessWidget with General implements MyCallbac
       }
     }
   }
+
+  @override
+  getCurrentPageWidgets() {
+    // TODO: implement getCurrentPageWidgets
+    throw UnimplementedError();
+  }
 }
 
 /*{

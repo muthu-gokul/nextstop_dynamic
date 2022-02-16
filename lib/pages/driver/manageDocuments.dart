@@ -45,4 +45,10 @@ class ManageDocuments extends StatelessWidget implements MyCallback{
       }
     }
   }
+
+  @override
+  getCurrentPageWidgets() {
+    // TODO: implement getCurrentPageWidgets
+    throw UnimplementedError();
+  }
 }

@@ -100,7 +100,7 @@ class DynamicPageInitiaterState extends State<DynamicPageInitiater> implements M
     if(fromUrl){
       GetUiNotifier().getUiJson(widget.pageIdentifier,LOGINUSERID).then((value){
         log("value $value");
-        if(value!="null"){
+        if(value!="null" && value.toString().isNotEmpty){
           var parsed=jsonDecode(value);
           //  print(parsed['table'][0]['jsonData']);
           parsedJson=jsonDecode(parsed['Table'][0]['PageJson']);
@@ -383,6 +383,12 @@ class DynamicPageInitiaterState extends State<DynamicPageInitiater> implements M
       });
     }
   }
+
+  @override
+  getCurrentPageWidgets() {
+    // TODO: implement getCurrentPageWidgets
+    throw UnimplementedError();
+  }
 }
 
 /*
@@ -447,16 +453,26 @@ func1ByKey(dynamic widget,Map? clickEvent,Function(dynamic widget) returnFunctio
       }
       else{
         var aa= func1ByKey(widget.widget,clickEvent,returnFunction);
+       // log("aa 450 $aa");
         if(aa!=null){
+          returnFunction(aa);
+          return;
           return aa;
         }
       }
     }
     else{
-      var aa= func1ByKey(widget.widget,clickEvent,returnFunction);
-      if(aa!=null){
-        return aa;
+      try{
+        var aa= func1ByKey(widget.widget,clickEvent,returnFunction);
+        if(aa!=null){
+          returnFunction(aa);
+          return;
+          return aa;
+        }
+      }catch(e){
+        return;
       }
+
     }
 
   }
@@ -479,6 +495,8 @@ func1ByKey(dynamic widget,Map? clickEvent,Function(dynamic widget) returnFunctio
       else{
         var aa= func1ByKey(widget.suffix,clickEvent,returnFunction);
         if(aa!=null){
+          returnFunction(aa);
+          return;
           return aa;
         }
       }
@@ -486,6 +504,8 @@ func1ByKey(dynamic widget,Map? clickEvent,Function(dynamic widget) returnFunctio
     else{
       var aa= func1ByKey(widget.suffix,clickEvent,returnFunction);
       if(aa!=null){
+        returnFunction(aa);
+        return;
         return aa;
       }
     }
@@ -495,6 +515,7 @@ func1ByKey(dynamic widget,Map? clickEvent,Function(dynamic widget) returnFunctio
     // log("else3 ${widget.map}");
     if(widget.map.containsKey('key')){
       if(widget.map['key']==clickEvent!['key']){
+
         return widget;
       }
      // log("else2 ${widget.getType()}  has key ${widget.map['key']}    ${clickEvent['key']}");
@@ -527,6 +548,7 @@ updateByWidgetType(String widgetType,{var widget,Map? clickEvent}){
      // log("TEXT $widgetType $widget $clickEvent");
       widget.text.value=clickEvent!['value'];
       widget.map['value']=clickEvent['value'];
+
     }
     break;
     case 'hiddenController':{

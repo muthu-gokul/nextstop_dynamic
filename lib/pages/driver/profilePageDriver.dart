@@ -79,4 +79,10 @@ class ProfilePageDriver extends StatelessWidget implements MyCallback{
       }
     }
   }
+
+  @override
+  getCurrentPageWidgets() {
+    // TODO: implement getCurrentPageWidgets
+    throw UnimplementedError();
+  }
 }

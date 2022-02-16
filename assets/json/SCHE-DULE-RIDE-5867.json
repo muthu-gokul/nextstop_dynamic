@@ -73,6 +73,7 @@
               "value": "28282",
               "orderBy": 2,
               "onlyText": true,
+              "key": "totalFare",
               "style": {
                 "fontSize": 30,
                 "fontFamily": "RB",
@@ -115,6 +116,7 @@
                   {
                     "type": "text",
                     "value": "Select Time",
+                    "alignment": "center",
                     "orderBy": 2,
                     "style": {
                       "color": "primaryTextColor1",
@@ -154,6 +156,7 @@
               "height": 50,
               "width": 1,
               "key": 3,
+              "alignment": "center",
               "child": {
                 "type": "rowController",
                 "children": [
@@ -165,6 +168,7 @@
                   {
                     "type": "text",
                     "value": "Jan 20,2022 / ",
+                    "alignment": "center",
                     "hasInput": true,
                     "required": true,
                     "key": "ScheduledData",
@@ -180,6 +184,7 @@
                     "value": "9.33 AM",
                     "hasInput": true,
                     "required": true,
+                    "alignment": "center",
                     "key": "ScheduledTime",
                     "orderBy": 3,
                     "style": {
@@ -214,6 +219,7 @@
           "child":{
             "type": "text",
             "value": "Confirm Ride",
+            "alignment": "center",
             "key": 1,
             "style": {
               "color": "#ffffff",

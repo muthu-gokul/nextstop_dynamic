@@ -114,6 +114,12 @@ class LoginPage extends StatelessWidget with General,Common  implements MyCallba
       }
     }
   }
+
+  @override
+  getCurrentPageWidgets() {
+    // TODO: implement getCurrentPageWidgets
+    throw UnimplementedError();
+  }
 /*  @override
   void formSubmitMethodTFE() {
     log("form Login Override");

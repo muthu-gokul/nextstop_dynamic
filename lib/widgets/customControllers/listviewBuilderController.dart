@@ -10,13 +10,10 @@ class ListViewBuilderController extends StatelessWidget implements MyCallback2{
   Map map;
   MyCallback myCallback;
   List widgets=[];
-  Widget? tempChild;
+
   ListViewBuilderController({required this.map,required this.myCallback})
   {
 
-    if(map.containsKey('value')){
-      tempChild=map.containsKey('child')?getChild(map['child'],myCallback: myCallback):Container();
-    }
     List values=map['value'];
     values.forEach((element) {
       // log("ele $element");
@@ -56,6 +53,7 @@ class ListViewBuilderController extends StatelessWidget implements MyCallback2{
       itemCount: widgets.length,
       shrinkWrap: true,
       physics: map.containsKey('physics')?parseScrollPhysics(map['physics']):NeverScrollableScrollPhysics(),
+      scrollDirection: map.containsKey('direction')?parseAxis(map['direction']):Axis.vertical,
       itemBuilder: (ctx,i){
         return widgets[i];
       },

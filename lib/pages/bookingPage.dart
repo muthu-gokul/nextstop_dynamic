@@ -174,6 +174,12 @@ class BookingPage extends StatelessWidget with Common  implements MyCallback{
     }
   }
 
+  @override
+  getCurrentPageWidgets() {
+    // TODO: implement getCurrentPageWidgets
+    throw UnimplementedError();
+  }
+
 
 
 

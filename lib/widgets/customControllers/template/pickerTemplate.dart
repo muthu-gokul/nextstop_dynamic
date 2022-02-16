@@ -8,7 +8,7 @@ import 'package:nextstop_dynamic/styles/style.dart';
 import 'package:nextstop_dynamic/widgets/customControllers/callBack/myCallback.dart';
 import 'package:flutter_date_pickers/flutter_date_pickers.dart' as dp;
 import 'package:flutter_date_pickers/flutter_date_pickers.dart';
-class PickerTemplate extends StatelessWidget implements MyCallback{
+class PickerTemplate extends StatelessWidget implements MyCallback,MyCallback2{
   Map map;
   MyCallback myCallback;
   List widgets=[];
@@ -129,5 +129,28 @@ class PickerTemplate extends StatelessWidget implements MyCallback{
   @override
   void onMapLocationChanged(Map map) {
     // TODO: implement onMapLocationChanged
+  }
+
+  @override
+  getType() {
+    return map['type'];
+  }
+
+  @override
+  getValue() {
+    // TODO: implement getValue
+    throw UnimplementedError();
+  }
+
+  @override
+  validate() {
+    // TODO: implement validate
+    throw UnimplementedError();
+  }
+
+  @override
+  getCurrentPageWidgets() {
+    // TODO: implement getCurrentPageWidgets
+    throw UnimplementedError();
   }
 }

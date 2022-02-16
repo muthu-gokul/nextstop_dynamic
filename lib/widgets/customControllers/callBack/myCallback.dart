@@ -16,6 +16,7 @@ import '../hiddenController.dart';
 import '../imageController.dart';
 import '../inputBoxController.dart';
 import '../listviewBuilderController.dart';
+import '../pageviewController.dart';
 import '../positionController.dart';
 import '../profiePicController.dart';
 import '../registrationPageController.dart';
@@ -23,6 +24,7 @@ import '../rowController.dart';
 import '../sizedBoxController.dart';
 import '../spacerController.dart';
 import '../stackController.dart';
+import '../tabbarController.dart';
 import '../templateController.dart';
 import '../textController.dart';
 import '../userRoleController.dart';
@@ -32,6 +34,7 @@ abstract class MyCallback {
   void ontap(Map? clickEvent);
   void onTextChanged(String text, Map map,);
   void onMapLocationChanged(Map map);
+  getCurrentPageWidgets();
   //void ontap2(Map? clickEvent);
 }
 
@@ -43,6 +46,11 @@ abstract class MyCallback2 {
 abstract class TestCallback{
   onCameraChange();
   onMapTap(LatLng latLng);
+}
+
+abstract class TabPageViewCallback{
+  onChanged(int index);
+  changeControllerIndex(int index);
 }
 
 
@@ -128,6 +136,12 @@ List<dynamic> getWidgets(List parsed,MyCallback myCallback){
     else if(element['type']=='visibilityController'){
       widgets.add(VisibilityController(map: element, ontap: myCallback,));
     }
+    else if(element['type']=='tabbarController'){
+      widgets.add(TabbarController(map: element, myCallback: myCallback,));
+    }
+    else if(element['type']=='pageViewController'){
+      widgets.add(PageViewController(map: element, myCallback: myCallback,));
+    }
     else if(element['type']=='icon'){
       widgets.add( parseIcon(element));
     }
@@ -205,6 +219,12 @@ Widget getChild(Map map, {MyCallback? myCallback}){
   }
   else if(map['type']=='userRoleController'){
     widget=  UserRoleController(map: map, ontap: myCallback!,);
+  }
+  else if(map['type']=='tabbarController'){
+    widget=  TabbarController(map: map, myCallback: myCallback!,);
+  }
+  else if(map['type']=='pageViewController'){
+    widget=  PageViewController(map: map, myCallback: myCallback!,);
   }
   return widget;
 

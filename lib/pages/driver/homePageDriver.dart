@@ -212,5 +212,11 @@ class _HomePageDriver2State extends State<HomePageDriver2> with WidgetsBindingOb
   void onMapLocationChanged(Map map) {
     // TODO: implement onMapLocationChanged
   }
+
+  @override
+  getCurrentPageWidgets() {
+    // TODO: implement getCurrentPageWidgets
+    throw UnimplementedError();
+  }
 }
 

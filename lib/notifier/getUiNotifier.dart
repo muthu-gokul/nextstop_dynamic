@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nextstop_dynamic/widgets/customControllers/callBack/general.dart';
 import '../api/ApiManager.dart';
@@ -11,7 +12,7 @@ import '../model/parameterMode.dart';
 
 import '../constants.dart';
 
-
+import 'package:get/get.dart';
 
 
 class GetUiNotifier {
@@ -35,7 +36,17 @@ class GetUiNotifier {
 
 
       //  log("$value");
-        val=value[1];
+        if(value[0]){
+          val=value[1];
+        }
+        else{
+          Get.dialog(  CupertinoAlertDialog(
+            title: Icon(Icons.error_outline,color: Colors.red,size: 50,),
+            content: Text("${value[1]}",
+              style: TextStyle(fontSize: 18),),
+          ));
+        }
+
         /*if(value!="null"){
         //  var parsed=json.decode(value);
 

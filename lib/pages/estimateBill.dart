@@ -81,6 +81,7 @@ class EstimateBillPage extends StatelessWidget with Common implements MyCallback
         parsed['FieldArray'].addAll(scheduleRideList);
         res=jsonEncode(parsed);
       }
+      log("sch res $res");
       if(fromUrl){
         GetUiNotifier().postUiJson(LOGINUSERID,guid, res, clickEvent).then((value){
           log("sp value-- $value");
@@ -169,6 +170,14 @@ class EstimateBillPage extends StatelessWidget with Common implements MyCallback
     log("Estimate Bill Check And Navigate $clickEvent" );
     if(clickEvent[General.navigateToPage]=='ScheduleRide'){
       isScheduleRide.value=true;
+      var res= formSubmitMethodTFE(General.estimateBillPageIdentifier, dynamicPageInitiater.dynamicPageInitiaterState.widgets, clickEvent, []);
+      if(res!=null){
+        Map resMap=jsonDecode(res);
+        List qs=parseQueryString(resMap['FieldArray'],dynamicPageInitiater.dynamicPageInitiaterState.queryString);
+        scheduleRidePage.dynamicPageInitiater.dynamicPageInitiaterState.reloadValueArray(qs);
+        log("qss $qs");
+      }
+
      // getXNavigation(clickEvent[General.typeOfNavigation], scheduleRidePage);
     }
     else if(clickEvent[General.typeOfNavigation]==3&&isScheduleRide.value){
@@ -189,8 +198,16 @@ class EstimateBillPage extends StatelessWidget with Common implements MyCallback
         scheduleRidePage.dynamicPageInitiater.dynamicPageInitiaterState.queryString
     );
     if(res!=null){
-
+      isScheduleRide.value=false;
+      var parsed=jsonDecode(res);
+      formSubmitEstimateBill(guid, widgets, clickEvent, queryString, parsed['FieldArray']);
     }
-    log("sf res $res $queryString $guid $widgets");
+    log("sf res $res ");
+  }
+
+  @override
+  getCurrentPageWidgets() {
+    // TODO: implement getCurrentPageWidgets
+    throw UnimplementedError();
   }
 }
