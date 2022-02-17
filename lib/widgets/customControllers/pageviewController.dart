@@ -9,6 +9,9 @@ class PageViewController extends StatelessWidget implements MyCallback2,TabPageV
   Map map;
   MyCallback myCallback;
   late PageController pageController;
+
+  var fromTab=false.obs;
+
   PageViewController({required this.map,required this.myCallback}){
     List values=map['children'];
     //tabController=GetxTabController(values.length);
@@ -22,8 +25,10 @@ class PageViewController extends StatelessWidget implements MyCallback2,TabPageV
       });*/
     });
     pageController=PageController();
+    print("pageView ${widgets.length}");
   }
   List widgets=[];
+
   @override
   Widget build(BuildContext context) {
     return PageView(
@@ -65,13 +70,18 @@ class PageViewController extends StatelessWidget implements MyCallback2,TabPageV
 
   @override
   changeControllerIndex(int index) {
-    pageController.animateToPage(index, duration: Duration(milliseconds: 300), curve: Curves.easeIn);
+    fromTab.value=true;
+    pageController.animateToPage(index, duration: Duration(milliseconds: 300), curve: Curves.easeIn).then((value){
+      fromTab.value=false;
+    });
   }
 
   @override
   onChanged(int index) {
-    findWidgetByKey(myCallback.getCurrentPageWidgets(), {"key":"${map['toFindKey']}"}, (wid){
-      wid.changeControllerIndex(index);
-    });
+    if(!fromTab.value){
+      findWidgetByKey(myCallback.getCurrentPageWidgets(), {"key":"${map['toFindKey']}"}, (wid){
+        wid.changeControllerIndex(index);
+      });
+    }
   }
 }

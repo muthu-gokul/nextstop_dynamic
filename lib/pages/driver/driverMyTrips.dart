@@ -6,14 +6,39 @@ import '../dynamicPageInitiater.dart';
 
 
 
-class DriverMyTrips extends StatelessWidget {
+class DriverMyTrips extends StatelessWidget implements MyCallback{
   MyCallback myCallback;
-  DriverMyTrips({required this.myCallback});
+  DriverMyTrips({required this.myCallback}){
+    dynamicPageInitiater= DynamicPageInitiater(
+      pageIdentifier: General.driverMyTripsPageIdentifier,
+      myCallback: this,
+    );
+  }
+  late DynamicPageInitiater dynamicPageInitiater;
   @override
   Widget build(BuildContext context) {
-    return DynamicPageInitiater(
-      pageIdentifier: General.driverMyTripsPageIdentifier,
-      myCallback: myCallback,
-    );
+    return dynamicPageInitiater;
+  }
+
+  @override
+  getCurrentPageWidgets() {
+    return dynamicPageInitiater.dynamicPageInitiaterState.widgets;
+  }
+
+  @override
+  void onMapLocationChanged(Map map) {
+    // TODO: implement onMapLocationChanged
+  }
+
+  @override
+  void onTextChanged(String text, Map map) {
+    // TODO: implement onTextChanged
+  }
+
+  @override
+  void ontap(Map? clickEvent) {
+    if(clickEvent![General.eventName]==General.openDrawer){
+      myCallback.ontap(clickEvent);
+    }
   }
 }

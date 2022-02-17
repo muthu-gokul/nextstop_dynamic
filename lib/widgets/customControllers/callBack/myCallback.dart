@@ -38,6 +38,10 @@ abstract class MyCallback {
   //void ontap2(Map? clickEvent);
 }
 
+class setMyCallback{
+  setMyCb(MyCallback myCallback){}
+}
+
 abstract class MyCallback2 {
   validate();
   getValue();

@@ -71,7 +71,7 @@ class EstimateBillPage extends StatelessWidget with Common implements MyCallback
   }
 
   @override
-  formSubmitEstimateBill(guid, List widgets, Map clickEvent, List queryString,List scheduleRideList ,{MyCallback? myCallback}) {
+  formSubmitEstimateBill(guid, List widgets, Map clickEvent, List queryString,List scheduleRideList ,{MyCallback? myCallback}) async {
     print("EstimateBillPage formSubmitEstimateBill $guid $widgets");
     var res = General().formSubmit(guid, widgets,clickEvent,queryString,myCallback: this);
     log("ress $res");
@@ -83,7 +83,46 @@ class EstimateBillPage extends StatelessWidget with Common implements MyCallback
       }
       log("sch res $res");
       if(fromUrl){
-        GetUiNotifier().postUiJson(LOGINUSERID,guid, res, clickEvent).then((value){
+        var apiRes=await General().checkApiCall(clickEvent, res, guid);
+        log("apiRes 87 $apiRes");
+        if(apiRes.toString().isNotEmpty){
+          isScheduleRide.value=false;
+          getXNavigation(3, Container());
+          parentCb!.ontap({"eventName":"reload"});
+          Get.defaultDialog(
+              title: "",
+              titleStyle: TextStyle(height: 0.0),
+              middleTextStyle: TextStyle(height: 0.0),
+              middleText: "",
+              content: Column(
+                children: [
+                  Image.asset("assets/icons/sucess.gif",height: 150,),
+                  SizedBox(height: 15,),
+                  Text("Your ride has been booked successfully",style: ts18(primaryTextColor2),textAlign: TextAlign.center,),
+                  SizedBox(height: 15,),
+                  Text("Track your ride details at Your Trips",style: ts15(primaryTextColor3),textAlign: TextAlign.center,),
+                  SizedBox(height: 15,),
+                  GestureDetector(
+                    onTap: (){
+                      Get.back();
+                    },
+                    child: Container(
+                      height: 35,
+                      width: 100,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(25),
+                          color: primaryColor
+                      ),
+                      alignment: Alignment.center,
+                      child: Text("Ok",style: ts15(Colors.white),),
+                    ),
+                  )
+                ],
+              )
+
+          );
+        }
+        /*GetUiNotifier().postUiJson(LOGINUSERID,guid, res, clickEvent).then((value){
           log("sp value-- $value");
           getXNavigation(3, Container());
           parentCb!.ontap({"eventName":"reload"});
@@ -119,7 +158,7 @@ class EstimateBillPage extends StatelessWidget with Common implements MyCallback
               )
 
           );
-        });
+        });*/
       }
       else{
         getXNavigation(3, Container());
@@ -180,7 +219,7 @@ class EstimateBillPage extends StatelessWidget with Common implements MyCallback
 
      // getXNavigation(clickEvent[General.typeOfNavigation], scheduleRidePage);
     }
-    else if(clickEvent[General.typeOfNavigation]==3&&isScheduleRide.value){
+    else if(clickEvent[General.typeOfNavigation]==3 && isScheduleRide.value){
       isScheduleRide.value=false;
     }
     else {
@@ -198,7 +237,6 @@ class EstimateBillPage extends StatelessWidget with Common implements MyCallback
         scheduleRidePage.dynamicPageInitiater.dynamicPageInitiaterState.queryString
     );
     if(res!=null){
-      isScheduleRide.value=false;
       var parsed=jsonDecode(res);
       formSubmitEstimateBill(guid, widgets, clickEvent, queryString, parsed['FieldArray']);
     }

@@ -14,7 +14,8 @@ class ListViewBuilderController extends StatelessWidget implements MyCallback2{
   ListViewBuilderController({required this.map,required this.myCallback})
   {
 
-    List values=map['value'];
+    updateValues(map['value']);
+/*    List values=map['value'];
     values.forEach((element) {
       // log("ele $element");
       widgets.add(map.containsKey('child')?getChild(map['child'],myCallback: myCallback):Container());
@@ -25,10 +26,22 @@ class ListViewBuilderController extends StatelessWidget implements MyCallback2{
           updateByWidgetType(wid.getType(),widget: wid,clickEvent: {"key":"$k","value":"$v"});
         });
       });
+    });*/
+  }
+
+  updateValues(List values){
+    // List values=map['value'];
+    values.forEach((element) {
+      // log("ele $element");
+      widgets.add(map.containsKey('childd')?getChild(map['childd'],myCallback: myCallback):Container());
+      element.forEach((k, v) {
+        // log("key $k $v");
+        func1ByKey(widgets[widgets.length-1], {"key":"$k"}, (wid){
+          // log("found wid $wid ${wid.getType()}");
+          updateByWidgetType(wid.getType(),widget: wid,clickEvent: {"key":"$k","value":"$v"});
+        });
+      });
     });
-
-
-
   }
 
   @override

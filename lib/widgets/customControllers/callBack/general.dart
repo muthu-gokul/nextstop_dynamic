@@ -59,6 +59,7 @@ class General{
   static String estimateBillPageIdentifier="ESTI-MATE-BILL-5698";
   static String scheduleRidePageIdentifier="SCHE-DULE-RIDE-5867";
   static String myTripsPageIdentifier="YOUR-TRIP-6234-5867";
+  //static String myTripsPageIdentifier="yourtrip";
   static String manageDocPageIdentifier="MANA-GEDO-CUME-5455";
   static String driverTripHomePageIdentifier="DRIV-ERTR-IPHO-ME33";
   static String driverMyTripsPageIdentifier="YOUR-TRIP-DRIV-ER89";

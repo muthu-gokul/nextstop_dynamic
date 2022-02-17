@@ -46,8 +46,8 @@ class _SplashScreenState extends State<SplashScreen> {
      FirebaseMessaging.instance.getToken().then((value){
        print("FirebaseMessaging.instance.getAPNSTokenLocal;  $value");
      });
-    //  Get.off(HomePageDriver2());
-      Get.off(HomePage());
+     Get.off(HomePageDriver2());
+    //  Get.off(HomePage());
   }
 
   @override

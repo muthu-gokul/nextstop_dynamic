@@ -77,10 +77,11 @@ class DynamicPageInitiaterState extends State<DynamicPageInitiater> implements M
     }
 
     if(valueArray.isNotEmpty){
-      log("contains valueArray  ${valueArray}");
+      log("contains valueArray  ${valueArray.length}");
       valueArray.forEach((element) {
+        print("element ${element['key']}");
         findWidgetByKey(widgets,{"key":element['key']},(wid){
-          // log("query wid $wid ${wid.getType()}");
+           log("query wid $wid ${wid.getType()}");
           updateByWidgetType(wid.getType(),widget: wid,clickEvent: element);
         });
       });
@@ -446,7 +447,6 @@ func1ByKey(dynamic widget,Map? clickEvent,Function(dynamic widget) returnFunctio
   if(widget.map.containsKey("child")){
    // log("${widget.getType()} ${widget.widget} ${widget.map['key']}");
    // func1ByKey(widget.widget,clickEvent,returnFunction);
-
     if(widget.map.containsKey('key')){
       if(widget.map['key']==clickEvent!['key']){
         return widget;
@@ -477,15 +477,24 @@ func1ByKey(dynamic widget,Map? clickEvent,Function(dynamic widget) returnFunctio
 
   }
   else if(widget.map.containsKey("children")){
-    // log("${widget.getType()}");
-    if(widget.getType()!='userRoleController') {
-   //   log("___ ${widget.getType()} ${widget.widgets}");
-     findWidgetByKey(widget.widgets,clickEvent,returnFunction);
 
+    if(widget.map.containsKey('key')){
+      if(widget.map['key']==clickEvent!['key']){
+        return widget;
+      }
+      else{
+        if(widget.getType()!='userRoleController') {
+          findWidgetByKey(widget.widgets,clickEvent,returnFunction);
+        }
+      }
     }
     else{
-     // log("else ${widget.getType()}");
+      if(widget.getType()!='userRoleController') {
+        findWidgetByKey(widget.widgets,clickEvent,returnFunction);
+      }
     }
+
+
   }
   if(widget.map.containsKey("suffix")){
     if(widget.map.containsKey('key')){
@@ -515,7 +524,6 @@ func1ByKey(dynamic widget,Map? clickEvent,Function(dynamic widget) returnFunctio
     // log("else3 ${widget.map}");
     if(widget.map.containsKey('key')){
       if(widget.map['key']==clickEvent!['key']){
-
         return widget;
       }
      // log("else2 ${widget.getType()}  has key ${widget.map['key']}    ${clickEvent['key']}");
@@ -558,6 +566,11 @@ updateByWidgetType(String widgetType,{var widget,Map? clickEvent}){
     case 'visibilityController':{
       widget.map['isVisible']=clickEvent!['value'];
       widget.isVisible.value=clickEvent['value'];
+    }
+    break;
+    case 'listViewBuilderController':{
+      widget.map['value']=clickEvent!['value'];
+      widget.updateValues(clickEvent['value']);
     }
     break;
     default: {

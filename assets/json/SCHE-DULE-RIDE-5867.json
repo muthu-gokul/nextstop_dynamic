@@ -209,7 +209,8 @@
           "clickEvent": {
             "eventName":"FormSubmitScheduleRide",
             "navigateToPage":"",
-            "typeOfNavigation": 4
+            "typeOfNavigation": 4,
+            "actionType": "Add"
           },
           "key": 11,
           "height":50,
