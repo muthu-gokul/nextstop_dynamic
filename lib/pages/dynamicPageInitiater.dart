@@ -573,6 +573,10 @@ updateByWidgetType(String widgetType,{var widget,Map? clickEvent}){
       widget.updateValues(clickEvent['value']);
     }
     break;
+    case 'button':{
+      widget.map['clickEvent']=clickEvent!['value'];
+    }
+    break;
     default: {
       log("dfault");
     }

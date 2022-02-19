@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:nextstop_dynamic/widgets/customControllers/template/mapTemplate.dart';
@@ -63,7 +65,8 @@ List<dynamic> getWidgets(List parsed,MyCallback myCallback){
   //print(parsed.length);
   parsed.sort((a,b)=>int.parse(a['orderBy'].toString()).compareTo(int.parse(b['orderBy'].toString())));
   List<dynamic> widgets=[];
-  parsed.forEach((element) {
+  parsed.forEach((ele) {
+    var element=jsonDecode(jsonEncode(ele));
     // print(element);
     if(element['type']=='text'){
       widgets.add(TextBoxController(map: element));
@@ -155,8 +158,9 @@ List<dynamic> getWidgets(List parsed,MyCallback myCallback){
 
 
 
-Widget getChild(Map map, {MyCallback? myCallback}){
+Widget getChild(Map mapp, {MyCallback? myCallback}){
   Widget widget=Container();
+  Map map=jsonDecode(jsonEncode(mapp));
   if(map['type']=='text'){
     widget= TextBoxController(map: map);
   }

@@ -191,7 +191,7 @@ class MapTemplate extends StatelessWidget implements MyCallback,MyCallback2,Test
     if(cameraPosition==null){
       return;
     }
-    List<Placemark> placemarks = await placemarkFromCoordinates(cameraPosition!.target.latitude, cameraPosition!.target.longitude);
+    List<Placemark> placemarks = await placemarkFromCoordinates(cameraPosition!.target.latitude, cameraPosition!.target.longitude,localeIdentifier: "en");
 /*    location = placemarks.first.name.toString() + ", " +  placemarks.first.thoroughfare.toString()+", "+placemarks.first.subLocality.toString()+", "
         +placemarks.first.administrativeArea.toString();*/
     String delim1=placemarks.first.thoroughfare.toString().isNotEmpty?", ":"";
@@ -234,7 +234,7 @@ class MapTemplate extends StatelessWidget implements MyCallback,MyCallback2,Test
 
   @override
   onMapTap(LatLng latLng) async{
-    List<Placemark> placemarks = await placemarkFromCoordinates(latLng.latitude, latLng.longitude);
+    List<Placemark> placemarks = await placemarkFromCoordinates(latLng.latitude, latLng.longitude,localeIdentifier: "en");
 /*    location = placemarks.first.name.toString() + ", " +  placemarks.first.thoroughfare.toString()+", "+placemarks.first.subLocality.toString()+", "
         +placemarks.first.administrativeArea.toString();*/
     String delim1=placemarks.first.thoroughfare.toString().isNotEmpty?", ":"";

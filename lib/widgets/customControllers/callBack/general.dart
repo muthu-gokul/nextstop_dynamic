@@ -78,6 +78,7 @@ class General{
   static String typeOfNavigation="typeOfNavigation";
   static String actionType="actionType";
   static String openMap="openMap";
+  static String openDialer="OpenDialer";
 }
 
 

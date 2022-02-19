@@ -74,6 +74,13 @@
     {
       "key": "CallBtn",
       "value": false
+    },
+    {
+      "key": "CallBtnClick",
+      "value": {
+        "eventName": "OpenDialer",
+        "mobileNumber": ""
+      }
     }
   ],
   "Widgets": [
@@ -594,6 +601,7 @@
                               "orderBy": 4,
                               "child": {
                                 "type": "button",
+                                "key": "CallBtnClick",
                                 "height": 60,
                                 "pixelWidth": 60,
                                 "shape": "circle",
@@ -721,7 +729,7 @@
                                 },
                                 "key": 5,
                                 "height": 50,
-                                "margin": "10,0,10,0",
+                                "margin": "10,0,10,10",
                                 "color": "primaryColor",
                                 "borderRadius": "25,25,25,25",
                                 "child": {

@@ -45,7 +45,7 @@ class TabbarController extends StatelessWidget implements MyCallback2,TabPageVie
         print("$k $v ${widgets[widgets.length-1].map}");
         func1ByKey(widgets[widgets.length-1], {"key":"$k"}, (wid){
           print("wid $wid");
-          updateByWidgetType(wid.getType(),widget: wid,clickEvent: {"key":"$k","value":"$v"});
+          updateByWidgetType(wid.getType(),widget: wid,clickEvent: {"key":"$k","value":v});
         });
       });
     });

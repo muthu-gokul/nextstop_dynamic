@@ -58,6 +58,9 @@ class Common{
         else if(clickEvent[General.eventName]==General.openMap){
           openMap(clickEvent);
         }
+        else if(clickEvent[General.eventName]==General.openDialer){
+          openDialer(clickEvent);
+        }
       }
     }
   }
@@ -112,4 +115,8 @@ class Common{
   }
 
   formSubmitScheduledRide(dynamic guid,List<dynamic> widgets,Map clickEvent,List queryString){}
+
+  openDialer(Map clickEvent){
+    launch("tel://${clickEvent['mobileNumber']}");
+  }
 }

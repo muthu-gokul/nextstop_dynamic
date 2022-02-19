@@ -54,6 +54,7 @@ dependencies:
   flutter_polyline_points:
   url_launcher:
   firebase_crashlytics:
+  google_geocoding: ^0.2.0
 
 
 dev_dependencies:

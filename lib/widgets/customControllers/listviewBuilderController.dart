@@ -38,7 +38,7 @@ class ListViewBuilderController extends StatelessWidget implements MyCallback2{
         // log("key $k $v");
         func1ByKey(widgets[widgets.length-1], {"key":"$k"}, (wid){
           // log("found wid $wid ${wid.getType()}");
-          updateByWidgetType(wid.getType(),widget: wid,clickEvent: {"key":"$k","value":"$v"});
+          updateByWidgetType(wid.getType(),widget: wid,clickEvent: {"key":"$k","value":v});
         });
       });
     });

@@ -7,6 +7,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:google_geocoding/google_geocoding.dart';
 import 'package:nextstop_dynamic/pages/homePage.dart';
 import 'package:nextstop_dynamic/widgets/calculation.dart';
 import 'package:nextstop_dynamic/widgets/customControllers/callBack/common.dart';
@@ -98,8 +99,11 @@ class BookingPage extends StatelessWidget with Common  implements MyCallback{
   locationClick(Map clickEvent) async {
       Position? position;
       position=await determinePosition();
-      // log("$position");
-      List<Placemark> placemarks = await placemarkFromCoordinates(position.latitude, position.longitude);
+/*      var googleGeocoding = GoogleGeocoding("AIzaSyCgWfUF_HEBqd5qjN7afJADJcZJOwXOgao");
+      var result = await googleGeocoding.geocoding.getReverse(LatLon(position.latitude,position.longitude));*/
+
+     //  log("mapRes ${result!.status}");
+      List<Placemark> placemarks = await placemarkFromCoordinates(position.latitude, position.longitude,localeIdentifier: "en");
       String delim1=placemarks.first.thoroughfare.toString().isNotEmpty?", ":"";
       String delim2=placemarks.first.subLocality.toString().isNotEmpty?", ":"";
       String delim3=placemarks.first.administrativeArea.toString().isNotEmpty?", ":"";
