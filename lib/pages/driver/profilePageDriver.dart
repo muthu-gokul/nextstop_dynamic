@@ -1,17 +1,20 @@
 import 'dart:developer';
 
+import 'package:dynamicparsers/customControllers/callBack/general.dart';
+import 'package:dynamicparsers/customControllers/callBack/myCallback.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:nextstop_dynamic/widgets/customControllers/callBack/general.dart';
-import 'package:nextstop_dynamic/widgets/customControllers/callBack/myCallback.dart';
+import 'package:nextstop_dynamic/utils/common.dart';
+import 'package:nextstop_dynamic/utils/general.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../dynamicPageInitiater.dart';
 
 
 
-class ProfilePageDriver extends StatelessWidget implements MyCallback{
+class ProfilePageDriver extends StatelessWidget with MyCallback,Common{
   MyCallback myCallback;
   ProfilePageDriver({required this.myCallback}){
     dynamicPageInitiater=DynamicPageInitiater(
@@ -23,16 +26,6 @@ class ProfilePageDriver extends StatelessWidget implements MyCallback{
   @override
   Widget build(BuildContext context) {
     return dynamicPageInitiater;
-  }
-
-  @override
-  void onMapLocationChanged(Map map) {
-
-  }
-
-  @override
-  void onTextChanged(String text, Map map) {
-
   }
 
   @override
@@ -69,20 +62,16 @@ class ProfilePageDriver extends StatelessWidget implements MyCallback{
             });
 
           }
-
-
-
         }
-        else if(clickEvent[General.eventName]==General.Navigation){
-          General().navigation(clickEvent[General.navigateToPage],clickEvent[General.typeOfNavigation]);
+        else{
+          splitByTapEvent(clickEvent,
+            widgets: dynamicPageInitiater.dynamicPageInitiaterState.widgets,
+            queryString: dynamicPageInitiater.dynamicPageInitiaterState.queryString,
+            myCallback: this
+          );
         }
       }
     }
   }
 
-  @override
-  getCurrentPageWidgets() {
-    // TODO: implement getCurrentPageWidgets
-    throw UnimplementedError();
-  }
 }

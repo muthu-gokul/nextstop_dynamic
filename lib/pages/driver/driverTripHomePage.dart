@@ -1,15 +1,17 @@
 import 'dart:developer';
 
+import 'package:dynamicparsers/customControllers/callBack/general.dart';
+import 'package:dynamicparsers/customControllers/callBack/myCallback.dart';
 import 'package:flutter/material.dart';
-import '../../widgets/customControllers/callBack/common.dart';
-import '../../widgets/customControllers/callBack/general.dart';
-import '../../widgets/customControllers/callBack/myCallback.dart';
+import 'package:nextstop_dynamic/utils/general.dart';
+import '../../utils/common.dart';
+
 
 import '../dynamicPageInitiater.dart';
 
 
 
-class DriverTripHomePage extends StatelessWidget with Common implements MyCallback{
+class DriverTripHomePage extends StatelessWidget with Common , MyCallback{
   MyCallback myCallback;
   DriverTripHomePage({required this.myCallback}){
     dynamicPageInitiater=DynamicPageInitiater(
@@ -25,16 +27,6 @@ class DriverTripHomePage extends StatelessWidget with Common implements MyCallba
         dynamicPageInitiater,
       ],
     );
-  }
-
-  @override
-  void onMapLocationChanged(Map map) {
-
-  }
-
-  @override
-  void onTextChanged(String text, Map map) {
-
   }
 
   @override
@@ -54,11 +46,6 @@ class DriverTripHomePage extends StatelessWidget with Common implements MyCallba
   openDrawer(MyCallback mc, Map clickEvent) {
     myCallback.ontap(clickEvent);
   }
-
-/*  @override
-  openMap(Map clickEvent) {
-    log("open Map $clickEvent");
-  }*/
 
   @override
   formDataJsonApiCallResponse(dynamic guid,List<dynamic> widgets,Map clickEvent,List queryString,{MyCallback? myCallback}) async {

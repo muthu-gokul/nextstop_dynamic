@@ -20,7 +20,7 @@
       "value": "Sign Up",
       "key": 1,
       "style": {
-        "color": "primaryTextColor2",
+        "color": "*primaryTextColor2",
         "fontSize": 30.0,
         "fontFamily": "RB"
       }
@@ -37,7 +37,7 @@
       "width":0.65,
       "key": 1,
       "style": {
-        "color": "primaryTextColor1",
+        "color": "*primaryTextColor1",
         "fontSize": 14.0,
         "fontFamily": "RR"
       }
@@ -57,24 +57,24 @@
       "margin": "10,0,10,10",
       "groupValidation": [{"Required":"required"}],
       "borderRadius": "5,5,5,5",
-      "borderColor": "textFieldBorderColor",
-      "focusedBorderColor": "textFieldBorderColor",
+      "borderColor": "*textFieldBorderColor",
+      "focusedBorderColor": "*textFieldBorderColor",
       "disabledBorderColor": "FFF44336",
       "color": "FFffffff",
       "disableColor": "FFF5EFEE",
       "enable": true,
       "hintTextStyle": {
-        "color": "primaryTextColor1",
+        "color": "*primaryTextColor1",
         "fontSize": 14.0,
         "fontFamily": "RR"
       },
       "errorTextStyle": {
-        "color": "errorTextColor",
+        "color": "*errorTextColor",
         "fontSize": 14.0,
         "fontFamily": "RR"
       },
       "textStyle": {
-        "color": "primaryTextColor2",
+        "color": "*primaryTextColor2",
         "fontSize": 15.0,
         "fontFamily": "RR"
       }
@@ -89,24 +89,24 @@
       "margin": "10,0,10,10",
       "groupValidation": [{"Required":"required"}],
       "borderRadius": "5,5,5,5",
-      "borderColor": "textFieldBorderColor",
-      "focusedBorderColor": "textFieldBorderColor",
+      "borderColor": "*textFieldBorderColor",
+      "focusedBorderColor": "*textFieldBorderColor",
       "disabledBorderColor": "FFF44336",
       "color": "FFffffff",
       "disableColor": "FFF5EFEE",
       "enable": true,
       "hintTextStyle": {
-        "color": "primaryTextColor1",
+        "color": "*primaryTextColor1",
         "fontSize": 14.0,
         "fontFamily": "RR"
       },
       "errorTextStyle": {
-        "color": "errorTextColor",
+        "color": "*errorTextColor",
         "fontSize": 14.0,
         "fontFamily": "RR"
       },
       "textStyle": {
-        "color": "primaryTextColor2",
+        "color": "*primaryTextColor2",
         "fontSize": 15.0,
         "fontFamily": "RR"
       }
@@ -116,29 +116,29 @@
       "orderBy": "7",
       "hintText": "E-mail",
       "hasInput": true,
-      "required": false,
+      "required": true,
       "key": 3,
       "margin": "10,0,10,10",
       "groupValidation": [{"Required":"required"},{"EmailValidation":"email"}],
       "borderRadius": "5,5,5,5",
-      "borderColor": "textFieldBorderColor",
-      "focusedBorderColor": "textFieldBorderColor",
+      "borderColor": "*textFieldBorderColor",
+      "focusedBorderColor": "*textFieldBorderColor",
       "disabledBorderColor": "FFF44336",
       "color": "FFffffff",
       "disableColor": "FFF5EFEE",
       "enable": true,
       "hintTextStyle": {
-        "color": "primaryTextColor1",
+        "color": "*primaryTextColor1",
         "fontSize": 14.0,
         "fontFamily": "RR"
       },
       "errorTextStyle": {
-        "color": "errorTextColor",
+        "color": "*errorTextColor",
         "fontSize": 14.0,
         "fontFamily": "RR"
       },
       "textStyle": {
-        "color": "primaryTextColor2",
+        "color": "*primaryTextColor2",
         "fontSize": 15.0,
         "fontFamily": "RR"
       }
@@ -148,29 +148,31 @@
       "orderBy": "8",
       "hintText": "Phone Number",
       "hasInput": true,
-      "required": false,
+      "required": true,
       "key": 4,
       "margin": "10,0,10,10",
-      "groupValidation": [{"Required":"required"},{"MaximumLength":"10"}],
+      "groupValidation": [{"Required":"required"},{"MinimumLength":"10"}],
       "borderRadius": "5,5,5,5",
-      "borderColor": "textFieldBorderColor",
-      "focusedBorderColor": "textFieldBorderColor",
+      "borderColor": "*textFieldBorderColor",
+      "focusedBorderColor": "*textFieldBorderColor",
       "disabledBorderColor": "FFF44336",
       "color": "FFffffff",
       "disableColor": "FFF5EFEE",
       "enable": true,
+      "regExp":"[0-9]",
+      "textLength":10,
       "hintTextStyle": {
-        "color": "primaryTextColor1",
+        "color": "*primaryTextColor1",
         "fontSize": 14.0,
         "fontFamily": "RR"
       },
       "errorTextStyle": {
-        "color": "errorTextColor",
+        "color": "*errorTextColor",
         "fontSize": 14.0,
         "fontFamily": "RR"
       },
       "textStyle": {
-        "color": "primaryTextColor2",
+        "color": "*primaryTextColor2",
         "fontSize": 15.0,
         "fontFamily": "RR"
       }
@@ -193,7 +195,7 @@
       "orderBy": "9",
       "height":70,
       "parentHeight":100,
-      "selectedColor":"primaryColor",
+      "selectedColor":"*primaryColor",
       "unselectColor":"#7E7E7E",
       "margin": "10,0,0,0",
       "selectedIndex": 0,
@@ -201,7 +203,7 @@
       "hasInput": true,
       "required":true,
       "textStyle": {
-        "color": "primaryTextColor1",
+        "color": "*primaryTextColor1",
         "fontSize": 14.0,
         "fontFamily": "RR"
       },
@@ -212,7 +214,7 @@
           "value": [
             {
               "value":"End User",
-              "id": 1
+              "id": 3
             }
           ]
         },
@@ -222,7 +224,7 @@
           "value": [
             {
               "value":"Driver",
-              "id": 2
+              "id": 4
             }
           ]
         }
@@ -251,7 +253,7 @@
           "isChangeColor": false,
           "key": 2,
           "style": {
-            "color": "primaryTextColor1",
+            "color": "*primaryTextColor1",
             "fontSize": 14.0,
             "fontFamily": "RR"
           }
@@ -267,15 +269,13 @@
       "type": "button",
       "orderBy": "12",
       "clickEvent": {
-        "eventName":"FormSubmit",
-        "navigateToPage":"HomePage",
-        "typeOfNavigation": 2,
+        "eventName":"formDataJson_ApiCall",
         "actionType": "Add"
       },
       "key": 5,
       "height":50,
       "margin": "10,0,10,0",
-      "color":"primaryColor",
+      "color":"*primaryColor",
       "borderRadius":"25,25,25,25",
       "alignment": "center",
       "child":{

@@ -1,7 +1,7 @@
 
+import 'package:dynamicparsers/widgets/sizeLocal.dart';
 import 'package:flutter/material.dart';
 
-import '../sizeLocal.dart';
 
 
 Color addNewTextFieldBorder=Color(0xFFE5E5E5);

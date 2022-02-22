@@ -22,7 +22,7 @@ class ApiManager{
       final response = await http.post(Uri.parse(itemsUrl),
           headers: {"Content-Type": "application/json"},
           body: json.encode(body)
-      );
+      ).timeout(Duration(seconds: 30),onTimeout: ()=>onTme());
       print("${response.statusCode} ${response.body}");
       if(response.statusCode==200){
         return [true,response.body];
@@ -41,6 +41,10 @@ class ApiManager{
       return [false,"Catch Api"];
 
     }
+  }
+
+  onTme(){
+    return [false,"Connection TimeOut"];
   }
 }
 /*

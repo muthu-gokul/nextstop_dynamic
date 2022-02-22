@@ -1,62 +1,31 @@
 import 'dart:convert';
 import 'dart:developer';
-
+import 'package:dynamicparsers/customControllers/callBack/generalMethods.dart';
+import 'package:dynamicparsers/customControllers/callBack/myCallback.dart';
 import 'package:flutter/material.dart';
 import 'package:nextstop_dynamic/main.dart';
-import 'package:nextstop_dynamic/widgets/customControllers/callBack/generalMethods.dart';
-import 'package:nextstop_dynamic/widgets/customPopUp.dart';
-import 'package:nextstop_dynamic/widgets/sizeLocal.dart';
+import 'package:nextstop_dynamic/utils/general.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../constants.dart';
-import '../widgets/customControllers/callBack/common.dart';
-import 'package:nextstop_dynamic/widgets/customControllers/callBack/general.dart';
-import 'package:nextstop_dynamic/widgets/customControllers/callBack/myCallback.dart';
+import '../utils/common.dart';
+
 import 'driver/homePageDriver.dart';
 import 'dynamicPageInitiater.dart';
-import 'homePage.dart';
+import 'user/homePage.dart';
 
-class LoginPage extends StatelessWidget with General,Common  implements MyCallback{
+class LoginPage extends StatelessWidget with Common,MyCallback{
   LoginPage(){
 
     dynamicPageInitiater=DynamicPageInitiater(
-      pageIdentifier: loginPageIdentifier,
+      pageIdentifier: General.loginPageIdentifier,
       myCallback: this,
     );
   }
   late DynamicPageInitiater dynamicPageInitiater;
 
-
   @override
   Widget build(BuildContext context) {
-   
    return dynamicPageInitiater;
-/*    return Scaffold(
-     body: Container(
-       child: Column(
-         children: [
-           CustomPopup(
-                                                        hintText: "Select State",
-                                                        data: ["Tamilnadu","Andhra Pradesh","Kerala"],
-                                                        selectedValue: "",
-                                                        width:SizeConfig.screenWidth!-10 ,
-                                                        leftMargin: 0,
-                                                        edgeInsets: EdgeInsets.only(left: 0,top: 50),
-                                                        onSelect: (v){},
-                                                      ),
-         ],
-       ),
-     ),
-   ); */
-  }
-
-  @override
-  void onMapLocationChanged(Map map) {
-    // TODO: implement onMapLocationChanged
-  }
-
-  @override
-  void onTextChanged(String text, Map map) {
-    // TODO: implement onTextChanged
   }
 
   @override
@@ -64,14 +33,14 @@ class LoginPage extends StatelessWidget with General,Common  implements MyCallba
     log("login Click $clickEvent");
 
     // checkTapFunc.splitByTapEvent(clickEvent);
-    var res=splitByTapEvent(
+    splitByTapEvent(
       clickEvent,
-      guid: loginPageIdentifier,
+      guid: General.loginPageIdentifier,
       widgets: dynamicPageInitiater.dynamicPageInitiaterState.widgets,
       queryString: dynamicPageInitiater.dynamicPageInitiaterState.queryString,
       myCallback: this
     );
-    log("Common res $res");
+/*    log("Common res $res");
 
     if(res!=null){
       if(fromUrl){
@@ -112,19 +81,35 @@ class LoginPage extends StatelessWidget with General,Common  implements MyCallba
        // getXNavigation(2, HomePage());
         getApnToken();
       }
-    }
+    }*/
   }
 
   @override
-  getCurrentPageWidgets() {
-    // TODO: implement getCurrentPageWidgets
-    throw UnimplementedError();
-  }
-/*  @override
-  void formSubmitMethodTFE() {
-    log("form Login Override");
-    //super.formSubmitMethodTFE();
-  }*/
+  formDataJsonApiCallResponse(guid, List widgets, Map clickEvent, List queryString, {MyCallback? myCallback}) async{
+    var apiRes=await formDataJsonApiCall(guid, widgets, clickEvent, queryString);
+    log("login apiRes 87 $apiRes");
+    if(apiRes!=null){
+      var parsed=jsonDecode(apiRes);
+      try{
+        LOGINUSERID=parsed['Table'][0]['UserId'];
+        isDriver=parsed['Table'][0]['IsDriver'];
+        SharedPreferences sp=await SharedPreferences.getInstance();
+        sp.setBool(ISLOGGEDINKEY, true);
+        sp.setBool(ISDRIVERKEY, isDriver);
+        sp.setInt(LOGINUSERIDKEY, LOGINUSERID);
 
+        if(isDriver){
+          getXNavigation(2, HomePageDriver2());
+        }
+        else{
+          getXNavigation(2, HomePage());
+        }
+        getApnToken();
+      }catch(e){
+
+      }
+
+    }
+  }
 }
 

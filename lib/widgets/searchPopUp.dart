@@ -1,9 +1,9 @@
 
 
+import 'package:dynamicparsers/widgets/sizeLocal.dart';
 import 'package:flutter/material.dart';
 
 import 'searchDropdown/dropdown_search.dart';
-import 'sizeLocal.dart';
 
 
 class SearchPopUp extends StatefulWidget {

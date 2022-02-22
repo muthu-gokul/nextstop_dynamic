@@ -39,7 +39,7 @@
           "value": "Estimate Bill",
           "key": 1,
           "style": {
-            "color": "primaryTextColor2",
+            "color": "*primaryTextColor2",
             "fontSize": 18.0,
             "fontFamily": "RM"
           }
@@ -64,26 +64,26 @@
           "leftContentPadding": 20.0,
           "groupValidation": [{"Required":"required"}],
           "borderRadius": "25,25,25,25",
-          "borderColor": "textFieldBorderColor",
-          "focusedBorderColor": "textFieldBorderColor",
-          "disabledBorderColor": "textFieldBorderColor",
+          "borderColor": "*textFieldBorderColor",
+          "focusedBorderColor": "*textFieldBorderColor",
+          "disabledBorderColor": "*textFieldBorderColor",
           "color": "FFffffff",
           "value": "Madurai",
           "disableColor": "FFffffff",
           "enable": true,
           "readOnly": true,
           "hintTextStyle": {
-            "color": "primaryTextColor1",
+            "color": "*primaryTextColor1",
             "fontSize": 14.0,
             "fontFamily": "RR"
           },
           "errorTextStyle": {
-            "color": "errorTextColor",
+            "color": "*errorTextColor",
             "fontSize": 14.0,
             "fontFamily": "RR"
           },
           "textStyle": {
-            "color": "primaryTextColor2",
+            "color": "*primaryTextColor2",
             "fontSize": 15.0,
             "fontFamily": "RR"
           },
@@ -140,26 +140,26 @@
           "leftContentPadding": 20.0,
           "groupValidation": [{"Required":"required"}],
           "borderRadius": "25,25,25,25",
-          "borderColor": "textFieldBorderColor",
-          "focusedBorderColor": "textFieldBorderColor",
-          "disabledBorderColor": "textFieldBorderColor",
+          "borderColor": "*textFieldBorderColor",
+          "focusedBorderColor": "*textFieldBorderColor",
+          "disabledBorderColor": "*textFieldBorderColor",
           "color": "FFffffff",
           "value": "",
           "disableColor": "FFffffff",
           "enable": true,
           "readOnly": true,
           "hintTextStyle": {
-            "color": "primaryTextColor1",
+            "color": "*primaryTextColor1",
             "fontSize": 14.0,
             "fontFamily": "RR"
           },
           "errorTextStyle": {
-            "color": "errorTextColor",
+            "color": "*errorTextColor",
             "fontSize": 14.0,
             "fontFamily": "RR"
           },
           "textStyle": {
-            "color": "primaryTextColor2",
+            "color": "*primaryTextColor2",
             "fontSize": 15.0,
             "fontFamily": "RR"
           },
@@ -247,7 +247,7 @@
                 "style": {
                   "fontSize": 14,
                   "fontFamily": "RR",
-                  "color": "primaryTextColor2"
+                  "color": "*primaryTextColor2"
                 }
               },
               {
@@ -258,7 +258,7 @@
                 "type": "icon",
                 "orderBy": 4,
                 "icon": "phone",
-                "color": "primaryColor",
+                "color": "*primaryColor",
                 "size": 18.0
               },
               {
@@ -273,7 +273,7 @@
                 "key": "UserMobileNumber",
                 "alignment": "center",
                 "style": {
-                  "color": "primaryTextColor2",
+                  "color": "*primaryTextColor2",
                   "fontSize": 15.0,
                   "fontFamily": "RR"
                 }
@@ -304,7 +304,7 @@
               "style": {
                 "fontSize": 14,
                 "fontFamily": "RR",
-                "color": "primaryTextColor1"
+                "color": "*primaryTextColor1"
               }
             },
             {
@@ -318,7 +318,7 @@
               "style": {
                 "fontSize": 30,
                 "fontFamily": "RB",
-                "color": "primaryTextColor2"
+                "color": "*primaryTextColor2"
               }
             }
           ]
@@ -372,7 +372,7 @@
                 "value": "Schedule your ride",
                 "key": 1,
                 "style": {
-                  "color": "primaryTextColor1",
+                  "color": "*primaryTextColor1",
                   "fontSize": 14.0
                 }
               }
@@ -391,7 +391,7 @@
           "key": 11,
           "height":50,
           "margin": "10,0,10,0",
-          "color":"primaryColor",
+          "color":"*primaryColor",
           "alignment": "center",
           "borderRadius":"25,25,25,25",
           "child":{

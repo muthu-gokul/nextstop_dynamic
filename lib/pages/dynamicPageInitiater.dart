@@ -1,21 +1,15 @@
 import 'dart:convert';
 import 'dart:developer';
-import 'package:date_format/date_format.dart';
+import 'package:dynamicparsers/customControllers/callBack/general.dart';
+import 'package:dynamicparsers/customControllers/callBack/myCallback.dart';
+import 'package:dynamicparsers/customControllers/utils.dart';
+import 'package:dynamicparsers/widgets/sizeLocal.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:geocoding/geocoding.dart';
-import 'package:geolocator/geolocator.dart';
-import 'package:get/get.dart';
-import 'package:nextstop_dynamic/widgets/customControllers/callBack/generalMethods.dart';
-import 'package:nextstop_dynamic/widgets/customControllers/utils.dart';
-import '../widgets/customControllers/callBack/general.dart';
-import '../widgets/sizeLocal.dart';
 import '../notifier/getUiNotifier.dart';
 import 'package:provider/provider.dart';
 
 import '../constants.dart';
-import '../widgets/customControllers/callBack/myCallback.dart';
-import 'homePage.dart';
+
 bool keyboardVisible = false;
 class DynamicPageInitiater extends StatefulWidget {
   String pageIdentifier;
@@ -187,7 +181,7 @@ class DynamicPageInitiaterState extends State<DynamicPageInitiater> implements M
     // NeverScrollableScrollPhysics():AlwaysScrollableScrollPhysics()}");
     log("dddd ${widget.isScrollControll?keyboardVisible?AlwaysScrollableScrollPhysics():
     NeverScrollableScrollPhysics():AlwaysScrollableScrollPhysics()}");
-    SizeConfig().init(context);
+  //  SizeConfig().init(context);
     return SafeArea(
       bottom: true,
       top: true,
@@ -318,17 +312,13 @@ class DynamicPageInitiaterState extends State<DynamicPageInitiater> implements M
     if(clickEvent!=null){
       if(clickEvent.containsKey('eventName')){
         if(clickEvent['eventName']=='FormSubmit'){
-        //  log("$widgets");
-         var res= General().formSubmit(guid, widgets,clickEvent,queryString,myCallback: this);
-         log("resultt $res");
-        }
-        /*else if(clickEvent['eventName']=='FormSubmitBookingPage'){
 
-          General().formSubmit(guid, widgets[0].widget.widgets[1].widget.widget.widgets,clickEvent,queryString,myCallback: widget.myCallback);
-        }*/
+       /*  var res= General().formSubmit(guid, widgets,clickEvent,queryString,myCallback: this);
+         log("resultt $res");*/
+        }
         else if(clickEvent['eventName']=='FormSubmitEstimateBill'){
 
-          var res = General().formSubmit(guid, widgets[1].widgets,clickEvent,queryString,myCallback: this);
+         /* var res = General().formSubmit(guid, widgets[1].widgets,clickEvent,queryString,myCallback: this);
           log("ress $res");
           if(res!=null){
             GetUiNotifier().postUiJson(LOGINUSERID, widget.pageIdentifier, res, clickEvent).then((value){
@@ -336,14 +326,12 @@ class DynamicPageInitiaterState extends State<DynamicPageInitiater> implements M
               getXNavigation(3, Container());
               selectedPage.value=2;
             });
-          }
-          // log("ress $res ");
-          // log("widgets[1].widgets ${widgets[1].widgets[7].widgets[1].text.value} ");
-            //selectedPage.value=2;
+          }*/
+
 
         }
         else if(clickEvent['eventName']=='Navigation'){
-          General().navigation(clickEvent['navigateToPage'],clickEvent['typeOfNavigation']);
+        //  General().navigation(clickEvent['navigateToPage'],clickEvent['typeOfNavigation']);
         }
         else if(clickEvent['eventName']=='OpenDrawer'){
           widget.myCallback?.ontap(clickEvent);
@@ -390,149 +378,16 @@ class DynamicPageInitiaterState extends State<DynamicPageInitiater> implements M
     // TODO: implement getCurrentPageWidgets
     throw UnimplementedError();
   }
-}
 
-/*
-findWidget(List<dynamic> widgets){
-   log("widgets ${widgets}");
-  for(int i=0;i<widgets.length;i++){
-    func1(widgets[i]);
+  @override
+  Color parseColor(String color) {
+    // TODO: implement parseColor
+    throw UnimplementedError();
   }
 }
 
-func1(dynamic widget){
-  if(widget.map.containsKey("child")){
-    log("${widget.getType()} ${widget.widget} ${widget.map['key']}");
-    func1(widget.widget);
-  }
-  else if(widget.map.containsKey("children")){
-   // log("${widget.getType()}");
-    if(widget.getType()!='userRoleController') {
-      log("___ ${widget.getType()} ${widget.widgets}");
-      findWidget(widget.widgets);
-    }
-    else{
-      log("else ${widget.getType()}");
-    }
-  }
-  else{
-    log("else2 ${widget.getType()}");
-  }
-}*/
 
-
-
-findWidgetByKey(List<dynamic> widgets,Map? clickEvent,Function(dynamic widget) returnFunction){
- // log("key ${clickEvent} $widgets");
-  var a;
-  for(int i=0;i<widgets.length;i++){
-    a= func1ByKey(widgets[i],clickEvent,returnFunction);
-    // log("aaaaa $a ");
-    if(a!=null){
-      returnFunction(a);
-      // a.textEditingController.text=clickEvent!['value'];
-      // a.map['value']=clickEvent['value'];
-      break;
-
-    }
-  }
-  return null;
-}
-
-func1ByKey(dynamic widget,Map? clickEvent,Function(dynamic widget) returnFunction){
-  // log("widget.map ${widget.runtimeType}");
-  if(widget.runtimeType==Icon){
-    return;
-  }
-  if(widget.map.containsKey("child")){
-   // log("${widget.getType()} ${widget.widget} ${widget.map['key']}");
-   // func1ByKey(widget.widget,clickEvent,returnFunction);
-    if(widget.map.containsKey('key')){
-      if(widget.map['key']==clickEvent!['key']){
-        return widget;
-      }
-      else{
-        var aa= func1ByKey(widget.widget,clickEvent,returnFunction);
-       // log("aa 450 $aa");
-        if(aa!=null){
-          returnFunction(aa);
-          return;
-          return aa;
-        }
-      }
-    }
-    else{
-      try{
-        var aa= func1ByKey(widget.widget,clickEvent,returnFunction);
-        if(aa!=null){
-          returnFunction(aa);
-          return;
-          return aa;
-        }
-      }catch(e){
-        return;
-      }
-
-    }
-
-  }
-  else if(widget.map.containsKey("children")){
-
-    if(widget.map.containsKey('key')){
-      if(widget.map['key']==clickEvent!['key']){
-        return widget;
-      }
-      else{
-        if(widget.getType()!='userRoleController') {
-          findWidgetByKey(widget.widgets,clickEvent,returnFunction);
-        }
-      }
-    }
-    else{
-      if(widget.getType()!='userRoleController') {
-        findWidgetByKey(widget.widgets,clickEvent,returnFunction);
-      }
-    }
-
-
-  }
-  if(widget.map.containsKey("suffix")){
-    if(widget.map.containsKey('key')){
-      if(widget.map['key']==clickEvent!['key']){
-        return widget;
-      }
-      else{
-        var aa= func1ByKey(widget.suffix,clickEvent,returnFunction);
-        if(aa!=null){
-          returnFunction(aa);
-          return;
-          return aa;
-        }
-      }
-    }
-    else{
-      var aa= func1ByKey(widget.suffix,clickEvent,returnFunction);
-      if(aa!=null){
-        returnFunction(aa);
-        return;
-        return aa;
-      }
-    }
-
-  }
-  else{
-    // log("else3 ${widget.map}");
-    if(widget.map.containsKey('key')){
-      if(widget.map['key']==clickEvent!['key']){
-        return widget;
-      }
-     // log("else2 ${widget.getType()}  has key ${widget.map['key']}    ${clickEvent['key']}");
-    }
-  }
-  return null;
-}
-
-findAndUpdateTextEditingController(var widget,Map? clickEvent){
+/*findAndUpdateTextEditingController(var widget,Map? clickEvent){
   log("clickEvent['value'] ${clickEvent!['value']}");
   if(clickEvent['value']!=null){
      widget.textEditingController.text=clickEvent['value'];
@@ -582,7 +437,7 @@ updateByWidgetType(String widgetType,{var widget,Map? clickEvent}){
     }
     break;
   }
-}
+}*/
 
 
 

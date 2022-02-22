@@ -1,17 +1,11 @@
 import 'dart:convert';
 import 'dart:developer';
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:nextstop_dynamic/widgets/customControllers/callBack/general.dart';
+import 'package:nextstop_dynamic/utils/general.dart';
 import '../api/ApiManager.dart';
 import '../model/parameterMode.dart';
-
-
-
 import '../constants.dart';
-
 import 'package:get/get.dart';
 
 

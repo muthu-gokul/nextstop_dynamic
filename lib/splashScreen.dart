@@ -1,15 +1,19 @@
+import 'package:dynamicparsers/customControllers/callBack/general.dart';
+import 'package:dynamicparsers/widgets/sizeLocal.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:nextstop_dynamic/main.dart';
+import 'package:nextstop_dynamic/pages/setPassword.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'constants.dart';
 import 'package:get/get.dart';
-
 import 'pages/driver/homePageDriver.dart';
-import 'pages/homePage.dart';
 import 'pages/loginPage.dart';
+import 'pages/user/homePage.dart';
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
 
@@ -44,10 +48,12 @@ class _SplashScreenState extends State<SplashScreen> {
   localNav() async{
      await initializeFirebase();
      FirebaseMessaging.instance.getToken().then((value){
-       print("FirebaseMessaging.instance.getAPNSTokenLocal;  $value");
+        FirebaseDatabase.instance.ref().child("tokens/$LOGINUSERID").set({"LoginUserId":LOGINUSERID,"token":value});
      });
-     Get.off(HomePageDriver2());
-    //  Get.off(HomePage());
+    // Get.off(HomePageDriver2());
+     // Get.off(HomePage());
+     List qs=[{"key":"UserId","value":"10"}];
+      Get.off(SetPassword(fromQueryString: qs,));
   }
 
   @override
@@ -66,6 +72,8 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
+    topPad=MediaQuery.of(context).padding.top;
     return Container(
 
     );

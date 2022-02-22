@@ -1,19 +1,22 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:dynamicparsers/customControllers/callBack/general.dart';
+import 'package:dynamicparsers/customControllers/callBack/myCallback.dart';
+import 'package:dynamicparsers/widgets/sizeLocal.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:nextstop_dynamic/notifier/myNotification.dart';
-import 'package:nextstop_dynamic/pages/bookingPage.dart';
-import 'package:nextstop_dynamic/pages/profilePage.dart';
+import 'package:nextstop_dynamic/pages/user/bookingPage.dart';
+import 'package:nextstop_dynamic/pages/user/profilePage.dart';
 import 'package:nextstop_dynamic/styles/style.dart';
-import 'package:nextstop_dynamic/widgets/customControllers/callBack/general.dart';
-import 'package:nextstop_dynamic/widgets/customControllers/callBack/myCallback.dart';
-import 'package:nextstop_dynamic/widgets/sizeLocal.dart';
+
 import 'package:get/get.dart';
+import 'package:nextstop_dynamic/utils/common.dart';
+import 'package:nextstop_dynamic/utils/general.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../constants.dart';
@@ -34,7 +37,7 @@ class HomePageDriver2 extends StatefulWidget  {
   State<HomePageDriver2> createState() => _HomePageDriver2State();
 }
 
-class _HomePageDriver2State extends State<HomePageDriver2> with WidgetsBindingObserver implements MyCallback,MyNotificationCallBack{
+class _HomePageDriver2State extends State<HomePageDriver2> with WidgetsBindingObserver,MyCallback,Common implements MyNotificationCallBack{
   GlobalKey <ScaffoldState> scaffoldKey=new GlobalKey<ScaffoldState>();
 
   var widgets=[].obs;
@@ -168,13 +171,7 @@ class _HomePageDriver2State extends State<HomePageDriver2> with WidgetsBindingOb
     log("HOMEPAGE Driver $clickEvent");
     if(clickEvent!=null){
       if(clickEvent.containsKey(General.eventName)){
-        if(clickEvent[General.eventName]==General.FormSubmit){
-          General().formSubmit(guid, widgets,clickEvent,queryString,myCallback: this);
-        }
-        else if(clickEvent[General.eventName]==General.Navigation){
-          General().navigation(clickEvent[General.navigateToPage],clickEvent[General.typeOfNavigation]);
-        }
-        else if(clickEvent[General.eventName]=='HomePageDriverNavigation'){
+         if(clickEvent[General.eventName]=='HomePageDriverNavigation'){
 
           selectedPage.value=clickEvent['pageIndex'];
           scaffoldKey.currentState!.openEndDrawer();
@@ -196,27 +193,20 @@ class _HomePageDriver2State extends State<HomePageDriver2> with WidgetsBindingOb
           SharedPreferences sp=await SharedPreferences.getInstance();
           sp.setBool(ISLOGGEDINKEY, false);
           sp.setString("token", "");
-          General().navigation(clickEvent[General.navigateToPage],clickEvent[General.typeOfNavigation]);
+          checkAndNavigate(clickEvent);
+          //General().navigation(clickEvent[General.navigateToPage],clickEvent[General.typeOfNavigation]);
         }
+        else{
+          splitByTapEvent(clickEvent,
+            widgets: widgets,
+            queryString: queryString,
+            myCallback: this
+          );
+         }
 
       }
     }
   }
 
-  @override
-  void onTextChanged(String text,Map map) {
-    // TODO: implement onTextChanged
-  }
-
-  @override
-  void onMapLocationChanged(Map map) {
-    // TODO: implement onMapLocationChanged
-  }
-
-  @override
-  getCurrentPageWidgets() {
-    // TODO: implement getCurrentPageWidgets
-    throw UnimplementedError();
-  }
 }
 

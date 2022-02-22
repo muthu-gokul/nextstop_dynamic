@@ -71,6 +71,29 @@
       }
     },
     {
+      "type": "button",
+      "orderBy": "1",
+      "alignment": "centerLeft",
+      "clickEvent": {
+        "eventName":"HomePageNavigation",
+        "pageIndex":4
+      },
+      "key": 1,
+      "height":50,
+      "width":1,
+      "margin": "10,0,10,0",
+      "child":{
+        "type": "text",
+        "alignment": "centerLeft",
+        "value": "Updates",
+        "key": 1,
+        "style": {
+          "color": "#ffffff",
+          "fontSize": 16.0
+        }
+      }
+    },
+    {
       "type": "spacerController",
       "orderBy": 4
     },

@@ -99,7 +99,7 @@
             "orderBy": 100,
             "child": {
               "type": "navIcon",
-              "color": "primaryColor",
+              "color": "*primaryColor",
               "margin": "20,10,0,0",
               "padding": "10,0,0,0",
               "borderRadius": "10,10,10,10",
@@ -143,7 +143,7 @@
               "orderBy": 1,
               "borderRadius": "25,0,0,25",
               "color": "#efefef",
-              "borderColor": "primaryTextColor2",
+              "borderColor": "*primaryTextColor2",
               "child": {
                 "type": "columnController",
                 "children": [
@@ -182,7 +182,7 @@
                               "style": {
                                 "fontSize": 12,
                                 "fontFamily": "RM",
-                                "color": "primaryTextColor3"
+                                "color": "*primaryTextColor3"
                               }
                             },
                             {
@@ -198,7 +198,7 @@
                               "style": {
                                 "fontSize": 11,
                                 "fontFamily": "RR",
-                                "color": "primaryTextColor1"
+                                "color": "*primaryTextColor1"
                               }
                             }
                           ]
@@ -218,7 +218,7 @@
                               "child": {
                                 "type": "icon",
                                 "icon": "phone",
-                                "color": "primaryColor",
+                                "color": "*primaryColor",
                                 "size": 25.0
                               }
                             },
@@ -233,7 +233,7 @@
                               "value": "98565-65656",
                               "key": "MobileNumber",
                               "style": {
-                                "color": "primaryTextColor3",
+                                "color": "*primaryTextColor3",
                                 "fontSize": 12.0,
                                 "fontFamily": "RM"
                               }
@@ -269,7 +269,7 @@
                               "value": "Tata Ace",
                               "key": "Vehicle",
                               "style": {
-                                "color": "primaryTextColor3",
+                                "color": "*primaryTextColor3",
                                 "fontSize": 12.0,
                                 "fontFamily": "RM"
                               }
@@ -285,7 +285,7 @@
                               "value": "TN 10 6585",
                               "key": "VehicleNumber",
                               "style": {
-                                "color": "primaryTextColor3",
+                                "color": "*primaryTextColor3",
                                 "fontSize": 11.0,
                                 "fontFamily": "RR"
                               }
@@ -310,7 +310,7 @@
                           "padding": "10,10,10,10",
                           "borderRadius": "8,8,8,8",
                           "alignment": "center",
-                          "borderColor": "textFieldBorderColor",
+                          "borderColor": "*textFieldBorderColor",
                           "child": {
                             "type": "rowController",
                             "crossAxisAlignment": "start",
@@ -337,7 +337,7 @@
                                       "style": {
                                         "fontSize": 12,
                                         "fontFamily": "RM",
-                                        "color": "primaryTextColor2"
+                                        "color": "*primaryTextColor2"
                                       }
                                     },
                                     {
@@ -348,7 +348,7 @@
                                       "style": {
                                         "fontSize": 11,
                                         "fontFamily": "RR",
-                                        "color": "primaryTextColor1"
+                                        "color": "*primaryTextColor1"
                                       }
                                     }
                                   ]
@@ -376,7 +376,7 @@
                                           "value": "03-Jan-2022",
                                           "key": "Date",
                                           "style": {
-                                            "color": "primaryTextColor2",
+                                            "color": "*primaryTextColor2",
                                             "fontSize": 13.0,
                                             "fontFamily": "RR"
                                           }
@@ -388,7 +388,7 @@
                                           "key": "Time",
                                           "onlyText": true,
                                           "style": {
-                                            "color": "primaryTextColor2",
+                                            "color": "*primaryTextColor2",
                                             "fontSize": 13.0,
                                             "fontFamily": "RR"
                                           }
@@ -426,7 +426,7 @@
                                             "key": "PickupLocation",
                                             "onlyText": true,
                                             "style": {
-                                              "color": "primaryTextColor2",
+                                              "color": "*primaryTextColor2",
                                               "fontSize": 10.0,
                                               "fontFamily": "RR"
                                             }
@@ -461,7 +461,7 @@
                                       "margin": "20,3,0,0",
                                       "alignment": "centerLeft",
                                       "style": {
-                                        "color": "primaryTextColor3",
+                                        "color": "*primaryTextColor3",
                                         "fontSize": 10.0,
                                         "fontFamily": "RR"
                                       }
@@ -497,7 +497,7 @@
                                             "key": "DropLocation",
                                             "onlyText": true,
                                             "style": {
-                                              "color": "primaryTextColor2",
+                                              "color": "*primaryTextColor2",
                                               "fontSize": 10.0,
                                               "fontFamily": "RR"
                                             }
@@ -532,7 +532,7 @@
                                       "margin": "20,3,0,0",
                                       "alignment": "centerLeft",
                                       "style": {
-                                        "color": "primaryTextColor3",
+                                        "color": "*primaryTextColor3",
                                         "fontSize": 10.0,
                                         "fontFamily": "RR"
                                       }
@@ -566,7 +566,7 @@
                                   "style": {
                                     "fontSize": 14,
                                     "fontFamily": "RR",
-                                    "color": "primaryTextColor1"
+                                    "color": "*primaryTextColor1"
                                   }
                                 },
                                 {
@@ -580,7 +580,7 @@
                                   "style": {
                                     "fontSize": 30,
                                     "fontFamily": "RB",
-                                    "color": "primaryTextColor2"
+                                    "color": "*primaryTextColor2"
                                   }
                                 },
                                 {
@@ -605,11 +605,11 @@
                                 "height": 60,
                                 "pixelWidth": 60,
                                 "shape": "circle",
-                                "color": "primaryColor",
+                                "color": "*primaryColor",
                                 "alignment": "center",
                                 "margin": "0,0,15,0",
                                 "boxShadow": {
-                                  "color": "primaryColor",
+                                  "color": "*primaryColor",
                                   "x": 0.0,
                                   "y": 5.0,
                                   "blurRadius": 10.0,
@@ -659,7 +659,7 @@
                                 "key": 5,
                                 "height": 50,
                                 "margin": "10,0,10,0",
-                                "color": "primaryColor",
+                                "color": "*primaryColor",
                                 "borderRadius": "25,25,25,25",
                                 "child": {
                                   "type": "text",
@@ -694,7 +694,7 @@
                                 "key": 5,
                                 "height": 50,
                                 "margin": "10,10,10,10",
-                                "color": "textFieldBorderColor",
+                                "color": "*textFieldBorderColor",
                                 "borderRadius": "25,25,25,25",
                                 "child": {
                                   "type": "text",
@@ -702,7 +702,7 @@
                                   "value": "Reject",
                                   "key": 1,
                                   "style": {
-                                    "color": "primaryTextColor2",
+                                    "color": "*primaryTextColor2",
                                     "fontSize": 16.0,
                                     "fontFamily": "RR"
                                   }
@@ -730,7 +730,7 @@
                                 "key": 5,
                                 "height": 50,
                                 "margin": "10,0,10,10",
-                                "color": "primaryColor",
+                                "color": "*primaryColor",
                                 "borderRadius": "25,25,25,25",
                                 "child": {
                                   "type": "text",

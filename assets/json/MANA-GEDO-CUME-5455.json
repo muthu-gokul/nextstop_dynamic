@@ -43,7 +43,7 @@
               "value": "Manage Documents",
               "key": 1,
               "style": {
-                "color": "primaryTextColor2",
+                "color": "*primaryTextColor2",
                 "fontSize": 18.0,
                 "fontFamily": "RM"
               }
@@ -74,7 +74,7 @@
                   },
                   "key": 5,
                   "height":90,
-                  "color":"primaryColor2",
+                  "color":"*primaryColor2",
                   "alignment":"center",
                   "margin": "0,0,0,15",
                   "shape": "circle"
@@ -90,7 +90,7 @@
                       "value": "Upload your",
                       "onlyText": true,
                       "style": {
-                        "color": "primaryTextColor1",
+                        "color": "*primaryTextColor1",
                         "fontSize": 14.0,
                         "fontFamily": "RM"
                       }
@@ -101,7 +101,7 @@
                       "value": "  Driving License",
                       "onlyText": true,
                       "style": {
-                        "color": "primaryColor",
+                        "color": "*primaryColor",
                         "fontSize": 14.0,
                         "fontFamily": "RM"
                       }
@@ -122,7 +122,7 @@
                   },
                   "key": 5,
                   "height":90,
-                  "color":"primaryColor2",
+                  "color":"*primaryColor2",
                   "alignment":"center",
                   "margin": "0,0,0,15",
                   "shape": "circle"
@@ -138,7 +138,7 @@
                       "value": "Upload your",
                       "onlyText": true,
                       "style": {
-                        "color": "primaryTextColor1",
+                        "color": "*primaryTextColor1",
                         "fontSize": 14.0,
                         "fontFamily": "RM"
                       }
@@ -149,7 +149,7 @@
                       "value": "  RC Book",
                       "onlyText": true,
                       "style": {
-                        "color": "primaryColor",
+                        "color": "*primaryColor",
                         "fontSize": 14.0,
                         "fontFamily": "RM"
                       }
@@ -170,7 +170,7 @@
                   },
                   "key": 5,
                   "height":90,
-                  "color":"primaryColor2",
+                  "color":"*primaryColor2",
                   "alignment":"center",
                   "margin": "0,0,0,15",
                   "shape": "circle"
@@ -186,7 +186,7 @@
                       "value": "Upload your",
                       "onlyText": true,
                       "style": {
-                        "color": "primaryTextColor1",
+                        "color": "*primaryTextColor1",
                         "fontSize": 14.0,
                         "fontFamily": "RM"
                       }
@@ -197,7 +197,7 @@
                       "value": "  Bank PassBook",
                       "onlyText": true,
                       "style": {
-                        "color": "primaryColor",
+                        "color": "*primaryColor",
                         "fontSize": 14.0,
                         "fontFamily": "RM"
                       }
@@ -218,7 +218,7 @@
                   },
                   "key": 5,
                   "height":90,
-                  "color":"primaryColor2",
+                  "color":"*primaryColor2",
                   "alignment":"center",
                   "margin": "0,0,0,15",
                   "shape": "circle"
@@ -234,7 +234,7 @@
                       "value": "Upload your",
                       "onlyText": true,
                       "style": {
-                        "color": "primaryTextColor1",
+                        "color": "*primaryTextColor1",
                         "fontSize": 14.0,
                         "fontFamily": "RM"
                       }
@@ -245,7 +245,7 @@
                       "value": "  Work Permit",
                       "onlyText": true,
                       "style": {
-                        "color": "primaryColor",
+                        "color": "*primaryColor",
                         "fontSize": 14.0,
                         "fontFamily": "RM"
                       }
@@ -271,7 +271,7 @@
                   "key": 5,
                   "height":50,
                   "margin": "10,0,10,15",
-                  "color":"primaryColor",
+                  "color":"*primaryColor",
                   "borderRadius":"25,25,25,25",
                   "alignment":"center",
                   "child":{

@@ -1,12 +1,14 @@
+import 'package:dynamicparsers/customControllers/callBack/myCallback.dart';
 import 'package:flutter/material.dart';
-import 'package:nextstop_dynamic/widgets/customControllers/callBack/general.dart';
-import 'package:nextstop_dynamic/widgets/customControllers/callBack/myCallback.dart';
+import 'package:nextstop_dynamic/utils/common.dart';
+import 'package:nextstop_dynamic/utils/general.dart';
+
 
 import '../dynamicPageInitiater.dart';
 
 
 
-class DriverMyTrips extends StatelessWidget implements MyCallback{
+class DriverMyTrips extends StatelessWidget with Common, MyCallback{
   MyCallback myCallback;
   DriverMyTrips({required this.myCallback}){
     dynamicPageInitiater= DynamicPageInitiater(
@@ -25,15 +27,6 @@ class DriverMyTrips extends StatelessWidget implements MyCallback{
     return dynamicPageInitiater.dynamicPageInitiaterState.widgets;
   }
 
-  @override
-  void onMapLocationChanged(Map map) {
-    // TODO: implement onMapLocationChanged
-  }
-
-  @override
-  void onTextChanged(String text, Map map) {
-    // TODO: implement onTextChanged
-  }
 
   @override
   void ontap(Map? clickEvent) {

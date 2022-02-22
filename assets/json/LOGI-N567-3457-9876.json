@@ -39,7 +39,7 @@
       "key": 1,
       "textAlign": "center",
       "style": {
-        "color": "primaryTextColor3",
+        "color": "*primaryTextColor3",
         "fontSize": 14.0,
         "fontFamily": "RR"
       }
@@ -59,8 +59,8 @@
       "margin": "10,0,10,10",
       "groupValidation":  [{"Required":"required"},{"MinimumLength":"10"}],
       "borderRadius": "5,5,5,5",
-      "borderColor": "textFieldBorderColor",
-      "focusedBorderColor": "textFieldBorderColor",
+      "borderColor": "*textFieldBorderColor",
+      "focusedBorderColor": "*textFieldBorderColor",
       "disabledBorderColor": "FFF44336",
       "color": "FFffffff",
       "disableColor": "FFF5EFEE",
@@ -69,17 +69,17 @@
       "textLength":10,
       "enable": true,
       "hintTextStyle": {
-        "color": "primaryTextColor1",
+        "color": "*primaryTextColor1",
         "fontSize": 14.0,
         "fontFamily": "RR"
       },
       "errorTextStyle": {
-        "color": "errorTextColor",
+        "color": "*errorTextColor",
         "fontSize": 14.0,
         "fontFamily": "RR"
       },
       "textStyle": {
-        "color": "primaryTextColor2",
+        "color": "*primaryTextColor2",
         "fontSize": 15.0,
         "fontFamily": "RR"
       }
@@ -90,29 +90,29 @@
       "hintText": "Password",
       "hasInput": true,
       "obscureText": true,
-      "required": false,
+      "required": true,
       "key": "Password",
       "margin": "10,0,10,10",
       "groupValidation": [{"Required":"required"}],
       "borderRadius": "5,5,5,5",
-      "borderColor": "textFieldBorderColor",
-      "focusedBorderColor": "textFieldBorderColor",
+      "borderColor": "*textFieldBorderColor",
+      "focusedBorderColor": "*textFieldBorderColor",
       "disabledBorderColor": "FFF44336",
       "color": "FFffffff",
       "disableColor": "FFF5EFEE",
       "enable": true,
       "hintTextStyle": {
-        "color": "primaryTextColor1",
+        "color": "*primaryTextColor1",
         "fontSize": 14.0,
         "fontFamily": "RR"
       },
       "errorTextStyle": {
-        "color": "errorTextColor",
+        "color": "*errorTextColor",
         "fontSize": 14.0,
         "fontFamily": "RR"
       },
       "textStyle": {
-        "color": "primaryTextColor2",
+        "color": "*primaryTextColor2",
         "fontSize": 15.0,
         "fontFamily": "RR"
       },
@@ -137,7 +137,7 @@
                       "type":"icon",
                       "icon":"visibleOff",
                       "size":25.0,
-                      "color":"primaryTextColor1"
+                      "color":"*primaryTextColor1"
                   },
                   "clickEvent":{
                     "eventName": "ChangeValues",
@@ -172,7 +172,7 @@
                       "type":"icon",
                       "icon":"visible",
                       "size":25.0,
-                      "color":"primaryTextColor1"
+                      "color":"*primaryTextColor1"
                   },
                   "clickEvent":{
                     "eventName": "ChangeValues",
@@ -208,7 +208,7 @@
       "orderBy": "12",
       "alignment": "center",
       "clickEvent": {
-        "eventName":"FormSubmit",
+        "eventName":"formDataJson_ApiCall",
         "navigateToPage":"HomePageDriver",
         "typeOfNavigation": 2,
         "actionType": "SignIn"
@@ -216,7 +216,7 @@
       "key": 5,
       "height":50,
       "margin": "10,0,10,0",
-      "color": "primaryColor",
+      "color": "*primaryColor",
       "borderRadius":"25,25,25,25",
       "child":{
         "type": "text",
@@ -251,8 +251,8 @@
         "value": "New User ? Register",
         "key": 1,
         "style": {
-          "shadowColor": "primaryTextColor3",
-          "decorationColor": "primaryColor",
+          "shadowColor": "*primaryTextColor3",
+          "decorationColor": "*primaryColor",
           "decoration": "underline",
           "fontSize": 15.0,
           "offsetDy": -3.0

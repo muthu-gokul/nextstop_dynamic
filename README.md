@@ -18,4 +18,12 @@
 
 
 
-  
+ <!-- version 1.0.1 Change Logs --> 
+ 1. Added update feature from app itself using gDrive Link
+
+  <!-- version 1.0.2 Change Logs -->
+  1. added dynamicParser package
+
+ <!-- version 1.0.3 Change Logs -->
+    1. set Password
+    2. compare To in dynamicParser package

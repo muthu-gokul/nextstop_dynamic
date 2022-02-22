@@ -1,6 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
-
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -11,13 +9,7 @@ import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:get/get.dart';
 import 'package:nextstop_dynamic/constants.dart';
 import 'package:nextstop_dynamic/notifier/getUiNotifier.dart';
-import 'package:nextstop_dynamic/pages/driver/homePageDriver.dart';
-import 'package:nextstop_dynamic/pages/estimateBill.dart';
-import 'package:nextstop_dynamic/pages/homePage.dart';
-import 'package:nextstop_dynamic/pages/loginPage.dart';
-import 'package:nextstop_dynamic/pages/registrationPage.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:geocoding/geocoding.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'splashScreen.dart';
@@ -50,7 +42,7 @@ getApnToken() async{
     FirebaseMessaging.instance.getToken().then((value){
       sp.setString("token", value??"");
       print("FirebaseMessaging.instance.getAPNSToken();  $value");
-      FirebaseDatabase.instance.ref().push().set({"LoginUserId":LOGINUSERID,"token":value});
+      FirebaseDatabase.instance.ref().child("tokens/$LOGINUSERID").set({"LoginUserId":LOGINUSERID,"token":value});
       GetUiNotifier().notificationTokenUpdate(value??"", LOGINUSERID);
     });
   }
