@@ -27,3 +27,7 @@
  <!-- version 1.0.3 Change Logs -->
     1. set Password
     2. compare To in dynamicParser package
+
+<!-- version 1.0.4 Change Logs -->
+        1. Registration validation
+        2. manage documents

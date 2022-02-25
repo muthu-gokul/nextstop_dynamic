@@ -39,7 +39,7 @@ class ProfilePageDriver extends StatelessWidget with MyCallback,Common{
         else if(clickEvent[General.eventName]==General.locationClick){
           Position? position;
           position=await determinePosition();
-          log("$position");
+         // log("$position");
           List<Placemark> placemarks = await placemarkFromCoordinates(position.latitude, position.longitude);
           String delim1=placemarks.first.thoroughfare.toString().isNotEmpty?", ":"";
           String delim2=placemarks.first.subLocality.toString().isNotEmpty?", ":"";
@@ -49,15 +49,14 @@ class ProfilePageDriver extends StatelessWidget with MyCallback,Common{
               delim2+placemarks.first.subLocality.toString()+
               delim3 +placemarks.first.administrativeArea.toString();
           // log("$placemarks ${placemarks[0]}");
-          log("$location");
+         // log("$location");
 
           if(clickEvent['key']=='Address'){
-            log("hh ${dynamicPageInitiater.dynamicPageInitiaterState.widgets}");
+            // log("hh ${dynamicPageInitiater.dynamicPageInitiaterState.widgets}");
              clickEvent['value']=location;
             // SharedPreferences sp=await SharedPreferences.getInstance();
             // clickEvent['value']=sp.getString("token");
             findWidgetByKey(dynamicPageInitiater.dynamicPageInitiaterState.widgets,clickEvent,(wid){
-              log("wid $wid");
               findAndUpdateTextEditingController(wid,clickEvent);
             });
 

@@ -176,7 +176,7 @@
                   "required": true,
                   "key": "ConfirmPassword",
                   "margin": "10,15,10,10",
-                  "groupValidation": [{"Required":"required"},{"CompareTo": "NewPassword"}],
+                  "groupValidation": [{"Required":"required"},{"CompareTo": "NewPassword","ErrorText": "* Password doesnt match"}],
                   "borderRadius": "5,5,5,5",
                   "borderColor": "*textFieldBorderColor",
                   "focusedBorderColor": "*textFieldBorderColor",

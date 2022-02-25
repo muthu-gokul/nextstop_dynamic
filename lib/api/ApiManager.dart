@@ -33,7 +33,7 @@ class ApiManager{
         // print(msg);
          print("${response.statusCode} ${response.body}");
         msg=json.decode(response.body);
-        return [false,response.body];
+        return [false,msg['Message']];
         // return response.statusCode.toString();
       }
     }

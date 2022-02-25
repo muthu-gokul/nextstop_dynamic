@@ -50,10 +50,10 @@ class _SplashScreenState extends State<SplashScreen> {
      FirebaseMessaging.instance.getToken().then((value){
         FirebaseDatabase.instance.ref().child("tokens/$LOGINUSERID").set({"LoginUserId":LOGINUSERID,"token":value});
      });
-    // Get.off(HomePageDriver2());
-     // Get.off(HomePage());
-     List qs=[{"key":"UserId","value":"10"}];
-      Get.off(SetPassword(fromQueryString: qs,));
+     Get.off(HomePageDriver2());
+     // Get.off(LoginPage());
+     /*List qs=[{"key":"UserId","value":"10"}];
+      Get.off(SetPassword(fromQueryString: qs,));*/
   }
 
   @override

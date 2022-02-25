@@ -37,6 +37,7 @@ formSubmitMethod(dynamic guid,List<dynamic> widget,Map clickEvent,List queryStr)
 
           if(element.map.containsKey('groupValidation')){
             for(int i=0;i<element.map['groupValidation'].length;i++){
+             // print(element.map['groupValidation'][i]);
               element.map['groupValidation'][i].forEach((key, value) {
                 if(key=='Required'){
                   isValid=element.validate();
@@ -55,7 +56,13 @@ formSubmitMethod(dynamic guid,List<dynamic> widget,Map clickEvent,List queryStr)
                   validList.add(isValid);
                 }
                 else if(key=='CompareTo'){
-                  findWidgetByKey(widgets, {"key":value}, (wid){
+
+                  if(element.map['groupValidation'][i].length>1){
+                    isValid=element.compareTo(widgets,element.map['groupValidation'][i]);
+                    validList.add(isValid);
+                  }
+
+                  /*findWidgetByKey(widgets, {"key":value}, (wid){
                     print("Found  $wid ${wid.getValue()} ${element.getValue().toString()}");
                     if(wid.getValue().toString() == element.getValue().toString()){
                             isValid=true;
@@ -65,20 +72,7 @@ formSubmitMethod(dynamic guid,List<dynamic> widget,Map clickEvent,List queryStr)
                             isValid=false;
                             validList.add(isValid);
                     }
-                  });
-                  // widgets.forEach((e1) {
-                  //   if(e1.map['key']==value){
-                  //     v1=e1.getValue().toString();
-                  //     if(v1==v2){
-                  //       isValid=true;
-                  //       validList.add(isValid);
-                  //     }
-                  //     else{
-                  //       isValid=false;
-                  //       validList.add(isValid);
-                  //     }
-                  //   }
-                  // });
+                  });*/
                 }
               });
               if(isValid){

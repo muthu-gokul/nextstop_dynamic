@@ -2,6 +2,7 @@
   "Guid": "PROF-ILE1-DRIV-ER66",
   "alignment": "topCenter",
   "mainAxisAlignment": "center",
+  "isOwnWidget": true,
   "valueArray":[
     {
       "key": "Name",
@@ -18,348 +19,327 @@
   ],
   "Widgets": [
     {
-      "type":"sizedBox",
-      "orderBy": "1",
-      "height":10
-    },
-    {
-      "type":"rowController",
-      "orderBy": "2",
-      "mainAxisAlignment": "start",
-      "children": [
-        {
-          "type":"navIcon",
-          "orderBy": "1",
-          "color": "*primaryColor",
-          "margin": "20,0,0,0",
-          "padding": "10,0,0,0",
-          "borderRadius": "10,10,10,10",
-          "width":40,
-          "height":35,
-          "clickEvent": {
-            "eventName": "OpenDrawer"
-          }
-        },
-        {
-          "type":"sizedBox",
-          "orderBy": "2",
-          "width":20
-        },
-        {
-          "type": "text",
-          "orderBy": "3",
-          "value": "My Profile",
-          "key": 1,
-          "style": {
-            "color": "*primaryTextColor2",
-            "fontSize": 18.0,
-            "fontFamily": "RM"
-          }
-        }
-      ]
-    },
-    {
       "type":"columnController",
-      "orderBy": "3",
-      "mainAxisAlignment": "start",
-      "reducedHeight": "100",
+      "mainAxisAlignment":"start",
       "children": [
-
-        {
-          "type":"propicController",
-          "imagePath":"assets/icons/user.svg",
-          "bgColor":"*primaryColor",
-          "alignment":"center",
-          "height":80.0,
-          "width":80.0,
-          "orderBy":5
-        },
         {
           "type":"sizedBox",
-          "orderBy": "6",
+          "orderBy": "1",
           "height":10
         },
         {
-          "type": "text",
-          "orderBy": "7",
-          "value": "Mr. End User",
-          "key": "Name",
-          "style": {
-            "color": "*primaryTextColor3",
-            "fontSize": 20.0,
-            "fontFamily": "RM"
-          }
-        },
-        {
-          "type":"sizedBox",
-          "orderBy": "8",
-          "height":5
-        },
-        {
-          "type": "text",
-          "orderBy": "9",
-          "value": "Driver",
-          "key": 1,
-          "style": {
-            "color": "*primaryTextColor1",
-            "fontSize": 16.0,
-            "fontFamily": "RR"
-          }
-        },
-        {
-          "type":"sizedBox",
-          "orderBy": 10,
-          "height":20
-        },
-        {
-          "type": "rowController",
-          "orderBy": 11,
-          "mainAxisAlignment": "spaceAround",
+          "type":"rowController",
+          "orderBy": "2",
+          "mainAxisAlignment": "start",
           "children": [
             {
-              "type": "columnController",
-              "orderBy": 1,
+              "type":"navIcon",
+              "orderBy": "1",
+              "color": "*primaryColor",
+              "margin": "20,0,0,0",
+              "padding": "10,0,0,0",
+              "borderRadius": "10,10,10,10",
+              "width":40,
+              "height":35,
+              "clickEvent": {
+                "eventName": "OpenDrawer"
+              }
+            },
+            {
+              "type":"sizedBox",
+              "orderBy": "2",
+              "width":20
+            },
+            {
+              "type": "text",
+              "orderBy": "3",
+              "value": "My Profile",
+              "key": 1,
+              "style": {
+                "color": "*primaryTextColor2",
+                "fontSize": 18.0,
+                "fontFamily": "RM"
+              }
+            }
+          ]
+        },
+        {
+          "type": "expandedController",
+          "orderBy": 3,
+          "child": {
+            "type": "customScrollViewController",
+            "hasScrollBody": false,
+            "orderBy": 2,
+            "child": {
+              "type":"columnController",
+              "orderBy": "3",
+              "mainAxisAlignment": "start",
+
               "children": [
+
                 {
-                  "type": "button",
-                  "orderBy": 11,
-                  "height":45,
-                  "pixelWidth":45,
-                  "shape": "circle",
-                  "color":"#F5CAB6",
-                  "alignment": "center",
-                  "child": {
-                    "type": "icon",
-                    "icon": "phone",
-                    "color": "*primaryColor",
-                    "size": 25.0
+                  "type":"propicController",
+                  "imagePath":"assets/icons/user.svg",
+                  "bgColor":"*primaryColor",
+                  "alignment":"center",
+                  "height":80.0,
+                  "width":80.0,
+                  "orderBy":5
+                },
+                {
+                  "type":"sizedBox",
+                  "orderBy": "6",
+                  "height":10
+                },
+                {
+                  "type": "text",
+                  "orderBy": "7",
+                  "value": "Mr. End User",
+                  "key": "Name",
+                  "style": {
+                    "color": "*primaryTextColor3",
+                    "fontSize": 20.0,
+                    "fontFamily": "RM"
                   }
                 },
+                {
+                  "type":"sizedBox",
+                  "orderBy": "8",
+                  "height":5
+                },
+                {
+                  "type": "text",
+                  "orderBy": "9",
+                  "value": "Driver",
+                  "key": 1,
+                  "style": {
+                    "color": "*primaryTextColor1",
+                    "fontSize": 16.0,
+                    "fontFamily": "RR"
+                  }
+                },
+                {
+                  "type":"sizedBox",
+                  "orderBy": 10,
+                  "height":20
+                },
+                {
+                  "type": "rowController",
+                  "orderBy": 11,
+                  "mainAxisAlignment": "spaceAround",
+                  "children": [
+                    {
+                      "type": "columnController",
+                      "orderBy": 1,
+                      "children": [
+                        {
+                          "type": "button",
+                          "orderBy": 11,
+                          "height":45,
+                          "pixelWidth":45,
+                          "shape": "circle",
+                          "color":"#F5CAB6",
+                          "alignment": "center",
+                          "child": {
+                            "type": "icon",
+                            "icon": "phone",
+                            "color": "*primaryColor",
+                            "size": 25.0
+                          }
+                        },
+                        {
+                          "type":"sizedBox",
+                          "orderBy": 12,
+                          "height":5
+                        },
+                        {
+                          "type": "text",
+                          "orderBy": 13,
+                          "value": "98565-65656",
+                          "key": "MobileNumber",
+                          "style": {
+                            "color": "*primaryTextColor3",
+                            "fontSize": 16.0,
+                            "fontFamily": "RM"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "columnController",
+                      "orderBy": 1,
+                      "children": [
+                        {
+                          "type": "button",
+                          "orderBy": 15,
+                          "height":45,
+                          "pixelWidth":45,
+                          "shape": "circle",
+                          "color":"#F5CAB6",
+                          "alignment": "center",
+                          "child": {
+                            "type": "icon",
+                            "icon": "mail",
+                            "color": "*primaryColor",
+                            "size": 25.0
+                          }
+                        },
+                        {
+                          "type":"sizedBox",
+                          "orderBy": 16,
+                          "height":5
+                        },
+                        {
+                          "type": "text",
+                          "orderBy": 17,
+                          "value": "enduser@gmail.com",
+                          "key": "Mail",
+                          "style": {
+                            "color": "*primaryTextColor3",
+                            "fontSize": 16.0,
+                            "fontFamily": "RM"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+
                 {
                   "type":"sizedBox",
                   "orderBy": 12,
-                  "height":5
+                  "height":30
                 },
                 {
-                  "type": "text",
+                  "type": "textField",
                   "orderBy": 13,
-                  "value": "98565-65656",
-                  "key": "MobileNumber",
-                  "style": {
-                    "color": "*primaryTextColor3",
-                    "fontSize": 16.0,
-                    "fontFamily": "RM"
+                  "hintText": "Enter Your Address",
+                  "hasInput": true,
+                  "required": true,
+                  "key": "Address",
+                  "margin": "15,15,15,0",
+                  "leftContentPadding": 20.0,
+                  "groupValidation": [{"Required":"required"}],
+                  "borderRadius": "6,6,6,6",
+                  "borderColor": "*textFieldBorderColor",
+                  "focusedBorderColor": "*textFieldBorderColor",
+                  "disabledBorderColor": "FFF44336",
+                  "color": "FFffffff",
+                  "disableColor": "FFF5EFEE",
+                  "enable": true,
+                  "hintTextStyle": {
+                    "color": "*primaryTextColor1",
+                    "fontSize": 14.0,
+                    "fontFamily": "RR"
+                  },
+                  "errorTextStyle": {
+                    "color": "*errorTextColor",
+                    "fontSize": 14.0,
+                    "fontFamily": "RR"
+                  },
+                  "textStyle": {
+                    "color": "*primaryTextColor2",
+                    "fontSize": 15.0,
+                    "fontFamily": "RR"
+                  },
+                  "suffix": {
+                    "type": "button",
+                    "orderBy": 1,
+                    "height":50,
+                    "pixelWidth":50,
+                    "alignment": "center",
+                    "clickEvent": {
+                      "eventName": "locationClick",
+                      "key": "Address"
+                    },
+                    "child": {
+                      "type": "icon",
+                      "icon": "markLocation",
+                      "color": "red",
+                      "size": 20.0
+                    }
                   }
-                }
-              ]
-            },
-            {
-              "type": "columnController",
-              "orderBy": 1,
-              "children": [
+                },
+
+
+
+                {
+                  "orderBy": 14,
+                  "type": "spacerController"
+                },
                 {
                   "type": "button",
                   "orderBy": 15,
-                  "height":45,
-                  "pixelWidth":45,
-                  "shape": "circle",
-                  "color":"#F5CAB6",
-                  "alignment": "center",
-                  "child": {
-                    "type": "icon",
-                    "icon": "mail",
-                    "color": "*primaryColor",
-                    "size": 25.0
-                  }
+                  "clickEvent": {
+                    "eventName": "Navigation",
+                    "typeOfNavigation": 1,
+                    "navigateToPage": "ManageDocuments"
+                  },
+                  "key": 5,
+                  "height":90,
+                  "color":"*primaryColor2",
+                  "alignment":"center",
+                  "margin": "0,0,0,15",
+                  "shape": "circle"
                 },
                 {
-                  "type":"sizedBox",
+                  "type": "rowController",
+                  "orderBy": 15,
+                  "mainAxisAlignment": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "orderBy": 1,
+                      "value": "Upload your",
+                      "onlyText": true,
+                      "style": {
+                        "color": "*primaryTextColor1",
+                        "fontSize": 14.0,
+                        "fontFamily": "RM"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "orderBy": 1,
+                      "value": "  Manage Documents",
+                      "onlyText": true,
+                      "style": {
+                        "color": "*primaryColor",
+                        "fontSize": 14.0,
+                        "fontFamily": "RM"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "button",
                   "orderBy": 16,
-                  "height":5
-                },
-                {
-                  "type": "text",
-                  "orderBy": 17,
-                  "value": "enduser@gmail.com",
-                  "key": "Mail",
-                  "style": {
-                    "color": "*primaryTextColor3",
-                    "fontSize": 16.0,
-                    "fontFamily": "RM"
+                  "clickEvent": {
+
+                  },
+                  "key": 5,
+                  "height":50,
+                  "margin": "10,20,10,20",
+                  "color":"*primaryColor",
+                  "borderRadius":"25,25,25,25",
+                  "alignment":"center",
+                  "child":{
+                    "type": "text",
+                    "value": "Submit",
+                    "alignment":"center",
+                    "key": 1,
+                    "style": {
+                      "color": "#ffffff",
+                      "fontSize": 16.0
+                    }
                   }
                 }
               ]
-            }
-          ]
-        },
-
-        {
-          "type":"sizedBox",
-          "orderBy": 12,
-          "height":30
-        },
-        {
-          "type": "textField",
-          "orderBy": 13,
-          "hintText": "Enter Your Address",
-          "hasInput": true,
-          "required": true,
-          "key": "Address",
-          "margin": "15,15,15,0",
-          "leftContentPadding": 20.0,
-          "groupValidation": [{"Required":"required"}],
-          "borderRadius": "6,6,6,6",
-          "borderColor": "*textFieldBorderColor",
-          "focusedBorderColor": "*textFieldBorderColor",
-          "disabledBorderColor": "FFF44336",
-          "color": "FFffffff",
-          "disableColor": "FFF5EFEE",
-          "enable": true,
-          "hintTextStyle": {
-            "color": "*primaryTextColor1",
-            "fontSize": 14.0,
-            "fontFamily": "RR"
-          },
-          "errorTextStyle": {
-            "color": "*errorTextColor",
-            "fontSize": 14.0,
-            "fontFamily": "RR"
-          },
-          "textStyle": {
-            "color": "*primaryTextColor2",
-            "fontSize": 15.0,
-            "fontFamily": "RR"
-          },
-          "suffix": {
-            "type": "button",
-            "orderBy": 1,
-            "height":50,
-            "pixelWidth":50,
-            "alignment": "center",
-            "clickEvent": {
-              "eventName": "locationClick",
-              "key": "Address"
-            },
-            "child": {
-              "type": "icon",
-              "icon": "markLocation",
-              "color": "red",
-              "size": 20.0
-            }
-          }
-        },
-        {
-          "type": "textField",
-          "orderBy": 13,
-          "hintText": "Enter Vehicle Number",
-          "hasInput": true,
-          "required": true,
-          "key": "VehicleNumber",
-          "margin": "15,15,15,0",
-          "leftContentPadding": 20.0,
-          "groupValidation": [{"Required":"required"}],
-          "borderRadius": "6,6,6,6",
-          "borderColor": "*textFieldBorderColor",
-          "focusedBorderColor": "*textFieldBorderColor",
-          "disabledBorderColor": "FFF44336",
-          "color": "FFffffff",
-          "disableColor": "FFF5EFEE",
-          "enable": true,
-          "hintTextStyle": {
-            "color": "*primaryTextColor1",
-            "fontSize": 14.0,
-            "fontFamily": "RR"
-          },
-          "errorTextStyle": {
-            "color": "*errorTextColor",
-            "fontSize": 14.0,
-            "fontFamily": "RR"
-          },
-          "textStyle": {
-            "color": "*primaryTextColor2",
-            "fontSize": 15.0,
-            "fontFamily": "RR"
-          }
-        },
-
-        {
-          "orderBy": 14,
-          "type": "spacerController"
-        },
-        {
-          "type": "button",
-          "orderBy": 15,
-          "clickEvent": {
-            "eventName": "Navigation",
-            "typeOfNavigation": 1,
-            "navigateToPage": "ManageDocuments"
-          },
-          "key": 5,
-          "height":90,
-          "color":"*primaryColor2",
-          "alignment":"center",
-          "margin": "0,0,0,15",
-          "shape": "circle"
-        },
-        {
-          "type": "rowController",
-          "orderBy": 15,
-          "mainAxisAlignment": "center",
-          "children": [
-            {
-              "type": "text",
-              "orderBy": 1,
-              "value": "Upload your",
-              "onlyText": true,
-              "style": {
-                "color": "*primaryTextColor1",
-                "fontSize": 14.0,
-                "fontFamily": "RM"
-              }
-            },
-            {
-              "type": "text",
-              "orderBy": 1,
-              "value": "  Manage Documents",
-              "onlyText": true,
-              "style": {
-                "color": "*primaryColor",
-                "fontSize": 14.0,
-                "fontFamily": "RM"
-              }
-            }
-          ]
-        },
-        {
-          "orderBy": 15,
-          "type": "spacerController"
-        },
-        {
-          "type": "button",
-          "orderBy": 16,
-          "clickEvent": {
-
-          },
-          "key": 5,
-          "height":50,
-          "margin": "10,0,10,0",
-          "color":"*primaryColor",
-          "borderRadius":"25,25,25,25",
-          "alignment":"center",
-          "child":{
-            "type": "text",
-            "value": "Submit",
-            "alignment":"center",
-            "key": 1,
-            "style": {
-              "color": "#ffffff",
-              "fontSize": 16.0
             }
           }
         }
       ]
     }
-
   ]
 }
 

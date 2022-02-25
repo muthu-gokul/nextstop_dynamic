@@ -1,6 +1,8 @@
 
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:get/get.dart';
 
 import 'popOver/src/popover.dart';
 import 'popOver/src/popover_direction.dart';
@@ -9,15 +11,20 @@ import 'popOver/src/popover_direction.dart';
 class CustomPopup extends StatelessWidget {
   List<dynamic>? data;
   Function(String)? onSelect;
-  dynamic selectedValue;
+
   String hintText;
   double width;
   double leftMargin;
   EdgeInsets edgeInsets;
   Color color;
-  CustomPopup({this.data,this.onSelect,this.selectedValue,required this.hintText,
-    required this.width,this.leftMargin=20,this.edgeInsets=const EdgeInsets.only(left:20,),this.color=Colors.white});
+  CustomPopup({this.data,this.onSelect,required this.hintText,
+    required this.width,this.leftMargin=20,this.edgeInsets=const EdgeInsets.only(left:20,),this.color=Colors.white,
+  required this.showKey});
 
+  String showKey;
+
+  var selectedValue="".obs;
+  Rxn sv=Rxn();
   @override
   Widget build(BuildContext context) {
     return
@@ -46,12 +53,9 @@ class CustomPopup extends StatelessWidget {
                         itemBuilder: (ctx,index){
                           return   InkWell(
                             onTap: () {
+                              log("${data![index]}");
+                              sv.value=data![index];
                               Navigator.pop(ctx);
-                              onSelect!(data![index]);
-
-                              //  onSelect!(data![index]);
-
-
                             },
                             child: Container(
                               height: 50,
@@ -64,7 +68,7 @@ class CustomPopup extends StatelessWidget {
                                 //borderRadius: BorderRadius.circular(8),
                                 color: Colors.white,
                               ),
-                              child:  Text("${data![index]}",
+                              child:  Text(showKey.isEmpty?"${data![index]}":"${data![index][showKey]}",
                                 style: TextStyle(fontFamily: 'RR',fontSize: 16,color: Color(0xFF505050)
                                   // color:selectedValue==data![index]?Colors.white: Color(0xFF555555),letterSpacing: 0.1
                                 ),
@@ -116,8 +120,10 @@ class CustomPopup extends StatelessWidget {
               padding: EdgeInsets.only(left: 15),
               child: Row(
                 children: [
-                  Text(selectedValue.isEmpty?hintText:selectedValue,
-                    style: TextStyle(color: Color(0xFF2E2E2E),fontSize: 16,fontFamily: selectedValue.isEmpty?'RL':'RR'),
+                  Obx(
+                        () =>Text(sv.value==null?hintText:showKey.isEmpty?"${sv.value}":"${sv.value[showKey]}",
+                        style: TextStyle(color: Color(0xFF2E2E2E),fontSize: 16,fontFamily: selectedValue.isEmpty?'RL':'RR'),
+                      ),
                   ),
                   Spacer(),
                   Icon(Icons.keyboard_arrow_down,size: 30,color:Colors.blue,),

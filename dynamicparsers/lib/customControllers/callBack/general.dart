@@ -199,6 +199,14 @@ updateByWidgetType(String widgetType,{var widget,Map? clickEvent}){
       widget.map['clickEvent']=clickEvent!['value'];
     }
     break;
+    case 'opacityController':{
+      widget.opacity.value=clickEvent!['value'];
+    }
+    break;
+    case 'customPopup':{
+      widget.sv.value=clickEvent!['value'];
+    }
+    break;
     default: {
       log("dfault");
     }

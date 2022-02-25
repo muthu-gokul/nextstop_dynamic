@@ -15,6 +15,7 @@ import '../buttonController.dart';
 import '../checkBox.dart';
 import '../circleController.dart';
 import '../columnController.dart';
+import '../customPopUp.dart';
 import '../customScrollViewController.dart';
 import '../dynamicRowController.dart';
 import '../expandedController.dart';
@@ -24,6 +25,7 @@ import '../hiddenController.dart';
 import '../imageController.dart';
 import '../inputBoxController.dart';
 import '../listviewBuilderController.dart';
+import '../opacityController.dart';
 import '../pageviewController.dart';
 import '../positionController.dart';
 import '../profiePicController.dart';
@@ -173,6 +175,12 @@ List<dynamic> getWidgets(List parsed,MyCallback myCallback){
     else if(element['type']=='circleController'){
       widgets.add(CircleController(map: element, myCallback: myCallback,));
     }
+    else if(element['type']=='opacityController'){
+      widgets.add(OpacityController(map: element, myCallback: myCallback,));
+    }
+    else if(element['type']=='customPopup'){
+      widgets.add(CustomPopup(map: element, myCallback: myCallback,));
+    }
   });
   return widgets;
 }
@@ -269,6 +277,12 @@ Widget getChild(Map mapp, {MyCallback? myCallback}){
   }
   else if(map['type']=='circleController'){
     widget=  CircleController(map: map, myCallback: myCallback!,);
+  }
+  else if(map['type']=='opacityController'){
+    widget=  OpacityController(map: map, myCallback: myCallback!,);
+  }
+  else if(map['type']=='customPopup'){
+    widget=  CustomPopup(map: map, myCallback: myCallback!,);
   }
   return widget;
 

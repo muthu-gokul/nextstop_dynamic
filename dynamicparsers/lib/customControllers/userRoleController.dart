@@ -13,6 +13,9 @@ class UserRoleController extends StatelessWidget implements MyCallback2{
   var selectedIndex=(-1).obs;
   List columnWidgets=[];
   List mainWidget=[];
+
+
+
   UserRoleController({required this.map,required this.ontap}){
     log("Constructor");
     selectedIndex.value=map['selectedIndex'];
@@ -49,9 +52,11 @@ class UserRoleController extends StatelessWidget implements MyCallback2{
           else if(e.map['type']=='text' && e.map['isChangeColor']){
             e.ts.value=map['selectedTextStyle'];
           }
+         /* else if(e.map['type']=='opacityController'){
+            e.opacity.value=1;
+          }*/
         });
       }
-
     }
   }
 
@@ -90,6 +95,19 @@ class UserRoleController extends StatelessWidget implements MyCallback2{
                       e.ts.value=map['unselectedTextStyle'];
                     }
                   }
+                 /*else if(e.map['type']=='opacityController'){
+                    if(k==selectedIndex.value) {
+                      e.opacity.value=1;
+                    }
+                    else{
+                      if( e.map.containsKey("opacity")){
+                        e.opacity.value=map['opacity'];
+                      }
+                      else{
+                        e.opacity.value=1;
+                      }
+                    }
+                  }*/
                 });
                 k++;
               });
@@ -97,14 +115,19 @@ class UserRoleController extends StatelessWidget implements MyCallback2{
               // ontap.ontap(map['eventName']);
             //  ontap.ontap(map['clickEvent']);
             },
-            child: Container(
-              color: Colors.transparent,
-              margin: parseEdgeInsetsGeometry(map['margin']),
-              child: Column(
-                children: [
-                   for(int j=0;j<mainWidget[i].length;j++)
-                     mainWidget[i][j]
-                ],
+            child: AnimatedOpacity(
+              duration: const Duration(milliseconds: 300),
+              curve: Curves.easeIn,
+              opacity: i==selectedIndex.value?1:0.5,
+              child: Container(
+                color: Colors.transparent,
+                margin: parseEdgeInsetsGeometry(map['margin']),
+                child: Column(
+                  children: [
+                     for(int j=0;j<mainWidget[i].length;j++)
+                       mainWidget[i][j]
+                  ],
+                ),
               ),
             ),
             /*child: Container(

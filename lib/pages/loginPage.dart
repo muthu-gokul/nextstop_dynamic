@@ -2,9 +2,11 @@ import 'dart:convert';
 import 'dart:developer';
 import 'package:dynamicparsers/customControllers/callBack/generalMethods.dart';
 import 'package:dynamicparsers/customControllers/callBack/myCallback.dart';
+import 'package:dynamicparsers/widgets/sizeLocal.dart';
 import 'package:flutter/material.dart';
 import 'package:nextstop_dynamic/main.dart';
 import 'package:nextstop_dynamic/utils/general.dart';
+import 'package:nextstop_dynamic/widgets/customPopUp.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../constants.dart';
 import '../utils/common.dart';
@@ -25,7 +27,25 @@ class LoginPage extends StatelessWidget with Common,MyCallback{
 
   @override
   Widget build(BuildContext context) {
-   return dynamicPageInitiater;
+    return dynamicPageInitiater;
+   /*return Column(
+     children: [
+       CustomPopup(
+         hintText: "Select",
+         width:SizeConfig.screenWidth!-30,
+         edgeInsets: EdgeInsets.only(left: 15,right: 15,top: 50),
+         leftMargin: 15,
+         data: [
+           {
+             "id":1,
+             "value":"heelo"
+           }
+         ],
+         showKey: "value",
+       ),
+     //  dynamicPageInitiater
+     ],
+   );*/
   }
 
   @override

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../widgets/sizeLocal.dart';
+import 'callBack/general.dart';
 import 'callBack/myCallback.dart';
 import 'utils.dart';
 import 'package:get/get.dart';
@@ -175,6 +176,23 @@ class TextFormFieldController extends StatelessWidget implements MyCallback2{
     else {
       isValid.value=true;
     }
+    return isValid.value;
+  }
+
+
+  compareTo(List widgets,dynamic value){
+    findWidgetByKey(widgets, {"key":value['CompareTo']}, (wid){
+      print("Found  $wid ${wid.getValue()}");
+      String getval=wid.getValue();
+      if(getval == textEditingController.text){
+        errorText.value="";
+        isValid.value= true;
+      }
+      else{
+        errorText.value=value['ErrorText'];
+        isValid.value= false;
+      }
+    });
     return isValid.value;
   }
 

@@ -27,7 +27,13 @@ ChangeValues
 changeValuesArray
 
 
-<!-- v-0.0.1 -->
+<!-- v-0.0.2 -->
 22-2-2022
 1. compare to function
+
+
+25-02-2022
+1.added opacity Controller
+2. added compareTo validation in inputBox
+3.added customPopUp
 

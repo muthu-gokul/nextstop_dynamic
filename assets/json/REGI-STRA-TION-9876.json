@@ -63,6 +63,7 @@
       "color": "FFffffff",
       "disableColor": "FFF5EFEE",
       "enable": true,
+      "regExp": "[A-Za-z ]",
       "hintTextStyle": {
         "color": "*primaryTextColor1",
         "fontSize": 14.0,
@@ -95,6 +96,7 @@
       "color": "FFffffff",
       "disableColor": "FFF5EFEE",
       "enable": true,
+      "regExp": "[A-Za-z ]",
       "hintTextStyle": {
         "color": "*primaryTextColor1",
         "fontSize": 14.0,
@@ -160,6 +162,7 @@
       "disableColor": "FFF5EFEE",
       "enable": true,
       "regExp":"[0-9]",
+      "textInputType":"number",
       "textLength":10,
       "hintTextStyle": {
         "color": "*primaryTextColor1",
