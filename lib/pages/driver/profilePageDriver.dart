@@ -73,4 +73,13 @@ class ProfilePageDriver extends StatelessWidget with MyCallback,Common{
     }
   }
 
+  @override
+  getCurrentPageWidgets() {
+    return dynamicPageInitiater.dynamicPageInitiaterState.widgets;
+  }
+
+  @override
+  reloadPage() {
+    dynamicPageInitiater.dynamicPageInitiaterState.initSS();
+  }
 }

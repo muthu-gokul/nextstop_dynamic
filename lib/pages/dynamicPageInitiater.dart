@@ -384,6 +384,12 @@ class DynamicPageInitiaterState extends State<DynamicPageInitiater> implements M
     // TODO: implement parseColor
     throw UnimplementedError();
   }
+
+  @override
+  reloadPage() {
+    // TODO: implement reloadPage
+    throw UnimplementedError();
+  }
 }
 
 

@@ -36,7 +36,7 @@ class Common{
           return formSubmitMethodTFE(guid,widgets,clickEvent,queryString,myCallback: myCallback);
         }
         else if(clickEvent[General.eventName]==General.Navigation){
-          return checkAndNavigate(clickEvent);
+          return checkAndNavigate(clickEvent,myCallback);
         }
         else if(clickEvent[General.eventName]==General.openDrawer){
           return openDrawer(myCallback!, clickEvent);
@@ -75,9 +75,9 @@ class Common{
     return formSubmitMethod(guid, widgets,clickEvent,queryString,);
   }
 
-  checkAndNavigate(Map clickEvent){
+  checkAndNavigate(Map clickEvent,MyCallback? myCallback){
     if(clickEvent.containsKey(General.navigateToPage)){
-      getXNavigation(clickEvent[General.typeOfNavigation],General().getPage(clickEvent[General.navigateToPage]));
+      getXNavigation(clickEvent[General.typeOfNavigation],General().getPage(clickEvent[General.navigateToPage],myCallback: myCallback));
     }
   }
 
@@ -101,14 +101,14 @@ class Common{
       return null;
     }
     else if(!fromUrl){
-      checkAndNavigate(clickEvent);
+      checkAndNavigate(clickEvent,myCallback);
     }
     return null;
   }
   formDataJsonApiCallResponse(dynamic guid,List<dynamic> widgets,Map clickEvent,List queryString,{MyCallback? myCallback}) async {
     var apiResponse=await formDataJsonApiCall(guid, widgets, clickEvent, queryString);
     if(apiResponse!=null){
-      checkAndNavigate(clickEvent);
+      checkAndNavigate(clickEvent,myCallback);
     }
     else{
       return apiResponse;

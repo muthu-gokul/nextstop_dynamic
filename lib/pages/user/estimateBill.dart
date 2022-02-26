@@ -205,7 +205,7 @@ class EstimateBillPage extends StatelessWidget with Common , MyCallback{
   }
 
   @override
-  checkAndNavigate(Map clickEvent) {
+  checkAndNavigate(Map clickEvent,MyCallback? myCallback) {
     log("Estimate Bill Check And Navigate $clickEvent" );
     if(clickEvent[General.navigateToPage]=='ScheduleRide'){
       isScheduleRide.value=true;
@@ -223,7 +223,7 @@ class EstimateBillPage extends StatelessWidget with Common , MyCallback{
       isScheduleRide.value=false;
     }
     else {
-      Common().checkAndNavigate(clickEvent);
+      Common().checkAndNavigate(clickEvent,myCallback);
     }
   }
 

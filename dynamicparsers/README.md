@@ -37,3 +37,6 @@ changeValuesArray
 2. added compareTo validation in inputBox
 3.added customPopUp
 
+26-02-2202
+1. added sliver (need to change custom scrollView)
+2. added reloadPage in MyCallBack

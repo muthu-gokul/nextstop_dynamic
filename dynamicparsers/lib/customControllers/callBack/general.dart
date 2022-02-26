@@ -138,6 +138,9 @@ func1ByKey(dynamic widget,Map? clickEvent,Function(dynamic widget) returnFunctio
   }
   return null;
 }
+
+
+
 findAndUpdateTextEditingController(var widget,Map? clickEvent){
  // log("clickEvent['value'] ${clickEvent!['value']}");
   if(clickEvent!['value']!=null){
@@ -173,6 +176,11 @@ updateByWidgetType(String widgetType,{var widget,Map? clickEvent}){
     }
     break;
     case 'listViewBuilderController':{
+      widget.map['value']=clickEvent!['value'];
+      widget.updateValues(clickEvent['value']);
+    }
+    break;
+    case 'sliverListController':{
       widget.map['value']=clickEvent!['value'];
       widget.updateValues(clickEvent['value']);
     }

@@ -193,7 +193,7 @@ class _HomePageDriver2State extends State<HomePageDriver2> with WidgetsBindingOb
           SharedPreferences sp=await SharedPreferences.getInstance();
           sp.setBool(ISLOGGEDINKEY, false);
           sp.setString("token", "");
-          checkAndNavigate(clickEvent);
+          checkAndNavigate(clickEvent,this);
           //General().navigation(clickEvent[General.navigateToPage],clickEvent[General.typeOfNavigation]);
         }
         else{

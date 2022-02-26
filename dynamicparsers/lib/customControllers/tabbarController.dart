@@ -114,13 +114,22 @@ class TabbarController extends StatelessWidget implements MyCallback2,TabPageVie
 
   @override
   onChanged(int index) {
-    findWidgetByKey(myCallback.getCurrentPageWidgets(), {"key":"${map['toFindKey']}"}, (wid){
-      wid.changeControllerIndex(index);
-    });
+    if(map['toFindKey'].isNotEmpty){
+      findWidgetByKey(myCallback.getCurrentPageWidgets(), {"key":"${map['toFindKey']}"}, (wid){
+        wid.changeControllerIndex(index);
+      });
+    }
+
+    if(map['value'][index].containsKey("changeValues")){
+      myCallback.ontap(map['value'][index]['changeValues']);
+    }
   }
 
   @override
   changeControllerIndex(int index) {
     tabController.tabController.animateTo(index,duration: Duration(milliseconds: 300));
+    if(map['value'][index].containsKey("changeValues")){
+      myCallback.ontap(map['value'][index]['changeValues']);
+    }
   }
 }

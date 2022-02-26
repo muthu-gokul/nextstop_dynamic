@@ -160,4 +160,10 @@ class PickerTemplate extends StatelessWidget implements MyCallback,MyCallback2{
     // TODO: implement validate
     throw UnimplementedError();
   }
+
+  @override
+  reloadPage() {
+    // TODO: implement reloadPage
+    throw UnimplementedError();
+  }
 }

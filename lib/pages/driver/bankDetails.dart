@@ -13,11 +13,11 @@ import '../dynamicPageInitiater.dart';
 
 
 
-class ManageDocuments extends StatelessWidget with Common, MyCallback{
+class BankDetails extends StatelessWidget with Common, MyCallback{
   MyCallback profilePageDriverCallback;
-  ManageDocuments({required this.profilePageDriverCallback}){
+  BankDetails({required this.profilePageDriverCallback}){
     dynamicPageInitiater=DynamicPageInitiater(
-      pageIdentifier: General.manageDocPageIdentifier,
+      pageIdentifier: General.driverBankDetailsIdentifier,
       myCallback: this,
     );
   }
@@ -30,13 +30,13 @@ class ManageDocuments extends StatelessWidget with Common, MyCallback{
 
   @override
   Future<void> ontap(Map? clickEvent) async {
-    log("manage doc $clickEvent");
+    log("BankDetails doc $clickEvent");
     splitByTapEvent(
         clickEvent,
         widgets: dynamicPageInitiater.dynamicPageInitiaterState.widgets,
         queryString: dynamicPageInitiater.dynamicPageInitiaterState.queryString,
         myCallback: this,
-        guid: General.manageDocPageIdentifier
+        guid: General.driverBankDetailsIdentifier
     );
   }
 
@@ -44,7 +44,7 @@ class ManageDocuments extends StatelessWidget with Common, MyCallback{
   @override
   formDataJsonApiCallResponse(guid, List widgets, Map clickEvent, List queryString, {MyCallback? myCallback}) async{
     var apiRes=await formDataJsonApiCall(guid, widgets, clickEvent, queryString);
-    log("managa doc apiRes $apiRes");
+    log("BankDetails doc apiRes $apiRes");
     if(apiRes!=null){
       Get.defaultDialog(
           title: "",
@@ -55,7 +55,7 @@ class ManageDocuments extends StatelessWidget with Common, MyCallback{
             children: [
               Image.asset("assets/icons/sucess.gif",height: 150,),
               SizedBox(height: 15,),
-              Text("Document Details have been Updated successfully",style: ts18(primaryTextColor2),textAlign: TextAlign.center,),
+              Text("Bank Details have been Changed successfully",style: ts18(primaryTextColor2),textAlign: TextAlign.center,),
               SizedBox(height: 15,),
               GestureDetector(
                 onTap: (){

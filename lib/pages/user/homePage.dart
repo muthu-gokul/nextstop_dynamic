@@ -211,7 +211,7 @@ class _HomePageState extends State<HomePage> with Common, MyCallback{
          // General().formSubmit(guid, widgets,clickEvent,queryString,myCallback: this);
         }
         else if(clickEvent['eventName']=='Navigation'){
-          checkAndNavigate(clickEvent);
+          checkAndNavigate(clickEvent,this);
          // General().navigation(clickEvent['navigateToPage'],clickEvent['typeOfNavigation']);
         }
         else if(clickEvent['eventName']=='HomePageNavigation'){
@@ -234,7 +234,7 @@ class _HomePageState extends State<HomePage> with Common, MyCallback{
           SharedPreferences sp=await SharedPreferences.getInstance();
           sp.setBool(ISLOGGEDINKEY, false);
           sp.setString("token", "");
-          checkAndNavigate(clickEvent);
+          checkAndNavigate(clickEvent,this);
          // General().navigation(clickEvent[General.navigateToPage],clickEvent[General.typeOfNavigation]);
         }
         else{

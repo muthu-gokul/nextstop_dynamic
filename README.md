@@ -31,3 +31,7 @@
 <!-- version 1.0.4 Change Logs -->
         1. Registration validation
         2. manage documents
+
+<!-- version 1.0.5 Change Logs -->
+        1. Profile Page Design changed
+        2. added bank details in driver

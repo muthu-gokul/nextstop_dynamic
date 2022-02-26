@@ -15,6 +15,32 @@
     {
       "key": "Mail",
       "value": "Test@gmail.com"
+    },
+    {
+      "key": "Documents",
+      "value": [
+        {"Document": "Vehicle","Number": "TN654646","Image": ""},
+        {"Document": "Vehicle Type","Number": "Tata Ace 5454","Image": ""},
+        {"Document": "RC Book","Number": "545454","Image": ""},
+        {"Document": "Vehicle","Number": "TN654646","Image": ""},
+        {"Document": "Vehicle","Number": "TN654646","Image": ""},
+        {"Document": "Vehicle","Number": "TN654646","Image": ""},
+        {"Document": "Vehicle","Number": "TN654646","Image": ""},
+        {"Document": "Vehicle","Number": "TN654646","Image": ""},
+        {"Document": "Vehicle","Number": "TN654646","Image": ""},
+        {"Document": "Vehicle","Number": "TN654646","Image": ""},
+        {"Document": "Vehicle","Number": "TN654646","Image": ""},
+        {"Document": "Vehicle","Number": "TN654646","Image": ""}
+      ]
+    },
+    {
+      "key": "BankDetails",
+      "value": [
+        {"Title": "Bank Name","Value": "ICICI Bank"},
+        {"Title": "IFSC Code","Value": "ICIC0001234"},
+        {"Title": "Ac Number","Value": "2343434343434"},
+        {"Title": "Bank Holder Name","Value": "Muthu Gokul Chandramohan"}
+      ]
     }
   ],
   "Widgets": [
@@ -64,277 +90,496 @@
           ]
         },
         {
-          "type": "expandedController",
-          "orderBy": 3,
-          "child": {
-            "type": "customScrollViewController",
-            "hasScrollBody": false,
-            "orderBy": 2,
-            "child": {
-              "type":"columnController",
-              "orderBy": "3",
-              "mainAxisAlignment": "start",
-
+          "type":"propicController",
+          "imagePath":"assets/icons/user.svg",
+          "bgColor":"*primaryColor",
+          "alignment":"center",
+          "height":80.0,
+          "width":80.0,
+          "orderBy":5
+        },
+        {
+          "type":"sizedBox",
+          "orderBy": "6",
+          "height":10
+        },
+        {
+          "type": "text",
+          "orderBy": "7",
+          "value": "Mr. End User",
+          "key": "Name",
+          "style": {
+            "color": "*primaryTextColor3",
+            "fontSize": 20.0,
+            "fontFamily": "RM"
+          }
+        },
+        {
+          "type":"sizedBox",
+          "orderBy": "8",
+          "height":5
+        },
+        {
+          "type": "text",
+          "orderBy": "9",
+          "value": "Driver",
+          "key": 1,
+          "style": {
+            "color": "*primaryTextColor1",
+            "fontSize": 16.0,
+            "fontFamily": "RR"
+          }
+        },
+        {
+          "type":"sizedBox",
+          "orderBy": 10,
+          "height":20
+        },
+        {
+          "type": "rowController",
+          "orderBy": 11,
+          "mainAxisAlignment": "spaceAround",
+          "children": [
+            {
+              "type": "columnController",
+              "orderBy": 1,
               "children": [
-
                 {
-                  "type":"propicController",
-                  "imagePath":"assets/icons/user.svg",
-                  "bgColor":"*primaryColor",
-                  "alignment":"center",
-                  "height":80.0,
-                  "width":80.0,
-                  "orderBy":5
-                },
-                {
-                  "type":"sizedBox",
-                  "orderBy": "6",
-                  "height":10
-                },
-                {
-                  "type": "text",
-                  "orderBy": "7",
-                  "value": "Mr. End User",
-                  "key": "Name",
-                  "style": {
-                    "color": "*primaryTextColor3",
-                    "fontSize": 20.0,
-                    "fontFamily": "RM"
+                  "type": "button",
+                  "orderBy": 11,
+                  "height":45,
+                  "pixelWidth":45,
+                  "shape": "circle",
+                  "color":"#F5CAB6",
+                  "alignment": "center",
+                  "child": {
+                    "type": "icon",
+                    "icon": "phone",
+                    "color": "*primaryColor",
+                    "size": 25.0
                   }
                 },
                 {
                   "type":"sizedBox",
-                  "orderBy": "8",
+                  "orderBy": 12,
                   "height":5
                 },
                 {
                   "type": "text",
-                  "orderBy": "9",
-                  "value": "Driver",
-                  "key": 1,
-                  "style": {
-                    "color": "*primaryTextColor1",
-                    "fontSize": 16.0,
-                    "fontFamily": "RR"
-                  }
-                },
-                {
-                  "type":"sizedBox",
-                  "orderBy": 10,
-                  "height":20
-                },
-                {
-                  "type": "rowController",
-                  "orderBy": 11,
-                  "mainAxisAlignment": "spaceAround",
-                  "children": [
-                    {
-                      "type": "columnController",
-                      "orderBy": 1,
-                      "children": [
-                        {
-                          "type": "button",
-                          "orderBy": 11,
-                          "height":45,
-                          "pixelWidth":45,
-                          "shape": "circle",
-                          "color":"#F5CAB6",
-                          "alignment": "center",
-                          "child": {
-                            "type": "icon",
-                            "icon": "phone",
-                            "color": "*primaryColor",
-                            "size": 25.0
-                          }
-                        },
-                        {
-                          "type":"sizedBox",
-                          "orderBy": 12,
-                          "height":5
-                        },
-                        {
-                          "type": "text",
-                          "orderBy": 13,
-                          "value": "98565-65656",
-                          "key": "MobileNumber",
-                          "style": {
-                            "color": "*primaryTextColor3",
-                            "fontSize": 16.0,
-                            "fontFamily": "RM"
-                          }
-                        }
-                      ]
-                    },
-                    {
-                      "type": "columnController",
-                      "orderBy": 1,
-                      "children": [
-                        {
-                          "type": "button",
-                          "orderBy": 15,
-                          "height":45,
-                          "pixelWidth":45,
-                          "shape": "circle",
-                          "color":"#F5CAB6",
-                          "alignment": "center",
-                          "child": {
-                            "type": "icon",
-                            "icon": "mail",
-                            "color": "*primaryColor",
-                            "size": 25.0
-                          }
-                        },
-                        {
-                          "type":"sizedBox",
-                          "orderBy": 16,
-                          "height":5
-                        },
-                        {
-                          "type": "text",
-                          "orderBy": 17,
-                          "value": "enduser@gmail.com",
-                          "key": "Mail",
-                          "style": {
-                            "color": "*primaryTextColor3",
-                            "fontSize": 16.0,
-                            "fontFamily": "RM"
-                          }
-                        }
-                      ]
-                    }
-                  ]
-                },
-
-                {
-                  "type":"sizedBox",
-                  "orderBy": 12,
-                  "height":30
-                },
-                {
-                  "type": "textField",
                   "orderBy": 13,
-                  "hintText": "Enter Your Address",
-                  "hasInput": true,
-                  "required": true,
-                  "key": "Address",
-                  "margin": "15,15,15,0",
-                  "leftContentPadding": 20.0,
-                  "groupValidation": [{"Required":"required"}],
-                  "borderRadius": "6,6,6,6",
-                  "borderColor": "*textFieldBorderColor",
-                  "focusedBorderColor": "*textFieldBorderColor",
-                  "disabledBorderColor": "FFF44336",
-                  "color": "FFffffff",
-                  "disableColor": "FFF5EFEE",
-                  "enable": true,
-                  "hintTextStyle": {
-                    "color": "*primaryTextColor1",
-                    "fontSize": 14.0,
-                    "fontFamily": "RR"
-                  },
-                  "errorTextStyle": {
-                    "color": "*errorTextColor",
-                    "fontSize": 14.0,
-                    "fontFamily": "RR"
-                  },
-                  "textStyle": {
-                    "color": "*primaryTextColor2",
-                    "fontSize": 15.0,
-                    "fontFamily": "RR"
-                  },
-                  "suffix": {
-                    "type": "button",
-                    "orderBy": 1,
-                    "height":50,
-                    "pixelWidth":50,
-                    "alignment": "center",
-                    "clickEvent": {
-                      "eventName": "locationClick",
-                      "key": "Address"
-                    },
-                    "child": {
-                      "type": "icon",
-                      "icon": "markLocation",
-                      "color": "red",
-                      "size": 20.0
-                    }
-                  }
-                },
-
-
-
-                {
-                  "orderBy": 14,
-                  "type": "spacerController"
-                },
-                {
-                  "type": "button",
-                  "orderBy": 15,
-                  "clickEvent": {
-                    "eventName": "Navigation",
-                    "typeOfNavigation": 1,
-                    "navigateToPage": "ManageDocuments"
-                  },
-                  "key": 5,
-                  "height":90,
-                  "color":"*primaryColor2",
-                  "alignment":"center",
-                  "margin": "0,0,0,15",
-                  "shape": "circle"
-                },
-                {
-                  "type": "rowController",
-                  "orderBy": 15,
-                  "mainAxisAlignment": "center",
-                  "children": [
-                    {
-                      "type": "text",
-                      "orderBy": 1,
-                      "value": "Upload your",
-                      "onlyText": true,
-                      "style": {
-                        "color": "*primaryTextColor1",
-                        "fontSize": 14.0,
-                        "fontFamily": "RM"
-                      }
-                    },
-                    {
-                      "type": "text",
-                      "orderBy": 1,
-                      "value": "  Manage Documents",
-                      "onlyText": true,
-                      "style": {
-                        "color": "*primaryColor",
-                        "fontSize": 14.0,
-                        "fontFamily": "RM"
-                      }
-                    }
-                  ]
-                },
-                {
-                  "type": "button",
-                  "orderBy": 16,
-                  "clickEvent": {
-
-                  },
-                  "key": 5,
-                  "height":50,
-                  "margin": "10,20,10,20",
-                  "color":"*primaryColor",
-                  "borderRadius":"25,25,25,25",
-                  "alignment":"center",
-                  "child":{
-                    "type": "text",
-                    "value": "Submit",
-                    "alignment":"center",
-                    "key": 1,
-                    "style": {
-                      "color": "#ffffff",
-                      "fontSize": 16.0
-                    }
+                  "value": "98565-65656",
+                  "key": "MobileNumber",
+                  "style": {
+                    "color": "*primaryTextColor3",
+                    "fontSize": 16.0,
+                    "fontFamily": "RM"
                   }
                 }
               ]
+            },
+            {
+              "type": "columnController",
+              "orderBy": 1,
+              "children": [
+                {
+                  "type": "button",
+                  "orderBy": 15,
+                  "height":45,
+                  "pixelWidth":45,
+                  "shape": "circle",
+                  "color":"#F5CAB6",
+                  "alignment": "center",
+                  "child": {
+                    "type": "icon",
+                    "icon": "mail",
+                    "color": "*primaryColor",
+                    "size": 25.0
+                  }
+                },
+                {
+                  "type":"sizedBox",
+                  "orderBy": 16,
+                  "height":5
+                },
+                {
+                  "type": "text",
+                  "orderBy": 17,
+                  "value": "enduser@gmail.com",
+                  "key": "Mail",
+                  "style": {
+                    "color": "*primaryTextColor3",
+                    "fontSize": 16.0,
+                    "fontFamily": "RM"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+
+        {
+          "type":"sizedBox",
+          "orderBy": 12,
+          "height":30
+        },
+        {
+          "type": "tabbarController",
+          "orderBy": 13,
+          "key": "DetailsTabBar",
+          "toFindKey": "DetailsPageView",
+          "height": 50.0,
+          "borderRadius": "8,8,8,8",
+          "margin": "10,10,10,10",
+          "padding": "3,3,3,3",
+          "borderColor": "*textFieldBorderColor",
+          "backgroundColorOpacity": 0.5,
+          "backgroundColor":"*textFieldBorderColor",
+          "labelColor": "ffffff",
+          "unselectedLabelColor": "*primaryTextColor3",
+          "indicatorColor": "*primaryColor",
+          "tab": {
+            "type": "button",
+            "height": 50.0,
+            "alignment": "center",
+            "child": {
+              "type": "text",
+              "onlyText": true,
+              "alignment": "center",
+              "value": "sds",
+              "key": "title"
+            }
+          },
+          "value": [
+            {
+              "title": "Document Details",
+              "changeValues": {
+                "eventName": "ChangeValues",
+                "changeValuesArray": [
+                  {
+                    "key": "AddDocumentBtn",
+                    "value": true
+                  },
+                  {
+                    "key": "AddBankDetailsBtn",
+                    "value": false
+                  }
+                ]
+              }
+            },
+            {
+              "title": "Bank Details",
+              "changeValues": {
+                "eventName": "ChangeValues",
+                "changeValuesArray": [
+                  {
+                    "key": "AddBankDetailsBtn",
+                    "value": true
+                  },
+                  {
+                    "key": "AddDocumentBtn",
+                    "value": false
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "expandedController",
+          "orderBy": 14,
+          "child": {
+            "type": "pageViewController",
+            "orderBy": 14,
+            "key": "DetailsPageView",
+            "toFindKey": "DetailsTabBar",
+            "children": [
+              {
+                "type": "customScrollViewController",
+                "hasScrollBody": false,
+                "isSliverFillRemaining": false,
+                "orderBy": 1,
+                "child": {
+                  "type": "sliverListController",
+                  "key": "Documents",
+                  "orderBy": 1,
+                  "childd":  {
+                    "type": "button",
+                    "height": 50.0,
+                    "alignment": "center",
+                    "borderRadius": "6,6,6,6",
+                    "margin": "15,0,15,0",
+                    "orderBy": 13,
+                    "child": {
+                      "type": "rowController",
+                      "mainAxisAlignment": "center",
+                      "children": [
+                        {
+                          "type": "expandedController",
+                          "orderBy": 1,
+                          "child": {
+                            "type": "button",
+                            "alignment": "centerLeft",
+                            "child": {
+                              "type": "text",
+                              "onlyText": true,
+                              "key": "Document",
+                              "value": "",
+                              "style": {
+                                "color": "*primaryTextColor1",
+                                "fontSize": 15.0,
+                                "fontFamily": "RR"
+                              }
+                            }
+                          }
+                        },
+                        {
+                          "type": "expandedController",
+                          "orderBy": 2,
+                          "child": {
+                            "type": "button",
+                            "alignment": "center",
+                            "child": {
+                              "type": "text",
+                              "onlyText": true,
+                              "key": "Number",
+                              "value": "",
+                              "style": {
+                                "color": "*primaryTextColor1",
+                                "fontSize": 15.0,
+                                "fontFamily": "RR"
+                              }
+                            }
+                          }
+                        },
+                        {
+                          "type": "expandedController",
+                          "orderBy": 3,
+                          "child": {
+                            "type": "button",
+                            "alignment": "centerRight",
+                            "child": {
+                              "type": "text",
+                              "onlyText": true,
+                              "key": "Image",
+                              "value": "",
+                              "style": {
+                                "color": "*primaryTextColor1",
+                                "fontSize": 15.0,
+                                "fontFamily": "RR"
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "value": [
+
+                  ]
+                },
+                "tempAppbar": {
+                  "type": "button",
+                  "height": 35.0,
+                  "margin": "15,0,15,0",
+                  "alignment": "center",
+                  "borderRadius": "6,6,6,6",
+                  "color": "ffffff",
+                  "child": {
+                    "type": "rowController",
+                    "mainAxisAlignment": "center",
+                    "children": [
+                      {
+                        "type": "expandedController",
+                        "orderBy": 1,
+                        "child": {
+                          "type": "button",
+                          "alignment": "centerLeft",
+                          "child": {
+                            "type": "text",
+                            "onlyText": true,
+                            "value": "Document",
+                            "style": {
+                              "color": "*primaryTextColor2",
+                              "fontSize": 15.0,
+                              "fontFamily": "RM"
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "type": "expandedController",
+                        "orderBy": 2,
+                        "child": {
+                          "type": "button",
+                          "alignment": "center",
+                          "child": {
+                            "type": "text",
+                            "onlyText": true,
+                            "value": "Number",
+                            "style": {
+                              "color": "*primaryTextColor2",
+                              "fontSize": 15.0,
+                              "fontFamily": "RM"
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "type": "expandedController",
+                        "orderBy": 3,
+                        "child": {
+                          "type": "button",
+                          "alignment": "centerRight",
+                          "child": {
+                            "type": "text",
+                            "onlyText": true,
+                            "value": "Image",
+                            "style": {
+                              "color": "*primaryTextColor2",
+                              "fontSize": 15.0,
+                              "fontFamily": "RM"
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              },
+
+
+              {
+                "type": "customScrollViewController",
+                "hasScrollBody": false,
+                "isSliverFillRemaining": false,
+                "orderBy": 1,
+                "child": {
+                  "type": "sliverListController",
+                  "key": "BankDetails",
+                  "orderBy": 1,
+                  "childd":  {
+                    "type": "button",
+                    "height": 50.0,
+                    "alignment": "center",
+                    "borderRadius": "6,6,6,6",
+                    "margin": "25,0,25,0",
+                    "orderBy": 13,
+                    "child": {
+                      "type": "rowController",
+                      "mainAxisAlignment": "center",
+                      "children": [
+                        {
+                          "type": "expandedController",
+                          "orderBy": 1,
+                          "child": {
+                            "type": "button",
+                            "alignment": "centerLeft",
+                            "child": {
+                              "type": "text",
+                              "onlyText": true,
+                              "key": "Title",
+                              "value": "",
+                              "style": {
+                                "color": "*primaryTextColor2",
+                                "fontSize": 14.0,
+                                "fontFamily": "RR"
+                              }
+                            }
+                          }
+                        },
+                        {
+                          "type": "expandedController",
+                          "orderBy": 2,
+                          "child": {
+                            "type": "button",
+                            "alignment": "centerLeft",
+                            "child": {
+                              "type": "text",
+                              "onlyText": true,
+                              "key": "Value",
+                              "value": "",
+                              "style": {
+                                "color": "*primaryTextColor2",
+                                "fontSize": 14.0,
+                                "fontFamily": "RR"
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "value": [
+
+                  ]
+                }
+              }
+            ]
+          }
+        },
+
+
+
+
+        {
+          "type": "visibilityController",
+          "orderBy": 15,
+          "isVisible": true,
+          "key": "AddDocumentBtn",
+          "child": {
+            "type": "button",
+            "orderBy": 15,
+            "clickEvent": {
+              "eventName": "Navigation",
+              "typeOfNavigation": 1,
+              "navigateToPage": "ManageDocuments"
+            },
+            "key": 5,
+            "height":50,
+            "color":"*primaryColor",
+            "alignment":"center",
+            "margin": "15,0,15,15",
+            "borderRadius": "6,6,6,6",
+            "child": {
+              "type": "text",
+              "onlyText": true,
+              "value": "+ Add New Document",
+              "style": {
+                "fontSize": 15.0,
+                "fontFamily": "RR",
+                "color": "#ffffff"
+              }
+            }
+          }
+        },
+        {
+          "type": "visibilityController",
+          "orderBy": 15,
+          "isVisible": false,
+          "key": "AddBankDetailsBtn",
+          "child": {
+            "type": "button",
+            "orderBy": 15,
+            "clickEvent": {
+              "eventName": "Navigation",
+              "typeOfNavigation": 1,
+              "navigateToPage": "BankDetails"
+            },
+            "key": 5,
+            "height":50,
+            "color":"*primaryColor",
+            "alignment":"center",
+            "margin": "15,0,15,15",
+            "borderRadius": "6,6,6,6",
+            "child": {
+              "type": "text",
+              "onlyText": true,
+              "value": "Change Bank Details",
+              "style": {
+                "fontSize": 15.0,
+                "fontFamily": "RR",
+                "color": "#ffffff"
+              }
             }
           }
         }

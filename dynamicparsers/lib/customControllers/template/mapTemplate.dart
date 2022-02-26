@@ -281,6 +281,12 @@ class MapTemplate extends StatelessWidget implements MyCallback,MyCallback2,Test
     // TODO: implement parseColor
     throw UnimplementedError();
   }
+
+  @override
+  reloadPage() {
+    // TODO: implement reloadPage
+    throw UnimplementedError();
+  }
 }
 
 
@@ -577,6 +583,12 @@ Completer<GoogleMapController> _controller = Completer();
   @override
   Color parseColor(String color) {
     // TODO: implement parseColor
+    throw UnimplementedError();
+  }
+
+  @override
+  reloadPage() {
+    // TODO: implement reloadPage
     throw UnimplementedError();
   }
 }

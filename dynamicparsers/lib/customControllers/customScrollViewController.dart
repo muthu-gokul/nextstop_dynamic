@@ -9,11 +9,16 @@ class CustomScrollViewController extends StatelessWidget implements MyCallback2{
   MyCallback myCallback;
 
   Widget? widget;
+  Widget? tempAppbar;
+  Widget? tempFooter;
+  bool isSliverFillRemaining=true;
   CustomScrollViewController({required this.map,required this.myCallback})
   {
 
+      isSliverFillRemaining=map.containsKey('isSliverFillRemaining')?map['isSliverFillRemaining']:true;
       widget=map.containsKey('child')?getChild(map['child'],myCallback: myCallback):Container();
-
+      tempAppbar=map.containsKey('tempAppbar')?getChild(map['tempAppbar'],myCallback: myCallback):Container();
+      tempFooter=map.containsKey('tempFooter')?getChild(map['tempFooter'],myCallback: myCallback):Container();
 
   }
 
@@ -22,21 +27,25 @@ class CustomScrollViewController extends StatelessWidget implements MyCallback2{
     return CustomScrollView(
       shrinkWrap: false,
       slivers: [
-        SliverFillRemaining(
+        SliverAppBar(
+          pinned: true,
+          floating: false,
+          expandedHeight: 0,
+          elevation: 0,
+          toolbarHeight:map.containsKey('tempAppbar')? 35:0,
+          backgroundColor: Colors.white,
+          flexibleSpace: tempAppbar,
+        ),
+        isSliverFillRemaining?SliverFillRemaining(
           hasScrollBody: map['hasScrollBody'],
           child: widget
-        )
+        ):widget!,
+        /*SliverFillRemaining(
+            hasScrollBody: map['hasScrollBody'],
+            child:map.containsKey('tempFooter')? tempFooter:Container()
+        )*/
       ],
     );
-
-    // return Stack(
-    //   children: [
-    //     Container(),
-    //     for(int i=0;i<widgets.length;i++)
-    //       widgets[i],
-    //
-    //   ],
-    // );
   }
 
   @override

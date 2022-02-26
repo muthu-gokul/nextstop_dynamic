@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:dynamicparsers/customControllers/callBack/myCallback.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
@@ -15,6 +16,8 @@ import 'package:nextstop_dynamic/pages/user/homePage.dart';
 
 import '../../../constants.dart';
 import 'package:get/get.dart';
+
+import '../pages/driver/bankDetails.dart';
 class General{
 
 
@@ -43,7 +46,7 @@ class General{
     return val;
   }
 
-  getPage(String page){
+  getPage(String page, {MyCallback? myCallback}){
     switch(page){
       case 'HomePage':
         return HomePage();
@@ -54,7 +57,9 @@ class General{
       case 'HomePageDriver':
         return HomePageDriver2();
       case 'ManageDocuments':
-        return ManageDocuments();
+        return ManageDocuments(profilePageDriverCallback: myCallback!,);
+      case 'BankDetails':
+        return BankDetails(profilePageDriverCallback: myCallback!,);
     }
     return Container();
   }
@@ -73,6 +78,7 @@ class General{
   static String myTripsPageIdentifier="YOUR-TRIP-6234-5867";
   //static String myTripsPageIdentifier="yourtrip";
   static String manageDocPageIdentifier="MANA-GEDO-CUME-5455";
+  static String driverBankDetailsIdentifier="DRIV-ADDB-ANKD-ET54";
   static String driverTripHomePageIdentifier="DRIV-ERTR-IPHO-ME33";
   static String driverMyTripsPageIdentifier="YOUR-TRIP-DRIV-ER89";
 

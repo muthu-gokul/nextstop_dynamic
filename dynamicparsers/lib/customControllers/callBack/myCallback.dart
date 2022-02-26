@@ -47,6 +47,7 @@ import '../visibilityController.dart';
   void onMapLocationChanged(Map map){}
   getCurrentPageWidgets(){}
   Color parseColor(String color);
+  reloadPage(){}
   //void ontap2(Map? clickEvent);
 }
 
@@ -181,6 +182,9 @@ List<dynamic> getWidgets(List parsed,MyCallback myCallback){
     else if(element['type']=='customPopup'){
       widgets.add(CustomPopup(map: element, myCallback: myCallback,));
     }
+    else if(element['type']=='sliverListController'){
+      widgets.add(SliverListController(map: element, myCallback: myCallback,));
+    }
   });
   return widgets;
 }
@@ -283,6 +287,9 @@ Widget getChild(Map mapp, {MyCallback? myCallback}){
   }
   else if(map['type']=='customPopup'){
     widget=  CustomPopup(map: map, myCallback: myCallback!,);
+  }
+  else if(map['type']=='sliverListController'){
+    widget=  SliverListController(map: map, myCallback: myCallback!,);
   }
   return widget;
 
