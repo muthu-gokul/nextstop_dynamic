@@ -101,6 +101,25 @@ func1ByKey(dynamic widget,Map? clickEvent,Function(dynamic widget) returnFunctio
       }
     }
   }
+  else if(widget.map.containsKey("childd")){
+
+    if(widget.map.containsKey('key')){
+      if(widget.map['key']==clickEvent!['key']){
+        return returnFunction(widget);
+        return widget;
+      }
+      else{
+        if(widget.getType()!='userRoleController') {
+          findWidgetByKey(widget.widgets,clickEvent,returnFunction);
+        }
+      }
+    }
+    else{
+      if(widget.getType()!='userRoleController') {
+        findWidgetByKey(widget.widgets,clickEvent,returnFunction);
+      }
+    }
+  }
   if(widget.map.containsKey("suffix")){
     if(widget.map.containsKey('key')){
       if(widget.map['key']==clickEvent!['key']){
@@ -213,6 +232,10 @@ updateByWidgetType(String widgetType,{var widget,Map? clickEvent}){
     break;
     case 'customPopup':{
       widget.sv.value=clickEvent!['value'];
+    }
+    break;
+    case 'expansionTileController':{
+      widget.expand.value=!widget.expand.value;
     }
     break;
     default: {

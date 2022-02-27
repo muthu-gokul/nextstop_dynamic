@@ -818,5 +818,8 @@ Icon parseIcon(Map map,MyCallback myCallback){
   else if(map['icon']=='clear'){
     return Icon(Icons.clear,color: parseHexColor(map['color'],myCallback),size: map['size'],);
   }
+  else if(map['icon']=='notification'){
+    return Icon(Icons.notifications,color: parseHexColor(map['color'],myCallback),size: map['size'],);
+  }
   return Icon(Icons.phone);
 }

@@ -52,6 +52,11 @@ class ListViewBuilderController extends StatelessWidget implements MyCallback2{
   }
 
 
+  getValueByIndex(int index){
+    return widgets[index];
+  }
+
+
 }
 class SliverListController extends StatelessWidget implements MyCallback2{
   Map map;

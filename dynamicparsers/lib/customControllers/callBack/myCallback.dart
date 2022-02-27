@@ -19,6 +19,7 @@ import '../customPopUp.dart';
 import '../customScrollViewController.dart';
 import '../dynamicRowController.dart';
 import '../expandedController.dart';
+import '../expansionTileController.dart';
 import '../flexibleController.dart';
 import '../gridviewBuilderController.dart';
 import '../hiddenController.dart';
@@ -185,6 +186,9 @@ List<dynamic> getWidgets(List parsed,MyCallback myCallback){
     else if(element['type']=='sliverListController'){
       widgets.add(SliverListController(map: element, myCallback: myCallback,));
     }
+    else if(element['type']=='expansionTileController'){
+      widgets.add(ExpansionTileController(map: element, myCallback: myCallback,));
+    }
   });
   return widgets;
 }
@@ -290,6 +294,9 @@ Widget getChild(Map mapp, {MyCallback? myCallback}){
   }
   else if(map['type']=='sliverListController'){
     widget=  SliverListController(map: map, myCallback: myCallback!,);
+  }
+  else if(map['type']=='expansionTileController'){
+    widget=  ExpansionTileController(map: map, myCallback: myCallback!,);
   }
   return widget;
 

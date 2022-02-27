@@ -1,6 +1,7 @@
 
 import 'dart:developer';
 
+import 'package:date_format/date_format.dart';
 import 'package:dynamicparsers/customControllers/callBack/general.dart';
 import 'package:dynamicparsers/customControllers/callBack/generalMethods.dart';
 import 'package:dynamicparsers/customControllers/callBack/myCallback.dart';
@@ -22,7 +23,7 @@ class Common{
   findUpdateByKeyWidgetType(List valueArray ,List widgets){
     valueArray.forEach((element) {
       findWidgetByKey(widgets,element,(wid){
-       // log("query wid $wid ${wid.getType()}");
+        //log("query wid $wid ${wid.getType()}");
         updateByWidgetType(wid.getType(),widget: wid,clickEvent: element);
       });
     });
@@ -65,13 +66,24 @@ class Common{
         else if(clickEvent[General.eventName]==General.openDialer){
           openDialer(clickEvent);
         }
+        else if(clickEvent[General.eventName]=="fromListView"){
+          findWidgetByKey(widgets, {"key":clickEvent['parentListViewKey']}, (wid){
+            log("founf $wid ${wid.getValueByIndex(clickEvent['Index'])}");
+            if(clickEvent.containsKey("changeValuesArray")){
+              findUpdateByKeyWidgetType(clickEvent['changeValuesArray'], [wid.getValueByIndex(clickEvent['Index']).widget]);
+            }
+            else{
+              splitByTapEvent(clickEvent['clickEvent'],guid: guid,widgets: wid.getValueByIndex(clickEvent['Index']).widget.widgets,queryString: queryString,myCallback: myCallback);
+            }
+          });
+        }
       }
     }
   }
 
 
   formSubmitMethodTFE(dynamic guid,List<dynamic> widgets,Map clickEvent,List queryString,{MyCallback? myCallback}){
-    log("Form Submit CheckTapFunc Common");
+    log("Form Submit CheckTapFunc Common $clickEvent");
     return formSubmitMethod(guid, widgets,clickEvent,queryString,);
   }
 

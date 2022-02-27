@@ -18,6 +18,7 @@ import '../../../constants.dart';
 import 'package:get/get.dart';
 
 import '../pages/driver/bankDetails.dart';
+import '../pages/driver/newRides.dart';
 class General{
 
 
@@ -60,6 +61,8 @@ class General{
         return ManageDocuments(profilePageDriverCallback: myCallback!,);
       case 'BankDetails':
         return BankDetails(profilePageDriverCallback: myCallback!,);
+      case 'NewRides':
+        return NewRides();
     }
     return Container();
   }
@@ -81,6 +84,7 @@ class General{
   static String driverBankDetailsIdentifier="DRIV-ADDB-ANKD-ET54";
   static String driverTripHomePageIdentifier="DRIV-ERTR-IPHO-ME33";
   static String driverMyTripsPageIdentifier="YOUR-TRIP-DRIV-ER89";
+  static String driverNewTripsIdentifier="NEWO-RDER-SDRIV-4343";
 
 
 

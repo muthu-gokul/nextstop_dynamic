@@ -33,7 +33,7 @@ class ButtonController extends StatelessWidget implements MyCallback2{
       onTap: map.containsKey('clickEvent')?(){
        // ontap.ontap(map['eventName']);
         ontap.ontap(map['clickEvent']);
-      //  log("button Ctl ${ce.value}");
+     //   log("button Ctl ${widget} ${map['child']}");
      //  printMap();
       }:null,
       child: Obx(

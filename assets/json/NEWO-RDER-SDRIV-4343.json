@@ -1,0 +1,533 @@
+{
+  "Guid": "NEWO-RDER-SDRIV-4343",
+  "alignment": "topCenter",
+  "mainAxisAlignment": "center",
+  "valueArray": [
+    {
+      "key": "NewRides",
+      "value": [
+        {
+          "Name": "Mr. Vinay",
+          "Day": "TODAY",
+          "Time": "4.50 PM",
+          "VehicleDetails": "TATA ACE 507 / TN 20 AB 2365",
+          "TotalDistance": "25 KM",
+          "TotalPrice": "250.00",
+          "PickupLocation": "No: 4B/7, Sai Sadan, 1st Floor, MMDA 1st Main Rd, Maduravoyal",
+          "PickupTime": "11.30 AM",
+          "DropLocation": "No: 4B/7, Sai Sadan, 1st Floor, MMDA 1st Main Rd,",
+          "DropTime": "11.30 AM",
+          "Index": 0,
+          "ShippingRequestId": 0,
+          "ParentBtn": {
+            "eventName": "fromListView",
+            "parentListViewKey": "NewRides",
+            "Index": 0,
+            "changeValuesArray": [
+              {
+                "key": "LocationDetailsExpansionTile",
+                "value": ""
+              }
+            ]
+          },
+          "AcceptBtn": {
+            "eventName": "fromListView",
+            "parentListViewKey": "NewRides",
+            "Index": 0,
+            "clickEvent": {
+              "eventName": "formDataJson_ApiCall",
+              "actionType": "Accept"
+            }
+          },
+          "CancelBtn": {
+            "eventName": "fromListView",
+            "parentListViewKey": "NewRides",
+            "Index": 0,
+            "clickEvent": {
+              "eventName": "formDataJson_ApiCall",
+              "actionType": "Reject"
+            }
+          }
+        },
+        {
+          "Name": "Mr. Vinay kumar",
+          "Day": "TODAY, ",
+          "Time": "4.50 PM",
+          "VehicleDetails": "TATA ACE 507 / TN 20 AB 2365",
+          "TotalDistance": "25 KM",
+          "TotalPrice": "250.00",
+          "PickupLocation": "No: 4B/7, Sai Sadan, 1st Floor, MMDA 1st Main Rd, Maduravoyal",
+          "PickupTime": "11.30 AM",
+          "DropLocation": "No: 4B/7, Sai Sadan, 1st Floor, MMDA 1st Main Rd,",
+          "DropTime": "11.30 AM",
+          "Index": 1,
+          "ShippingRequestId": 0,
+          "ParentBtn": {
+            "eventName": "fromListView",
+            "parentListViewKey": "NewRides",
+            "Index": 1,
+            "changeValuesArray": [
+              {
+                "key": "LocationDetailsExpansionTile",
+                "value": ""
+              }
+            ]
+          },
+          "AcceptBtn": {
+            "eventName": "fromListView",
+            "parentListViewKey": "NewRides",
+            "Index": 1,
+            "clickEvent": {
+              "eventName": "formDataJson_ApiCall",
+              "actionType": "Accept"
+            }
+          },
+          "CancelBtn": {
+            "eventName": "fromListView",
+            "parentListViewKey": "NewRides",
+            "Index": 1,
+            "clickEvent": {
+              "eventName": "formDataJson_ApiCall",
+              "actionType": "Reject"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "Widgets": [
+    {
+      "type":"rowController",
+      "orderBy": "2",
+      "mainAxisAlignment": "start",
+      "children": [
+        {
+          "type": "button",
+          "orderBy": 1,
+          "height":50,
+          "pixelWidth":50,
+          "alignment": "center",
+          "clickEvent": {
+            "eventName": "Navigation",
+            "typeOfNavigation": 3,
+            "navigateToPage": ""
+          },
+          "child": {
+            "type": "svgController",
+            "image": "assets/icons/back-icon.svg",
+            "height": 25.0,
+            "width": 30.0,
+            "orderBy": 1
+          }
+        },
+        {
+          "type": "text",
+          "orderBy": 3,
+          "value": "New Rides",
+          "key": 1,
+          "style": {
+            "color": "*primaryTextColor2",
+            "fontSize": 18.0,
+            "fontFamily": "RM"
+          }
+        }
+      ]
+    },
+    {
+      "type":"columnController",
+      "orderBy": "3",
+      "mainAxisAlignment": "start",
+      "reducedHeight": "100",
+      "children": [
+        {
+          "type": "expandedController",
+          "orderBy": 1,
+          "child":{
+            "type": "listViewBuilderController",
+            "physics": "always",
+            "key": "NewRides",
+            "childd": {
+              "type": "button",
+              "orderBy": 2,
+              "margin": "10,5,10,10",
+              "padding": "0,10,0,5",
+              "borderRadius": "8,8,8,8",
+              "alignment": "center",
+              "borderColor": "*textFieldBorderColor",
+              "key": "ParentBtn",
+              "clickEvent": {
+                "eventName": "fromListView",
+                "parentListViewKey": "NewRides"
+              },
+              "child": {
+                "type": "columnController",
+                "children": [
+                  {
+                    "type": "hiddenController",
+                    "key": "Index",
+                    "hasInput": true,
+                    "required": true,
+                    "orderBy": 1
+                  },
+                  {
+                    "type": "hiddenController",
+                    "key": "ShippingRequestId",
+                    "orderBy": 1,
+                    "hasInput": true,
+                    "required": true,
+                    "value": ""
+                  },
+                  {
+                    "type": "rowController",
+                    "orderBy": 1,
+                    "children": [
+                      {
+                        "type": "sizedBox",
+                        "width": 20.0,
+                        "orderBy": 1
+                      },
+                      {
+                        "type": "text",
+                        "orderBy": 1,
+                        "onlyText": true,
+                        "value": "Today, ",
+                        "key": "Day",
+                        "style": {
+                          "fontSize": 12.0,
+                          "color": "*primaryColor",
+                          "fontFamily": "RM"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "orderBy": 2,
+                        "onlyText": true,
+                        "value": "4.50 PM, ",
+                        "key": "Time",
+                        "style": {
+                          "fontSize": 12.0,
+                          "color": "*primaryColor",
+                          "fontFamily": "RM"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "sizedBox",
+                    "height": 10.0,
+                    "orderBy": 1
+                  },
+                  {
+                    "type": "rowController",
+                    "orderBy": 1,
+                    "children": [
+                      {
+                        "type": "sizedBox",
+                        "orderBy": 1,
+                        "width": 5.0
+                      },
+                      {
+                        "type": "svgController",
+                        "image": "assets/icons/user.svg",
+                        "height": 40.0,
+                        "orderBy": 1
+                      },
+                      {
+                        "type": "sizedBox",
+                        "orderBy": 1,
+                        "width": 5.0
+                      },
+                      {
+                        "type": "expandedController",
+                        "orderBy": 1,
+                        "flex": 2,
+                        "child": {
+                          "type": "columnController",
+                          "crossAxisAlignment": "start",
+                          "children": [
+                            {
+                              "type": "text",
+                              "orderBy": 2,
+                              "onlyText": true,
+                              "value": "Mr. Vijay Humar",
+                              "key": "Name",
+                              "style": {
+                                "fontSize": 14,
+                                "fontFamily": "RM",
+                                "color": "*primaryTextColor2"
+                              }
+                            },
+                            {
+                              "type": "sizedBox",
+                              "orderBy": 2,
+                              "height": 3.0
+                            },
+                            {
+                              "type": "text",
+                              "orderBy": 2,
+                              "onlyText": true,
+                              "value": "Cash Pay",
+                              "key": "VehicleDetails",
+                              "style": {
+                                "fontSize": 10,
+                                "fontFamily": "RM",
+                                "color": "*primaryColor"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "type": "sizedBox",
+                        "orderBy": 1,
+                        "width": 5.0
+                      },
+                      {
+                        "type": "expandedController",
+                        "orderBy": 1,
+                        "flex": 1,
+                        "child": {
+                          "type": "columnController",
+                          "crossAxisAlignment": "end",
+                          "children": [
+
+                            {
+                              "type": "text",
+                              "orderBy": 1,
+                              "value": "250.00",
+                              "onlyText": true,
+                              "key": "TotalPrice",
+                              "style": {
+                                "fontSize": 15,
+                                "fontFamily": "RB",
+                                "color": "*primaryTextColor2"
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "orderBy": 2,
+                              "onlyText": true,
+                              "value": "25 KM",
+                              "key": "TotalDistance",
+                              "style": {
+                                "fontSize": 12,
+                                "fontFamily": "RR",
+                                "color": "*primaryTextColor1"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "type": "sizedBox",
+                        "orderBy": 1,
+                        "width": 15.0
+                      }
+                    ]
+                  },
+                  {
+                    "type": "expansionTileController",
+                    "orderBy": 2,
+                    "expand": false,
+                    "key": "LocationDetailsExpansionTile",
+                    "child": {
+                      "type": "button",
+                      "clickEvent": {
+                        "eventName": "cs"
+                      },
+                      "child": {
+                        "type": "columnController",
+                        "children": [
+                          {
+                            "type": "sizedBox",
+                            "orderBy": 1,
+                            "height": 10.0
+                          },
+                          {
+                            "type": "rowController",
+                            "orderBy": 1,
+                            "children": [
+                              {
+                                "type": "sizedBox",
+                                "orderBy": 1,
+                                "width": 15.0
+                              },
+                              {
+                                "type": "imageController",
+                                "image": "assets/icons/location-01.png",
+                                "height": 20.0,
+                                "orderBy": 1
+                              },
+                              {
+                                "type": "sizedBox",
+                                "orderBy": 1,
+                                "width": 5.0
+                              },
+                              {
+                                "type": "expandedController",
+                                "orderBy": 1,
+                                "flex": 2,
+                                "child": {
+                                  "type": "text",
+                                  "onlyText": true,
+                                  "value": "No: 4B/7, Sai Sadan, 1st Floor, MMDA 3rd Main Rd, Maduravoyal",
+                                  "key": "PickupLocation",
+                                  "style": {
+                                    "fontSize": 11,
+                                    "fontFamily": "RM",
+                                    "color": "*primaryTextColor2"
+                                  }
+                                }
+                              },
+                              {
+                                "type": "sizedBox",
+                                "orderBy": 1,
+                                "width": 5.0
+                              }
+                            ]
+                          },
+                          {
+                            "type": "button",
+                            "orderBy": 2,
+                            "height": 1.0,
+                            "margin": "40,10,15,10",
+                            "color": "*textFieldBorderColor"
+                          },
+                          {
+                            "type": "rowController",
+                            "orderBy": 4,
+                            "children": [
+                              {
+                                "type": "sizedBox",
+                                "orderBy": 1,
+                                "width": 15.0
+                              },
+                              {
+                                "type": "imageController",
+                                "image": "assets/icons/location-02.png",
+                                "height": 20.0,
+                                "orderBy": 1
+                              },
+                              {
+                                "type": "sizedBox",
+                                "orderBy": 1,
+                                "width": 5.0
+                              },
+                              {
+                                "type": "expandedController",
+                                "orderBy": 1,
+                                "flex": 2,
+                                "child": {
+                                  "type": "text",
+                                  "onlyText": true,
+                                  "value": "No: 4B/7, Sai Sadan, 1st Floor, MMDA 3rd Main Rd, Maduravoyal",
+                                  "key": "DropLocation",
+                                  "style": {
+                                    "fontSize": 11,
+                                    "fontFamily": "RM",
+                                    "color": "*primaryTextColor2"
+                                  }
+                                }
+                              },
+                              {
+                                "type": "sizedBox",
+                                "orderBy": 1,
+                                "width": 5.0
+                              }
+                            ]
+                          },
+                          {
+                            "type": "sizedBox",
+                            "orderBy": 5,
+                            "height": 15.0
+                          },
+                          {
+                            "type": "rowController",
+                            "orderBy": 5,
+                            "children": [
+                              {
+                                "type": "sizedBox",
+                                "orderBy": 1,
+                                "width": 15.0
+                              },
+                              {
+                                "type": "expandedController",
+                                "orderBy": 1,
+                                "child": {
+                                  "type": "button",
+                                  "height": 40.0,
+                                  "borderColor": "*primaryColor",
+                                  "borderRadius": "6,6,6,6",
+                                  "alignment": "center",
+                                  "key": "CancelBtn",
+                                  "clickEvent": {},
+                                  "child": {
+                                    "type": "text",
+                                    "onlyText": true,
+                                    "value": "Cancel",
+                                    "style": {
+                                      "fontSize": 15.0,
+                                      "fontFamily": "RR",
+                                      "color": "*primaryTextColor1"
+                                    }
+                                  }
+                                }
+                              },
+                              {
+                                "type": "sizedBox",
+                                "orderBy": 1,
+                                "width": 15.0
+                              },
+                              {
+                                "type": "expandedController",
+                                "orderBy": 1,
+                                "child": {
+                                  "type": "button",
+                                  "height": 40.0,
+                                  "color": "*primaryColor",
+                                  "borderRadius": "6,6,6,6",
+                                  "alignment": "center",
+                                  "key": "AcceptBtn",
+                                  "clickEvent": {},
+                                  "child": {
+                                    "type": "text",
+                                    "onlyText": true,
+                                    "value": "Accept",
+                                    "style": {
+                                      "fontSize": 15.0,
+                                      "fontFamily": "RR",
+                                      "color": "ffffff"
+                                    }
+                                  }
+                                }
+
+                              },
+                              {
+                                "type": "sizedBox",
+                                "orderBy": 1,
+                                "width": 15.0
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "type": "sizedBox",
+                    "height": 10.0,
+                    "orderBy": 6
+                  }
+                ]
+              }
+            },
+            "value": [
+
+            ]
+          }
+        }
+      ]
+    }
+
+  ]
+}

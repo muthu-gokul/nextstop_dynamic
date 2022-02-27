@@ -111,6 +111,46 @@
             }
           },
           {
+            "type": "positionController",
+            "right": 0,
+            "orderBy": 101,
+            "child": {
+              "type": "button",
+              "key": "NotificationCount",
+              "height": 35,
+              "pixelWidth": 35,
+              "shape": "circle",
+              "color": "*primaryColor",
+              "alignment": "center",
+              "margin": "0,10,20,0",
+              "boxShadow": {
+                "color": "*primaryColor",
+                "x": 0.0,
+                "y": 5.0,
+                "blurRadius": 10.0,
+                "spreadRadius": 1.0
+              },
+              "child": {
+                "type": "stackController",
+                "alignment": "center",
+                "children": [
+                  {
+                    "type": "icon",
+                    "icon": "notification",
+                    "orderBy": 1,
+                    "color": "#F1AC3D",
+                    "size": 20.0
+                  }
+                ]
+              },
+              "clickEvent": {
+                "eventName": "Navigation",
+                "typeOfNavigation": 1,
+                "navigateToPage": "NewRides"
+              }
+            }
+          },
+          {
             "type": "hiddenController",
             "key": "LoginUserId",
             "orderBy": 99,

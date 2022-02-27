@@ -35,3 +35,6 @@
 <!-- version 1.0.5 Change Logs -->
         1. Profile Page Design changed
         2. added bank details in driver
+
+<!-- version 1.0.6 Change Logs -->
+        1. New orders screen
