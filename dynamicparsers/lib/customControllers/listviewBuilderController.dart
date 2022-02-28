@@ -58,6 +58,8 @@ class ListViewBuilderController extends StatelessWidget implements MyCallback2{
 
 
 }
+
+
 class SliverListController extends StatelessWidget implements MyCallback2{
   Map map;
   MyCallback myCallback;
@@ -84,15 +86,6 @@ class SliverListController extends StatelessWidget implements MyCallback2{
         childCount: widgets.length,
       ),
     );
-    /*return ListView.builder(
-      itemCount: widgets.length,
-      shrinkWrap: true,
-      physics: map.containsKey('physics')?parseScrollPhysics(map['physics']):NeverScrollableScrollPhysics(),
-      scrollDirection: map.containsKey('direction')?parseAxis(map['direction']):Axis.vertical,
-      itemBuilder: (ctx,i){
-        return widgets[i];
-      },
-    );*/
   }
 
   @override

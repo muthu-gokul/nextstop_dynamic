@@ -189,6 +189,12 @@ List<dynamic> getWidgets(List parsed,MyCallback myCallback){
     else if(element['type']=='expansionTileController'){
       widgets.add(ExpansionTileController(map: element, myCallback: myCallback,));
     }
+    else if(element['type']=='sliverFillRemainingController'){
+      widgets.add(SliverFillRemainingController(map: element, myCallback: myCallback,));
+    }
+    else if(element['type']=='sliverAppBarController'){
+      widgets.add(SliverAppBarController(map: element, myCallback: myCallback,));
+    }
   });
   return widgets;
 }
@@ -297,6 +303,12 @@ Widget getChild(Map mapp, {MyCallback? myCallback}){
   }
   else if(map['type']=='expansionTileController'){
     widget=  ExpansionTileController(map: map, myCallback: myCallback!,);
+  }
+  else if(map['type']=='sliverFillRemainingController'){
+    widget=  SliverFillRemainingController(map: map, myCallback: myCallback!,);
+  }
+  else if(map['type']=='sliverAppBarController'){
+    widget=  SliverAppBarController(map: map, myCallback: myCallback!,);
   }
   return widget;
 

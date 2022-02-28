@@ -37,12 +37,17 @@ changeValuesArray
 2. added compareTo validation in inputBox
 3.added customPopUp
 
-26-02-2202
+26-02-2022
 1. added sliver (need to change custom scrollView)
 2. added reloadPage in MyCallBack
 
 
-27-02-2202
+27-02-2022
 1.added expansionTile Controller
 2. new event fromListView, key:"parentListViewKey"
 3. getValueByIndex function in listview Controller
+
+28-02-2022
+
+changed json- PROF-ILE1-DRIV-ER66.json, MANA-GEDO-CUME-5455.json, DRIV-ADDB-ANKD-ET54.json, SETP-ASSW-ORD-5646.json
+added slivers

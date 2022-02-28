@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:dynamicparsers/customControllers/callBack/myCallback.dart';
@@ -51,6 +52,7 @@ class NewRides extends StatelessWidget with Common, MyCallback{
     var apiRes=await formDataJsonApiCall(guid, widgets, clickEvent, queryString);
     log("NewRides apiRes $apiRes");
     if(apiRes!=null){
+      var parsed=jsonDecode(apiRes);
       reloadPage();
       Get.defaultDialog(
           title: "",
@@ -61,7 +63,7 @@ class NewRides extends StatelessWidget with Common, MyCallback{
             children: [
               Image.asset("assets/icons/sucess.gif",height: 150,),
               SizedBox(height: 15,),
-              Text("$apiRes",style: ts18(primaryTextColor2),textAlign: TextAlign.center,),
+              Text("${parsed['TblOutPut'][0]['@Message']}",style: ts18(primaryTextColor2),textAlign: TextAlign.center,),
               SizedBox(height: 15,),
               GestureDetector(
                 onTap: (){

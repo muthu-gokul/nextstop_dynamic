@@ -73,210 +73,216 @@
           "orderBy": 2,
           "child":{
             "type": "customScrollViewController",
-            "hasScrollBody": false,
-            "orderBy": 2,
-            "child":{
-              "type":"columnController",
+            "children": [
+              {
+                "type": "sliverFillRemainingController",
+                "orderBy": 1,
+                "hasScrollBody": false,
+                "child":{
+                  "type":"columnController",
 
-              "mainAxisAlignment": "center",
-              "children": [
-
-
-                {
-                  "type": "customPopup",
-                  "orderBy": 13,
-                  "hintText": "Select Bank Name",
-                  "data": [
-                    "Axis Bank",
-                    "arur Vysya ",
-                    "Srtate Banl of Inida"
-                  ],
-                  "key": "BankName",
-                  "hasInput": true,
-                  "required": true,
-                  "margin": "15,15,15,0",
-                  "borderColor": "*textFieldBorderColor",
-                  "arrowColor": "*primaryColor",
-                  "fontSize": 15.0,
-                  "borderRadius": "6,6,6,6",
-                  "textColor": "*primaryTextColor2",
-                  "showKey": "",
-                  "errorTextMargin": "15,0,0,0",
-                  "errorTextStyle": {
-                    "color": "*errorTextColor",
-                    "fontSize": 14.0,
-                    "fontFamily": "RR"
-                  }
-                },
-                {
-                  "type": "textField",
-                  "orderBy": 13,
-                  "hintText": "Enter IFSC Code",
-                  "hasInput": true,
-                  "required": true,
-                  "key": "IFSCCode",
-                  "margin": "15,15,15,0",
-                  "leftContentPadding": 20.0,
-                  "groupValidation": [{"Required":"required"}],
-                  "borderRadius": "6,6,6,6",
-                  "borderColor": "*textFieldBorderColor",
-                  "focusedBorderColor": "*textFieldBorderColor",
-                  "disabledBorderColor": "FFF44336",
-                  "color": "FFffffff",
-                  "disableColor": "FFF5EFEE",
-
-                  "enable": true,
-                  "hintTextStyle": {
-                    "color": "*primaryTextColor1",
-                    "fontSize": 14.0,
-                    "fontFamily": "RR"
-                  },
-                  "errorTextStyle": {
-                    "color": "*errorTextColor",
-                    "fontSize": 14.0,
-                    "fontFamily": "RR"
-                  },
-                  "textStyle": {
-                    "color": "*primaryTextColor2",
-                    "fontSize": 15.0,
-                    "fontFamily": "RR"
-                  }
-                },
-                {
-                  "type": "textField",
-                  "orderBy": 13,
-                  "hintText": "Account Number",
-                  "hasInput": true,
-                  "required": true,
-                  "key": "AccountNumber",
-                  "margin": "15,15,15,0",
-                  "leftContentPadding": 20.0,
-                  "groupValidation": [{"Required":"required"}],
-                  "borderRadius": "6,6,6,6",
-                  "borderColor": "*textFieldBorderColor",
-                  "focusedBorderColor": "*textFieldBorderColor",
-                  "disabledBorderColor": "FFF44336",
-                  "color": "FFffffff",
-                  "disableColor": "FFF5EFEE",
-                  "regExp": "[0-9]",
-                  "textInputType": "number",
-                  "enable": true,
-                  "hintTextStyle": {
-                    "color": "*primaryTextColor1",
-                    "fontSize": 14.0,
-                    "fontFamily": "RR"
-                  },
-                  "errorTextStyle": {
-                    "color": "*errorTextColor",
-                    "fontSize": 14.0,
-                    "fontFamily": "RR"
-                  },
-                  "textStyle": {
-                    "color": "*primaryTextColor2",
-                    "fontSize": 15.0,
-                    "fontFamily": "RR"
-                  }
-                },
-                {
-                  "type": "textField",
-                  "orderBy": 13,
-                  "hintText": "Bank Holder Name",
-                  "hasInput": true,
-                  "required": true,
-                  "key": "BankHolderName",
-                  "margin": "15,15,15,0",
-                  "leftContentPadding": 20.0,
-                  "groupValidation": [{"Required":"required"}],
-                  "borderRadius": "6,6,6,6",
-                  "borderColor": "*textFieldBorderColor",
-                  "focusedBorderColor": "*textFieldBorderColor",
-                  "disabledBorderColor": "FFF44336",
-                  "color": "FFffffff",
-                  "disableColor": "FFF5EFEE",
-                  "regExp": "[A-Za-z ]",
-                  "enable": true,
-                  "hintTextStyle": {
-                    "color": "*primaryTextColor1",
-                    "fontSize": 14.0,
-                    "fontFamily": "RR"
-                  },
-                  "errorTextStyle": {
-                    "color": "*errorTextColor",
-                    "fontSize": 14.0,
-                    "fontFamily": "RR"
-                  },
-                  "textStyle": {
-                    "color": "*primaryTextColor2",
-                    "fontSize": 15.0,
-                    "fontFamily": "RR"
-                  }
-                },
-                {
-                  "type": "button",
-                  "height": 50.0,
-                  "margin": "15,15,15,0",
-                  "alignment": "center",
-                  "color": "#f6f6f6",
-                  "borderRadius": "6,6,6,6",
-                  "orderBy": 13,
+                  "mainAxisAlignment": "center",
+                  "children": [
 
 
-                  "child": {
-                    "type": "rowController",
-                    "mainAxisAlignment": "center",
-                    "children": [
-                      {
-                        "type": "svgController",
-                        "image": "assets/icons/camera.svg",
-                        "height": 20.0,
-                        "orderBy": 1
+                    {
+                      "type": "customPopup",
+                      "orderBy": 13,
+                      "hintText": "Select Bank Name",
+                      "data": [
+                        "Axis Bank",
+                        "arur Vysya ",
+                        "Srtate Banl of Inida",
+                        "IOB"
+                      ],
+                      "key": "BankName",
+                      "hasInput": true,
+                      "required": true,
+                      "margin": "15,15,15,0",
+                      "borderColor": "*textFieldBorderColor",
+                      "arrowColor": "*primaryColor",
+                      "fontSize": 15.0,
+                      "borderRadius": "6,6,6,6",
+                      "textColor": "*primaryTextColor2",
+                      "showKey": "",
+                      "errorTextMargin": "15,0,0,0",
+                      "errorTextStyle": {
+                        "color": "*errorTextColor",
+                        "fontSize": 14.0,
+                        "fontFamily": "RR"
+                      }
+                    },
+                    {
+                      "type": "textField",
+                      "orderBy": 13,
+                      "hintText": "Enter IFSC Code",
+                      "hasInput": true,
+                      "required": true,
+                      "key": "IFSCCode",
+                      "margin": "15,15,15,0",
+                      "leftContentPadding": 20.0,
+                      "groupValidation": [{"Required":"required"}],
+                      "borderRadius": "6,6,6,6",
+                      "borderColor": "*textFieldBorderColor",
+                      "focusedBorderColor": "*textFieldBorderColor",
+                      "disabledBorderColor": "FFF44336",
+                      "color": "FFffffff",
+                      "disableColor": "FFF5EFEE",
+
+                      "enable": true,
+                      "hintTextStyle": {
+                        "color": "*primaryTextColor1",
+                        "fontSize": 14.0,
+                        "fontFamily": "RR"
                       },
-                      {
-                        "type":"sizedBox",
-                        "width": 10.0,
-                        "orderBy": 2
+                      "errorTextStyle": {
+                        "color": "*errorTextColor",
+                        "fontSize": 14.0,
+                        "fontFamily": "RR"
                       },
-                      {
-                        "type":"text",
-                        "onlyText": true,
-                        "orderBy": 3,
-                        "value": "Upload Image",
+                      "textStyle": {
+                        "color": "*primaryTextColor2",
+                        "fontSize": 15.0,
+                        "fontFamily": "RR"
+                      }
+                    },
+                    {
+                      "type": "textField",
+                      "orderBy": 13,
+                      "hintText": "Account Number",
+                      "hasInput": true,
+                      "required": true,
+                      "key": "AccountNumber",
+                      "margin": "15,15,15,0",
+                      "leftContentPadding": 20.0,
+                      "groupValidation": [{"Required":"required"}],
+                      "borderRadius": "6,6,6,6",
+                      "borderColor": "*textFieldBorderColor",
+                      "focusedBorderColor": "*textFieldBorderColor",
+                      "disabledBorderColor": "FFF44336",
+                      "color": "FFffffff",
+                      "disableColor": "FFF5EFEE",
+                      "regExp": "[0-9]",
+                      "textInputType": "number",
+                      "enable": true,
+                      "hintTextStyle": {
+                        "color": "*primaryTextColor1",
+                        "fontSize": 14.0,
+                        "fontFamily": "RR"
+                      },
+                      "errorTextStyle": {
+                        "color": "*errorTextColor",
+                        "fontSize": 14.0,
+                        "fontFamily": "RR"
+                      },
+                      "textStyle": {
+                        "color": "*primaryTextColor2",
+                        "fontSize": 15.0,
+                        "fontFamily": "RR"
+                      }
+                    },
+                    {
+                      "type": "textField",
+                      "orderBy": 13,
+                      "hintText": "Bank Holder Name",
+                      "hasInput": true,
+                      "required": true,
+                      "key": "BankHolderName",
+                      "margin": "15,15,15,0",
+                      "leftContentPadding": 20.0,
+                      "groupValidation": [{"Required":"required"}],
+                      "borderRadius": "6,6,6,6",
+                      "borderColor": "*textFieldBorderColor",
+                      "focusedBorderColor": "*textFieldBorderColor",
+                      "disabledBorderColor": "FFF44336",
+                      "color": "FFffffff",
+                      "disableColor": "FFF5EFEE",
+                      "regExp": "[A-Za-z ]",
+                      "enable": true,
+                      "hintTextStyle": {
+                        "color": "*primaryTextColor1",
+                        "fontSize": 14.0,
+                        "fontFamily": "RR"
+                      },
+                      "errorTextStyle": {
+                        "color": "*errorTextColor",
+                        "fontSize": 14.0,
+                        "fontFamily": "RR"
+                      },
+                      "textStyle": {
+                        "color": "*primaryTextColor2",
+                        "fontSize": 15.0,
+                        "fontFamily": "RR"
+                      }
+                    },
+                    {
+                      "type": "button",
+                      "height": 50.0,
+                      "margin": "15,15,15,0",
+                      "alignment": "center",
+                      "color": "#f6f6f6",
+                      "borderRadius": "6,6,6,6",
+                      "orderBy": 13,
+
+
+                      "child": {
+                        "type": "rowController",
+                        "mainAxisAlignment": "center",
+                        "children": [
+                          {
+                            "type": "svgController",
+                            "image": "assets/icons/camera.svg",
+                            "height": 20.0,
+                            "orderBy": 1
+                          },
+                          {
+                            "type":"sizedBox",
+                            "width": 10.0,
+                            "orderBy": 2
+                          },
+                          {
+                            "type":"text",
+                            "onlyText": true,
+                            "orderBy": 3,
+                            "value": "Upload Image",
+                            "style": {
+                              "fontSize": 15.0,
+                              "fontFamily": "RR",
+                              "color": "*primaryColor"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "type": "button",
+                      "orderBy": 13,
+                      "clickEvent": {
+                        "eventName": "formDataJson_ApiCall",
+                        "actionType": "Update"
+                      },
+                      "key": 5,
+                      "height":50,
+                      "margin": "10,15,10,15",
+                      "color":"*primaryColor",
+                      "borderRadius":"25,25,25,25",
+                      "alignment":"center",
+                      "child":{
+                        "type": "text",
+                        "value": "Submit",
+                        "alignment":"center",
+                        "key": 1,
                         "style": {
-                          "fontSize": 15.0,
-                          "fontFamily": "RR",
-                          "color": "*primaryColor"
+                          "color": "#ffffff",
+                          "fontSize": 16.0
                         }
                       }
-                    ]
-                  }
-                },
-                {
-                  "type": "button",
-                  "orderBy": 13,
-                  "clickEvent": {
-                    "eventName": "formDataJson_ApiCall",
-                    "actionType": "Update"
-                  },
-                  "key": 5,
-                  "height":50,
-                  "margin": "10,15,10,15",
-                  "color":"*primaryColor",
-                  "borderRadius":"25,25,25,25",
-                  "alignment":"center",
-                  "child":{
-                    "type": "text",
-                    "value": "Submit",
-                    "alignment":"center",
-                    "key": 1,
-                    "style": {
-                      "color": "#ffffff",
-                      "fontSize": 16.0
                     }
-                  }
-                }
 
-              ]
-            }
+                  ]
+                }
+              }
+            ]
           }
         }
       ]

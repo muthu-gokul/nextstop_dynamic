@@ -32,281 +32,286 @@
           "orderBy": 2,
           "child":{
             "type": "customScrollViewController",
-            "hasScrollBody": false,
-            "orderBy": 2,
-            "child":{
-              "type":"columnController",
-              "mainAxisAlignment": "center",
-              "children": [
-                {
-                  "type": "svgController",
-                  "orderBy": 1,
-                  "image": "assets/icons/next-stop-logo.svg",
-                  "key": 10,
-                  "height": 80.0
-                },
-                {
-                  "type": "hiddenController",
-                  "hasInput": true,
-                  "required": true,
-                  "orderBy": 1,
-                  "key": "UserId",
-                  "value": "rr"
-                },
-                {
-                  "type": "textField",
-                  "orderBy": 2,
-                  "hintText": "New Password",
-                  "hasInput": true,
-                  "obscureText": true,
-                  "required": true,
-                  "key": "NewPassword",
-                  "margin": "10,30,10,10",
-                  "groupValidation": [{"Required":"required"}],
-                  "borderRadius": "5,5,5,5",
-                  "borderColor": "*textFieldBorderColor",
-                  "focusedBorderColor": "*textFieldBorderColor",
-                  "disabledBorderColor": "FFF44336",
-                  "color": "FFffffff",
-                  "disableColor": "FFF5EFEE",
-                  "enable": true,
-                  "hintTextStyle": {
-                    "color": "*primaryTextColor1",
-                    "fontSize": 14.0,
-                    "fontFamily": "RR"
-                  },
-                  "errorTextStyle": {
-                    "color": "*errorTextColor",
-                    "fontSize": 14.0,
-                    "fontFamily": "RR"
-                  },
-                  "textStyle": {
-                    "color": "*primaryTextColor2",
-                    "fontSize": 15.0,
-                    "fontFamily": "RR"
-                  },
-                  "suffix":{
-                    "type":"button",
-                    "height":50.0,
-                    "pixelWidth":50.0,
-                    "child":{
-                      "type":"stackController",
-                      "children":[
-                        {
-                          "type":"visibilityController",
-                          "isVisible":true,
-                          "orderBy":1,
-                          "key":"NewPasswordVisibleOff",
-                          "child":{
-                            "type":"button",
-                            "height":50.0,
-                            "pixelWidth":50.0,
-                            "alignment":"center",
-                            "child":{
-                              "type":"icon",
-                              "icon":"visibleOff",
-                              "size":25.0,
-                              "color":"*primaryTextColor1"
-                            },
-                            "clickEvent":{
-                              "eventName": "ChangeValues",
-                              "changeValuesArray":[
-                                {
-                                  "key":"NewPasswordVisibleOff",
-                                  "value":false
+            "children": [
+              {
+                "type": "sliverFillRemainingController",
+                "orderBy": 1,
+                "hasScrollBody": false,
+                "child":{
+                  "type":"columnController",
+                  "mainAxisAlignment": "center",
+                  "children": [
+                    {
+                      "type": "svgController",
+                      "orderBy": 1,
+                      "image": "assets/icons/next-stop-logo.svg",
+                      "key": 10,
+                      "height": 80.0
+                    },
+                    {
+                      "type": "hiddenController",
+                      "hasInput": true,
+                      "required": true,
+                      "orderBy": 1,
+                      "key": "UserId",
+                      "value": "rr"
+                    },
+                    {
+                      "type": "textField",
+                      "orderBy": 2,
+                      "hintText": "New Password",
+                      "hasInput": true,
+                      "obscureText": true,
+                      "required": true,
+                      "key": "NewPassword",
+                      "margin": "10,30,10,10",
+                      "groupValidation": [{"Required":"required"}],
+                      "borderRadius": "5,5,5,5",
+                      "borderColor": "*textFieldBorderColor",
+                      "focusedBorderColor": "*textFieldBorderColor",
+                      "disabledBorderColor": "FFF44336",
+                      "color": "FFffffff",
+                      "disableColor": "FFF5EFEE",
+                      "enable": true,
+                      "hintTextStyle": {
+                        "color": "*primaryTextColor1",
+                        "fontSize": 14.0,
+                        "fontFamily": "RR"
+                      },
+                      "errorTextStyle": {
+                        "color": "*errorTextColor",
+                        "fontSize": 14.0,
+                        "fontFamily": "RR"
+                      },
+                      "textStyle": {
+                        "color": "*primaryTextColor2",
+                        "fontSize": 15.0,
+                        "fontFamily": "RR"
+                      },
+                      "suffix":{
+                        "type":"button",
+                        "height":50.0,
+                        "pixelWidth":50.0,
+                        "child":{
+                          "type":"stackController",
+                          "children":[
+                            {
+                              "type":"visibilityController",
+                              "isVisible":true,
+                              "orderBy":1,
+                              "key":"NewPasswordVisibleOff",
+                              "child":{
+                                "type":"button",
+                                "height":50.0,
+                                "pixelWidth":50.0,
+                                "alignment":"center",
+                                "child":{
+                                  "type":"icon",
+                                  "icon":"visibleOff",
+                                  "size":25.0,
+                                  "color":"*primaryTextColor1"
                                 },
-                                {
-                                  "key":"NewPassword",
-                                  "obscureText":false
-                                },
-                                {
-                                  "key":"NewPasswordVisibleOn",
-                                  "value":true
+                                "clickEvent":{
+                                  "eventName": "ChangeValues",
+                                  "changeValuesArray":[
+                                    {
+                                      "key":"NewPasswordVisibleOff",
+                                      "value":false
+                                    },
+                                    {
+                                      "key":"NewPassword",
+                                      "obscureText":false
+                                    },
+                                    {
+                                      "key":"NewPasswordVisibleOn",
+                                      "value":true
+                                    }
+                                  ]
                                 }
-                              ]
-                            }
-                          }
-                        },
-                        {
-                          "type":"visibilityController",
-                          "isVisible":false,
-                          "orderBy":2,
-                          "key":"NewPasswordVisibleOn",
-                          "child":{
-                            "type":"button",
-                            "height":50.0,
-                            "pixelWidth":50.0,
-                            "alignment":"center",
-                            "child":{
-                              "type":"icon",
-                              "icon":"visible",
-                              "size":25.0,
-                              "color":"*primaryTextColor1"
+                              }
                             },
-                            "clickEvent":{
-                              "eventName": "ChangeValues",
-                              "changeValuesArray":[
-                                {
-                                  "key":"NewPasswordVisibleOff",
-                                  "value":true
+                            {
+                              "type":"visibilityController",
+                              "isVisible":false,
+                              "orderBy":2,
+                              "key":"NewPasswordVisibleOn",
+                              "child":{
+                                "type":"button",
+                                "height":50.0,
+                                "pixelWidth":50.0,
+                                "alignment":"center",
+                                "child":{
+                                  "type":"icon",
+                                  "icon":"visible",
+                                  "size":25.0,
+                                  "color":"*primaryTextColor1"
                                 },
-                                {
-                                  "key":"NewPassword",
-                                  "obscureText":true
-                                },
-                                {
-                                  "key":"NewPasswordVisibleOn",
-                                  "value":false
+                                "clickEvent":{
+                                  "eventName": "ChangeValues",
+                                  "changeValuesArray":[
+                                    {
+                                      "key":"NewPasswordVisibleOff",
+                                      "value":true
+                                    },
+                                    {
+                                      "key":"NewPassword",
+                                      "obscureText":true
+                                    },
+                                    {
+                                      "key":"NewPasswordVisibleOn",
+                                      "value":false
+                                    }
+                                  ]
                                 }
-                              ]
+                              }
                             }
-                          }
-                        }
 
-                      ]
-                    }
-                  }
-                },
-                {
-                  "type": "textField",
-                  "orderBy": 2,
-                  "hintText": "Confirm Password",
-                  "hasInput": true,
-                  "obscureText": true,
-                  "required": true,
-                  "key": "ConfirmPassword",
-                  "margin": "10,15,10,10",
-                  "groupValidation": [{"Required":"required"},{"CompareTo": "NewPassword","ErrorText": "* Password doesnt match"}],
-                  "borderRadius": "5,5,5,5",
-                  "borderColor": "*textFieldBorderColor",
-                  "focusedBorderColor": "*textFieldBorderColor",
-                  "disabledBorderColor": "FFF44336",
-                  "color": "FFffffff",
-                  "disableColor": "FFF5EFEE",
-                  "enable": true,
-                  "hintTextStyle": {
-                    "color": "*primaryTextColor1",
-                    "fontSize": 14.0,
-                    "fontFamily": "RR"
-                  },
-                  "errorTextStyle": {
-                    "color": "*errorTextColor",
-                    "fontSize": 14.0,
-                    "fontFamily": "RR"
-                  },
-                  "textStyle": {
-                    "color": "*primaryTextColor2",
-                    "fontSize": 15.0,
-                    "fontFamily": "RR"
-                  },
-                  "suffix":{
-                    "type":"button",
-                    "height":50.0,
-                    "pixelWidth":50.0,
-                    "child":{
-                      "type":"stackController",
-                      "children":[
-                        {
-                          "type":"visibilityController",
-                          "isVisible":true,
-                          "orderBy":1,
-                          "key":"ConfirmPasswordVisibleOff",
-                          "child":{
-                            "type":"button",
-                            "height":50.0,
-                            "pixelWidth":50.0,
-                            "alignment":"center",
-                            "child":{
-                              "type":"icon",
-                              "icon":"visibleOff",
-                              "size":25.0,
-                              "color":"*primaryTextColor1"
-                            },
-                            "clickEvent":{
-                              "eventName": "ChangeValues",
-                              "changeValuesArray":[
-                                {
-                                  "key":"ConfirmPasswordVisibleOff",
-                                  "value":false
-                                },
-                                {
-                                  "key":"ConfirmPassword",
-                                  "obscureText":false
-                                },
-                                {
-                                  "key":"ConfirmPasswordVisibleOn",
-                                  "value":true
-                                }
-                              ]
-                            }
-                          }
-                        },
-                        {
-                          "type":"visibilityController",
-                          "isVisible":false,
-                          "orderBy":2,
-                          "key":"ConfirmPasswordVisibleOn",
-                          "child":{
-                            "type":"button",
-                            "height":50.0,
-                            "pixelWidth":50.0,
-                            "alignment":"center",
-                            "child":{
-                              "type":"icon",
-                              "icon":"visible",
-                              "size":25.0,
-                              "color":"*primaryTextColor1"
-                            },
-                            "clickEvent":{
-                              "eventName": "ChangeValues",
-                              "changeValuesArray":[
-                                {
-                                  "key":"ConfirmPasswordVisibleOff",
-                                  "value":true
-                                },
-                                {
-                                  "key":"ConfirmPassword",
-                                  "obscureText":true
-                                },
-                                {
-                                  "key":"ConfirmPasswordVisibleOn",
-                                  "value":false
-                                }
-                              ]
-                            }
-                          }
+                          ]
                         }
+                      }
+                    },
+                    {
+                      "type": "textField",
+                      "orderBy": 2,
+                      "hintText": "Confirm Password",
+                      "hasInput": true,
+                      "obscureText": true,
+                      "required": true,
+                      "key": "ConfirmPassword",
+                      "margin": "10,15,10,10",
+                      "groupValidation": [{"Required":"required"},{"CompareTo": "NewPassword","ErrorText": "* Password doesnt match"}],
+                      "borderRadius": "5,5,5,5",
+                      "borderColor": "*textFieldBorderColor",
+                      "focusedBorderColor": "*textFieldBorderColor",
+                      "disabledBorderColor": "FFF44336",
+                      "color": "FFffffff",
+                      "disableColor": "FFF5EFEE",
+                      "enable": true,
+                      "hintTextStyle": {
+                        "color": "*primaryTextColor1",
+                        "fontSize": 14.0,
+                        "fontFamily": "RR"
+                      },
+                      "errorTextStyle": {
+                        "color": "*errorTextColor",
+                        "fontSize": 14.0,
+                        "fontFamily": "RR"
+                      },
+                      "textStyle": {
+                        "color": "*primaryTextColor2",
+                        "fontSize": 15.0,
+                        "fontFamily": "RR"
+                      },
+                      "suffix":{
+                        "type":"button",
+                        "height":50.0,
+                        "pixelWidth":50.0,
+                        "child":{
+                          "type":"stackController",
+                          "children":[
+                            {
+                              "type":"visibilityController",
+                              "isVisible":true,
+                              "orderBy":1,
+                              "key":"ConfirmPasswordVisibleOff",
+                              "child":{
+                                "type":"button",
+                                "height":50.0,
+                                "pixelWidth":50.0,
+                                "alignment":"center",
+                                "child":{
+                                  "type":"icon",
+                                  "icon":"visibleOff",
+                                  "size":25.0,
+                                  "color":"*primaryTextColor1"
+                                },
+                                "clickEvent":{
+                                  "eventName": "ChangeValues",
+                                  "changeValuesArray":[
+                                    {
+                                      "key":"ConfirmPasswordVisibleOff",
+                                      "value":false
+                                    },
+                                    {
+                                      "key":"ConfirmPassword",
+                                      "obscureText":false
+                                    },
+                                    {
+                                      "key":"ConfirmPasswordVisibleOn",
+                                      "value":true
+                                    }
+                                  ]
+                                }
+                              }
+                            },
+                            {
+                              "type":"visibilityController",
+                              "isVisible":false,
+                              "orderBy":2,
+                              "key":"ConfirmPasswordVisibleOn",
+                              "child":{
+                                "type":"button",
+                                "height":50.0,
+                                "pixelWidth":50.0,
+                                "alignment":"center",
+                                "child":{
+                                  "type":"icon",
+                                  "icon":"visible",
+                                  "size":25.0,
+                                  "color":"*primaryTextColor1"
+                                },
+                                "clickEvent":{
+                                  "eventName": "ChangeValues",
+                                  "changeValuesArray":[
+                                    {
+                                      "key":"ConfirmPasswordVisibleOff",
+                                      "value":true
+                                    },
+                                    {
+                                      "key":"ConfirmPassword",
+                                      "obscureText":true
+                                    },
+                                    {
+                                      "key":"ConfirmPasswordVisibleOn",
+                                      "value":false
+                                    }
+                                  ]
+                                }
+                              }
+                            }
 
-                      ]
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "type": "button",
+                      "orderBy": "12",
+                      "clickEvent": {
+                        "eventName":"formDataJson_ApiCall",
+                        "actionType": "Update"
+                      },
+                      "key": 5,
+                      "height":50,
+                      "margin": "10,30,10,0",
+                      "color":"*primaryColor",
+                      "borderRadius":"25,25,25,25",
+                      "alignment": "center",
+                      "child":{
+                        "type": "text",
+                        "value": "Change Password",
+                        "alignment": "center",
+                        "key": 1,
+                        "style": {
+                          "color": "#ffffff",
+                          "fontSize": 16.0
+                        }
+                      }
                     }
-                  }
-                },
-                {
-                  "type": "button",
-                  "orderBy": "12",
-                  "clickEvent": {
-                    "eventName":"formDataJson_ApiCall",
-                    "actionType": "Update"
-                  },
-                  "key": 5,
-                  "height":50,
-                  "margin": "10,30,10,0",
-                  "color":"*primaryColor",
-                  "borderRadius":"25,25,25,25",
-                  "alignment": "center",
-                  "child":{
-                    "type": "text",
-                    "value": "Change Password",
-                    "alignment": "center",
-                    "key": 1,
-                    "style": {
-                      "color": "#ffffff",
-                      "fontSize": 16.0
-                    }
-                  }
+                  ]
                 }
-              ]
-            }
+              }
+            ]
           }
         }
       ]

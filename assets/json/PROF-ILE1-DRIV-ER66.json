@@ -62,8 +62,10 @@
               "type":"navIcon",
               "orderBy": "1",
               "color": "*primaryColor",
+              "strokeColor": "ffffff",
+              "crossAxisAlignment": "start",
               "margin": "20,0,0,0",
-              "padding": "10,0,0,0",
+              "padding": "8,0,0,0",
               "borderRadius": "10,10,10,10",
               "width":40,
               "height":35,
@@ -141,79 +143,150 @@
           "mainAxisAlignment": "spaceAround",
           "children": [
             {
-              "type": "columnController",
+              "type": "expandedController",
               "orderBy": 1,
-              "children": [
-                {
-                  "type": "button",
-                  "orderBy": 11,
-                  "height":45,
-                  "pixelWidth":45,
-                  "shape": "circle",
-                  "color":"#F5CAB6",
-                  "alignment": "center",
-                  "child": {
-                    "type": "icon",
-                    "icon": "phone",
-                    "color": "*primaryColor",
-                    "size": 25.0
+              "child": {
+                "type": "columnController",
+                "orderBy": 1,
+                "children": [
+                  {
+                    "type": "button",
+                    "orderBy": 1,
+                    "height":45,
+                    "pixelWidth":45,
+                    "shape": "circle",
+                    "color":"#F5CAB6",
+                    "alignment": "center",
+                    "child": {
+                      "type": "icon",
+                      "icon": "phone",
+                      "color": "*primaryColor",
+                      "size": 25.0
+                    }
+                  },
+                  {
+                    "type":"sizedBox",
+                    "orderBy": 2,
+                    "height":5
+                  },
+                  {
+                    "type": "button",
+                    "orderBy": 3,
+                    "clickEvent": {
+
+                    },
+                    "child": {
+                      "type": "rowController",
+                      "mainAxisAlignment": "center",
+                      "children":[
+                        {
+                          "type": "flexibleController",
+                          "orderBy": 1,
+                          "child":  {
+                            "type": "text",
+                            "orderBy": 13,
+                            "value": "98565-65656",
+                            "key": "MobileNumber",
+                            "onlyText": true,
+                            "style": {
+                              "color": "*primaryTextColor3",
+                              "fontSize": 16.0,
+                              "fontFamily": "RM"
+                            }
+                          }
+                        },
+                        {
+                          "orderBy": 2,
+                          "type": "sizedBox",
+                          "width": 5.0
+                        },
+                        {
+                          "orderBy": 2,
+                          "type": "svgController",
+                          "image": "assets/icons/edit-icon.svg",
+                          "height": 15.0,
+                          "width": 15.0
+                        }
+                      ]
+                    }
                   }
-                },
-                {
-                  "type":"sizedBox",
-                  "orderBy": 12,
-                  "height":5
-                },
-                {
-                  "type": "text",
-                  "orderBy": 13,
-                  "value": "98565-65656",
-                  "key": "MobileNumber",
-                  "style": {
-                    "color": "*primaryTextColor3",
-                    "fontSize": 16.0,
-                    "fontFamily": "RM"
-                  }
-                }
-              ]
+
+
+                ]
+              }
             },
             {
-              "type": "columnController",
-              "orderBy": 1,
-              "children": [
-                {
-                  "type": "button",
-                  "orderBy": 15,
-                  "height":45,
-                  "pixelWidth":45,
-                  "shape": "circle",
-                  "color":"#F5CAB6",
-                  "alignment": "center",
-                  "child": {
-                    "type": "icon",
-                    "icon": "mail",
-                    "color": "*primaryColor",
-                    "size": 25.0
+              "type": "expandedController",
+              "orderBy": 2,
+              "child": {
+                "type": "columnController",
+                "orderBy": 1,
+                "children": [
+                  {
+                    "type": "button",
+                    "orderBy": 1,
+                    "height":45,
+                    "pixelWidth":45,
+                    "shape": "circle",
+                    "color":"#F5CAB6",
+                    "alignment": "center",
+                    "child": {
+                      "type": "icon",
+                      "icon": "mail",
+                      "color": "*primaryColor",
+                      "size": 25.0
+                    }
+                  },
+                  {
+                    "type":"sizedBox",
+                    "orderBy": 2,
+                    "height":5
+                  },
+                  {
+                    "type": "button",
+                    "orderBy": 3,
+                    "clickEvent": {
+
+                    },
+                    "child": {
+                      "type": "rowController",
+                      "mainAxisAlignment": "center",
+                      "children":[
+                        {
+                          "type": "flexibleController",
+                          "orderBy": 1,
+                          "child":  {
+                            "type": "text",
+                            "orderBy": 13,
+                            "onlyText": true,
+                            "value": "enduser@gmail.com",
+                            "key": "Mail",
+                            "style": {
+                              "color": "*primaryTextColor3",
+                              "fontSize": 16.0,
+                              "fontFamily": "RM"
+                            }
+                          }
+                        },
+                        {
+                          "orderBy": 2,
+                          "type": "sizedBox",
+                          "width": 5.0
+                        },
+                        {
+                          "orderBy": 2,
+                          "type": "svgController",
+                          "image": "assets/icons/edit-icon.svg",
+                          "height": 15.0,
+                          "width": 15.0
+                        }
+                      ]
+                    }
                   }
-                },
-                {
-                  "type":"sizedBox",
-                  "orderBy": 16,
-                  "height":5
-                },
-                {
-                  "type": "text",
-                  "orderBy": 17,
-                  "value": "enduser@gmail.com",
-                  "key": "Mail",
-                  "style": {
-                    "color": "*primaryTextColor3",
-                    "fontSize": 16.0,
-                    "fontFamily": "RM"
-                  }
-                }
-              ]
+                ]
+              }
             }
+
           ]
         },
 
@@ -296,223 +369,229 @@
               {
                 "type": "customScrollViewController",
                 "hasScrollBody": false,
-                "isSliverFillRemaining": false,
                 "orderBy": 1,
-                "child": {
-                  "type": "sliverListController",
-                  "key": "Documents",
-                  "orderBy": 1,
-                  "childd":  {
-                    "type": "button",
-                    "height": 50.0,
-                    "alignment": "center",
-                    "borderRadius": "6,6,6,6",
-                    "margin": "15,0,15,0",
-                    "orderBy": 13,
+                "children": [
+                  {
+                    "type": "sliverAppBarController",
+                    "orderBy": 1,
                     "child": {
-                      "type": "rowController",
-                      "mainAxisAlignment": "center",
-                      "children": [
-                        {
-                          "type": "expandedController",
-                          "orderBy": 1,
-                          "child": {
-                            "type": "button",
-                            "alignment": "centerLeft",
+                      "type": "button",
+                      "height": 35.0,
+                      "margin": "15,0,15,0",
+                      "alignment": "center",
+                      "borderRadius": "6,6,6,6",
+                      "color": "ffffff",
+                      "child": {
+                        "type": "rowController",
+                        "mainAxisAlignment": "center",
+                        "children": [
+                          {
+                            "type": "expandedController",
+                            "orderBy": 1,
                             "child": {
-                              "type": "text",
-                              "onlyText": true,
-                              "key": "Document",
-                              "value": "",
-                              "style": {
-                                "color": "*primaryTextColor1",
-                                "fontSize": 15.0,
-                                "fontFamily": "RR"
+                              "type": "button",
+                              "alignment": "centerLeft",
+                              "child": {
+                                "type": "text",
+                                "onlyText": true,
+                                "value": "Document",
+                                "style": {
+                                  "color": "*primaryTextColor2",
+                                  "fontSize": 15.0,
+                                  "fontFamily": "RM"
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "type": "expandedController",
+                            "orderBy": 2,
+                            "child": {
+                              "type": "button",
+                              "alignment": "center",
+                              "child": {
+                                "type": "text",
+                                "onlyText": true,
+                                "value": "Number",
+                                "style": {
+                                  "color": "*primaryTextColor2",
+                                  "fontSize": 15.0,
+                                  "fontFamily": "RM"
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "type": "expandedController",
+                            "orderBy": 3,
+                            "child": {
+                              "type": "button",
+                              "alignment": "centerRight",
+                              "child": {
+                                "type": "text",
+                                "onlyText": true,
+                                "value": "Image",
+                                "style": {
+                                  "color": "*primaryTextColor2",
+                                  "fontSize": 15.0,
+                                  "fontFamily": "RM"
+                                }
                               }
                             }
                           }
-                        },
-                        {
-                          "type": "expandedController",
-                          "orderBy": 2,
-                          "child": {
-                            "type": "button",
-                            "alignment": "center",
-                            "child": {
-                              "type": "text",
-                              "onlyText": true,
-                              "key": "Number",
-                              "value": "",
-                              "style": {
-                                "color": "*primaryTextColor1",
-                                "fontSize": 15.0,
-                                "fontFamily": "RR"
-                              }
-                            }
-                          }
-                        },
-                        {
-                          "type": "expandedController",
-                          "orderBy": 3,
-                          "child": {
-                            "type": "button",
-                            "alignment": "centerRight",
-                            "child": {
-                              "type": "text",
-                              "onlyText": true,
-                              "key": "Image",
-                              "value": "",
-                              "style": {
-                                "color": "*primaryTextColor1",
-                                "fontSize": 15.0,
-                                "fontFamily": "RR"
-                              }
-                            }
-                          }
-                        }
-                      ]
+                        ]
+                      }
                     }
                   },
-                  "value": [
-
-                  ]
-                },
-                "tempAppbar": {
-                  "type": "button",
-                  "height": 35.0,
-                  "margin": "15,0,15,0",
-                  "alignment": "center",
-                  "borderRadius": "6,6,6,6",
-                  "color": "ffffff",
-                  "child": {
-                    "type": "rowController",
-                    "mainAxisAlignment": "center",
-                    "children": [
-                      {
-                        "type": "expandedController",
-                        "orderBy": 1,
-                        "child": {
-                          "type": "button",
-                          "alignment": "centerLeft",
-                          "child": {
-                            "type": "text",
-                            "onlyText": true,
-                            "value": "Document",
-                            "style": {
-                              "color": "*primaryTextColor2",
-                              "fontSize": 15.0,
-                              "fontFamily": "RM"
+                  {
+                    "type": "sliverListController",
+                    "key": "Documents",
+                    "orderBy": 2,
+                    "childd":  {
+                      "type": "button",
+                      "height": 50.0,
+                      "alignment": "center",
+                      "borderRadius": "6,6,6,6",
+                      "margin": "15,0,15,0",
+                      "orderBy": 13,
+                      "child": {
+                        "type": "rowController",
+                        "mainAxisAlignment": "center",
+                        "children": [
+                          {
+                            "type": "expandedController",
+                            "orderBy": 1,
+                            "child": {
+                              "type": "button",
+                              "alignment": "centerLeft",
+                              "child": {
+                                "type": "text",
+                                "onlyText": true,
+                                "key": "Document",
+                                "value": "",
+                                "style": {
+                                  "color": "*primaryTextColor1",
+                                  "fontSize": 15.0,
+                                  "fontFamily": "RR"
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "type": "expandedController",
+                            "orderBy": 2,
+                            "child": {
+                              "type": "button",
+                              "alignment": "center",
+                              "child": {
+                                "type": "text",
+                                "onlyText": true,
+                                "key": "Number",
+                                "value": "",
+                                "style": {
+                                  "color": "*primaryTextColor1",
+                                  "fontSize": 15.0,
+                                  "fontFamily": "RR"
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "type": "expandedController",
+                            "orderBy": 3,
+                            "child": {
+                              "type": "button",
+                              "alignment": "centerRight",
+                              "child": {
+                                "type": "text",
+                                "onlyText": true,
+                                "key": "Image",
+                                "value": "",
+                                "style": {
+                                  "color": "*primaryTextColor1",
+                                  "fontSize": 15.0,
+                                  "fontFamily": "RR"
+                                }
+                              }
                             }
                           }
-                        }
-                      },
-                      {
-                        "type": "expandedController",
-                        "orderBy": 2,
-                        "child": {
-                          "type": "button",
-                          "alignment": "center",
-                          "child": {
-                            "type": "text",
-                            "onlyText": true,
-                            "value": "Number",
-                            "style": {
-                              "color": "*primaryTextColor2",
-                              "fontSize": 15.0,
-                              "fontFamily": "RM"
-                            }
-                          }
-                        }
-                      },
-                      {
-                        "type": "expandedController",
-                        "orderBy": 3,
-                        "child": {
-                          "type": "button",
-                          "alignment": "centerRight",
-                          "child": {
-                            "type": "text",
-                            "onlyText": true,
-                            "value": "Image",
-                            "style": {
-                              "color": "*primaryTextColor2",
-                              "fontSize": 15.0,
-                              "fontFamily": "RM"
-                            }
-                          }
-                        }
+                        ]
                       }
+                    },
+                    "value": [
+
                     ]
                   }
-                }
+                ]
               },
 
 
               {
                 "type": "customScrollViewController",
                 "hasScrollBody": false,
-                "isSliverFillRemaining": false,
                 "orderBy": 1,
-                "child": {
-                  "type": "sliverListController",
-                  "key": "BankDetails",
-                  "orderBy": 1,
-                  "childd":  {
-                    "type": "button",
-                    "height": 50.0,
-                    "alignment": "center",
-                    "borderRadius": "6,6,6,6",
-                    "margin": "25,0,25,0",
-                    "orderBy": 13,
-                    "child": {
-                      "type": "rowController",
-                      "mainAxisAlignment": "center",
-                      "children": [
-                        {
-                          "type": "expandedController",
-                          "orderBy": 1,
-                          "child": {
-                            "type": "button",
-                            "alignment": "centerLeft",
+                "children": [
+                  {
+                    "type": "sliverListController",
+                    "key": "BankDetails",
+                    "orderBy": 1,
+                    "childd":  {
+                      "type": "button",
+                      "height": 50.0,
+                      "alignment": "center",
+                      "borderRadius": "6,6,6,6",
+                      "margin": "25,0,25,0",
+                      "orderBy": 13,
+                      "child": {
+                        "type": "rowController",
+                        "mainAxisAlignment": "center",
+                        "children": [
+                          {
+                            "type": "expandedController",
+                            "orderBy": 1,
                             "child": {
-                              "type": "text",
-                              "onlyText": true,
-                              "key": "Title",
-                              "value": "",
-                              "style": {
-                                "color": "*primaryTextColor2",
-                                "fontSize": 14.0,
-                                "fontFamily": "RR"
+                              "type": "button",
+                              "alignment": "centerLeft",
+                              "child": {
+                                "type": "text",
+                                "onlyText": true,
+                                "key": "Title",
+                                "value": "",
+                                "style": {
+                                  "color": "*primaryTextColor2",
+                                  "fontSize": 14.0,
+                                  "fontFamily": "RR"
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "type": "expandedController",
+                            "orderBy": 2,
+                            "child": {
+                              "type": "button",
+                              "alignment": "centerLeft",
+                              "child": {
+                                "type": "text",
+                                "onlyText": true,
+                                "key": "Value",
+                                "value": "",
+                                "style": {
+                                  "color": "*primaryTextColor2",
+                                  "fontSize": 14.0,
+                                  "fontFamily": "RR"
+                                }
                               }
                             }
                           }
-                        },
-                        {
-                          "type": "expandedController",
-                          "orderBy": 2,
-                          "child": {
-                            "type": "button",
-                            "alignment": "centerLeft",
-                            "child": {
-                              "type": "text",
-                              "onlyText": true,
-                              "key": "Value",
-                              "value": "",
-                              "style": {
-                                "color": "*primaryTextColor2",
-                                "fontSize": 14.0,
-                                "fontFamily": "RR"
-                              }
-                            }
-                          }
-                        }
-                      ]
-                    }
-                  },
-                  "value": [
+                        ]
+                      }
+                    },
+                    "value": [
 
-                  ]
-                }
+                    ]
+                  }
+                ]
               }
             ]
           }
