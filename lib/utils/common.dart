@@ -1,7 +1,9 @@
 
+import 'dart:convert';
 import 'dart:developer';
 
-import 'package:date_format/date_format.dart';
+import 'package:dynamicparsers/customControllers/utils.dart';
+import 'package:get/get.dart';
 import 'package:dynamicparsers/customControllers/callBack/general.dart';
 import 'package:dynamicparsers/customControllers/callBack/generalMethods.dart';
 import 'package:dynamicparsers/customControllers/callBack/myCallback.dart';
@@ -9,6 +11,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:nextstop_dynamic/constants.dart';
+import 'package:nextstop_dynamic/styles/style.dart';
 import 'package:nextstop_dynamic/utils/general.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../pages/dynamicPageInitiater.dart';
@@ -68,7 +71,7 @@ class Common{
         }
         else if(clickEvent[General.eventName]=="fromListView"){
           findWidgetByKey(widgets, {"key":clickEvent['parentListViewKey']}, (wid){
-            log("founf $wid ${wid.getValueByIndex(clickEvent['Index'])}");
+            /*log("founf $wid ${wid.getValueByIndex(clickEvent['Index'])}");*/
             if(clickEvent.containsKey("changeValuesArray")){
               findUpdateByKeyWidgetType(clickEvent['changeValuesArray'], [wid.getValueByIndex(clickEvent['Index']).widget]);
             }
@@ -77,10 +80,62 @@ class Common{
             }
           });
         }
+        else if(clickEvent[General.eventName]==General.openDialog){
+          log("common $clickEvent");
+          findWidgetByKey(widgets, {"key":clickEvent['toFindKey']}, (wid){
+           // log("foundd $wid");
+            Get.dialog(
+              WillPopScope(
+                onWillPop: () async {
+                  return wid.map['barrierDismissible'];
+                },
+                child: AlertDialog(
+                  insetPadding: EdgeInsets.symmetric(horizontal: wid.map['horizontalInsetPadding']),
+                  clipBehavior: Clip.antiAlias,
+                  contentPadding: parseEdgeInsetsGeometry(wid.map['contentPadding'])!,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(wid.map['dialogRadius']))),
+                  content: wid,
+                ),
+              ),
+              barrierDismissible: wid.map['barrierDismissible']/*clickEvent['dialogWidget']['barrierDismissible']*/,
+            );
+          });
+
+        }
+        else if(clickEvent[General.eventName]=="findDialogWidget"){
+          findWidgetByKey(widgets, {"key":clickEvent['toFindKey']}, (wid){
+            log("foundd $wid ${clickEvent['guid']}");
+            aa(clickEvent['guid'], [wid], {}, queryString);
+           /* var a=await
+            if(a!=null){
+              Get.back();
+              var parsed=jsonDecode(a);
+              General().showAlertPopUp(parsed['TblOutPut'][0]['@Message']);
+            }*/
+         //   Get.back();
+           // log("A $a");
+            /*if(clickEvent.containsKey("changeValuesArray")){
+              findUpdateByKeyWidgetType(clickEvent['changeValuesArray'], [wid.getValueByIndex(clickEvent['Index']).widget]);
+            }
+            else{
+              splitByTapEvent(clickEvent['clickEvent'],guid: guid,widgets: wid.getValueByIndex(clickEvent['Index']).widget.widgets,queryString: queryString,myCallback: myCallback);
+            }*/
+          });
+        }
       }
     }
   }
 
+
+  aa(dynamic guid,List<dynamic> widgets,Map clickEvent,List queryString,{MyCallback? myCallback}) async{
+    var a= await formDataJsonApiCallResponse(guid, widgets, {}, queryString);
+    if(a!=null){
+      Get.back();
+      var parsed=jsonDecode(a);
+      General().showAlertPopUp(parsed['TblOutPut'][0]['@Message']);
+    }
+    log("A $a");
+  }
 
   formSubmitMethodTFE(dynamic guid,List<dynamic> widgets,Map clickEvent,List queryString,{MyCallback? myCallback}){
     log("Form Submit CheckTapFunc Common $clickEvent");
@@ -144,6 +199,10 @@ class Common{
 
   openDialer(Map clickEvent){
     launch("tel://${clickEvent['mobileNumber']}");
+  }
+
+  reload(MyCallback? myCallback){
+    myCallback!.reloadPage();
   }
 
   Color parseColor(String color){

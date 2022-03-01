@@ -38,3 +38,5 @@
 
 <!-- version 1.0.6 Change Logs -->
         1. New orders screen
+<!-- version 1.0.7 Change Logs -->
+        1. Profile screen edit initiated

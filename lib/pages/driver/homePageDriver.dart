@@ -176,7 +176,7 @@ class _HomePageDriver2State extends State<HomePageDriver2> with WidgetsBindingOb
           selectedPage.value=clickEvent['pageIndex'];
           scaffoldKey.currentState!.openEndDrawer();
           if(selectedPage.value==1){
-            driverTripHomePage.reload();
+            driverTripHomePage.reload(null);
             determinePosition();
           }
         }

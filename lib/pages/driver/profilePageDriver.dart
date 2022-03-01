@@ -63,7 +63,8 @@ class ProfilePageDriver extends StatelessWidget with MyCallback,Common{
           }
         }
         else{
-          splitByTapEvent(clickEvent,
+          splitByTapEvent(
+            clickEvent,
             widgets: dynamicPageInitiater.dynamicPageInitiaterState.widgets,
             queryString: dynamicPageInitiater.dynamicPageInitiaterState.queryString,
             myCallback: this

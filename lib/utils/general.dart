@@ -19,6 +19,7 @@ import 'package:get/get.dart';
 
 import '../pages/driver/bankDetails.dart';
 import '../pages/driver/newRides.dart';
+import '../styles/style.dart';
 class General{
 
 
@@ -68,6 +69,39 @@ class General{
   }
 
 
+  showAlertPopUp(String message){
+    Get.defaultDialog(
+        title: "",
+        titleStyle: TextStyle(height: 0.0),
+        middleTextStyle: TextStyle(height: 0.0),
+        middleText: "",
+        content: Column(
+          children: [
+            Image.asset("assets/icons/sucess.gif",height: 150,),
+            SizedBox(height: 15,),
+            Text("$message",style: ts18(primaryTextColor2),textAlign: TextAlign.center,),
+            SizedBox(height: 15,),
+            GestureDetector(
+              onTap: (){
+                Get.back();
+              },
+              child: Container(
+                height: 35,
+                width: 100,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(25),
+                    color: primaryColor
+                ),
+                alignment: Alignment.center,
+                child: Text("Ok",style: ts15(Colors.white),),
+              ),
+            )
+          ],
+        )
+    );
+  }
+
+
   static String loginPageIdentifier="LOGI-N567-3457-9876";
   static String registrationPageIdentifier="REGI-STRA-TION-9876";
   static String setPasswordIdentifier="SETP-ASSW-ORD-5646";
@@ -101,6 +135,7 @@ class General{
   static String actionType="actionType";
   static String openMap="openMap";
   static String openDialer="OpenDialer";
+  static String openDialog="openDialog";
 }
 
 

@@ -24,7 +24,7 @@ class ButtonController extends StatelessWidget implements MyCallback2{
     color.value=map['color'];
     widget=map.containsKey('child')?getChild(map['child'],myCallback: ontap):Container();
 
-   log("Button Constructor $topPad");
+   //log("Button Constructor $topPad");
   }
 
   @override
@@ -49,7 +49,7 @@ class ButtonController extends StatelessWidget implements MyCallback2{
             alignment: parseAlignment(map['alignment']),
             decoration: BoxDecoration(
                 borderRadius:map.containsKey('shape')?null: parseBorderRadius(map['borderRadius']),
-                color: parseHexColor(color.value,ontap),
+                color:map.containsKey('opacity')? parseHexColor(color.value,ontap)!.withOpacity(map['opacity']):parseHexColor(color.value,ontap),
                 shape: parseBoxShape(map['shape']),
                 border: Border.all(color: parseHexColor(map['borderColor'],ontap)!),
                 boxShadow:map.containsKey('boxShadow')? [

@@ -52,7 +52,7 @@ class DriverTripHomePage extends StatelessWidget with Common , MyCallback{
     var apiResponse=await formDataJsonApiCall(guid, widgets, clickEvent, queryString);
     log("apiResponse $apiResponse");
     if(apiResponse!=null){
-      reload();
+      reload(null);
     }
   }
 
@@ -63,7 +63,8 @@ class DriverTripHomePage extends StatelessWidget with Common , MyCallback{
     findUpdateByKeyWidgetType(valueArray, dynamicPageInitiater.dynamicPageInitiaterState.widgets);
   }
 
-  reload(){
+  @override
+  reload(MyCallback? myCallback){
     dynamicPageInitiater.dynamicPageInitiaterState.initSS();
     reloadMap();
   }

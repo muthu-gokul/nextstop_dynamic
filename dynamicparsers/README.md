@@ -48,6 +48,7 @@ changeValuesArray
 3. getValueByIndex function in listview Controller
 
 28-02-2022
-
-changed json- PROF-ILE1-DRIV-ER66.json, MANA-GEDO-CUME-5455.json, DRIV-ADDB-ANKD-ET54.json, SETP-ASSW-ORD-5646.json
 added slivers
+
+01-03-2022
+1. added opacity in button(container)
