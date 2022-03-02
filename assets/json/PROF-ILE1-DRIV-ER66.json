@@ -41,6 +41,10 @@
         {"Title": "Ac Number","Value": "2343434343434"},
         {"Title": "Bank Holder Name","Value": "Muthu Gokul Chandramohan"}
       ]
+    },
+    {
+      "key": "Password",
+      "value": "123456"
     }
   ],
   "Widgets": [
@@ -173,7 +177,8 @@
                     "type": "button",
                     "orderBy": 3,
                     "clickEvent": {
-
+                      "eventName": "openDialog",
+                      "toFindKey": "PasswordEditDialog"
                     },
                     "child": {
                       "type": "rowController",
@@ -182,11 +187,49 @@
                         {
                           "type": "flexibleController",
                           "orderBy": 1,
+                          "child2": {
+                            "type": "textField",
+                            "orderBy": 2,
+                            "hintText": "Password",
+                            "hasInput": true,
+                            "obscureText": true,
+                            "required": true,
+                            "key": "Password",
+                            "margin": "0,0,0,0",
+                            "topContentPadding": 25.0,
+                            "groupValidation": [
+                              {
+                                "Required": "required"
+                              }
+                            ],
+                            "borderRadius": "5,5,5,5",
+                            "borderColor": "*textFieldBorderColor",
+                            "focusedBorderColor": "*textFieldBorderColor",
+                            "disabledBorderColor": "FFF44336",
+                            "color": "FFffffff",
+                            "disableColor": "FFffffff",
+                            "enable": false,
+                            "hintTextStyle": {
+                              "color": "*primaryTextColor3",
+                              "fontSize": 16.0,
+                              "fontFamily": "RM"
+                            },
+                            "errorTextStyle": {
+                              "color": "*errorTextColor",
+                              "fontSize": 14.0,
+                              "fontFamily": "RR"
+                            },
+                            "textStyle": {
+                              "color": "*primaryTextColor3",
+                              "fontSize": 16.0,
+                              "fontFamily": "RM"
+                            }
+                          },
                           "child":  {
                             "type": "text",
                             "orderBy": 13,
                             "value": "98565-65656",
-                            "key": "MobileNumber",
+                            "key": "Password",
                             "onlyText": true,
                             "style": {
                               "color": "*primaryTextColor3",
@@ -245,7 +288,6 @@
                   {
                     "type": "button",
                     "orderBy": 3,
-
                     "clickEvent": {
                       "eventName": "openDialog",
                       "toFindKey": "EmailEditDialog"
@@ -758,7 +800,141 @@
                 "clickEvent": {
                   "eventName": "findDialogWidget",
                   "toFindKey": "EmailEditDialog",
-                  "guid": "PROF-ILE1-DRIV-ER66"
+                  "guid": "PROF-ILE1-DRIV-ER66",
+                  "actionType": "Update"
+                },
+                "child": {
+                  "type": "text",
+                  "onlyText": true,
+                  "value": "Change",
+                  "style": {
+                    "fontSize": 15.0,
+                    "fontFamily": "RR",
+                    "color": "ffffff"
+                  }
+                }
+              },
+              {
+                "type": "button",
+                "orderBy": 5,
+                "height": 50.0,
+                "color": "*textFieldBorderColor",
+                "opacity": 0.5,
+                "borderColor": "*primaryTextColor1",
+                "borderRadius": "6,6,6,6",
+                "margin": "15,10,15,10",
+                "alignment": "center",
+                "clickEvent": {
+                  "eventName": "Navigation",
+                  "typeOfNavigation": 3,
+                  "navigateToPage": ""
+                },
+                "child": {
+                  "type": "text",
+                  "onlyText": true,
+                  "value": "Cancel",
+                  "style": {
+                    "fontSize": 15.0,
+                    "fontFamily": "RR",
+                    "color": "*primaryTextColor3"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "visibilityController",
+          "isVisible": false,
+          "orderBy": 1001,
+          "child": {
+            "horizontalInsetPadding": 40.0,
+            "contentPadding":"10,10,10,10",
+            "barrierDismissible": true,
+            "dialogRadius": 15.0,
+            "type": "columnController",
+            "key": "PasswordEditDialog",
+            "children": [
+              {
+                "type": "button",
+                "orderBy": 1,
+                "height":45,
+                "pixelWidth":45,
+                "shape": "circle",
+                "color":"#F5CAB6",
+                "alignment": "center",
+                "child": {
+                  "type": "icon",
+                  "icon": "mail",
+                  "color": "*primaryColor",
+                  "size": 25.0
+                }
+              },
+              {
+                "type":"sizedBox",
+                "orderBy": 2,
+                "height":5
+              },
+              {
+                "type": "flexibleController",
+                "orderBy": 3,
+                "child":  {
+                  "type": "text",
+                  "orderBy": 13,
+                  "onlyText": true,
+                  "value": "1234",
+                  "key": "Password",
+                  "style": {
+                    "color": "*primaryTextColor3",
+                    "fontSize": 16.0,
+                    "fontFamily": "RM"
+                  }
+                }
+              },
+              {
+                "type": "textField",
+                "orderBy": 4,
+                "hintText": "Change Password",
+                "hasInput": true,
+                "required": true,
+                "key": "NewPassword",
+                "margin": "5,10,5,10",
+                "groupValidation": [{"Required":"required"}],
+                "borderRadius": "5,5,5,5",
+                "borderColor": "*textFieldBorderColor",
+                "focusedBorderColor": "*textFieldBorderColor",
+                "disabledBorderColor": "FFF44336",
+                "color": "FFffffff",
+                "disableColor": "FFF5EFEE",
+                "enable": true,
+                "hintTextStyle": {
+                  "color": "*primaryTextColor1",
+                  "fontSize": 14.0,
+                  "fontFamily": "RR"
+                },
+                "errorTextStyle": {
+                  "color": "*errorTextColor",
+                  "fontSize": 14.0,
+                  "fontFamily": "RR"
+                },
+                "textStyle": {
+                  "color": "*primaryTextColor2",
+                  "fontSize": 15.0,
+                  "fontFamily": "RR"
+                }
+              },
+              {
+                "type": "button",
+                "orderBy": 5,
+                "height": 50.0,
+                "color": "*primaryColor",
+                "borderRadius": "6,6,6,6",
+                "margin": "15,10,15,10",
+                "alignment": "center",
+                "clickEvent": {
+                  "eventName": "findDialogWidget",
+                  "toFindKey": "PasswordEditDialog",
+                  "actionType": "Update"
                 },
                 "child": {
                   "type": "text",

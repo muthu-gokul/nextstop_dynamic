@@ -64,7 +64,13 @@ class DriverTripHomePage extends StatelessWidget with Common , MyCallback{
   }
 
   @override
+  reloadPage() {
+    reload(this);
+  }
+
+  @override
   reload(MyCallback? myCallback){
+    log("dTHP reload");
     dynamicPageInitiater.dynamicPageInitiaterState.initSS();
     reloadMap();
   }

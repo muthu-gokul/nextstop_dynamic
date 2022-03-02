@@ -104,8 +104,8 @@ class Common{
         }
         else if(clickEvent[General.eventName]=="findDialogWidget"){
           findWidgetByKey(widgets, {"key":clickEvent['toFindKey']}, (wid){
-            log("foundd $wid ${clickEvent['guid']}");
-            aa(clickEvent['guid'], [wid], {}, queryString);
+            log("$guid foundd $wid ${clickEvent['guid']}");
+            aa(guid, [wid], clickEvent, queryString,myCallback: myCallback);
            /* var a=await
             if(a!=null){
               Get.back();
@@ -128,13 +128,15 @@ class Common{
 
 
   aa(dynamic guid,List<dynamic> widgets,Map clickEvent,List queryString,{MyCallback? myCallback}) async{
-    var a= await formDataJsonApiCallResponse(guid, widgets, {}, queryString);
+    var a= await formDataJsonApiCall(guid, widgets, clickEvent, queryString);
+    log("A $a");
     if(a!=null){
       Get.back();
+      reload(myCallback);
       var parsed=jsonDecode(a);
       General().showAlertPopUp(parsed['TblOutPut'][0]['@Message']);
     }
-    log("A $a");
+
   }
 
   formSubmitMethodTFE(dynamic guid,List<dynamic> widgets,Map clickEvent,List queryString,{MyCallback? myCallback}){

@@ -15,8 +15,8 @@ import '../dynamicPageInitiater.dart';
 
 
 class NewRides extends StatelessWidget with Common, MyCallback{
-
-  NewRides(){
+  MyCallback driverTripHomePageCb;
+  NewRides({required this.driverTripHomePageCb}){
     dynamicPageInitiater=DynamicPageInitiater(
       pageIdentifier: General.driverNewTripsIdentifier,
       myCallback: this,
@@ -54,6 +54,7 @@ class NewRides extends StatelessWidget with Common, MyCallback{
     if(apiRes!=null){
       var parsed=jsonDecode(apiRes);
       reloadPage();
+      driverTripHomePageCb.reloadPage();
       Get.defaultDialog(
           title: "",
           titleStyle: TextStyle(height: 0.0),

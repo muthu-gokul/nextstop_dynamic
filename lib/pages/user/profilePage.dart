@@ -37,4 +37,9 @@ class ProfilePage extends StatelessWidget with Common , MyCallback{
   openDrawer(MyCallback mc, Map clickEvent) {
     myCallback.ontap(clickEvent);
   }
+
+  @override
+  reloadPage() {
+    dynamicPageInitiater.dynamicPageInitiaterState.initSS();
+  }
 }

@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:developer';
 
 
@@ -48,10 +49,14 @@ class TabbarController extends StatelessWidget implements MyCallback2,TabPageVie
         });
       });
     });
+    Timer(Duration(milliseconds: 300), (){
+      jumpPageViewToInitialPage();
+    });
 
   }
 
   List widgets=[];
+  var pageviewWidget=null;
 
   late GetxTabController tabController;
   @override
@@ -115,11 +120,15 @@ class TabbarController extends StatelessWidget implements MyCallback2,TabPageVie
   @override
   onChanged(int index) {
     if(map['toFindKey'].isNotEmpty){
-      findWidgetByKey(myCallback.getCurrentPageWidgets(), {"key":"${map['toFindKey']}"}, (wid){
-        wid.changeControllerIndex(index);
-      });
+      if(pageviewWidget==null){
+        findWidgetByKey(myCallback.getCurrentPageWidgets(), {"key":"${map['toFindKey']}"}, (wid){
+          wid.changeControllerIndex(index);
+        });
+      }
+      else{
+        pageviewWidget.changeControllerIndex(index);
+      }
     }
-
     if(map['value'][index].containsKey("changeValues")){
       myCallback.ontap(map['value'][index]['changeValues']);
     }
@@ -131,5 +140,11 @@ class TabbarController extends StatelessWidget implements MyCallback2,TabPageVie
     if(map['value'][index].containsKey("changeValues")){
       myCallback.ontap(map['value'][index]['changeValues']);
     }
+  }
+
+  jumpPageViewToInitialPage(){
+    findWidgetByKey(myCallback.getCurrentPageWidgets(), {"key":"${map['toFindKey']}"}, (wid){
+      wid.jumpToInitial();
+    });
   }
 }

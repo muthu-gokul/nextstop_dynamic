@@ -76,7 +76,7 @@
       "alignment": "centerLeft",
       "clickEvent": {
         "eventName":"HomePageNavigation",
-        "pageIndex":4
+        "pageIndex":3
       },
       "key": 1,
       "height":50,

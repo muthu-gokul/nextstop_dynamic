@@ -14,6 +14,10 @@
     {
       "key": "Mail",
       "value": "Test@gmail.com"
+    },
+    {
+      "key": "Password",
+      "value": "1234"
     }
   ],
   "Widgets": [
@@ -165,14 +169,384 @@
           "height":5
         },
         {
-          "type": "text",
+          "type": "button",
           "orderBy": 17,
-          "value": "enduser@gmail.com",
-          "key": "Mail",
-          "style": {
-            "color": "*primaryTextColor3",
-            "fontSize": 20.0,
-            "fontFamily": "RM"
+          "clickEvent": {
+            "eventName": "openDialog",
+            "toFindKey": "EmailEditDialog"
+          },
+          "child": {
+            "type": "rowController",
+            "mainAxisAlignment": "center",
+            "children":[
+              {
+                "type": "flexibleController",
+                "orderBy": 1,
+                "child":  {
+                  "type": "text",
+                  "orderBy": 13,
+                  "onlyText": true,
+                  "value": "enduser@gmail.com",
+                  "key": "Mail",
+                  "style": {
+                    "color": "*primaryTextColor3",
+                    "fontSize": 16.0,
+                    "fontFamily": "RM"
+                  }
+                }
+              },
+              {
+                "orderBy": 2,
+                "type": "sizedBox",
+                "width": 5.0
+              },
+              {
+                "orderBy": 2,
+                "type": "svgController",
+                "image": "assets/icons/edit-icon.svg",
+                "height": 15.0,
+                "width": 15.0
+              }
+            ]
+          }
+        },
+
+
+        {
+          "type":"sizedBox",
+          "orderBy": 18,
+          "height":30
+        },
+        {
+          "type": "button",
+          "orderBy": 18,
+          "height":60,
+          "pixelWidth":60,
+          "shape": "circle",
+          "color":"#F5CAB6",
+          "alignment": "center",
+          "child": {
+            "type": "icon",
+            "icon": "mail",
+            "color": "*primaryColor",
+            "size": 30.0
+          }
+        },
+        {
+          "type":"sizedBox",
+          "orderBy": 18,
+          "height":5
+        },
+        {
+          "type": "button",
+          "orderBy": 18,
+          "clickEvent": {
+            "eventName": "openDialog",
+            "toFindKey": "PasswordEditDialog"
+          },
+          "child": {
+            "type": "rowController",
+            "mainAxisAlignment": "center",
+            "children":[
+              {
+                "type": "flexibleController",
+                "orderBy": 1,
+                "child":  {
+                  "type": "text",
+                  "orderBy": 13,
+                  "onlyText": true,
+                  "value": "enduser@gmail.com",
+                  "key": "Password",
+                  "style": {
+                    "color": "*primaryTextColor3",
+                    "fontSize": 16.0,
+                    "fontFamily": "RM"
+                  }
+                }
+              },
+              {
+                "orderBy": 2,
+                "type": "sizedBox",
+                "width": 5.0
+              },
+              {
+                "orderBy": 2,
+                "type": "svgController",
+                "image": "assets/icons/edit-icon.svg",
+                "height": 15.0,
+                "width": 15.0
+              }
+            ]
+          }
+        },
+
+
+
+
+        {
+          "type": "visibilityController",
+          "isVisible": false,
+          "orderBy": 1000,
+          "child": {
+            "horizontalInsetPadding": 40.0,
+            "contentPadding":"10,10,10,10",
+            "barrierDismissible": true,
+            "dialogRadius": 15.0,
+            "type": "columnController",
+            "key": "EmailEditDialog",
+            "children": [
+              {
+                "type": "button",
+                "orderBy": 1,
+                "height":45,
+                "pixelWidth":45,
+                "shape": "circle",
+                "color":"#F5CAB6",
+                "alignment": "center",
+                "child": {
+                  "type": "icon",
+                  "icon": "mail",
+                  "color": "*primaryColor",
+                  "size": 25.0
+                }
+              },
+              {
+                "type":"sizedBox",
+                "orderBy": 2,
+                "height":5
+              },
+              {
+                "type": "flexibleController",
+                "orderBy": 3,
+                "child":  {
+                  "type": "text",
+                  "orderBy": 13,
+                  "onlyText": true,
+                  "value": "enduser@gmail.com",
+                  "key": "Mail",
+                  "style": {
+                    "color": "*primaryTextColor3",
+                    "fontSize": 16.0,
+                    "fontFamily": "RM"
+                  }
+                }
+              },
+              {
+                "type": "textField",
+                "orderBy": 4,
+                "hintText": "Change email",
+                "hasInput": true,
+                "required": true,
+                "key": "Email",
+                "margin": "5,10,5,10",
+                "groupValidation": [{"Required":"required"},{"EmailValidation":"email"}],
+                "borderRadius": "5,5,5,5",
+                "borderColor": "*textFieldBorderColor",
+                "focusedBorderColor": "*textFieldBorderColor",
+                "disabledBorderColor": "FFF44336",
+                "color": "FFffffff",
+                "disableColor": "FFF5EFEE",
+                "enable": true,
+                "hintTextStyle": {
+                  "color": "*primaryTextColor1",
+                  "fontSize": 14.0,
+                  "fontFamily": "RR"
+                },
+                "errorTextStyle": {
+                  "color": "*errorTextColor",
+                  "fontSize": 14.0,
+                  "fontFamily": "RR"
+                },
+                "textStyle": {
+                  "color": "*primaryTextColor2",
+                  "fontSize": 15.0,
+                  "fontFamily": "RR"
+                }
+              },
+              {
+                "type": "button",
+                "orderBy": 5,
+                "height": 50.0,
+                "color": "*primaryColor",
+                "borderRadius": "6,6,6,6",
+                "margin": "15,10,15,10",
+                "alignment": "center",
+                "clickEvent": {
+                  "eventName": "findDialogWidget",
+                  "toFindKey": "EmailEditDialog",
+                  "actionType": "Update"
+                },
+                "child": {
+                  "type": "text",
+                  "onlyText": true,
+                  "value": "Change",
+                  "style": {
+                    "fontSize": 15.0,
+                    "fontFamily": "RR",
+                    "color": "ffffff"
+                  }
+                }
+              },
+              {
+                "type": "button",
+                "orderBy": 5,
+                "height": 50.0,
+                "color": "*textFieldBorderColor",
+                "opacity": 0.5,
+                "borderColor": "*primaryTextColor1",
+                "borderRadius": "6,6,6,6",
+                "margin": "15,10,15,10",
+                "alignment": "center",
+                "clickEvent": {
+                  "eventName": "Navigation",
+                  "typeOfNavigation": 3,
+                  "navigateToPage": ""
+                },
+                "child": {
+                  "type": "text",
+                  "onlyText": true,
+                  "value": "Cancel",
+                  "style": {
+                    "fontSize": 15.0,
+                    "fontFamily": "RR",
+                    "color": "*primaryTextColor3"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "visibilityController",
+          "isVisible": false,
+          "orderBy": 1001,
+          "child": {
+            "horizontalInsetPadding": 40.0,
+            "contentPadding":"10,10,10,10",
+            "barrierDismissible": true,
+            "dialogRadius": 15.0,
+            "type": "columnController",
+            "key": "PasswordEditDialog",
+            "children": [
+              {
+                "type": "button",
+                "orderBy": 1,
+                "height":45,
+                "pixelWidth":45,
+                "shape": "circle",
+                "color":"#F5CAB6",
+                "alignment": "center",
+                "child": {
+                  "type": "icon",
+                  "icon": "mail",
+                  "color": "*primaryColor",
+                  "size": 25.0
+                }
+              },
+              {
+                "type":"sizedBox",
+                "orderBy": 2,
+                "height":5
+              },
+              {
+                "type": "flexibleController",
+                "orderBy": 3,
+                "child":  {
+                  "type": "text",
+                  "orderBy": 13,
+                  "onlyText": true,
+                  "value": "1234",
+                  "key": "Password",
+                  "style": {
+                    "color": "*primaryTextColor3",
+                    "fontSize": 16.0,
+                    "fontFamily": "RM"
+                  }
+                }
+              },
+              {
+                "type": "textField",
+                "orderBy": 4,
+                "hintText": "Change Password",
+                "hasInput": true,
+                "required": true,
+                "key": "NewPassword",
+                "margin": "5,10,5,10",
+                "groupValidation": [{"Required":"required"}],
+                "borderRadius": "5,5,5,5",
+                "borderColor": "*textFieldBorderColor",
+                "focusedBorderColor": "*textFieldBorderColor",
+                "disabledBorderColor": "FFF44336",
+                "color": "FFffffff",
+                "disableColor": "FFF5EFEE",
+                "enable": true,
+                "hintTextStyle": {
+                  "color": "*primaryTextColor1",
+                  "fontSize": 14.0,
+                  "fontFamily": "RR"
+                },
+                "errorTextStyle": {
+                  "color": "*errorTextColor",
+                  "fontSize": 14.0,
+                  "fontFamily": "RR"
+                },
+                "textStyle": {
+                  "color": "*primaryTextColor2",
+                  "fontSize": 15.0,
+                  "fontFamily": "RR"
+                }
+              },
+              {
+                "type": "button",
+                "orderBy": 5,
+                "height": 50.0,
+                "color": "*primaryColor",
+                "borderRadius": "6,6,6,6",
+                "margin": "15,10,15,10",
+                "alignment": "center",
+                "clickEvent": {
+                  "eventName": "findDialogWidget",
+                  "toFindKey": "PasswordEditDialog",
+                  "actionType": "Update"
+                },
+                "child": {
+                  "type": "text",
+                  "onlyText": true,
+                  "value": "Change",
+                  "style": {
+                    "fontSize": 15.0,
+                    "fontFamily": "RR",
+                    "color": "ffffff"
+                  }
+                }
+              },
+              {
+                "type": "button",
+                "orderBy": 5,
+                "height": 50.0,
+                "color": "*textFieldBorderColor",
+                "opacity": 0.5,
+                "borderColor": "*primaryTextColor1",
+                "borderRadius": "6,6,6,6",
+                "margin": "15,10,15,10",
+                "alignment": "center",
+                "clickEvent": {
+                  "eventName": "Navigation",
+                  "typeOfNavigation": 3,
+                  "navigateToPage": ""
+                },
+                "child": {
+                  "type": "text",
+                  "onlyText": true,
+                  "value": "Cancel",
+                  "style": {
+                    "fontSize": 15.0,
+                    "fontFamily": "RR",
+                    "color": "*primaryTextColor3"
+                  }
+                }
+              }
+            ]
           }
         }
       ]

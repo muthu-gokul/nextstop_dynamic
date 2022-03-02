@@ -52,3 +52,10 @@ added slivers
 
 01-03-2022
 1. added opacity in button(container)
+
+<!-- v-0.0.3 -->
+1. tabbar controller changes:
+        added pageviewWidget for avoid recursion
+2. pageview controller changes:
+        added tabbarWidget for avoid recursion
+        added timer to jumpto page 1

@@ -36,7 +36,7 @@ class TextFormFieldController extends StatelessWidget implements MyCallback2{
       // height: 50,
       alignment: Alignment.centerLeft,
       margin: parseEdgeInsetsGeometry(map['margin']),
-      width: map.containsKey('width') ?double.parse(map['width'].toString())*SizeConfig.screenWidth!:SizeConfig.screenWidth,
+     // width: map.containsKey('width') ?double.parse(map['width'].toString())*SizeConfig.screenWidth!:SizeConfig.screenWidth,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -91,8 +91,7 @@ class TextFormFieldController extends StatelessWidget implements MyCallback2{
                               color: parseHexColor(map['disabledBorderColor'],myCallback)!
                           )
                       ),
-                      contentPadding: EdgeInsets.only(top: map['topContentPadding']??0,
-                          left: map['leftContentPadding']??10.0),
+                      contentPadding: EdgeInsets.only(top: map['topContentPadding']??0, left: map['leftContentPadding']??10.0),
                       suffixIcon: suffix,
                       prefixIcon: prefix,
                   ),

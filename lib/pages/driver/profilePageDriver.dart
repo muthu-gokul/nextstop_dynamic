@@ -67,7 +67,8 @@ class ProfilePageDriver extends StatelessWidget with MyCallback,Common{
             clickEvent,
             widgets: dynamicPageInitiater.dynamicPageInitiaterState.widgets,
             queryString: dynamicPageInitiater.dynamicPageInitiaterState.queryString,
-            myCallback: this
+            myCallback: this,
+            guid: General.profilePageDriverIdentifier
           );
         }
       }
@@ -81,6 +82,7 @@ class ProfilePageDriver extends StatelessWidget with MyCallback,Common{
 
   @override
   reloadPage() {
+    log("profile driver reloadPage");
     dynamicPageInitiater.dynamicPageInitiaterState.initSS();
   }
 }

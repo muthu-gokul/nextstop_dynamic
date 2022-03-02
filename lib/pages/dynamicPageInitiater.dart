@@ -94,12 +94,12 @@ class DynamicPageInitiaterState extends State<DynamicPageInitiater> implements M
     print("initSS");
     if(fromUrl){
       GetUiNotifier().getUiJson(widget.pageIdentifier,LOGINUSERID).then((value){
-        log("value $value");
+      //  log("value $value");
         if(value!="null" && value.toString().isNotEmpty){
           var parsed=jsonDecode(value);
           //  print(parsed['table'][0]['jsonData']);
           parsedJson=jsonDecode(parsed['Table'][0]['PageJson']);
-          print(parsedJson);
+         // print(parsedJson);
           guid=parsedJson['Guid'];
           if(widget.myCallback==null){
             widgets=getWidgets(parsedJson['Widgets'],this);

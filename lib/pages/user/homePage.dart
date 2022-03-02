@@ -33,7 +33,8 @@ class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
 }
-var selectedPage=99.obs;
+var selectedPage=4.obs;
+
 
 class _HomePageState extends State<HomePage> with Common, MyCallback{
   GlobalKey <ScaffoldState> scaffoldKey=new GlobalKey<ScaffoldState>();
@@ -45,7 +46,7 @@ class _HomePageState extends State<HomePage> with Common, MyCallback{
   String guid="";
 
   parseJson() async{
-    selectedPage.value=99;
+    selectedPage.value=4;
     String data = await DefaultAssetBundle.of(context).loadString("assets/json/${General.homePageIdentifier}.json");
     parsedJson=jsonDecode(data);
 
@@ -81,6 +82,8 @@ class _HomePageState extends State<HomePage> with Common, MyCallback{
   }
   @override
   void initState() {
+     profilePage=ProfilePage(myCallback: this,);
+     myTrips=MyTrips(myCallback: this,);
     parseJson();
     _initPackageInfo();
     determinePosition();
@@ -106,6 +109,9 @@ class _HomePageState extends State<HomePage> with Common, MyCallback{
     super.initState();
   }
 
+  late ProfilePage profilePage;
+  late MyTrips myTrips;
+
   @override
   Widget build(BuildContext context) {
     setState(() {
@@ -118,7 +124,69 @@ class _HomePageState extends State<HomePage> with Common, MyCallback{
       child: Obx(
           ()=>Scaffold(
             key: scaffoldKey,
-            body: selectedPage.value==0?ProfilePage(myCallback: this,):
+            body: IndexedStack(
+              index: selectedPage.value,
+              children: [
+                profilePage,
+                BookingPage(myCallback: this),
+                myTrips,
+                Container(
+                  height: SizeConfig.screenHeight,
+                  width: SizeConfig.screenWidth,
+                  child: Column(
+                    children: [
+                      SizedBox(height: 20,),
+                      Row(
+                        children: [
+                          NavIcon(ontap: this, map: {
+                            "type":"navIcon",
+                            "orderBy": "1",
+                            "color": "*primaryColor",
+                            "strokeColor": "ffffff",
+                            "margin": "20,0,0,0",
+                            "padding": "10,0,0,0",
+                            "borderRadius": "10,10,10,10",
+                            "width":40,
+                            "height":35,
+                            "clickEvent": {
+                              "eventName": "OpenDrawer"
+                            }
+                          }),
+                          Spacer()
+                        ],
+                      ),
+                      SizedBox(height: 20,),
+                      Text("Current Version: ${packageInfo.version}"),
+                      SizedBox(height: 20,),
+                      TextButton(onPressed: (){
+                        log("vv  ${packageInfo.version} ");
+                        FirebaseDatabase.instance.ref().child("AppInfo").get().then((dataSnapshot){
+
+                          var map = Map<dynamic, dynamic>.from(dataSnapshot.value as Map);
+                          if(map['version']!=packageInfo.version){
+                            launch(map['url']);
+                          }
+                          else{
+                            Get.defaultDialog(title: "",titleStyle: TextStyle(height: 0),radius: 10,middleText: "No Updates Available",middleTextStyle: TextStyle(fontFamily: "RR",fontSize: 20,));
+                          }
+                        });
+                        // launch("https://drive.google.com/file/d/10aAtCPpcE2D_7-Pq88DbtAQLBc3sU5Y2/view?usp=sharing");
+                      }, child: Text("Update"))
+                    ],
+                  ),
+                ),
+                Container(
+                  alignment: Alignment.center,
+                  child: Column(
+                    children: [
+                      LinearProgressIndicator(color: ColorUtil.primaryColor,backgroundColor: ColorUtil.primaryColor.withOpacity(0.5),)
+
+                    ],
+                  ),
+                )
+              ],
+            ),
+            /*body: selectedPage.value==0?profilePage:
             selectedPage.value==1?BookingPage(myCallback: this):
             selectedPage.value==2?MyTrips(myCallback: this,):
             selectedPage.value==4?Container(
@@ -166,6 +234,8 @@ class _HomePageState extends State<HomePage> with Common, MyCallback{
                 ],
               ),
             ):
+
+
             selectedPage.value==99?Container(
               alignment: Alignment.center,
               child: Column(
@@ -175,7 +245,7 @@ class _HomePageState extends State<HomePage> with Common, MyCallback{
                 ],
               ),
             ):
-            Container(),
+            Container(),*/
             drawer: Container(
               height: SizeConfig.screenHeight,
               width: SizeConfig.screenWidth,

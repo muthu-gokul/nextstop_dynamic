@@ -118,7 +118,7 @@ class UserRoleController extends StatelessWidget implements MyCallback2{
             child: AnimatedOpacity(
               duration: const Duration(milliseconds: 300),
               curve: Curves.easeIn,
-              opacity: i==selectedIndex.value?1:0.5,
+              opacity: map.containsKey("unSelectOpacity")? i==selectedIndex.value?1:map["unSelectOpacity"] :1,
               child: Container(
                 color: Colors.transparent,
                 margin: parseEdgeInsetsGeometry(map['margin']),

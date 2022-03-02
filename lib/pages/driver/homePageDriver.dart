@@ -69,6 +69,8 @@ class _HomePageDriver2State extends State<HomePageDriver2> with WidgetsBindingOb
       myNotification.checkForInitialMessage();
       parseJson();
       driverTripHomePage=DriverTripHomePage(myCallback: this);
+      profilePageDriver=ProfilePageDriver(myCallback: this);
+      driverMyTrips= DriverMyTrips(myCallback: this,);
   }
 
   @override
@@ -92,6 +94,8 @@ class _HomePageDriver2State extends State<HomePageDriver2> with WidgetsBindingOb
 
 
   late DriverTripHomePage driverTripHomePage;
+  late ProfilePageDriver profilePageDriver;
+  late DriverMyTrips driverMyTrips;
 
   parseJson() async{
     isLoad.value=true;
@@ -130,9 +134,9 @@ class _HomePageDriver2State extends State<HomePageDriver2> with WidgetsBindingOb
             body: IndexedStack(
               index: selectedPage.value,
               children: [
-                ProfilePageDriver(myCallback: this,),
+                profilePageDriver,
                 driverTripHomePage,
-                DriverMyTrips(myCallback: this,)
+                driverMyTrips
               ],
             ),
             // body:selectedPage.value==0?ProfilePageDriver(
@@ -178,6 +182,9 @@ class _HomePageDriver2State extends State<HomePageDriver2> with WidgetsBindingOb
           if(selectedPage.value==1){
             driverTripHomePage.reload(null);
             determinePosition();
+          }
+          else if(selectedPage.value==0){
+            profilePageDriver.reloadPage();
           }
         }
         else if(clickEvent[General.eventName]=='OpenDrawer'){

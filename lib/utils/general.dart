@@ -63,7 +63,7 @@ class General{
       case 'BankDetails':
         return BankDetails(profilePageDriverCallback: myCallback!,);
       case 'NewRides':
-        return NewRides();
+        return NewRides(driverTripHomePageCb: myCallback!,);
     }
     return Container();
   }

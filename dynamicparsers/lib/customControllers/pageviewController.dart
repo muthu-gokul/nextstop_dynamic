@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -12,10 +14,12 @@ class PageViewController extends StatelessWidget implements MyCallback2,TabPageV
   late PageController pageController;
 
   var fromTab=false.obs;
+  dynamic tabbarWidget;
 
   PageViewController({required this.map,required this.myCallback}){
     List values=map['children'];
     //tabController=GetxTabController(values.length);
+    widgets=[];
     values.forEach((element) {
       widgets.add(getChild(element,myCallback: myCallback));
       /*element.forEach((k, v) {
@@ -25,7 +29,9 @@ class PageViewController extends StatelessWidget implements MyCallback2,TabPageV
         });
       });*/
     });
-    pageController=PageController();
+    pageController=PageController(initialPage: 0,keepPage: false);
+    tabbarWidget=null;
+    log("pvCtl ${widgets.length}");
   }
   List widgets=[];
   @override
@@ -76,12 +82,26 @@ class PageViewController extends StatelessWidget implements MyCallback2,TabPageV
     });
   }
 
+  jumpToInitial(){
+    pageController.jumpToPage(0);
+  }
+
   @override
   onChanged(int index) {
     if(!fromTab.value){
-      findWidgetByKey(myCallback.getCurrentPageWidgets(), {"key":"${map['toFindKey']}"}, (wid){
-        wid.changeControllerIndex(index);
-      });
+      log("tabbarWidget $tabbarWidget");
+      if(tabbarWidget==null){
+        findWidgetByKey(myCallback.getCurrentPageWidgets(), {"key":"${map['toFindKey']}"}, (wid){
+          tabbarWidget=wid;
+          log("from pvCont $wid ${wid.runtimeType} $tabbarWidget");
+          wid.changeControllerIndex(index);
+        });
+      }
+      else{
+        log("from pvCont  $tabbarWidget");
+        tabbarWidget.changeControllerIndex(index);
+      }
+
     }
   }
 }
