@@ -21,6 +21,7 @@ dependencies:
   intl:
   flutter_date_pickers:
   flutter_svg:
+  flutter_rating_bar:
 
 
 

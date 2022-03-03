@@ -25,11 +25,15 @@ import '../gridviewBuilderController.dart';
 import '../hiddenController.dart';
 import '../imageController.dart';
 import '../inputBoxController.dart';
+import '../intrinsicHeightController.dart';
+import '../intrinsicWidthController.dart';
 import '../listviewBuilderController.dart';
 import '../opacityController.dart';
+import '../paddingController.dart';
 import '../pageviewController.dart';
 import '../positionController.dart';
 import '../profiePicController.dart';
+import '../ratingbarController.dart';
 import '../registrationPageController.dart';
 import '../rowController.dart';
 import '../sizedBoxController.dart';
@@ -106,7 +110,7 @@ List<dynamic> getWidgets(List parsed,MyCallback myCallback){
       widgets.add(ImageController(map: element));
     }
     else if(element['type']=='svgController'){
-      widgets.add(SvgController(map: element));
+      widgets.add(SvgController(map: element,myCallback: myCallback,));
     }
     else if(element['type']=='rowController'){
       widgets.add(RowController(map: element,myCallback: myCallback,));
@@ -195,6 +199,18 @@ List<dynamic> getWidgets(List parsed,MyCallback myCallback){
     else if(element['type']=='sliverAppBarController'){
       widgets.add(SliverAppBarController(map: element, myCallback: myCallback,));
     }
+    else if(element['type']=='intrinsicWidthController'){
+      widgets.add(IntrinsicWidthController(map: element, myCallback: myCallback,));
+    }
+    else if(element['type']=='intrinsicHeightController'){
+      widgets.add(IntrinsicHeightController(map: element, myCallback: myCallback,));
+    }
+    else if(element['type']=='paddingController'){
+      widgets.add(PaddingController(map: element, myCallback: myCallback,));
+    }
+    else if(element['type']=='ratingBarController'){
+      widgets.add(RatingBarController(map: element, myCallback: myCallback,));
+    }
   });
   return widgets;
 }
@@ -221,7 +237,7 @@ Widget getChild(Map mapp, {MyCallback? myCallback}){
     widget=  ImageController(map: map);
   }
   else if(map['type']=='svgController'){
-    widget=  SvgController(map: map);
+    widget=  SvgController(map: map,myCallback: myCallback!,);
   }
   else if(map['type']=='icon'){
     widget=  parseIcon(map,myCallback!);
@@ -309,6 +325,18 @@ Widget getChild(Map mapp, {MyCallback? myCallback}){
   }
   else if(map['type']=='sliverAppBarController'){
     widget=  SliverAppBarController(map: map, myCallback: myCallback!,);
+  }
+  else if(map['type']=='intrinsicWidthController'){
+    widget=  IntrinsicWidthController(map: map, myCallback: myCallback!,);
+  }
+  else if(map['type']=='intrinsicHeightController'){
+    widget=  IntrinsicHeightController(map: map, myCallback: myCallback!,);
+  }
+  else if(map['type']=='paddingController'){
+    widget=  PaddingController(map: map, myCallback: myCallback!,);
+  }
+  else if(map['type']=='ratingBarController'){
+    widget=  RatingBarController(map: map, myCallback: myCallback!,);
   }
   return widget;
 

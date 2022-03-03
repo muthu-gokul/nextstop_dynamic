@@ -37,7 +37,8 @@ class TextBoxController extends StatelessWidget implements MyCallback2{
     ):
     Container(
       margin: parseEdgeInsetsGeometry(map['margin']),
-      width:map.containsKey('pixelWidth')?double.parse(map['pixelWidth'].toString()): map.containsKey('width')?map['width']*SizeConfig.screenWidth:null,
+      width:map.containsKey('pixelWidth')?double.parse(map['pixelWidth'].toString()): map.containsKey('width')?map['width']*SizeConfig.screenWidth:
+      map.containsKey("reducedWidth")?SizeConfig.screenWidth!-map['reducedWidth']:null,
       alignment: parseAlignment(map['alignment']),
       padding: parseEdgeInsetsGeometry(map['padding']),
       child: Obx(

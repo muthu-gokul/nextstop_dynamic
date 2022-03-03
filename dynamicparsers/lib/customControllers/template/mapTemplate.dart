@@ -21,15 +21,20 @@ import 'package:flutter_date_pickers/flutter_date_pickers.dart';
 
 
  MapTemplateParent(String templateName,Map map,MyCallback myCallback){
+   Widget widget=MapTemplate2(map: map,myCallback: myCallback,);
     if(templateName=='MapTemplateOne'){
-      return MapTemplate(map: map,myCallback: myCallback,);
+      widget= MapTemplate(map: map,myCallback: myCallback,);
     }
     else if(templateName=="MapSample"){
-      return MapSample(map: map, myCallback: myCallback,key: mapKey,);
+      widget= MapSample(map: map, myCallback: myCallback,key: mapKey,);
+    }
+    else if(templateName=="MapTemplateThree"){
+      widget= MapTemplate3(map: map, myCallback: myCallback,);
     }
     else{
-      return MapTemplate2(map: map,myCallback: myCallback,);
+       widget=MapTemplate2(map: map,myCallback: myCallback,);
     }
+   return widget;
   }
 
 
@@ -49,7 +54,8 @@ class MapTemplate extends StatelessWidget implements MyCallback,MyCallback2,Test
     //log("map");
   }
 
-  GoogleMapController? mapController; //contrller for Google map
+  GoogleMapController? mapController;
+  Completer<GoogleMapController> _controller = Completer();
   CameraPosition? cameraPosition;
   LatLng startLocation = LatLng(27.6602292, 85.308027);
   String location = "Location Name:";
@@ -63,14 +69,17 @@ class MapTemplate extends StatelessWidget implements MyCallback,MyCallback2,Test
     log("position $position");
   }
 
-  animateCamera(Position? position ){
-    if(position!=null && mapController!=null){
-      mapController!.animateCamera(CameraUpdate.newCameraPosition(
+  animateCamera(Position? position ) async{
+    log("animate camera $position");
+    if(position!=null){
+      final GoogleMapController controller = await _controller.future;
+      controller.animateCamera(CameraUpdate.newCameraPosition(
           CameraPosition(
               zoom: 12.4746,
               target: LatLng(position.latitude, position.longitude)
           )
-      ));
+       )
+      );
       onCameraChange();
     }
   }
@@ -132,12 +141,12 @@ class MapTemplate extends StatelessWidget implements MyCallback,MyCallback2,Test
                 zoom: 14.0, //initial zoom level
               ),
               mapType: MapType.normal, //map type
-              onMapCreated: (controller) { //method called when map is created
-             //   setState(() {
-                  mapController = controller;
-                 // getPos();
-                  animateCamera(position);
-             //   });
+              onMapCreated: (controller) {
+                log("map Crete");
+                  _controller.complete(controller);
+
+                  //mapController = controller;
+                  //animateCamera(position);
               },
               onCameraMove: (CameraPosition cameraPositiona) {
                 cameraPosition = cameraPositiona; //when map is dragging
@@ -225,6 +234,8 @@ class MapTemplate extends StatelessWidget implements MyCallback,MyCallback2,Test
           icon:  await BitmapDescriptor.fromAssetImage(ImageConfiguration(size: Size(100, 100)), isPickUpLocation.value?'assets/icons/location-01.png':'assets/icons/location-02.png')
         )
     );
+/*    final GoogleMapController controller = await _controller.future;
+    controller.setMapStyle("[]");*/
   }
 
   @override
@@ -305,13 +316,16 @@ class MapTemplate2 extends StatefulWidget {
   reload(){
     mapTemplate2State.reload();
   }
+  animateCamera(Position? position ){
+    mapTemplate2State.animateCamera(position);
+  }
 
 }
 
 class MapTemplate2State extends State<MapTemplate2>  implements MyCallback,MyCallback2,TestCallback{
    GoogleMapController? mapController;
  // var mapController= Rxn<GoogleMapController>(); 
-Completer<GoogleMapController> _controller = Completer();
+  Completer<GoogleMapController> _controller = Completer();
   CameraPosition? cameraPosition;
 
   String location = "Location Name:";
@@ -352,7 +366,8 @@ Completer<GoogleMapController> _controller = Completer();
               zoom: 12.4746,
               target: LatLng(position!.latitude, position.longitude)
           )
-      ));
+        )
+      );
     /* if(position!=null && mapController!=null){
       mapController!.animateCamera(CameraUpdate.newCameraPosition(
           CameraPosition(
@@ -592,6 +607,326 @@ Completer<GoogleMapController> _controller = Completer();
     throw UnimplementedError();
   }
 }
+
+
+
+
+
+
+
+
+
+
+class MapTemplate3 extends StatefulWidget {
+  Map map;
+  MyCallback myCallback;
+  List widgets=[];
+  MapTemplate3({required this.map,required this.myCallback});
+  final MapTemplate3State mapTemplate3State=MapTemplate3State();
+  @override
+  MapTemplate3State createState() => mapTemplate3State;
+
+  getType(){
+    return map['type'];
+  }
+  reload(){
+    mapTemplate3State.reload();
+  }
+  animateCamera(Position? position ){
+    mapTemplate3State.animateCamera(position);
+  }
+  changeIsPickUpLocation(bool value){
+    mapTemplate3State.changeIsPickUpLocation(value);
+  }
+
+}
+
+class MapTemplate3State extends State<MapTemplate3>  implements MyCallback,MyCallback2,TestCallback{
+  //GoogleMapController? mapController;
+  Completer<GoogleMapController> _controller = Completer();
+  CameraPosition? cameraPosition;
+
+  String location = "Location Name:";
+
+  Position? position;
+
+  var isPickUpLocation=true.obs;
+
+  var markers = <Marker>[].obs;
+
+  PolylinePoints polylinePoints = PolylinePoints();
+
+  RxMap<PolylineId, Polyline> polylines = <PolylineId, Polyline>{}.obs;
+
+  LatLng startLocation = LatLng(27.6683619, 85.3101895);
+
+  LatLng endLocation = LatLng(27.6688312, 85.3077329);
+
+  @override
+  initState(){
+    if(widget.map.containsKey('children')){
+      widget.widgets=getWidgets(widget.map['children'], this);
+    }
+    getPos();
+  }
+
+  getPos() async{
+    position=await _determinePosition();
+    animateCamera(position);
+    log("position $position");
+  }
+
+  animateCamera(Position? position ) async{
+    log("animate camera $position");
+    if(position!=null){
+      final GoogleMapController controller = await _controller.future;
+      controller.animateCamera(CameraUpdate.newCameraPosition(
+          CameraPosition(
+              zoom: 12.4746,
+              target: LatLng(position.latitude, position.longitude)
+          )
+      )
+      );
+      onCameraChange();
+    }
+  }
+
+  Future<Position> _determinePosition() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      return Future.error('Location services are disabled.');
+    }
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        return Future.error('Location permissions are denied');
+      }
+    }
+    if (permission == LocationPermission.deniedForever) {
+      return Future.error('Location permissions are permanently denied, we cannot request permissions.');
+    }
+    return await Geolocator.getCurrentPosition();
+  }
+
+  addMarkers() async {
+    markers.add(Marker(
+        markerId: MarkerId(startLocation.toString()),
+        position: startLocation,
+        infoWindow: InfoWindow(
+          title: 'Starting Point ',
+          snippet: 'Start Marker',
+        ),
+        icon: await BitmapDescriptor.fromAssetImage(ImageConfiguration(size: Size(100, 100)), 'assets/icons/location-01.png') //Icon for Marker
+    ));
+
+    markers.add(Marker(
+        markerId: MarkerId(endLocation.toString()),
+        position: endLocation,
+        infoWindow: InfoWindow(
+          title: 'Destination Point ',
+          snippet: 'Destination Marker',
+        ),
+        icon: await BitmapDescriptor.fromAssetImage(ImageConfiguration(size: Size(100, 100)),'assets/icons/location-02.png') //Icon for Marker
+    ));
+  }
+
+
+
+  reload() async{
+    final GoogleMapController controller = await _controller.future;
+    controller.setMapStyle("[]");
+
+    animateCamera(position);
+    print("mapReload ");
+
+
+
+    //mapController!.setMapStyle("[]");
+  }
+
+  changeIsPickUpLocation(bool value){
+    isPickUpLocation.value=value;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: SizeConfig.screenHeight!-double.parse(widget.map['reducedHeight'].toString()),
+      width: SizeConfig.screenWidth,
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          Obx(
+                ()=> GoogleMap(
+                  zoomGesturesEnabled: true,
+
+                  markers: Set<Marker>.of(markers.value),
+                  initialCameraPosition: CameraPosition(
+                    target: startLocation,
+                    zoom: 14.0, //initial zoom level
+                  ),
+                  mapType: MapType.normal, //map type
+                  onMapCreated: (controller) {
+                    log("map Crete");
+                    _controller.complete(controller);
+
+                    //mapController = controller;
+                    //animateCamera(position);
+                  },
+                  onCameraMove: (CameraPosition cameraPositiona) {
+                    cameraPosition = cameraPositiona; //when map is dragging
+                  },
+                  onCameraIdle: () async {
+                    onCameraChange();//when map drag stops
+                  },
+                  onTap: (latlon){
+                    onMapTap(latlon);
+                  },
+                ),
+          ),
+          /*Obx(
+              ()=>Icon(Icons.location_on,size: 50,color: isPickUpLocation.value?Colors.red:Colors.green,)
+          )*/
+
+        ],
+      ),
+    );
+  }
+
+  @override
+  void ontap(Map? clickEvent) {
+    log("pickerclickEvent ");
+
+  }
+
+  @override
+  getType() {
+    return widget.map['type'];
+  }
+
+  @override
+  getValue() {
+    // TODO: implement getValue
+    throw UnimplementedError();
+  }
+
+  @override
+  validate() {
+    // TODO: implement validate
+    throw UnimplementedError();
+  }
+
+  @override
+  void onTextChanged(String text,Map map) {
+    // TODO: implement onTextChanged
+  }
+
+  @override
+  onCameraChange() async {
+    List<Placemark> placemarks = await placemarkFromCoordinates(cameraPosition!.target.latitude, cameraPosition!.target.longitude);
+/*    location = placemarks.first.name.toString() + ", " +  placemarks.first.thoroughfare.toString()+", "+placemarks.first.subLocality.toString()+", "
+        +placemarks.first.administrativeArea.toString();*/
+    String delim1=placemarks.first.thoroughfare.toString().isNotEmpty?", ":"";
+    String delim2=placemarks.first.subLocality.toString().isNotEmpty?", ":"";
+    String delim3=placemarks.first.administrativeArea.toString().isNotEmpty?", ":"";
+    location = placemarks.first.name.toString() +
+        delim1 +  placemarks.first.thoroughfare.toString()+
+        delim2+placemarks.first.subLocality.toString()+
+        delim3 +placemarks.first.administrativeArea.toString();
+    //log("$location ${placemarks.first}");
+    widget.myCallback.onMapLocationChanged(
+        {
+          "key":isPickUpLocation.value?"PickUp":"Drop",
+          "location":location,
+          "latitude":cameraPosition!.target.latitude,
+          "longitude":cameraPosition!.target.longitude
+        }
+    );
+    markers.value=[];
+    markers.value.add(
+        Marker(
+            markerId: MarkerId('1'),
+            position:LatLng(cameraPosition!.target.latitude, cameraPosition!.target.longitude),
+            /* infoWindow: InfoWindow(
+                title: isPickUpLocation.value?'Pickup Location':'Drop Location'
+            ),*/
+            onTap: (){
+
+            },
+            visible: true,
+            icon:  await BitmapDescriptor.fromAssetImage(ImageConfiguration(size: Size(100, 100)), isPickUpLocation.value?'assets/icons/location-01.png':'assets/icons/location-02.png')
+        )
+    );
+/*    final GoogleMapController controller = await _controller.future;
+    controller.setMapStyle("[]");*/
+  }
+
+  @override
+  void onMapLocationChanged(Map map) {
+    // TODO: implement onMapLocationChanged
+  }
+
+  @override
+  onMapTap(LatLng latLng) async{
+    List<Placemark> placemarks = await placemarkFromCoordinates(latLng.latitude, latLng.longitude);
+/*    location = placemarks.first.name.toString() + ", " +  placemarks.first.thoroughfare.toString()+", "+placemarks.first.subLocality.toString()+", "
+        +placemarks.first.administrativeArea.toString();*/
+    String delim1=placemarks.first.thoroughfare.toString().isNotEmpty?", ":"";
+    String delim2=placemarks.first.subLocality.toString().isNotEmpty?", ":"";
+    String delim3=placemarks.first.administrativeArea.toString().isNotEmpty?", ":"";
+    location = placemarks.first.name.toString() +
+        delim1 +  placemarks.first.thoroughfare.toString()+
+        delim2+placemarks.first.subLocality.toString()+
+        delim3 +placemarks.first.administrativeArea.toString();
+    log("$location ${placemarks.first}");
+    widget.myCallback.onMapLocationChanged(
+        {
+          "key":isPickUpLocation.value?"PickUp":"Drop",
+          "location":location,
+          "latitude":latLng.latitude,
+          "longitude":latLng.longitude
+        }
+    );
+    markers.value=[];
+    markers.value.add(
+        Marker(
+            markerId: MarkerId('1'),
+            position:LatLng(latLng.latitude, latLng.longitude),
+            /*infoWindow: InfoWindow(
+                title: isPickUpLocation.value?'Pickup Location':'Drop Location'
+            ),*/
+            onTap: (){
+
+            },
+            visible: true,
+            icon:  await BitmapDescriptor.fromAssetImage(ImageConfiguration(size: Size(100, 100)), isPickUpLocation.value?'assets/icons/location-01.png':'assets/icons/location-02.png')
+        )
+    );
+  }
+
+  @override
+  getCurrentPageWidgets() {
+    // TODO: implement getCurrentPageWidgets
+    throw UnimplementedError();
+  }
+
+  @override
+  Color parseColor(String color) {
+    // TODO: implement parseColor
+    throw UnimplementedError();
+  }
+
+  @override
+  reloadPage() {
+    // TODO: implement reloadPage
+    throw UnimplementedError();
+  }
+}
+
+
 
 GlobalKey<MapSampleState> mapKey=GlobalKey();
 

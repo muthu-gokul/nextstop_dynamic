@@ -98,13 +98,16 @@
             "left": 0,
             "orderBy": 100,
             "child": {
-              "type": "navIcon",
+              "type":"navIcon",
+              "orderBy": "1",
               "color": "*primaryColor",
+              "strokeColor": "ffffff",
+              "crossAxisAlignment": "start",
               "margin": "20,10,0,0",
-              "padding": "10,0,0,0",
+              "padding": "8,0,0,0",
               "borderRadius": "10,10,10,10",
-              "width": 40,
-              "height": 35,
+              "width":40,
+              "height":35,
               "clickEvent": {
                 "eventName": "OpenDrawer"
               }

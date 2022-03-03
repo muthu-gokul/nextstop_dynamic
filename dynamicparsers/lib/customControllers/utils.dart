@@ -821,5 +821,8 @@ Icon parseIcon(Map map,MyCallback myCallback){
   else if(map['icon']=='notification'){
     return Icon(Icons.notifications,color: parseHexColor(map['color'],myCallback),size: map['size'],);
   }
+  else if(map['icon']=='keyboard_arrow_down_rounded'){
+    return Icon(Icons.keyboard_arrow_down_rounded,color: parseHexColor(map['color'],myCallback),size: map['size'],);
+  }
   return Icon(Icons.phone);
 }

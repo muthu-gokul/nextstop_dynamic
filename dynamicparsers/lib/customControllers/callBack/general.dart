@@ -161,6 +161,7 @@ func1ByKey(dynamic widget,Map? clickEvent,Function(dynamic widget) returnFunctio
 
 
 findAndUpdateTextEditingController(var widget,Map? clickEvent){
+
  // log("clickEvent['value'] ${clickEvent!['value']}");
   if(clickEvent!['value']!=null){
     widget.textEditingController.text=clickEvent['value'];
@@ -236,6 +237,10 @@ updateByWidgetType(String widgetType,{var widget,Map? clickEvent}){
     break;
     case 'expansionTileController':{
       widget.expand.value=!widget.expand.value;
+    }
+    break;
+    case 'ratingBarController':{
+      widget.ratingOutput.value=clickEvent!['rating'];
     }
     break;
     default: {

@@ -6,11 +6,11 @@ import 'package:dynamicparsers/customControllers/utils.dart';
 import 'package:dynamicparsers/widgets/sizeLocal.dart';
 import 'package:flutter/material.dart';
 import '../notifier/getUiNotifier.dart';
-import 'package:provider/provider.dart';
+import 'package:get/get.dart';
 
 import '../constants.dart';
 
-bool keyboardVisible = false;
+var keyboardVisible = false.obs;
 class DynamicPageInitiater extends StatefulWidget {
   String pageIdentifier;
   MyCallback? myCallback;
@@ -90,10 +90,10 @@ class DynamicPageInitiaterState extends State<DynamicPageInitiater> implements M
     setState(() {});
     //log("${parsedJson}");
   }
-  initSS(){
+  Future<dynamic> initSS() async{
     print("initSS");
     if(fromUrl){
-      GetUiNotifier().getUiJson(widget.pageIdentifier,LOGINUSERID).then((value){
+      await GetUiNotifier().getUiJson(widget.pageIdentifier,LOGINUSERID).then((value){
       //  log("value $value");
         if(value!="null" && value.toString().isNotEmpty){
           var parsed=jsonDecode(value);
@@ -179,8 +179,8 @@ class DynamicPageInitiaterState extends State<DynamicPageInitiater> implements M
 
     // log("_keyboardVisible $keyboardVisible ${widget.pageIdentifier} ${widget.isScrollControll} ${ widget.isScrollControll?keyboardVisible?AlwaysScrollableScrollPhysics():
     // NeverScrollableScrollPhysics():AlwaysScrollableScrollPhysics()}");
-    log("dddd ${widget.isScrollControll?keyboardVisible?AlwaysScrollableScrollPhysics():
-    NeverScrollableScrollPhysics():AlwaysScrollableScrollPhysics()}");
+   // log("dddd ${widget.isScrollControll?keyboardVisible?AlwaysScrollableScrollPhysics():
+  //  NeverScrollableScrollPhysics():AlwaysScrollableScrollPhysics()}");
   //  SizeConfig().init(context);
     return SafeArea(
       bottom: true,
@@ -193,117 +193,29 @@ class DynamicPageInitiaterState extends State<DynamicPageInitiater> implements M
           height: SizeConfig.screenHeight!-topPad,
           width: SizeConfig.screenWidth,
           color: Colors.white,
-          child:parsedJson.containsKey('isOwnWidget')?widgets[0]: SingleChildScrollView(
-            controller: scrollController,
-            //physics: NeverScrollableScrollPhysics(),
-            physics: widget.isScrollControll?keyboardVisible?AlwaysScrollableScrollPhysics():
-             NeverScrollableScrollPhysics():AlwaysScrollableScrollPhysics(),
-            child: Column(
-              crossAxisAlignment: parseCrossAxisAlignment(parsedJson['crossAxisAlignment']),
-              mainAxisAlignment: parseMainAxisAlignment(parsedJson['mainAxisAlignment']),
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                for(int i=0;i<widgets.length;i++)
-                  widgets[i],
-
-
-                //Expandend Concept Important
-                /*Container(
-                  padding: EdgeInsets.all(15),
-                  margin: EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    border: Border.all(color: Colors.green)
-                  ),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Expanded(
-                        flex: 1,
-                        child: Column(
-                          children: [
-                            SvgPicture.asset("assets/icons/driver.svg"),
-                            Text("Mr.Vijay Kumar hgjfngjfnjnjknfgjf ")
-                          ],
-                        ),
-                      ),
-                      Expanded(
-                        flex: 2,
-                        child: Column(
-                          children: [
-                            Row(
-                              children: [
-                                Text("one"),
-                                Text("one"),
-                                Spacer(),
-                                Text("ii")
-                              ],
-                            ),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text("one"),
-                                SizedBox(width: 10,),
-                                Expanded(child: Text("Biyani of Big Bazaar, it is India's No. 1 retail store in one locality.")),
-
-                              ],
-                            ),
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                )*/
-
-
-
-
-
-                /*Container(
-                  height: SizeConfig.screenHeight!-100,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text("Hello"),
-                      Text("Hello"),
-                      Text("Hello"),
-                    ],
-                  ),
-                )*/
-                /*IntrinsicHeight(
-                  child: Container(
-                    color: Colors.red,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      //mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Spacer(),
-                        Text("Hello"),
-                        Text("Hello"),
-                        Text("Hello"),
-                        Spacer(),
-                      ],
-                    ),
-                  ),
-                ),*/
-
-              ],
-            ),
+          child:parsedJson.containsKey('isOwnWidget')?widgets[0]:
+          Obx(
+              ()=>SingleChildScrollView(
+                controller: scrollController,
+                //physics: NeverScrollableScrollPhysics(),
+                physics: widget.isScrollControll?keyboardVisible.value?AlwaysScrollableScrollPhysics():
+                NeverScrollableScrollPhysics():AlwaysScrollableScrollPhysics(),
+                child: Column(
+                  crossAxisAlignment: parseCrossAxisAlignment(parsedJson['crossAxisAlignment']),
+                  mainAxisAlignment: parseMainAxisAlignment(parsedJson['mainAxisAlignment']),
+                  mainAxisSize: keyboardVisible.value?MainAxisSize.min:MainAxisSize.min,
+                  children: [
+                    for(int i=0;i<widgets.length;i++)
+                      widgets[i],
+                  ],
+                ),
+              )
           ),
         ),
       ),
     );
   }
 
-/*
-  var result={
-    'Guid':1,
-    'FieldArray':[
-
-    ]
-  };
-*/
 
   @override
   Future<void> ontap(Map? clickEvent)  async {

@@ -74,10 +74,11 @@ class BookingPage extends StatelessWidget with Common, MyCallback{
   Future<void> ontap(Map? clickEvent) async {
     log("Booking PAge $clickEvent ${dynamicPageInitiater.dynamicPageInitiaterState.widgets}");
     if(clickEvent!['eventName']=="reload"){
-      selectedPage.value=99;
-      Timer(Duration(milliseconds: 300), (){
-        selectedPage.value=1;
-      });
+      reloadPage();
+      // selectedPage.value=99;
+      // Timer(Duration(milliseconds: 300), (){
+      //   selectedPage.value=1;
+      // });
       //selectedPage.value=1;
     }
     else{
@@ -123,8 +124,9 @@ class BookingPage extends StatelessWidget with Common, MyCallback{
             findAndUpdateTextEditingController(wid,clickEvent);
         });
         findWidgetByKey(dynamicPageInitiater.dynamicPageInitiaterState.widgets,{"key":"map01"},(wid){
-            //log("wid $wid");
+            log("wid $wid");
             wid.isPickUpLocation.value=true;
+           // wid.changeIsPickUpLocation(true);
             wid.animateCamera(position);
         });
         findWidgetByKey(dynamicPageInitiater.dynamicPageInitiaterState.widgets,{"key":"PickUp_Loc_Details"},(wid){
@@ -141,6 +143,7 @@ class BookingPage extends StatelessWidget with Common, MyCallback{
         findWidgetByKey(dynamicPageInitiater.dynamicPageInitiaterState.widgets,{"key":"map01"},(wid){
               log("wid $wid");
               wid.isPickUpLocation.value=false;
+              //wid.changeIsPickUpLocation(false);
               wid.animateCamera(position);
         });
         findWidgetByKey(dynamicPageInitiater.dynamicPageInitiaterState.widgets,{"key":"Drop_Loc_Details"},(wid){
@@ -174,10 +177,72 @@ class BookingPage extends StatelessWidget with Common, MyCallback{
              print("ele $element");
            });
            qs.add({"key":"totalFare","value":"${Calculation().mul(price, _distanceInMeters/1000).toStringAsFixed(2)}"});
-           qs.add({"key":"totalDistance","value":"${_distanceInMeters/1000}"});
+           qs.add({"key":"totalDistance","value":"${(_distanceInMeters/1000).toStringAsFixed(2)} kms"});
            if(clickEvent.containsKey(General.navigateToPage)){
              getXNavigation(clickEvent[General.typeOfNavigation], EstimateBillPage(fromQueryString: qs,parentCb: this,));
            }
     }
   }
+
+  @override
+  reloadPage() async{
+    Position? position;
+    position=await determinePosition();
+    dynamicPageInitiater.dynamicPageInitiaterState.reloadValueArray(
+        [
+          {
+            "key": "PickUp",
+            "value": ""
+          },
+          {
+            "key": "PickUp_Loc_Details",
+            "value": [
+              {
+                "latitude": 0.0
+              },
+              {
+                "longitude": 0.0
+              }
+            ]
+          },
+          {
+            "key": "Drop",
+            "value": ""
+          },
+          {
+            "key": "Drop_Loc_Details",
+            "value": [
+              {
+                "latitude": 0.0
+              },
+              {
+                "longitude": 0.0
+              }
+            ]
+          }
+        ]
+    );
+    findWidgetByKey(dynamicPageInitiater.dynamicPageInitiaterState.widgets,{"key":"map01"},(wid){
+      log("wid1 $wid");
+       wid.isPickUpLocation.value=true;
+     // wid.changeIsPickUpLocation(true);
+    //  wid.reload();
+      wid.animateCamera(position);
+    });
+/*    Position? position;
+    position=await determinePosition();
+    dynamicPageInitiater.dynamicPageInitiaterState.initSS().then((value){
+      Timer(Duration(milliseconds: 1000), (){
+        findWidgetByKey(dynamicPageInitiater.dynamicPageInitiaterState.widgets,{"key":"map01"},(wid){
+          log("wid1 $wid");
+         // wid.isPickUpLocation.value=true;
+          wid.changeIsPickUpLocation(true);
+          wid.reload();
+       //   wid.animateCamera(position);
+        });
+      });
+
+    });*/
+  }
+
 }

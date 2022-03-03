@@ -122,7 +122,7 @@ class _HomePageDriver2State extends State<HomePageDriver2> with WidgetsBindingOb
   @override
   Widget build(BuildContext context) {
 
-      keyboardVisible = MediaQuery.of(context).viewInsets.bottom != 0;
+      keyboardVisible.value = MediaQuery.of(context).viewInsets.bottom != 0;
 
     // log("bb $keyboardVisible ${ MediaQuery.of(context).viewInsets.bottom != 0} ${MediaQuery.of(context).padding.bottom} ${MediaQuery.of(context).padding.top}");
     return SafeArea(

@@ -234,7 +234,7 @@
               {
                 "type": "svgController",
                 "orderBy": 1,
-                "image": "assets/icons/user.svg",
+                "image": "assets/icons/pick-up-user.svg",
                 "width": 60.0,
                 "height": 40.0
               },
@@ -286,19 +286,129 @@
             ]
           }
         },
+        {
+          "type": "textField",
+          "orderBy": 5,
+          "hintText": "Enter Drop Location Person",
+          "hasInput": true,
+          "required": false,
+          "key": "DropLocationPerson",
+          "margin": "15,15,15,0",
+          "leftContentPadding": 20.0,
+          "groupValidation": [{"Required":"required"}],
+          "borderRadius": "25,25,25,25",
+          "borderColor": "**textFieldBorderColor",
+          "focusedBorderColor": "**textFieldBorderColor",
+          "disabledBorderColor": "FFF44336",
+          "color": "FFffffff",
+          "disableColor": "FFF5EFEE",
+          "enable": true,
+          "hintTextStyle": {
+            "color": "*primaryTextColor1",
+            "fontSize": 14.0,
+            "fontFamily": "RR"
+          },
+          "errorTextStyle": {
+            "color": "*errorTextColor",
+            "fontSize": 14.0,
+            "fontFamily": "RR"
+          },
+          "textStyle": {
+            "color": "*primaryTextColor2",
+            "fontSize": 15.0,
+            "fontFamily": "RR"
+          },
+          "suffix": {
+            "type": "button",
+            "orderBy": 1,
+            "height":50,
+            "pixelWidth":50,
+            "alignment": "center",
+            "clickEvent": {
+              "eventName": "ChangeValues",
+              "changeValuesArray": [
+                {
+                  "key": "ShowDropLocationPersonContactNumber"
+                }
+              ]
+            },
+            "child": {
+              "type": "icon",
+              "icon": "phone",
+              "color": "*primaryColor",
+              "size": 20.0
+            }
+          },
+          "prefix": {
+            "type": "button",
+            "orderBy": 1,
+            "height":50,
+            "pixelWidth":50,
+            "alignment": "center",
+            "child": {
+              "type": "svgController",
+              "image": "assets/icons/drop-user.svg",
+              "height": 35.0,
+              "width": 35.0
+            }
+          }
+        },
+        {
+          "type": "expansionTileController",
+          "orderBy": 5,
+          "expand": false,
+          "key": "ShowDropLocationPersonContactNumber",
+          "child": {
+            "type": "textField",
+            "orderBy": 5,
+            "hintText": "Drop Location Person Contact Number",
+            "hasInput": true,
+            "required": false,
+            "key": "DropLocationPersonContactNumber",
+            "margin": "15,15,15,0",
+            "leftContentPadding": 20.0,
+            "groupValidation": [{"Required":"required"}],
+            "borderRadius": "25,25,25,25",
+            "borderColor": "**textFieldBorderColor",
+            "focusedBorderColor": "**textFieldBorderColor",
+            "disabledBorderColor": "FFF44336",
+            "color": "FFffffff",
+            "disableColor": "FFF5EFEE",
+            "enable": true,
+            "textInputType":"number",
+            "regExp":"[0-9]",
+            "textLength":10,
+            "hintTextStyle": {
+              "color": "*primaryTextColor1",
+              "fontSize": 14.0,
+              "fontFamily": "RR"
+            },
+            "errorTextStyle": {
+              "color": "*errorTextColor",
+              "fontSize": 14.0,
+              "fontFamily": "RR"
+            },
+            "textStyle": {
+              "color": "*primaryTextColor2",
+              "fontSize": 15.0,
+              "fontFamily": "RR"
+            }
+          }
+        },
+
         { "orderBy": 5,
           "type": "spacerController"
         },
+
         {
           "type": "columnController",
           "crossAxisAlignment": "start",
           "orderBy": 6,
 
           "children": [
-
             {
               "type": "text",
-              "value": "Your Total Fare",
+              "value": "Distance",
               "orderBy": 1,
               "onlyText": true,
               "style": {
@@ -311,6 +421,36 @@
               "type": "text",
               "value": "0.0",
               "orderBy": 2,
+              "key": "totalDistance",
+              "onlyText": true,
+              "hasInput": true,
+              "required": true,
+              "style": {
+                "fontSize": 24,
+                "fontFamily": "RM",
+                "color": "*primaryTextColor2"
+              }
+            },
+            {
+              "type": "sizedBox",
+              "orderBy": 2,
+              "height": 20.0
+            },
+            {
+              "type": "text",
+              "value": "Your Total Fare",
+              "orderBy": 3,
+              "onlyText": true,
+              "style": {
+                "fontSize": 14,
+                "fontFamily": "RR",
+                "color": "*primaryTextColor1"
+              }
+            },
+            {
+              "type": "text",
+              "value": "0.0",
+              "orderBy": 4,
               "key": "totalFare",
               "onlyText": true,
               "hasInput": true,
@@ -322,14 +462,6 @@
               }
             }
           ]
-        },
-        {
-          "orderBy": 6,
-          "type": "hiddenController",
-          "key": "totalDistance",
-          "hasInput": true,
-          "required": true,
-          "value": ""
         },
         { "orderBy": 6,
           "type": "spacerController"

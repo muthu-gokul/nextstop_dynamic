@@ -44,14 +44,17 @@ class ImageController extends StatelessWidget implements MyCallback2{
 
 class SvgController extends StatelessWidget implements MyCallback2{
   Map map;
-  SvgController({required this.map}){
+  MyCallback myCallback;
+  SvgController({required this.map, required this.myCallback}){
     image.value=map['image'];
     width.value=map.containsKey('width')?map['width']:null;
     height.value=map.containsKey('height')?map['height']:null;
+    color.value=map.containsKey('color')?parseHexColor(map['color'], myCallback):null;
   }
   var image="".obs;
   Rxn height=Rxn();
   Rxn width=Rxn();
+  Rxn color=Rxn();
 
 
   @override
@@ -62,6 +65,7 @@ class SvgController extends StatelessWidget implements MyCallback2{
           width: width.value,
           height: height.value,
           fit: BoxFit.cover,
+          color: color.value,
         )
     );
   }

@@ -43,3 +43,4 @@
 <!-- version 1.0.8 Change Logs -->
         1. Profile screen email edit with reload option
         2. new orders reload previous page
+        3. your trips design changed

@@ -2,6 +2,7 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:date_format/date_format.dart';
 import 'package:dynamicparsers/customControllers/utils.dart';
 import 'package:get/get.dart';
 import 'package:dynamicparsers/customControllers/callBack/general.dart';
@@ -71,11 +72,12 @@ class Common{
         }
         else if(clickEvent[General.eventName]=="fromListView"){
           findWidgetByKey(widgets, {"key":clickEvent['parentListViewKey']}, (wid){
-            /*log("founf $wid ${wid.getValueByIndex(clickEvent['Index'])}");*/
+           // log("founf $wid ${wid.getValueByIndex(clickEvent['Index'])}");
             if(clickEvent.containsKey("changeValuesArray")){
               findUpdateByKeyWidgetType(clickEvent['changeValuesArray'], [wid.getValueByIndex(clickEvent['Index']).widget]);
             }
             else{
+              log("${wid.getValueByIndex(clickEvent['Index']).widget.widgets}");
               splitByTapEvent(clickEvent['clickEvent'],guid: guid,widgets: wid.getValueByIndex(clickEvent['Index']).widget.widgets,queryString: queryString,myCallback: myCallback);
             }
           });
@@ -84,6 +86,9 @@ class Common{
           log("common $clickEvent");
           findWidgetByKey(widgets, {"key":clickEvent['toFindKey']}, (wid){
            // log("foundd $wid");
+            if(clickEvent.containsKey(General.changeValuesArray)){
+              findUpdateByKeyWidgetType(clickEvent[General.changeValuesArray], [wid]);
+            }
             Get.dialog(
               WillPopScope(
                 onWillPop: () async {
@@ -102,7 +107,7 @@ class Common{
           });
 
         }
-        else if(clickEvent[General.eventName]=="findDialogWidget"){
+        else if(clickEvent[General.eventName]=="findDialogWidget"){//for api call from dialog
           findWidgetByKey(widgets, {"key":clickEvent['toFindKey']}, (wid){
             log("$guid foundd $wid ${clickEvent['guid']}");
             aa(guid, [wid], clickEvent, queryString,myCallback: myCallback);
@@ -232,6 +237,12 @@ class Common{
     }
     else if(color.toUpperCase()=="rating".toUpperCase()){
       return ColorUtil.rating;
+    }
+    else if(color.toUpperCase()=="grey1".toUpperCase()){
+      return ColorUtil.grey1;
+    }
+    else if(color.toUpperCase()=="grey2".toUpperCase()){
+      return ColorUtil.grey2;
     }
 
     return Colors.transparent;

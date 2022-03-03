@@ -17,7 +17,11 @@
     },
     {
       "key": "Password",
-      "value": "1234"
+      "value": "12345677545454"
+    },
+    {
+      "key": "Password1",
+      "value": "******"
     }
   ],
   "Widgets": [
@@ -35,8 +39,10 @@
           "type":"navIcon",
           "orderBy": "1",
           "color": "*primaryColor",
+          "strokeColor": "ffffff",
+          "crossAxisAlignment": "start",
           "margin": "20,0,0,0",
-          "padding": "10,0,0,0",
+          "padding": "8,0,0,0",
           "borderRadius": "10,10,10,10",
           "width":40,
           "height":35,
@@ -139,7 +145,7 @@
           "key": "MobileNumber",
           "style": {
             "color": "*primaryTextColor3",
-            "fontSize": 20.0,
+            "fontSize": 16.0,
             "fontFamily": "RM"
           }
         },
@@ -226,10 +232,9 @@
           "color":"#F5CAB6",
           "alignment": "center",
           "child": {
-            "type": "icon",
-            "icon": "mail",
-            "color": "*primaryColor",
-            "size": 30.0
+            "type": "svgController",
+            "image": "assets/icons/key.svg",
+            "width": 25.0
           }
         },
         {
@@ -255,11 +260,11 @@
                   "type": "text",
                   "orderBy": 13,
                   "onlyText": true,
-                  "value": "enduser@gmail.com",
-                  "key": "Password",
+                  "value": "1234",
+                  "key": "Password1",
                   "style": {
                     "color": "*primaryTextColor3",
-                    "fontSize": 16.0,
+                    "fontSize": 20.0,
                     "fontFamily": "RM"
                   }
                 }
@@ -437,10 +442,9 @@
                 "color":"#F5CAB6",
                 "alignment": "center",
                 "child": {
-                  "type": "icon",
-                  "icon": "mail",
-                  "color": "*primaryColor",
-                  "size": 25.0
+                  "type": "svgController",
+                  "image": "assets/icons/key.svg",
+                  "width": 25.0
                 }
               },
               {
@@ -451,7 +455,157 @@
               {
                 "type": "flexibleController",
                 "orderBy": 3,
-                "child":  {
+                "child": {
+                  "type": "button",
+                  "height": 50.0,
+                  "alignment": "center",
+                  "child": {
+                    "type": "intrinsicWidthController",
+                    "child": {
+                      "type": "stackController",
+                      "children": [
+                        {
+                          "type": "intrinsicWidthController",
+                          "orderBy": 1,
+                          "child": {
+                            "type": "textField",
+                            "orderBy": 1,
+                            "hintText": "Password",
+                            "hasInput": false,
+                            "obscureText": true,
+                            "required": false,
+                            "key": "Password",
+                            "margin": "0,0,0,0",
+                            "topContentPadding": 0.0,
+                            "parentHeight": 60.0,
+                            "groupValidation": [
+                              {
+                                "Required": "required"
+                              }
+                            ],
+                            "borderRadius": "5,5,5,5",
+                            "borderColor": "*textFieldBorderColor",
+                            "focusedBorderColor": "*textFieldBorderColor",
+                            "disabledBorderColor": "FFffffff",
+                            "color": "FFffffff",
+                            "disableColor": "FFffffff",
+                            "enable": false,
+                            "hintTextStyle": {
+                              "color": "*primaryTextColor3",
+                              "fontSize": 16.0,
+                              "fontFamily": "RM"
+                            },
+                            "errorTextStyle": {
+                              "color": "*errorTextColor",
+                              "fontSize": 14.0,
+                              "fontFamily": "RR"
+                            },
+                            "textStyle": {
+                              "color": "*primaryTextColor3",
+                              "fontSize": 16.0,
+                              "fontFamily": "RM"
+                            },
+                            "suffix": {
+                              "type": "button",
+                              "height": 47.0,
+                              "pixelWidth": 0.0
+                            }
+                          }
+                        },
+
+                        {
+                          "type":"positionController",
+                          "orderBy": 2,
+                          "right": 0,
+                          "child": {
+                            "type":"button",
+                            "height":50.0,
+                            "pixelWidth":35.0,
+                            "orderBy": 2,
+                            "child":{
+                              "type":"stackController",
+                              "alignment": "center",
+                              "children":[
+                                {
+                                  "type":"visibilityController",
+                                  "isVisible":true,
+                                  "orderBy":1,
+                                  "key":"VisibleOff",
+                                  "child":{
+                                    "type":"button",
+                                    "height":50.0,
+                                    "pixelWidth":50.0,
+                                    "alignment":"center",
+                                    "child":{
+                                      "type":"icon",
+                                      "icon":"visibleOff",
+                                      "size":25.0,
+                                      "color":"*primaryTextColor1"
+                                    },
+                                    "clickEvent":{
+                                      "eventName": "ChangeValues",
+                                      "changeValuesArray":[
+                                        {
+                                          "key":"VisibleOff",
+                                          "value":false
+                                        },
+                                        {
+                                          "key":"Password",
+                                          "obscureText":false
+                                        },
+                                        {
+                                          "key":"VisibleOn",
+                                          "value":true
+                                        }
+                                      ]
+                                    }
+                                  }
+                                },
+                                {
+                                  "type":"visibilityController",
+                                  "isVisible":false,
+                                  "orderBy":2,
+                                  "key":"VisibleOn",
+                                  "child":{
+                                    "type":"button",
+                                    "height":50.0,
+                                    "pixelWidth":50.0,
+                                    "alignment":"center",
+                                    "child":{
+                                      "type":"icon",
+                                      "icon":"visible",
+                                      "size":25.0,
+                                      "color":"*primaryTextColor1"
+                                    },
+                                    "clickEvent":{
+                                      "eventName": "ChangeValues",
+                                      "changeValuesArray":[
+                                        {
+                                          "key":"VisibleOff",
+                                          "value":true
+                                        },
+                                        {
+                                          "key":"Password",
+                                          "obscureText":true
+                                        },
+                                        {
+                                          "key":"VisibleOn",
+                                          "value":false
+                                        }
+                                      ]
+                                    }
+                                  }
+                                }
+
+                              ]
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                },
+                "child2":  {
                   "type": "text",
                   "orderBy": 13,
                   "onlyText": true,

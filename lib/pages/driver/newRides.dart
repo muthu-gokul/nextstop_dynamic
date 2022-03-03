@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:dynamicparsers/customControllers/callBack/myCallback.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:nextstop_dynamic/utils/common.dart';
@@ -25,6 +26,67 @@ class NewRides extends StatelessWidget with Common, MyCallback{
   late DynamicPageInitiater dynamicPageInitiater;
   @override
   Widget build(BuildContext context) {
+    /*return Container(
+      color: Colors.white,
+      child: ListView.builder(
+        itemCount: 2,
+        itemBuilder: (xtc,i){
+          return  Container(
+            child: Column(
+              children: [
+                Container(
+                  child: IntrinsicHeight(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+
+                        Container(
+                          width: 80,
+                          child: Container(
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                SvgPicture.asset("assets/icons/pickup-location.svg",height: 20,),
+                                Expanded(
+                                  child: Container(
+                                    width: 5,
+                                    decoration: BoxDecoration(
+                                        color: Colors.grey,
+                                        borderRadius: BorderRadius.circular(5)
+                                    ),
+                                  ),
+                                ),
+                                SvgPicture.asset("assets/icons/drop-location.svg",height: 20,),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Expanded(
+                              child: Row(
+                                children: [
+                                  Expanded(child: Container(child: Text("yyyyy ",))),
+                                  Expanded(child: Container(child: Text("yyyyy ",))),
+                                ],
+                              ),
+                            ),
+
+
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
+      ),
+    );*/
     return dynamicPageInitiater;
   }
 
@@ -55,35 +117,7 @@ class NewRides extends StatelessWidget with Common, MyCallback{
       var parsed=jsonDecode(apiRes);
       reloadPage();
       driverTripHomePageCb.reloadPage();
-      Get.defaultDialog(
-          title: "",
-          titleStyle: TextStyle(height: 0.0),
-          middleTextStyle: TextStyle(height: 0.0),
-          middleText: "",
-          content: Column(
-            children: [
-              Image.asset("assets/icons/sucess.gif",height: 150,),
-              SizedBox(height: 15,),
-              Text("${parsed['TblOutPut'][0]['@Message']}",style: ts18(primaryTextColor2),textAlign: TextAlign.center,),
-              SizedBox(height: 15,),
-              GestureDetector(
-                onTap: (){
-                  Get.back();
-                },
-                child: Container(
-                  height: 35,
-                  width: 100,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(25),
-                      color: primaryColor
-                  ),
-                  alignment: Alignment.center,
-                  child: Text("Ok",style: ts15(Colors.white),),
-                ),
-              )
-            ],
-          )
-      );
+      General().showAlertPopUp("${parsed['TblOutPut'][0]['@Message']}");
     }
   }
 

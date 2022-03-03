@@ -9,4 +9,6 @@ class ColorUtil{
   static Color textFieldBorderColor=Color(0xFFC8C8C8);
   static Color errorTextColor=Color(0xFFF44336);
   static Color rating=Color(0xFFE4BE49);
+  static Color grey1=Color(0xFFB9B9B9);
+  static Color grey2=Color(0xFF838CA2);
 }

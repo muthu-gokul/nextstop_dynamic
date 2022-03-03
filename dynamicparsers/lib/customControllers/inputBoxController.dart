@@ -23,22 +23,25 @@ class TextFormFieldController extends StatelessWidget implements MyCallback2{
     if(map.containsKey('prefix')){
       prefix=getChild(map['prefix'],myCallback: myCallback);
     }
+    isUnderLineBorder=map.containsKey("isUnderLineBorder")?map['isUnderLineBorder']:false;
   }
 
   var isValid=true.obs;
   var obscureText=false.obs;
   var errorText="* Required".obs;
+  bool isUnderLineBorder=false;
 
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      // height: 50,
+       height: map.containsKey("parentHeight")?map['parentHeight']:null,
       alignment: Alignment.centerLeft,
       margin: parseEdgeInsetsGeometry(map['margin']),
      // width: map.containsKey('width') ?double.parse(map['width'].toString())*SizeConfig.screenWidth!:SizeConfig.screenWidth,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
         children: [
           FocusScope(
             child: Focus(
@@ -67,25 +70,45 @@ class TextFormFieldController extends StatelessWidget implements MyCallback2{
 
                       filled: true,
                       fillColor: map.containsKey('enable')?map['enable']?parseHexColor(map['color'],myCallback):parseHexColor(map['disableColor'],myCallback):parseHexColor(map['color'],myCallback),
-                      border: OutlineInputBorder(
+                      border: isUnderLineBorder? UnderlineInputBorder(
+                          borderRadius: parseBorderRadius(map['borderRadius']),
+                          borderSide: BorderSide(
+                              color: parseHexColor(map['borderColor'],myCallback)!
+                          )
+                      ):OutlineInputBorder(
                           borderRadius: parseBorderRadius(map['borderRadius']),
                           borderSide: BorderSide(
                               color: parseHexColor(map['borderColor'],myCallback)!
                           )
                       ),
-                      enabledBorder: OutlineInputBorder(
+                      enabledBorder:isUnderLineBorder? UnderlineInputBorder(
+                          borderRadius: parseBorderRadius(map['borderRadius']),
+                          borderSide: BorderSide(
+                              color: parseHexColor(map['borderColor'],myCallback)!
+                          )
+                      ): OutlineInputBorder(
                           borderRadius: parseBorderRadius(map['borderRadius']),
                           borderSide: BorderSide(
                               color: parseHexColor(map['borderColor'],myCallback)!
                           )
                       ),
-                      focusedBorder: OutlineInputBorder(
+                      focusedBorder: isUnderLineBorder? UnderlineInputBorder(
+                          borderRadius: parseBorderRadius(map['borderRadius']),
+                          borderSide: BorderSide(
+                              color: parseHexColor(map['focusedBorderColor'],myCallback)!
+                          )
+                      ):OutlineInputBorder(
                           borderRadius: parseBorderRadius(map['borderRadius']),
                           borderSide: BorderSide(
                               color: parseHexColor(map['focusedBorderColor'],myCallback)!
                           )
                       ),
-                      disabledBorder: OutlineInputBorder(
+                      disabledBorder:isUnderLineBorder? UnderlineInputBorder(
+                          borderRadius: parseBorderRadius(map['borderRadius']),
+                          borderSide: BorderSide(
+                              color: parseHexColor(map['disabledBorderColor'],myCallback)!
+                          )
+                      ): OutlineInputBorder(
                           borderRadius: parseBorderRadius(map['borderRadius']),
                           borderSide: BorderSide(
                               color: parseHexColor(map['disabledBorderColor'],myCallback)!
@@ -94,6 +117,9 @@ class TextFormFieldController extends StatelessWidget implements MyCallback2{
                       contentPadding: EdgeInsets.only(top: map['topContentPadding']??0, left: map['leftContentPadding']??10.0),
                       suffixIcon: suffix,
                       prefixIcon: prefix,
+                      suffixIconConstraints: BoxConstraints(
+                        minWidth: 30.0
+                      )
                   ),
                   inputFormatters: [
                     LengthLimitingTextInputFormatter(map.containsKey('textLength')?int.parse(map['textLength'].toString()):null),

@@ -36,7 +36,7 @@ class HomePage extends StatefulWidget {
 var selectedPage=4.obs;
 
 
-class _HomePageState extends State<HomePage> with Common, MyCallback{
+class _HomePageState extends State<HomePage> with WidgetsBindingObserver,Common, MyCallback{
   GlobalKey <ScaffoldState> scaffoldKey=new GlobalKey<ScaffoldState>();
 
   List<dynamic> widgets=[];
@@ -80,10 +80,32 @@ class _HomePageState extends State<HomePage> with Common, MyCallback{
       packageInfo = info;
     });
   }
+
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if(state==AppLifecycleState.resumed){
+      //print("resumed Driver");
+      if(selectedPage.value==1){
+        bookingPage.reloadPage();
+      }
+    }
+    else if(state==AppLifecycleState.paused){
+     // print("paused Driver");
+    }
+    else if(state==AppLifecycleState.detached){
+     // print("dettach Driver");
+    }
+    else if(state==AppLifecycleState.inactive){
+    //  print("inactive Driver");
+    }
+  }
+
   @override
   void initState() {
      profilePage=ProfilePage(myCallback: this,);
      myTrips=MyTrips(myCallback: this,);
+     bookingPage=BookingPage(myCallback: this);
     parseJson();
     _initPackageInfo();
     determinePosition();
@@ -111,13 +133,12 @@ class _HomePageState extends State<HomePage> with Common, MyCallback{
 
   late ProfilePage profilePage;
   late MyTrips myTrips;
+  late BookingPage bookingPage;
 
   @override
   Widget build(BuildContext context) {
-    setState(() {
-      keyboardVisible = MediaQuery.of(context).viewInsets.bottom != 0;
-    });
-    log("bb $keyboardVisible ${ MediaQuery.of(context).viewInsets.bottom != 0} ${MediaQuery.of(context).padding.bottom} ${MediaQuery.of(context).padding.top}");
+      keyboardVisible.value = MediaQuery.of(context).viewInsets.bottom != 0;
+      log("bb $keyboardVisible ${ MediaQuery.of(context).viewInsets.bottom != 0} ${MediaQuery.of(context).padding.bottom} ${MediaQuery.of(context).padding.top}");
     return SafeArea(
       bottom: true,
       top: true,
@@ -128,7 +149,7 @@ class _HomePageState extends State<HomePage> with Common, MyCallback{
               index: selectedPage.value,
               children: [
                 profilePage,
-                BookingPage(myCallback: this),
+                bookingPage,
                 myTrips,
                 Container(
                   height: SizeConfig.screenHeight,

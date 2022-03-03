@@ -30,5 +30,14 @@ class MyTrips extends StatelessWidget with Common,MyCallback{
     if(clickEvent![General.eventName]==General.openDrawer){
       myCallback.ontap(clickEvent);
     }
+    else{
+      splitByTapEvent(
+          clickEvent,
+          widgets: dynamicPageInitiater.dynamicPageInitiaterState.widgets,
+          queryString: dynamicPageInitiater.dynamicPageInitiaterState.queryString,
+          myCallback: this,
+          guid: General.myTripsPageIdentifier
+      );
+    }
   }
 }

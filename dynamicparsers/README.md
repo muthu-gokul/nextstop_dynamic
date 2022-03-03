@@ -59,3 +59,7 @@ added slivers
 2. pageview controller changes:
         added tabbarWidget for avoid recursion
         added timer to jumpto page 1
+
+3. added intrinsic controller
+4. reduced width in Text and button
+5. added rating bar
