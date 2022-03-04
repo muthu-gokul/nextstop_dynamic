@@ -118,12 +118,15 @@ class LoginPage extends StatelessWidget with Common,MyCallback{
         sp.setBool(ISDRIVERKEY, isDriver);
         sp.setInt(LOGINUSERIDKEY, LOGINUSERID);
 
-        if(isDriver){
-          getXNavigation(2, HomePageDriver2());
-        }
-        else{
-          getXNavigation(2, HomePage());
-        }
+        WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+          if(isDriver){
+            getXNavigation(2, HomePageDriver2());
+          }
+          else{
+            getXNavigation(2, HomePage());
+          }
+        });
+
         getApnToken();
       }catch(e){
 

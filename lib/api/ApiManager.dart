@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:nextstop_dynamic/constants.dart';
 
 
 //BuildContext context
@@ -12,8 +13,9 @@ class ApiManager{
    ApiCallGetInvoke(var body,) async {
     try{
 
+
     // var itemsUrl="http://192.168.1.102//nextStop_dev///api/Mobile/GetInvoke";
-      var itemsUrl="http://45.126.252.78/nextStop_dev/api/Mobile/GetInvoke";
+      var itemsUrl=fromLocalIp?"http://192.168.1.102//nextStop_dev///api/Mobile/GetInvoke":"http://45.126.252.78/nextStop_dev/api/Mobile/GetInvoke";
 
       final response = await http.post(Uri.parse(itemsUrl),
           headers: {"Content-Type": "application/json"},
@@ -34,6 +36,7 @@ class ApiManager{
       }
     }
     catch(e){
+      print("ee $e");
       return [false,"Catch Api"];
 
     }

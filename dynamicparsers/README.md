@@ -64,3 +64,6 @@ added slivers
 4. reduced width in Text and button
 5. added rating bar
 6.listview controller timer added in updateValue
+
+7. changes dine in updateByWidgetType function <!-- Important -->
+8. swipe to delete

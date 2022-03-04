@@ -181,9 +181,20 @@ updateByWidgetType(String widgetType,{var widget,Map? clickEvent}){
     }
     break;
     case 'text':{
-      // log("TEXT $widgetType $widget $clickEvent");
-      widget.text.value=clickEvent!['value'];
-      widget.map['value']=clickEvent['value'];
+      if(clickEvent!['value'].runtimeType == List){
+        if(clickEvent['value'][0].containsKey("text")){
+          widget.text.value=clickEvent['value'][0]['text'];
+          widget.map['value']=clickEvent['value'][0]['text'];
+        }
+        else if(clickEvent['value'][0].containsKey("style")){
+          widget.ts.value=clickEvent['value'][0]['style'];
+        }
+      }
+      else{
+        widget.text.value=clickEvent['value'];
+        widget.map['value']=clickEvent['value'];
+      }
+
     }
     break;
     case 'hiddenController':{
@@ -205,6 +216,26 @@ updateByWidgetType(String widgetType,{var widget,Map? clickEvent}){
       widget.updateValues(clickEvent['value']);
     }
     break;
+    case 'swipeSliverListController':{
+      if(clickEvent!['value'].runtimeType == List){
+        widget.map['value']=clickEvent['value'];
+        widget.updateValues(clickEvent['value']);
+      }
+      else{
+        /*
+         {"key":"",value:{"reload":"","value":[]}}
+         */
+        if(clickEvent['value'].containsKey("reload")){
+          widget.updateValues(widget.map['value']);
+        }
+        else if(clickEvent['value'].containsKey("value")){
+          widget.map['value']=clickEvent['value']['value'];
+          widget.updateValues(clickEvent['value']['value']);
+        }
+      }
+
+    }
+    break;
     case 'imageController':{
       widget.map['image']=clickEvent!['value'];
       widget.image.value=clickEvent['value'];
@@ -224,7 +255,18 @@ updateByWidgetType(String widgetType,{var widget,Map? clickEvent}){
     }
     break;
     case 'button':{
-      widget.map['clickEvent']=clickEvent!['value'];
+      if(clickEvent!['value'].runtimeType == List){
+        if(clickEvent['value'][0].containsKey("clickEvent")){
+          widget.map['clickEvent']=clickEvent['value'][0]['clickEvent'];
+        }
+        else if(clickEvent['value'][0].containsKey("color")){
+          widget.color.value=clickEvent['value'][0]['color'];
+        }
+      }
+      else{
+        widget.map['clickEvent']=clickEvent['value'];
+      }
+
     }
     break;
     case 'opacityController':{

@@ -19,18 +19,14 @@
     {
       "key": "Documents",
       "value": [
-        {"Document": "Vehicle","Number": "TN654646","Image": ""},
-        {"Document": "Vehicle Type","Number": "Tata Ace 5454","Image": ""},
-        {"Document": "RC Book","Number": "545454","Image": ""},
-        {"Document": "Vehicle","Number": "TN654646","Image": ""},
-        {"Document": "Vehicle","Number": "TN654646","Image": ""},
-        {"Document": "Vehicle","Number": "TN654646","Image": ""},
-        {"Document": "Vehicle","Number": "TN654646","Image": ""},
-        {"Document": "Vehicle","Number": "TN654646","Image": ""},
-        {"Document": "Vehicle","Number": "TN654646","Image": ""},
-        {"Document": "Vehicle","Number": "TN654646","Image": ""},
-        {"Document": "Vehicle","Number": "TN654646","Image": ""},
-        {"Document": "Vehicle","Number": "TN654646","Image": ""}
+        {"Document": "Vehicle","Number": "TN654646","Image": "","DocumentId": "1"},
+        {"Document": "Vehicle Type","Number": "Tata Ace 5454","Image": "","DocumentId": "2"},
+        {"Document": "RC Book","Number": "545454","Image": "","DocumentId": "3"},
+        {"Document": "Vehicle","Number": "TN654646","Image": "","DocumentId": "4"},
+        {"Document": "Vehicle","Number": "TN654646","Image": "","DocumentId": "5"},
+        {"Document": "Vehicle","Number": "TN654646","Image": "","DocumentId": "6"},
+        {"Document": "Vehicle","Number": "TN654646","Image": "","DocumentId": "7"},
+        {"Document": "Vehicle","Number": "TN654646","Image": "","DocumentId": "8"}
       ]
     },
     {
@@ -382,6 +378,12 @@
                   {
                     "key": "AddBankDetailsBtn",
                     "value": false
+                  },
+                  {
+                    "key": "Documents",
+                    "value": {
+                      "reload": true
+                    }
                   }
                 ]
               }
@@ -412,6 +414,7 @@
             "orderBy": 14,
             "key": "DetailsPageView",
             "toFindKey": "DetailsTabBar",
+            "physics": "never",
             "children": [
               {
                 "type": "customScrollViewController",
@@ -491,7 +494,7 @@
                     }
                   },
                   {
-                    "type": "sliverListController",
+                    "type": "swipeSliverListController",
                     "key": "Documents",
                     "orderBy": 2,
                     "childd":  {
@@ -499,12 +502,20 @@
                       "height": 50.0,
                       "alignment": "center",
                       "borderRadius": "6,6,6,6",
-                      "margin": "15,0,15,0",
+                      "padding": "15,0,15,0",
+                      "key": "Button1",
                       "orderBy": 13,
+                      "color": "ffffff",
                       "child": {
                         "type": "rowController",
                         "mainAxisAlignment": "center",
                         "children": [
+                          {
+                            "type": "hiddenController",
+                            "key": "DocumentId",
+                            "orderBy": 1,
+                            "value": ""
+                          },
                           {
                             "type": "expandedController",
                             "orderBy": 1,
@@ -567,7 +578,86 @@
                     },
                     "value": [
 
-                    ]
+                    ],
+                    "swipeChangeValueArray": [
+                      {
+                        "key": "Button1",
+                        "value": [
+                          {
+                            "color": "red"
+                          }
+                        ]
+                      },
+                      {
+                        "key": "Document",
+                        "value": [
+                          {
+                            "style":  {
+                              "color": "ffffff",
+                              "fontSize": 15.0,
+                              "fontFamily": "RR"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "key": "Number",
+                        "value": [
+                          {
+                            "style":  {
+                              "color": "ffffff",
+                              "fontSize": 15.0,
+                              "fontFamily": "RR"
+                            }
+                          }
+                        ]
+                      }
+                    ],
+                    "notSelectedChangeValueArray": [
+                      {
+                        "key": "Button1",
+                        "value": [
+                          {
+                            "color": "ffffff"
+                          }
+                        ]
+                      },
+                      {
+                        "key": "Document",
+                        "value": [
+                          {
+                            "style":  {
+                              "color": "*primaryTextColor1",
+                              "fontSize": 15.0,
+                              "fontFamily": "RR"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "key": "Number",
+                        "value": [
+                          {
+                            "style":  {
+                              "color": "*primaryTextColor1",
+                              "fontSize": 15.0,
+                              "fontFamily": "RR"
+                            }
+                          }
+                        ]
+                      }
+                    ],
+                    "swipeDeleteButtonEvent":  {
+                        "eventName": "openDialog",
+                        "toFindKey": "DeleteDocumentDialog",
+                        "changeValuesArray": [
+                          {
+                            "key": "DocumentDeleteId",
+                            "value": "",
+                            "toFindKey": "DocumentId"
+                          }
+                        ]
+                    }
                   }
                 ]
               },
@@ -1092,6 +1182,113 @@
                   "type": "text",
                   "onlyText": true,
                   "value": "Change",
+                  "style": {
+                    "fontSize": 15.0,
+                    "fontFamily": "RR",
+                    "color": "ffffff"
+                  }
+                }
+              },
+              {
+                "type": "button",
+                "orderBy": 5,
+                "height": 50.0,
+                "color": "*textFieldBorderColor",
+                "opacity": 0.5,
+                "borderColor": "*primaryTextColor1",
+                "borderRadius": "6,6,6,6",
+                "margin": "15,10,15,10",
+                "alignment": "center",
+                "clickEvent": {
+                  "eventName": "Navigation",
+                  "typeOfNavigation": 3,
+                  "navigateToPage": ""
+                },
+                "child": {
+                  "type": "text",
+                  "onlyText": true,
+                  "value": "Cancel",
+                  "style": {
+                    "fontSize": 15.0,
+                    "fontFamily": "RR",
+                    "color": "*primaryTextColor3"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "visibilityController",
+          "isVisible": false,
+          "orderBy": 1002,
+          "child": {
+            "horizontalInsetPadding": 40.0,
+            "contentPadding":"10,10,10,10",
+            "barrierDismissible": true,
+            "dialogRadius": 15.0,
+            "type": "columnController",
+            "key": "DeleteDocumentDialog",
+            "children": [
+              {
+                "type": "imageController",
+                "image": "assets/icons/delete.jpg",
+                "orderBy": 1
+              },
+              {
+                "type": "hiddenController",
+                "key": "DocumentDeleteId",
+                "orderBy": 2,
+                "hasInput": true,
+                "required": true,
+                "value": ""
+              },
+              {
+                "type": "hiddenController",
+                "key": "NumberDelete",
+                "orderBy": 3,
+                "hasInput": true,
+                "required": true,
+                "value": ""
+              },
+              {
+                "type":"sizedBox",
+                "orderBy": 2,
+                "height":5
+              },
+              {
+                "type": "flexibleController",
+                "orderBy": 3,
+                "child":  {
+                  "type": "text",
+                  "orderBy": 13,
+                  "onlyText": true,
+                  "value": "Are you sure want to delete this Document ?",
+                  "textAlign": "center",
+                  "style": {
+                    "color": "*primaryTextColor3",
+                    "fontSize": 16.0,
+                    "fontFamily": "RM"
+                  }
+                }
+              },
+              {
+                "type": "button",
+                "orderBy": 5,
+                "height": 50.0,
+                "color": "*primaryColor",
+                "borderRadius": "6,6,6,6",
+                "margin": "15,10,15,10",
+                "alignment": "center",
+                "clickEvent": {
+                  "eventName": "findDialogWidget",
+                  "toFindKey": "DeleteDocumentDialog",
+                  "actionType": "Delete"
+                },
+                "child": {
+                  "type": "text",
+                  "onlyText": true,
+                  "value": "Delete",
                   "style": {
                     "fontSize": 15.0,
                     "fontFamily": "RR",

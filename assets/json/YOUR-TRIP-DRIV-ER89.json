@@ -203,6 +203,18 @@
           }
         }
       ]
+    },
+    {
+      "key": "ShowUpcomingRidesNoData",
+      "value": false
+    },
+    {
+      "key": "ShowCompletedRidesNoData",
+      "value": false
+    },
+    {
+      "key": "ShowCancelledRidesNoData",
+      "value": false
     }
   ],
   "Widgets": [
@@ -291,43 +303,587 @@
             "toFindKey": "TripTabBar",
             "children": [
               {
-                "type": "listViewBuilderController",
-                "physics": "always",
-                "key": "UpcomingRides",
-                "childd": {
-                  "type": "button",
-                  "orderBy": 2,
-                  "margin": "10,5,10,10",
-                  "padding": "0,10,0,5",
-                  "borderRadius": "8,8,8,8",
-                  "alignment": "center",
-                  "borderColor": "*textFieldBorderColor",
-                  "key": "ParentBtn",
-                  "clickEvent": {
-                    "eventName": "fromListView",
-                    "parentListViewKey": "UpcomingRides"
-                  },
-                  "child": {
-                    "type": "columnController",
-                    "children": [
-                      {
-                        "type": "hiddenController",
-                        "key": "ShippingRequestId",
-                        "orderBy": 1,
-                        "hasInput": true,
-                        "required": true,
-                        "value": ""
+                "type": "stackController",
+                "children": [
+                  {
+                    "type": "visibilityController",
+                    "isVisible": true,
+                    "orderBy":1,
+                    "child": {
+                      "type": "listViewBuilderController",
+                      "physics": "always",
+                      "key": "UpcomingRides",
+                      "childd": {
+                        "type": "button",
+                        "orderBy": 2,
+                        "margin": "10,5,10,10",
+                        "padding": "0,10,0,5",
+                        "borderRadius": "8,8,8,8",
+                        "alignment": "center",
+                        "borderColor": "*textFieldBorderColor",
+                        "key": "ParentBtn",
+                        "clickEvent": {
+                          "eventName": "fromListView",
+                          "parentListViewKey": "UpcomingRides"
+                        },
+                        "child": {
+                          "type": "columnController",
+                          "children": [
+                            {
+                              "type": "hiddenController",
+                              "key": "ShippingRequestId",
+                              "orderBy": 1,
+                              "hasInput": true,
+                              "required": true,
+                              "value": ""
+                            },
+                            {
+                              "type": "rowController",
+                              "orderBy": 1,
+                              "children": [
+                                {
+                                  "type": "visibilityController",
+                                  "isVisible": false,
+                                  "orderBy": 1,
+                                  "key": "ShowTime",
+                                  "child": {
+                                    "type": "rowController",
+                                    "orderBy": 1,
+                                    "children": [
+                                      {
+                                        "type": "sizedBox",
+                                        "width": 20.0,
+                                        "orderBy": 1
+                                      },
+                                      {
+                                        "type": "text",
+                                        "orderBy": 1,
+                                        "onlyText": true,
+                                        "value": "Today, ",
+                                        "key": "Day",
+                                        "style": {
+                                          "fontSize": 12.0,
+                                          "color": "*primaryColor",
+                                          "fontFamily": "RM"
+                                        }
+                                      },
+                                      {
+                                        "type": "text",
+                                        "orderBy": 2,
+                                        "onlyText": true,
+                                        "value": "4.50 PM, ",
+                                        "key": "Time",
+                                        "style": {
+                                          "fontSize": 12.0,
+                                          "color": "*primaryColor",
+                                          "fontFamily": "RM"
+                                        }
+                                      }
+                                    ]
+                                  }
+                                },
+
+                                {
+                                  "type": "visibilityController",
+                                  "isVisible": false,
+                                  "orderBy": 2,
+                                  "key": "ShowStatus",
+                                  "child": {
+                                    "type": "rowController",
+                                    "orderBy": 1,
+                                    "children": [
+                                      {
+                                        "type": "sizedBox",
+                                        "width": 20.0,
+                                        "orderBy": 1
+                                      },
+                                      {
+                                        "type": "text",
+                                        "orderBy": 1,
+                                        "onlyText": true,
+                                        "value": "On Going Ride",
+                                        "key": "Status",
+                                        "style": {
+                                          "fontSize": 14.0,
+                                          "color": "*primaryColor",
+                                          "fontFamily": "RM"
+                                        }
+                                      },
+                                      {
+                                        "type": "sizedBox",
+                                        "orderBy": 1,
+                                        "width": 10.0
+                                      },
+                                      {
+                                        "type": "svgController",
+                                        "image": "assets/icons/ongoingorder.svg",
+                                        "height": 25.0,
+                                        "width": 30.0,
+                                        "color": "*primaryColor",
+                                        "orderBy": 1
+                                      }
+                                    ]
+                                  }
+                                },
+                                {
+                                  "orderBy": 4,
+                                  "type": "spacerController"
+                                },
+                                {
+                                  "orderBy": 5,
+                                  "type": "icon",
+                                  "icon": "keyboard_arrow_down_rounded",
+                                  "size": 25.0,
+                                  "color": "*primaryTextColor1"
+                                },
+                                {
+                                  "type": "sizedBox",
+                                  "width": 10.0,
+                                  "orderBy": 6
+                                }
+                              ]
+                            },
+                            {
+                              "type": "sizedBox",
+                              "height": 10.0,
+                              "orderBy": 1
+                            },
+                            {
+                              "type": "rowController",
+                              "orderBy": 1,
+                              "children": [
+                                {
+                                  "type": "sizedBox",
+                                  "orderBy": 1,
+                                  "width": 5.0
+                                },
+                                {
+                                  "type": "svgController",
+                                  "image": "assets/icons/user.svg",
+                                  "height": 40.0,
+                                  "orderBy": 1
+                                },
+                                {
+                                  "type": "sizedBox",
+                                  "orderBy": 1,
+                                  "width": 5.0
+                                },
+                                {
+                                  "type": "expandedController",
+                                  "orderBy": 1,
+                                  "flex": 2,
+                                  "child": {
+                                    "type": "columnController",
+                                    "crossAxisAlignment": "start",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "orderBy": 2,
+                                        "onlyText": true,
+                                        "value": "Mr. Vijay Humar",
+                                        "key": "Name",
+                                        "style": {
+                                          "fontSize": 14,
+                                          "fontFamily": "RM",
+                                          "color": "*primaryTextColor2"
+                                        }
+                                      },
+                                      {
+                                        "type": "sizedBox",
+                                        "orderBy": 2,
+                                        "height": 3.0
+                                      },
+                                      {
+                                        "type": "text",
+                                        "orderBy": 2,
+                                        "onlyText": true,
+                                        "value": "Cash Pay",
+                                        "key": "PaymentType",
+                                        "style": {
+                                          "fontSize": 12,
+                                          "fontFamily": "RM",
+                                          "color": "*primaryColor"
+                                        }
+                                      }
+                                    ]
+                                  }
+                                },
+                                {
+                                  "type": "sizedBox",
+                                  "orderBy": 1,
+                                  "width": 5.0
+                                },
+                                {
+                                  "type": "expandedController",
+                                  "orderBy": 1,
+                                  "flex": 1,
+                                  "child": {
+                                    "type": "columnController",
+                                    "crossAxisAlignment": "end",
+                                    "children": [
+
+                                      {
+                                        "type": "text",
+                                        "orderBy": 1,
+                                        "value": "250.00",
+                                        "onlyText": true,
+                                        "key": "TotalPrice",
+                                        "style": {
+                                          "fontSize": 15,
+                                          "fontFamily": "RB",
+                                          "color": "*primaryTextColor2"
+                                        }
+                                      },
+                                      {
+                                        "type": "text",
+                                        "orderBy": 2,
+                                        "onlyText": true,
+                                        "value": "25 KM",
+                                        "key": "TotalDistance",
+                                        "style": {
+                                          "fontSize": 12,
+                                          "fontFamily": "RR",
+                                          "color": "*primaryTextColor1"
+                                        }
+                                      }
+                                    ]
+                                  }
+                                },
+                                {
+                                  "type": "sizedBox",
+                                  "orderBy": 1,
+                                  "width": 15.0
+                                }
+                              ]
+                            },
+                            {
+                              "type": "expansionTileController",
+                              "orderBy": 2,
+                              "expand": false,
+                              "key": "LocationDetailsExpansionTile",
+                              "child": {
+                                "type": "button",
+                                "clickEvent": {
+                                  "eventName": "cs"
+                                },
+                                "padding": "0,8,0,0",
+                                "child": {
+                                  "type": "columnController",
+                                  "children": [
+                                    {
+                                      "type": "intrinsicHeightController",
+                                      "orderBy": 1,
+                                      "child": {
+                                        "type": "rowController",
+                                        "mainAxisAlignment": "start",
+                                        "children": [
+                                          {
+                                            "type": "button",
+                                            "pixelWidth": 50.0,
+                                            "orderBy": 1,
+                                            "child": {
+                                              "type": "columnController",
+                                              "children": [
+                                                {
+                                                  "type": "svgController",
+                                                  "image": "assets/icons/pickup-location.svg",
+                                                  "height": 20.0,
+                                                  "orderBy": 1
+                                                },
+                                                {
+                                                  "type": "expandedController",
+                                                  "orderBy": 1,
+                                                  "child": {
+                                                    "type": "button",
+                                                    "pixelWidth": 3.0,
+                                                    "color": "*textFieldBorderColor"
+                                                  }
+                                                },
+                                                {
+                                                  "type": "svgController",
+                                                  "image": "assets/icons/drop-location.svg",
+                                                  "height": 20.0,
+                                                  "orderBy": 1
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          {
+                                            "type": "columnController",
+                                            "crossAxisAlignment": "start",
+                                            "orderBy": 2,
+                                            "children": [
+                                              {
+                                                "type": "text",
+                                                "onlyText": true,
+                                                "orderBy": 1,
+                                                "alignment": "centerLeft",
+                                                "value": "Pickup Point",
+                                                "style": {
+                                                  "fontSize": 12,
+                                                  "fontFamily": "RM",
+                                                  "color": "*grey1"
+                                                }
+                                              },
+                                              {
+                                                "type": "rowController",
+                                                "crossAxisAlignment": "start",
+                                                "orderBy": 1,
+                                                "children": [
+                                                  {
+                                                    "type": "text",
+                                                    "onlyText": false,
+                                                    "orderBy": 1,
+                                                    "alignment": "centerLeft",
+                                                    "margin": "0,5,0,0",
+                                                    "reducedWidth": 140.0,
+                                                    "value": "No: 4B/7, Sai Sadan, 1st Floor, MMDA 3rd Main Rd, Maduravoyal",
+                                                    "key": "PickupLocation",
+                                                    "style": {
+                                                      "fontSize": 11,
+                                                      "fontFamily": "RM",
+                                                      "color": "*primaryTextColor2"
+                                                    }
+                                                  },
+                                                  {
+                                                    "type": "text",
+                                                    "onlyText": false,
+                                                    "orderBy": 1,
+                                                    "alignment": "centerRight",
+                                                    "margin": "0,5,0,0",
+                                                    "value": "",
+                                                    "pixelWidth": 60.0,
+                                                    "key": "PickupTime",
+                                                    "style": {
+                                                      "fontSize": 12,
+                                                      "fontFamily": "RM",
+                                                      "color": "*grey2"
+                                                    }
+                                                  }
+                                                ]
+                                              },
+
+                                              {
+                                                "type": "button",
+                                                "orderBy": 2,
+                                                "height": 1.0,
+                                                "margin": "0,10,0,10",
+                                                "reducedWidth": 80.0,
+                                                "color": "*textFieldBorderColor"
+                                              },
+                                              {
+                                                "type": "text",
+                                                "onlyText": true,
+                                                "orderBy": 2,
+                                                "alignment": "centerLeft",
+                                                "value": "Drop Point",
+                                                "style": {
+                                                  "fontSize": 12,
+                                                  "fontFamily": "RM",
+                                                  "color": "*grey1"
+                                                }
+                                              },
+                                              {
+                                                "type": "rowController",
+                                                "orderBy": 2,
+                                                "crossAxisAlignment": "start",
+                                                "children": [
+                                                  {
+                                                    "type": "text",
+                                                    "onlyText": false,
+                                                    "orderBy": 1,
+                                                    "alignment": "centerLeft",
+                                                    "margin": "0,5,0,0",
+                                                    "reducedWidth": 140.0,
+                                                    "value": "No: 4B/7, Sai Sadan, 1st Floor, MMDA 3rd Main Rd, Maduravoyal",
+                                                    "key": "DropLocation",
+                                                    "style": {
+                                                      "fontSize": 11,
+                                                      "fontFamily": "RM",
+                                                      "color": "*primaryTextColor2"
+                                                    }
+                                                  },
+                                                  {
+                                                    "type": "text",
+                                                    "onlyText": false,
+                                                    "orderBy": 1,
+                                                    "alignment": "centerRight",
+                                                    "margin": "0,5,0,0",
+                                                    "value": "",
+                                                    "pixelWidth": 60.0,
+                                                    "key": "DropTime",
+                                                    "style": {
+                                                      "fontSize": 12,
+                                                      "fontFamily": "RM",
+                                                      "color": "*grey2"
+                                                    }
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+
+                                        ]
+                                      }
+                                    },
+                                    {
+                                      "type": "visibilityController",
+                                      "isVisible": false,
+                                      "orderBy": 2,
+                                      "key": "ShowAcceptReject",
+                                      "child": {
+                                        "type": "paddingController",
+                                        "padding": "0,10,0,0",
+                                        "child": {
+                                          "type": "rowController",
+                                          "orderBy": 4,
+                                          "children": [
+                                            {
+                                              "type": "sizedBox",
+                                              "orderBy": 1,
+                                              "width": 15.0
+                                            },
+                                            {
+                                              "type": "expandedController",
+                                              "orderBy": 1,
+                                              "child": {
+                                                "type": "button",
+                                                "height": 40.0,
+                                                "borderColor": "*primaryColor",
+                                                "borderRadius": "6,6,6,6",
+                                                "alignment": "center",
+                                                "key": "CancelBtn",
+                                                "clickEvent": {},
+                                                "child": {
+                                                  "type": "text",
+                                                  "onlyText": true,
+                                                  "value": "Cancel",
+                                                  "style": {
+                                                    "fontSize": 15.0,
+                                                    "fontFamily": "RR",
+                                                    "color": "*primaryTextColor1"
+                                                  }
+                                                }
+                                              }
+                                            },
+                                            {
+                                              "type": "sizedBox",
+                                              "orderBy": 1,
+                                              "width": 15.0
+                                            },
+                                            {
+                                              "type": "expandedController",
+                                              "orderBy": 1,
+                                              "child": {
+                                                "type": "button",
+                                                "height": 40.0,
+                                                "color": "*primaryColor",
+                                                "borderRadius": "6,6,6,6",
+                                                "alignment": "center",
+                                                "key": "AcceptBtn",
+                                                "clickEvent": {},
+                                                "child": {
+                                                  "type": "text",
+                                                  "onlyText": true,
+                                                  "value": "Accept",
+                                                  "style": {
+                                                    "fontSize": 15.0,
+                                                    "fontFamily": "RR",
+                                                    "color": "ffffff"
+                                                  }
+                                                }
+                                              }
+
+                                            },
+                                            {
+                                              "type": "sizedBox",
+                                              "orderBy": 1,
+                                              "width": 15.0
+                                            }
+                                          ]
+                                        }
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            },
+                            {
+                              "type": "sizedBox",
+                              "height": 10.0,
+                              "orderBy": 6
+                            }
+                          ]
+                        }
                       },
-                      {
-                        "type": "rowController",
-                        "orderBy": 1,
-                        "children": [
-                          {
-                            "type": "visibilityController",
-                            "isVisible": false,
-                            "orderBy": 1,
-                            "key": "ShowTime",
-                            "child": {
+                      "value": [
+
+                      ]
+                    }
+                  },
+                  {
+                    "type": "visibilityController",
+                    "isVisible": false,
+                    "orderBy":2,
+                    "key":"ShowUpcomingRidesNoData",
+                    "child":  {
+                      "type": "columnController",
+                      "mainAxisAlignment": "center",
+                      "crossAxisAlignment": "center",
+                      "orderBy": 2,
+                      "children": [
+                        {
+                          "type": "sizedBox",
+                          "orderBy": 1,
+                          "height": 100.0
+                        },
+                        {
+                          "type": "svgController",
+                          "orderBy": 1,
+                          "image": "assets/icons/noData.svg"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              },
+
+              {
+                "type": "stackController",
+                "children": [
+                  {
+                    "type": "visibilityController",
+                    "isVisible": true,
+                    "orderBy":1,
+                    "child": {
+                      "type": "listViewBuilderController",
+                      "physics": "always",
+                      "key": "CompletedRides",
+                      "childd": {
+                        "type": "button",
+                        "orderBy": 2,
+                        "margin": "10,5,10,10",
+                        "padding": "0,10,0,5",
+                        "borderRadius": "8,8,8,8",
+                        "alignment": "center",
+                        "borderColor": "*textFieldBorderColor",
+                        "key": "ParentBtn",
+                        "clickEvent": {
+                          "eventName": "fromListView",
+                          "parentListViewKey": "CompletedRides"
+                        },
+                        "child": {
+                          "type": "columnController",
+                          "children": [
+                            {
+                              "type": "hiddenController",
+                              "key": "ShippingRequestId",
+                              "orderBy": 1,
+                              "hasInput": true,
+                              "required": true,
+                              "value": ""
+                            },
+                            {
                               "type": "rowController",
                               "orderBy": 1,
                               "children": [
@@ -359,17 +915,388 @@
                                     "color": "*primaryColor",
                                     "fontFamily": "RM"
                                   }
+                                },
+                                {
+                                  "orderBy": 4,
+                                  "type": "spacerController"
+                                },
+                                {
+                                  "orderBy": 5,
+                                  "type": "icon",
+                                  "icon": "keyboard_arrow_down_rounded",
+                                  "size": 25.0,
+                                  "color": "*primaryTextColor1"
+                                },
+                                {
+                                  "type": "sizedBox",
+                                  "width": 10.0,
+                                  "orderBy": 6
                                 }
                               ]
-                            }
-                          },
+                            },
+                            {
+                              "type": "sizedBox",
+                              "height": 10.0,
+                              "orderBy": 1
+                            },
+                            {
+                              "type": "rowController",
+                              "orderBy": 1,
+                              "children": [
+                                {
+                                  "type": "sizedBox",
+                                  "orderBy": 1,
+                                  "width": 5.0
+                                },
+                                {
+                                  "type": "svgController",
+                                  "image": "assets/icons/user.svg",
+                                  "height": 40.0,
+                                  "orderBy": 1
+                                },
+                                {
+                                  "type": "sizedBox",
+                                  "orderBy": 1,
+                                  "width": 5.0
+                                },
+                                {
+                                  "type": "expandedController",
+                                  "orderBy": 1,
+                                  "flex": 2,
+                                  "child": {
+                                    "type": "columnController",
+                                    "crossAxisAlignment": "start",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "orderBy": 2,
+                                        "onlyText": true,
+                                        "value": "Mr. Vijay Humar",
+                                        "key": "Name",
+                                        "style": {
+                                          "fontSize": 14,
+                                          "fontFamily": "RM",
+                                          "color": "*primaryTextColor2"
+                                        }
+                                      },
+                                      {
+                                        "type": "sizedBox",
+                                        "orderBy": 2,
+                                        "height": 3.0
+                                      },
+                                      {
+                                        "type": "text",
+                                        "orderBy": 2,
+                                        "onlyText": true,
+                                        "value": "Cash Pay",
+                                        "key": "PaymentType",
+                                        "style": {
+                                          "fontSize": 12,
+                                          "fontFamily": "RM",
+                                          "color": "*primaryColor"
+                                        }
+                                      }
+                                    ]
+                                  }
+                                },
+                                {
+                                  "type": "sizedBox",
+                                  "orderBy": 1,
+                                  "width": 5.0
+                                },
+                                {
+                                  "type": "expandedController",
+                                  "orderBy": 1,
+                                  "flex": 1,
+                                  "child": {
+                                    "type": "columnController",
+                                    "crossAxisAlignment": "end",
+                                    "children": [
 
-                          {
-                            "type": "visibilityController",
-                            "isVisible": false,
-                            "orderBy": 2,
-                            "key": "ShowStatus",
-                            "child": {
+                                      {
+                                        "type": "text",
+                                        "orderBy": 1,
+                                        "value": "250.00",
+                                        "onlyText": true,
+                                        "key": "TotalPrice",
+                                        "style": {
+                                          "fontSize": 15,
+                                          "fontFamily": "RB",
+                                          "color": "*primaryTextColor2"
+                                        }
+                                      },
+                                      {
+                                        "type": "text",
+                                        "orderBy": 2,
+                                        "onlyText": true,
+                                        "value": "25 KM",
+                                        "key": "TotalDistance",
+                                        "style": {
+                                          "fontSize": 12,
+                                          "fontFamily": "RR",
+                                          "color": "*primaryTextColor1"
+                                        }
+                                      }
+                                    ]
+                                  }
+                                },
+                                {
+                                  "type": "sizedBox",
+                                  "orderBy": 1,
+                                  "width": 15.0
+                                }
+                              ]
+                            },
+                            {
+                              "type": "expansionTileController",
+                              "orderBy": 2,
+                              "expand": false,
+                              "key": "LocationDetailsExpansionTile",
+                              "child": {
+                                "type": "button",
+                                "clickEvent": {
+                                  "eventName": "cs"
+                                },
+                                "padding": "0,8,0,0",
+                                "child": {
+                                  "type": "columnController",
+                                  "children": [
+                                    {
+                                      "type": "intrinsicHeightController",
+                                      "orderBy": 1,
+                                      "child": {
+                                        "type": "rowController",
+                                        "mainAxisAlignment": "start",
+                                        "children": [
+                                          {
+                                            "type": "button",
+                                            "pixelWidth": 50.0,
+                                            "orderBy": 1,
+                                            "child": {
+                                              "type": "columnController",
+                                              "children": [
+                                                {
+                                                  "type": "svgController",
+                                                  "image": "assets/icons/pickup-location.svg",
+                                                  "height": 20.0,
+                                                  "orderBy": 1
+                                                },
+                                                {
+                                                  "type": "expandedController",
+                                                  "orderBy": 1,
+                                                  "child": {
+                                                    "type": "button",
+                                                    "pixelWidth": 3.0,
+                                                    "color": "*textFieldBorderColor"
+                                                  }
+                                                },
+                                                {
+                                                  "type": "svgController",
+                                                  "image": "assets/icons/drop-location.svg",
+                                                  "height": 20.0,
+                                                  "orderBy": 1
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          {
+                                            "type": "columnController",
+                                            "crossAxisAlignment": "start",
+                                            "orderBy": 2,
+                                            "children": [
+                                              {
+                                                "type": "text",
+                                                "onlyText": true,
+                                                "orderBy": 1,
+                                                "alignment": "centerLeft",
+                                                "value": "Pickup Point",
+                                                "style": {
+                                                  "fontSize": 12,
+                                                  "fontFamily": "RM",
+                                                  "color": "*grey1"
+                                                }
+                                              },
+                                              {
+                                                "type": "rowController",
+                                                "crossAxisAlignment": "start",
+                                                "orderBy": 1,
+                                                "children": [
+                                                  {
+                                                    "type": "text",
+                                                    "onlyText": false,
+                                                    "orderBy": 1,
+                                                    "alignment": "centerLeft",
+                                                    "margin": "0,5,0,0",
+                                                    "reducedWidth": 140.0,
+                                                    "value": "No: 4B/7, Sai Sadan, 1st Floor, MMDA 3rd Main Rd, Maduravoyal",
+                                                    "key": "PickupLocation",
+                                                    "style": {
+                                                      "fontSize": 11,
+                                                      "fontFamily": "RM",
+                                                      "color": "*primaryTextColor2"
+                                                    }
+                                                  },
+                                                  {
+                                                    "type": "text",
+                                                    "onlyText": false,
+                                                    "orderBy": 1,
+                                                    "alignment": "centerRight",
+                                                    "margin": "0,5,0,0",
+                                                    "value": "",
+                                                    "pixelWidth": 60.0,
+                                                    "key": "PickupTime",
+                                                    "style": {
+                                                      "fontSize": 12,
+                                                      "fontFamily": "RM",
+                                                      "color": "*grey2"
+                                                    }
+                                                  }
+                                                ]
+                                              },
+
+                                              {
+                                                "type": "button",
+                                                "orderBy": 2,
+                                                "height": 1.0,
+                                                "margin": "0,10,0,10",
+                                                "reducedWidth": 80.0,
+                                                "color": "*textFieldBorderColor"
+                                              },
+                                              {
+                                                "type": "text",
+                                                "onlyText": true,
+                                                "orderBy": 2,
+                                                "alignment": "centerLeft",
+                                                "value": "Drop Point",
+                                                "style": {
+                                                  "fontSize": 12,
+                                                  "fontFamily": "RM",
+                                                  "color": "*grey1"
+                                                }
+                                              },
+                                              {
+                                                "type": "rowController",
+                                                "orderBy": 2,
+                                                "crossAxisAlignment": "start",
+                                                "children": [
+                                                  {
+                                                    "type": "text",
+                                                    "onlyText": false,
+                                                    "orderBy": 1,
+                                                    "alignment": "centerLeft",
+                                                    "margin": "0,5,0,0",
+                                                    "reducedWidth": 140.0,
+                                                    "value": "No: 4B/7, Sai Sadan, 1st Floor, MMDA 3rd Main Rd, Maduravoyal",
+                                                    "key": "DropLocation",
+                                                    "style": {
+                                                      "fontSize": 11,
+                                                      "fontFamily": "RM",
+                                                      "color": "*primaryTextColor2"
+                                                    }
+                                                  },
+                                                  {
+                                                    "type": "text",
+                                                    "onlyText": false,
+                                                    "orderBy": 1,
+                                                    "alignment": "centerRight",
+                                                    "margin": "0,5,0,0",
+                                                    "value": "",
+                                                    "pixelWidth": 60.0,
+                                                    "key": "DropTime",
+                                                    "style": {
+                                                      "fontSize": 12,
+                                                      "fontFamily": "RM",
+                                                      "color": "*grey2"
+                                                    }
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+
+                                        ]
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            },
+                            {
+                              "type": "sizedBox",
+                              "height": 10.0,
+                              "orderBy": 6
+                            }
+                          ]
+                        }
+                      },
+                      "value": [
+
+                      ]
+                    }
+                  },
+                  {
+                    "type": "visibilityController",
+                    "isVisible": false,
+                    "orderBy":2,
+                    "key":"ShowCompletedRidesNoData",
+                    "child":  {
+                      "type": "columnController",
+                      "mainAxisAlignment": "center",
+                      "crossAxisAlignment": "center",
+                      "orderBy": 2,
+                      "children": [
+                        {
+                          "type": "sizedBox",
+                          "orderBy": 1,
+                          "height": 100.0
+                        },
+                        {
+                          "type": "svgController",
+                          "orderBy": 1,
+                          "image": "assets/icons/noData.svg"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              },
+
+              {
+                "type": "stackController",
+                "children": [
+                  {
+                    "type": "visibilityController",
+                    "isVisible": true,
+                    "orderBy":1,
+                    "child": {
+                      "type": "listViewBuilderController",
+                      "physics": "always",
+                      "key": "CancelledRides",
+                      "childd": {
+                        "type": "button",
+                        "orderBy": 2,
+                        "margin": "10,5,10,10",
+                        "padding": "0,10,0,5",
+                        "borderRadius": "8,8,8,8",
+                        "alignment": "center",
+                        "borderColor": "*textFieldBorderColor",
+                        "key": "ParentBtn",
+                        "clickEvent": {
+                          "eventName": "fromListView",
+                          "parentListViewKey": "CancelledRides"
+                        },
+                        "child": {
+                          "type": "columnController",
+                          "children": [
+                            {
+                              "type": "hiddenController",
+                              "key": "ShippingRequestId",
+                              "orderBy": 1,
+                              "hasInput": true,
+                              "required": true,
+                              "value": ""
+                            },
+                            {
                               "type": "rowController",
                               "orderBy": 1,
                               "children": [
@@ -382,1132 +1309,319 @@
                                   "type": "text",
                                   "orderBy": 1,
                                   "onlyText": true,
-                                  "value": "On Going Ride",
-                                  "key": "Status",
+                                  "value": "Today, ",
+                                  "key": "Day",
                                   "style": {
-                                    "fontSize": 14.0,
+                                    "fontSize": 12.0,
                                     "color": "*primaryColor",
                                     "fontFamily": "RM"
                                   }
                                 },
                                 {
+                                  "type": "text",
+                                  "orderBy": 2,
+                                  "onlyText": true,
+                                  "value": "4.50 PM, ",
+                                  "key": "Time",
+                                  "style": {
+                                    "fontSize": 12.0,
+                                    "color": "*primaryColor",
+                                    "fontFamily": "RM"
+                                  }
+                                },
+                                {
+                                  "orderBy": 4,
+                                  "type": "spacerController"
+                                },
+                                {
+                                  "orderBy": 5,
+                                  "type": "icon",
+                                  "icon": "keyboard_arrow_down_rounded",
+                                  "size": 25.0,
+                                  "color": "*primaryTextColor1"
+                                },
+                                {
+                                  "type": "sizedBox",
+                                  "width": 10.0,
+                                  "orderBy": 6
+                                }
+                              ]
+                            },
+                            {
+                              "type": "sizedBox",
+                              "height": 10.0,
+                              "orderBy": 1
+                            },
+                            {
+                              "type": "rowController",
+                              "orderBy": 1,
+                              "children": [
+                                {
                                   "type": "sizedBox",
                                   "orderBy": 1,
-                                  "width": 10.0
+                                  "width": 5.0
                                 },
                                 {
                                   "type": "svgController",
-                                  "image": "assets/icons/ongoingorder.svg",
-                                  "height": 25.0,
-                                  "width": 30.0,
-                                  "color": "*primaryColor",
+                                  "image": "assets/icons/user.svg",
+                                  "height": 40.0,
                                   "orderBy": 1
-                                }
-                              ]
-                            }
-                          },
-                          {
-                            "orderBy": 4,
-                            "type": "spacerController"
-                          },
-                          {
-                            "orderBy": 5,
-                            "type": "icon",
-                            "icon": "keyboard_arrow_down_rounded",
-                            "size": 25.0,
-                            "color": "*primaryTextColor1"
-                          },
-                          {
-                            "type": "sizedBox",
-                            "width": 10.0,
-                            "orderBy": 6
-                          }
-                        ]
-                      },
-                      {
-                        "type": "sizedBox",
-                        "height": 10.0,
-                        "orderBy": 1
-                      },
-                      {
-                        "type": "rowController",
-                        "orderBy": 1,
-                        "children": [
-                          {
-                            "type": "sizedBox",
-                            "orderBy": 1,
-                            "width": 5.0
-                          },
-                          {
-                            "type": "svgController",
-                            "image": "assets/icons/user.svg",
-                            "height": 40.0,
-                            "orderBy": 1
-                          },
-                          {
-                            "type": "sizedBox",
-                            "orderBy": 1,
-                            "width": 5.0
-                          },
-                          {
-                            "type": "expandedController",
-                            "orderBy": 1,
-                            "flex": 2,
-                            "child": {
-                              "type": "columnController",
-                              "crossAxisAlignment": "start",
-                              "children": [
-                                {
-                                  "type": "text",
-                                  "orderBy": 2,
-                                  "onlyText": true,
-                                  "value": "Mr. Vijay Humar",
-                                  "key": "Name",
-                                  "style": {
-                                    "fontSize": 14,
-                                    "fontFamily": "RM",
-                                    "color": "*primaryTextColor2"
-                                  }
                                 },
                                 {
                                   "type": "sizedBox",
-                                  "orderBy": 2,
-                                  "height": 3.0
-                                },
-                                {
-                                  "type": "text",
-                                  "orderBy": 2,
-                                  "onlyText": true,
-                                  "value": "Cash Pay",
-                                  "key": "PaymentType",
-                                  "style": {
-                                    "fontSize": 12,
-                                    "fontFamily": "RM",
-                                    "color": "*primaryColor"
-                                  }
-                                }
-                              ]
-                            }
-                          },
-                          {
-                            "type": "sizedBox",
-                            "orderBy": 1,
-                            "width": 5.0
-                          },
-                          {
-                            "type": "expandedController",
-                            "orderBy": 1,
-                            "flex": 1,
-                            "child": {
-                              "type": "columnController",
-                              "crossAxisAlignment": "end",
-                              "children": [
-
-                                {
-                                  "type": "text",
                                   "orderBy": 1,
-                                  "value": "250.00",
-                                  "onlyText": true,
-                                  "key": "TotalPrice",
-                                  "style": {
-                                    "fontSize": 15,
-                                    "fontFamily": "RB",
-                                    "color": "*primaryTextColor2"
-                                  }
+                                  "width": 5.0
                                 },
                                 {
-                                  "type": "text",
-                                  "orderBy": 2,
-                                  "onlyText": true,
-                                  "value": "25 KM",
-                                  "key": "TotalDistance",
-                                  "style": {
-                                    "fontSize": 12,
-                                    "fontFamily": "RR",
-                                    "color": "*primaryTextColor1"
-                                  }
-                                }
-                              ]
-                            }
-                          },
-                          {
-                            "type": "sizedBox",
-                            "orderBy": 1,
-                            "width": 15.0
-                          }
-                        ]
-                      },
-                      {
-                        "type": "expansionTileController",
-                        "orderBy": 2,
-                        "expand": false,
-                        "key": "LocationDetailsExpansionTile",
-                        "child": {
-                          "type": "button",
-                          "clickEvent": {
-                            "eventName": "cs"
-                          },
-                          "padding": "0,8,0,0",
-                          "child": {
-                            "type": "columnController",
-                            "children": [
-                              {
-                                "type": "intrinsicHeightController",
-                                "orderBy": 1,
-                                "child": {
-                                  "type": "rowController",
-                                  "mainAxisAlignment": "start",
-                                  "children": [
-                                    {
-                                      "type": "button",
-                                      "pixelWidth": 50.0,
-                                      "orderBy": 1,
-                                      "child": {
-                                        "type": "columnController",
-                                        "children": [
-                                          {
-                                            "type": "svgController",
-                                            "image": "assets/icons/pickup-location.svg",
-                                            "height": 20.0,
-                                            "orderBy": 1
-                                          },
-                                          {
-                                            "type": "expandedController",
-                                            "orderBy": 1,
-                                            "child": {
-                                              "type": "button",
-                                              "pixelWidth": 3.0,
-                                              "color": "*textFieldBorderColor"
-                                            }
-                                          },
-                                          {
-                                            "type": "svgController",
-                                            "image": "assets/icons/drop-location.svg",
-                                            "height": 20.0,
-                                            "orderBy": 1
-                                          }
-                                        ]
-                                      }
-                                    },
-                                    {
-                                      "type": "columnController",
-                                      "crossAxisAlignment": "start",
-                                      "orderBy": 2,
-                                      "children": [
-                                        {
-                                          "type": "text",
-                                          "onlyText": true,
-                                          "orderBy": 1,
-                                          "alignment": "centerLeft",
-                                          "value": "Pickup Point",
-                                          "style": {
-                                            "fontSize": 12,
-                                            "fontFamily": "RM",
-                                            "color": "*grey1"
-                                          }
-                                        },
-                                        {
-                                          "type": "rowController",
-                                          "crossAxisAlignment": "start",
-                                          "orderBy": 1,
-                                          "children": [
-                                            {
-                                              "type": "text",
-                                              "onlyText": false,
-                                              "orderBy": 1,
-                                              "alignment": "centerLeft",
-                                              "margin": "0,5,0,0",
-                                              "reducedWidth": 140.0,
-                                              "value": "No: 4B/7, Sai Sadan, 1st Floor, MMDA 3rd Main Rd, Maduravoyal",
-                                              "key": "PickupLocation",
-                                              "style": {
-                                                "fontSize": 11,
-                                                "fontFamily": "RM",
-                                                "color": "*primaryTextColor2"
-                                              }
-                                            },
-                                            {
-                                              "type": "text",
-                                              "onlyText": false,
-                                              "orderBy": 1,
-                                              "alignment": "centerRight",
-                                              "margin": "0,5,0,0",
-                                              "value": "",
-                                              "pixelWidth": 60.0,
-                                              "key": "PickupTime",
-                                              "style": {
-                                                "fontSize": 12,
-                                                "fontFamily": "RM",
-                                                "color": "*grey2"
-                                              }
-                                            }
-                                          ]
-                                        },
-
-                                        {
-                                          "type": "button",
-                                          "orderBy": 2,
-                                          "height": 1.0,
-                                          "margin": "0,10,0,10",
-                                          "reducedWidth": 80.0,
-                                          "color": "*textFieldBorderColor"
-                                        },
-                                        {
-                                          "type": "text",
-                                          "onlyText": true,
-                                          "orderBy": 2,
-                                          "alignment": "centerLeft",
-                                          "value": "Drop Point",
-                                          "style": {
-                                            "fontSize": 12,
-                                            "fontFamily": "RM",
-                                            "color": "*grey1"
-                                          }
-                                        },
-                                        {
-                                          "type": "rowController",
-                                          "orderBy": 2,
-                                          "crossAxisAlignment": "start",
-                                          "children": [
-                                            {
-                                              "type": "text",
-                                              "onlyText": false,
-                                              "orderBy": 1,
-                                              "alignment": "centerLeft",
-                                              "margin": "0,5,0,0",
-                                              "reducedWidth": 140.0,
-                                              "value": "No: 4B/7, Sai Sadan, 1st Floor, MMDA 3rd Main Rd, Maduravoyal",
-                                              "key": "DropLocation",
-                                              "style": {
-                                                "fontSize": 11,
-                                                "fontFamily": "RM",
-                                                "color": "*primaryTextColor2"
-                                              }
-                                            },
-                                            {
-                                              "type": "text",
-                                              "onlyText": false,
-                                              "orderBy": 1,
-                                              "alignment": "centerRight",
-                                              "margin": "0,5,0,0",
-                                              "value": "",
-                                              "pixelWidth": 60.0,
-                                              "key": "DropTime",
-                                              "style": {
-                                                "fontSize": 12,
-                                                "fontFamily": "RM",
-                                                "color": "*grey2"
-                                              }
-                                            }
-                                          ]
-                                        }
-                                      ]
-                                    }
-
-                                  ]
-                                }
-                              },
-                              {
-                                "type": "visibilityController",
-                                "isVisible": false,
-                                "orderBy": 2,
-                                "key": "ShowAcceptReject",
-                                "child": {
-                                  "type": "paddingController",
-                                  "padding": "0,10,0,0",
+                                  "type": "expandedController",
+                                  "orderBy": 1,
+                                  "flex": 2,
                                   "child": {
-                                    "type": "rowController",
-                                    "orderBy": 4,
+                                    "type": "columnController",
+                                    "crossAxisAlignment": "start",
                                     "children": [
                                       {
-                                        "type": "sizedBox",
-                                        "orderBy": 1,
-                                        "width": 15.0
-                                      },
-                                      {
-                                        "type": "expandedController",
-                                        "orderBy": 1,
-                                        "child": {
-                                          "type": "button",
-                                          "height": 40.0,
-                                          "borderColor": "*primaryColor",
-                                          "borderRadius": "6,6,6,6",
-                                          "alignment": "center",
-                                          "key": "CancelBtn",
-                                          "clickEvent": {},
-                                          "child": {
-                                            "type": "text",
-                                            "onlyText": true,
-                                            "value": "Cancel",
-                                            "style": {
-                                              "fontSize": 15.0,
-                                              "fontFamily": "RR",
-                                              "color": "*primaryTextColor1"
-                                            }
-                                          }
+                                        "type": "text",
+                                        "orderBy": 2,
+                                        "onlyText": true,
+                                        "value": "Mr. Vijay Humar",
+                                        "key": "Name",
+                                        "style": {
+                                          "fontSize": 14,
+                                          "fontFamily": "RM",
+                                          "color": "*primaryTextColor2"
                                         }
-                                      },
-                                      {
-                                        "type": "sizedBox",
-                                        "orderBy": 1,
-                                        "width": 15.0
-                                      },
-                                      {
-                                        "type": "expandedController",
-                                        "orderBy": 1,
-                                        "child": {
-                                          "type": "button",
-                                          "height": 40.0,
-                                          "color": "*primaryColor",
-                                          "borderRadius": "6,6,6,6",
-                                          "alignment": "center",
-                                          "key": "AcceptBtn",
-                                          "clickEvent": {},
-                                          "child": {
-                                            "type": "text",
-                                            "onlyText": true,
-                                            "value": "Accept",
-                                            "style": {
-                                              "fontSize": 15.0,
-                                              "fontFamily": "RR",
-                                              "color": "ffffff"
-                                            }
-                                          }
-                                        }
-
-                                      },
-                                      {
-                                        "type": "sizedBox",
-                                        "orderBy": 1,
-                                        "width": 15.0
                                       }
                                     ]
                                   }
-                                }
-                              }
-                            ]
-                          }
-                        }
-                      },
-                      {
-                        "type": "sizedBox",
-                        "height": 10.0,
-                        "orderBy": 6
-                      }
-                    ]
-                  }
-                },
-                "value": [
-
-                ]
-              },
-
-              {
-                "type": "listViewBuilderController",
-                "physics": "always",
-                "key": "CompletedRides",
-                "childd": {
-                  "type": "button",
-                  "orderBy": 2,
-                  "margin": "10,5,10,10",
-                  "padding": "0,10,0,5",
-                  "borderRadius": "8,8,8,8",
-                  "alignment": "center",
-                  "borderColor": "*textFieldBorderColor",
-                  "key": "ParentBtn",
-                  "clickEvent": {
-                    "eventName": "fromListView",
-                    "parentListViewKey": "CompletedRides"
-                  },
-                  "child": {
-                    "type": "columnController",
-                    "children": [
-                      {
-                        "type": "hiddenController",
-                        "key": "ShippingRequestId",
-                        "orderBy": 1,
-                        "hasInput": true,
-                        "required": true,
-                        "value": ""
-                      },
-                      {
-                        "type": "rowController",
-                        "orderBy": 1,
-                        "children": [
-                          {
-                            "type": "sizedBox",
-                            "width": 20.0,
-                            "orderBy": 1
-                          },
-                          {
-                            "type": "text",
-                            "orderBy": 1,
-                            "onlyText": true,
-                            "value": "Today, ",
-                            "key": "Day",
-                            "style": {
-                              "fontSize": 12.0,
-                              "color": "*primaryColor",
-                              "fontFamily": "RM"
-                            }
-                          },
-                          {
-                            "type": "text",
-                            "orderBy": 2,
-                            "onlyText": true,
-                            "value": "4.50 PM, ",
-                            "key": "Time",
-                            "style": {
-                              "fontSize": 12.0,
-                              "color": "*primaryColor",
-                              "fontFamily": "RM"
-                            }
-                          },
-                          {
-                            "orderBy": 4,
-                            "type": "spacerController"
-                          },
-                          {
-                            "orderBy": 5,
-                            "type": "icon",
-                            "icon": "keyboard_arrow_down_rounded",
-                            "size": 25.0,
-                            "color": "*primaryTextColor1"
-                          },
-                          {
-                            "type": "sizedBox",
-                            "width": 10.0,
-                            "orderBy": 6
-                          }
-                        ]
-                      },
-                      {
-                        "type": "sizedBox",
-                        "height": 10.0,
-                        "orderBy": 1
-                      },
-                      {
-                        "type": "rowController",
-                        "orderBy": 1,
-                        "children": [
-                          {
-                            "type": "sizedBox",
-                            "orderBy": 1,
-                            "width": 5.0
-                          },
-                          {
-                            "type": "svgController",
-                            "image": "assets/icons/user.svg",
-                            "height": 40.0,
-                            "orderBy": 1
-                          },
-                          {
-                            "type": "sizedBox",
-                            "orderBy": 1,
-                            "width": 5.0
-                          },
-                          {
-                            "type": "expandedController",
-                            "orderBy": 1,
-                            "flex": 2,
-                            "child": {
-                              "type": "columnController",
-                              "crossAxisAlignment": "start",
-                              "children": [
+                                },
                                 {
-                                  "type": "text",
-                                  "orderBy": 2,
-                                  "onlyText": true,
-                                  "value": "Mr. Vijay Humar",
-                                  "key": "Name",
-                                  "style": {
-                                    "fontSize": 14,
-                                    "fontFamily": "RM",
-                                    "color": "*primaryTextColor2"
+                                  "type": "sizedBox",
+                                  "orderBy": 1,
+                                  "width": 5.0
+                                },
+                                {
+                                  "type": "expandedController",
+                                  "orderBy": 1,
+                                  "flex": 1,
+                                  "child": {
+                                    "type": "columnController",
+                                    "crossAxisAlignment": "end",
+                                    "children": [
+
+                                      {
+                                        "type": "text",
+                                        "orderBy": 1,
+                                        "value": "250.00",
+                                        "onlyText": true,
+                                        "key": "TotalPrice",
+                                        "style": {
+                                          "fontSize": 15,
+                                          "fontFamily": "RB",
+                                          "color": "*primaryTextColor2"
+                                        }
+                                      },
+                                      {
+                                        "type": "text",
+                                        "orderBy": 2,
+                                        "onlyText": true,
+                                        "value": "25 KM",
+                                        "key": "TotalDistance",
+                                        "style": {
+                                          "fontSize": 12,
+                                          "fontFamily": "RR",
+                                          "color": "*primaryTextColor1"
+                                        }
+                                      }
+                                    ]
                                   }
                                 },
                                 {
                                   "type": "sizedBox",
-                                  "orderBy": 2,
-                                  "height": 3.0
-                                },
-                                {
-                                  "type": "text",
-                                  "orderBy": 2,
-                                  "onlyText": true,
-                                  "value": "Cash Pay",
-                                  "key": "PaymentType",
-                                  "style": {
-                                    "fontSize": 12,
-                                    "fontFamily": "RM",
-                                    "color": "*primaryColor"
-                                  }
-                                }
-                              ]
-                            }
-                          },
-                          {
-                            "type": "sizedBox",
-                            "orderBy": 1,
-                            "width": 5.0
-                          },
-                          {
-                            "type": "expandedController",
-                            "orderBy": 1,
-                            "flex": 1,
-                            "child": {
-                              "type": "columnController",
-                              "crossAxisAlignment": "end",
-                              "children": [
-
-                                {
-                                  "type": "text",
                                   "orderBy": 1,
-                                  "value": "250.00",
-                                  "onlyText": true,
-                                  "key": "TotalPrice",
-                                  "style": {
-                                    "fontSize": 15,
-                                    "fontFamily": "RB",
-                                    "color": "*primaryTextColor2"
-                                  }
-                                },
-                                {
-                                  "type": "text",
-                                  "orderBy": 2,
-                                  "onlyText": true,
-                                  "value": "25 KM",
-                                  "key": "TotalDistance",
-                                  "style": {
-                                    "fontSize": 12,
-                                    "fontFamily": "RR",
-                                    "color": "*primaryTextColor1"
-                                  }
+                                  "width": 15.0
                                 }
                               ]
-                            }
-                          },
-                          {
-                            "type": "sizedBox",
-                            "orderBy": 1,
-                            "width": 15.0
-                          }
-                        ]
-                      },
-                      {
-                        "type": "expansionTileController",
-                        "orderBy": 2,
-                        "expand": false,
-                        "key": "LocationDetailsExpansionTile",
-                        "child": {
-                          "type": "button",
-                          "clickEvent": {
-                            "eventName": "cs"
-                          },
-                          "padding": "0,8,0,0",
-                          "child": {
-                            "type": "columnController",
-                            "children": [
-                              {
-                                "type": "intrinsicHeightController",
-                                "orderBy": 1,
+                            },
+                            {
+                              "type": "expansionTileController",
+                              "orderBy": 2,
+                              "expand": false,
+                              "key": "LocationDetailsExpansionTile",
+                              "child": {
+                                "type": "button",
+                                "clickEvent": {
+                                  "eventName": "cs"
+                                },
+                                "padding": "0,8,0,0",
                                 "child": {
-                                  "type": "rowController",
-                                  "mainAxisAlignment": "start",
+                                  "type": "columnController",
                                   "children": [
                                     {
-                                      "type": "button",
-                                      "pixelWidth": 50.0,
+                                      "type": "intrinsicHeightController",
                                       "orderBy": 1,
                                       "child": {
-                                        "type": "columnController",
+                                        "type": "rowController",
+                                        "mainAxisAlignment": "start",
                                         "children": [
                                           {
-                                            "type": "svgController",
-                                            "image": "assets/icons/pickup-location.svg",
-                                            "height": 20.0,
-                                            "orderBy": 1
-                                          },
-                                          {
-                                            "type": "expandedController",
+                                            "type": "button",
+                                            "pixelWidth": 50.0,
                                             "orderBy": 1,
                                             "child": {
-                                              "type": "button",
-                                              "pixelWidth": 3.0,
-                                              "color": "*textFieldBorderColor"
+                                              "type": "columnController",
+                                              "children": [
+                                                {
+                                                  "type": "svgController",
+                                                  "image": "assets/icons/pickup-location.svg",
+                                                  "height": 20.0,
+                                                  "orderBy": 1
+                                                },
+                                                {
+                                                  "type": "expandedController",
+                                                  "orderBy": 1,
+                                                  "child": {
+                                                    "type": "button",
+                                                    "pixelWidth": 3.0,
+                                                    "color": "*textFieldBorderColor"
+                                                  }
+                                                },
+                                                {
+                                                  "type": "svgController",
+                                                  "image": "assets/icons/drop-location.svg",
+                                                  "height": 20.0,
+                                                  "orderBy": 1
+                                                }
+                                              ]
                                             }
                                           },
                                           {
-                                            "type": "svgController",
-                                            "image": "assets/icons/drop-location.svg",
-                                            "height": 20.0,
-                                            "orderBy": 1
+                                            "type": "columnController",
+                                            "crossAxisAlignment": "start",
+                                            "orderBy": 2,
+                                            "children": [
+                                              {
+                                                "type": "text",
+                                                "onlyText": true,
+                                                "orderBy": 1,
+                                                "alignment": "centerLeft",
+                                                "value": "Pickup Point",
+                                                "style": {
+                                                  "fontSize": 12,
+                                                  "fontFamily": "RM",
+                                                  "color": "*grey1"
+                                                }
+                                              },
+                                              {
+                                                "type": "rowController",
+                                                "orderBy": 1,
+                                                "children": [
+                                                  {
+                                                    "type": "text",
+                                                    "onlyText": false,
+                                                    "orderBy": 1,
+                                                    "alignment": "centerLeft",
+                                                    "margin": "0,5,0,0",
+                                                    "reducedWidth": 80.0,
+                                                    "value": "No: 4B/7, Sai Sadan, 1st Floor, MMDA 3rd Main Rd, Maduravoyal",
+                                                    "key": "PickupLocation",
+                                                    "style": {
+                                                      "fontSize": 11,
+                                                      "fontFamily": "RM",
+                                                      "color": "*primaryTextColor2"
+                                                    }
+                                                  }
+                                                ]
+                                              },
+
+                                              {
+                                                "type": "button",
+                                                "orderBy": 2,
+                                                "height": 1.0,
+                                                "margin": "0,10,0,10",
+                                                "reducedWidth": 100.0,
+                                                "color": "*textFieldBorderColor"
+                                              },
+                                              {
+                                                "type": "text",
+                                                "onlyText": true,
+                                                "orderBy": 2,
+                                                "alignment": "centerLeft",
+                                                "value": "Drop Point",
+                                                "style": {
+                                                  "fontSize": 12,
+                                                  "fontFamily": "RM",
+                                                  "color": "*grey1"
+                                                }
+                                              },
+                                              {
+                                                "type": "rowController",
+                                                "orderBy": 2,
+                                                "children": [
+                                                  {
+                                                    "type": "text",
+                                                    "onlyText": false,
+                                                    "orderBy": 1,
+                                                    "alignment": "centerLeft",
+                                                    "margin": "0,5,0,0",
+                                                    "reducedWidth": 80.0,
+                                                    "value": "No: 4B/7, Sai Sadan, 1st Floor, MMDA 3rd Main Rd, Maduravoyal",
+                                                    "key": "DropLocation",
+                                                    "style": {
+                                                      "fontSize": 11,
+                                                      "fontFamily": "RM",
+                                                      "color": "*primaryTextColor2"
+                                                    }
+                                                  }
+                                                ]
+                                              }
+                                            ]
                                           }
+
                                         ]
                                       }
-                                    },
-                                    {
-                                      "type": "columnController",
-                                      "crossAxisAlignment": "start",
-                                      "orderBy": 2,
-                                      "children": [
-                                        {
-                                          "type": "text",
-                                          "onlyText": true,
-                                          "orderBy": 1,
-                                          "alignment": "centerLeft",
-                                          "value": "Pickup Point",
-                                          "style": {
-                                            "fontSize": 12,
-                                            "fontFamily": "RM",
-                                            "color": "*grey1"
-                                          }
-                                        },
-                                        {
-                                          "type": "rowController",
-                                          "crossAxisAlignment": "start",
-                                          "orderBy": 1,
-                                          "children": [
-                                            {
-                                              "type": "text",
-                                              "onlyText": false,
-                                              "orderBy": 1,
-                                              "alignment": "centerLeft",
-                                              "margin": "0,5,0,0",
-                                              "reducedWidth": 140.0,
-                                              "value": "No: 4B/7, Sai Sadan, 1st Floor, MMDA 3rd Main Rd, Maduravoyal",
-                                              "key": "PickupLocation",
-                                              "style": {
-                                                "fontSize": 11,
-                                                "fontFamily": "RM",
-                                                "color": "*primaryTextColor2"
-                                              }
-                                            },
-                                            {
-                                              "type": "text",
-                                              "onlyText": false,
-                                              "orderBy": 1,
-                                              "alignment": "centerRight",
-                                              "margin": "0,5,0,0",
-                                              "value": "",
-                                              "pixelWidth": 60.0,
-                                              "key": "PickupTime",
-                                              "style": {
-                                                "fontSize": 12,
-                                                "fontFamily": "RM",
-                                                "color": "*grey2"
-                                              }
-                                            }
-                                          ]
-                                        },
-
-                                        {
-                                          "type": "button",
-                                          "orderBy": 2,
-                                          "height": 1.0,
-                                          "margin": "0,10,0,10",
-                                          "reducedWidth": 80.0,
-                                          "color": "*textFieldBorderColor"
-                                        },
-                                        {
-                                          "type": "text",
-                                          "onlyText": true,
-                                          "orderBy": 2,
-                                          "alignment": "centerLeft",
-                                          "value": "Drop Point",
-                                          "style": {
-                                            "fontSize": 12,
-                                            "fontFamily": "RM",
-                                            "color": "*grey1"
-                                          }
-                                        },
-                                        {
-                                          "type": "rowController",
-                                          "orderBy": 2,
-                                          "crossAxisAlignment": "start",
-                                          "children": [
-                                            {
-                                              "type": "text",
-                                              "onlyText": false,
-                                              "orderBy": 1,
-                                              "alignment": "centerLeft",
-                                              "margin": "0,5,0,0",
-                                              "reducedWidth": 140.0,
-                                              "value": "No: 4B/7, Sai Sadan, 1st Floor, MMDA 3rd Main Rd, Maduravoyal",
-                                              "key": "DropLocation",
-                                              "style": {
-                                                "fontSize": 11,
-                                                "fontFamily": "RM",
-                                                "color": "*primaryTextColor2"
-                                              }
-                                            },
-                                            {
-                                              "type": "text",
-                                              "onlyText": false,
-                                              "orderBy": 1,
-                                              "alignment": "centerRight",
-                                              "margin": "0,5,0,0",
-                                              "value": "",
-                                              "pixelWidth": 60.0,
-                                              "key": "DropTime",
-                                              "style": {
-                                                "fontSize": 12,
-                                                "fontFamily": "RM",
-                                                "color": "*grey2"
-                                              }
-                                            }
-                                          ]
-                                        }
-                                      ]
                                     }
-
                                   ]
                                 }
                               }
-                            ]
-                          }
+                            },
+                            {
+                              "type": "sizedBox",
+                              "height": 10.0,
+                              "orderBy": 6
+                            }
+                          ]
                         }
                       },
-                      {
-                        "type": "sizedBox",
-                        "height": 10.0,
-                        "orderBy": 6
-                      }
-                    ]
-                  }
-                },
-                "value": [
+                      "value": [
 
-                ]
-              },
-
-              {
-                "type": "listViewBuilderController",
-                "physics": "always",
-                "key": "CancelledRides",
-                "childd": {
-                  "type": "button",
-                  "orderBy": 2,
-                  "margin": "10,5,10,10",
-                  "padding": "0,10,0,5",
-                  "borderRadius": "8,8,8,8",
-                  "alignment": "center",
-                  "borderColor": "*textFieldBorderColor",
-                  "key": "ParentBtn",
-                  "clickEvent": {
-                    "eventName": "fromListView",
-                    "parentListViewKey": "CancelledRides"
+                      ]
+                    }
                   },
-                  "child": {
-                    "type": "columnController",
-                    "children": [
-                      {
-                        "type": "hiddenController",
-                        "key": "ShippingRequestId",
-                        "orderBy": 1,
-                        "hasInput": true,
-                        "required": true,
-                        "value": ""
-                      },
-                      {
-                        "type": "rowController",
-                        "orderBy": 1,
-                        "children": [
-                          {
-                            "type": "sizedBox",
-                            "width": 20.0,
-                            "orderBy": 1
-                          },
-                          {
-                            "type": "text",
-                            "orderBy": 1,
-                            "onlyText": true,
-                            "value": "Today, ",
-                            "key": "Day",
-                            "style": {
-                              "fontSize": 12.0,
-                              "color": "*primaryColor",
-                              "fontFamily": "RM"
-                            }
-                          },
-                          {
-                            "type": "text",
-                            "orderBy": 2,
-                            "onlyText": true,
-                            "value": "4.50 PM, ",
-                            "key": "Time",
-                            "style": {
-                              "fontSize": 12.0,
-                              "color": "*primaryColor",
-                              "fontFamily": "RM"
-                            }
-                          },
-                          {
-                            "orderBy": 4,
-                            "type": "spacerController"
-                          },
-                          {
-                            "orderBy": 5,
-                            "type": "icon",
-                            "icon": "keyboard_arrow_down_rounded",
-                            "size": 25.0,
-                            "color": "*primaryTextColor1"
-                          },
-                          {
-                            "type": "sizedBox",
-                            "width": 10.0,
-                            "orderBy": 6
-                          }
-                        ]
-                      },
-                      {
-                        "type": "sizedBox",
-                        "height": 10.0,
-                        "orderBy": 1
-                      },
-                      {
-                        "type": "rowController",
-                        "orderBy": 1,
-                        "children": [
-                          {
-                            "type": "sizedBox",
-                            "orderBy": 1,
-                            "width": 5.0
-                          },
-                          {
-                            "type": "svgController",
-                            "image": "assets/icons/user.svg",
-                            "height": 40.0,
-                            "orderBy": 1
-                          },
-                          {
-                            "type": "sizedBox",
-                            "orderBy": 1,
-                            "width": 5.0
-                          },
-                          {
-                            "type": "expandedController",
-                            "orderBy": 1,
-                            "flex": 2,
-                            "child": {
-                              "type": "columnController",
-                              "crossAxisAlignment": "start",
-                              "children": [
-                                {
-                                  "type": "text",
-                                  "orderBy": 2,
-                                  "onlyText": true,
-                                  "value": "Mr. Vijay Humar",
-                                  "key": "Name",
-                                  "style": {
-                                    "fontSize": 14,
-                                    "fontFamily": "RM",
-                                    "color": "*primaryTextColor2"
-                                  }
-                                }
-                              ]
-                            }
-                          },
-                          {
-                            "type": "sizedBox",
-                            "orderBy": 1,
-                            "width": 5.0
-                          },
-                          {
-                            "type": "expandedController",
-                            "orderBy": 1,
-                            "flex": 1,
-                            "child": {
-                              "type": "columnController",
-                              "crossAxisAlignment": "end",
-                              "children": [
-
-                                {
-                                  "type": "text",
-                                  "orderBy": 1,
-                                  "value": "250.00",
-                                  "onlyText": true,
-                                  "key": "TotalPrice",
-                                  "style": {
-                                    "fontSize": 15,
-                                    "fontFamily": "RB",
-                                    "color": "*primaryTextColor2"
-                                  }
-                                },
-                                {
-                                  "type": "text",
-                                  "orderBy": 2,
-                                  "onlyText": true,
-                                  "value": "25 KM",
-                                  "key": "TotalDistance",
-                                  "style": {
-                                    "fontSize": 12,
-                                    "fontFamily": "RR",
-                                    "color": "*primaryTextColor1"
-                                  }
-                                }
-                              ]
-                            }
-                          },
-                          {
-                            "type": "sizedBox",
-                            "orderBy": 1,
-                            "width": 15.0
-                          }
-                        ]
-                      },
-                      {
-                        "type": "expansionTileController",
-                        "orderBy": 2,
-                        "expand": false,
-                        "key": "LocationDetailsExpansionTile",
-                        "child": {
-                          "type": "button",
-                          "clickEvent": {
-                            "eventName": "cs"
-                          },
-                          "padding": "0,8,0,0",
-                          "child": {
-                            "type": "columnController",
-                            "children": [
-                              {
-                                "type": "intrinsicHeightController",
-                                "orderBy": 1,
-                                "child": {
-                                  "type": "rowController",
-                                  "mainAxisAlignment": "start",
-                                  "children": [
-                                    {
-                                      "type": "button",
-                                      "pixelWidth": 50.0,
-                                      "orderBy": 1,
-                                      "child": {
-                                        "type": "columnController",
-                                        "children": [
-                                          {
-                                            "type": "svgController",
-                                            "image": "assets/icons/pickup-location.svg",
-                                            "height": 20.0,
-                                            "orderBy": 1
-                                          },
-                                          {
-                                            "type": "expandedController",
-                                            "orderBy": 1,
-                                            "child": {
-                                              "type": "button",
-                                              "pixelWidth": 3.0,
-                                              "color": "*textFieldBorderColor"
-                                            }
-                                          },
-                                          {
-                                            "type": "svgController",
-                                            "image": "assets/icons/drop-location.svg",
-                                            "height": 20.0,
-                                            "orderBy": 1
-                                          }
-                                        ]
-                                      }
-                                    },
-                                    {
-                                      "type": "columnController",
-                                      "crossAxisAlignment": "start",
-                                      "orderBy": 2,
-                                      "children": [
-                                        {
-                                          "type": "text",
-                                          "onlyText": true,
-                                          "orderBy": 1,
-                                          "alignment": "centerLeft",
-                                          "value": "Pickup Point",
-                                          "style": {
-                                            "fontSize": 12,
-                                            "fontFamily": "RM",
-                                            "color": "*grey1"
-                                          }
-                                        },
-                                        {
-                                          "type": "rowController",
-                                          "orderBy": 1,
-                                          "children": [
-                                            {
-                                              "type": "text",
-                                              "onlyText": false,
-                                              "orderBy": 1,
-                                              "alignment": "centerLeft",
-                                              "margin": "0,5,0,0",
-                                              "reducedWidth": 80.0,
-                                              "value": "No: 4B/7, Sai Sadan, 1st Floor, MMDA 3rd Main Rd, Maduravoyal",
-                                              "key": "PickupLocation",
-                                              "style": {
-                                                "fontSize": 11,
-                                                "fontFamily": "RM",
-                                                "color": "*primaryTextColor2"
-                                              }
-                                            }
-                                          ]
-                                        },
-
-                                        {
-                                          "type": "button",
-                                          "orderBy": 2,
-                                          "height": 1.0,
-                                          "margin": "0,10,0,10",
-                                          "reducedWidth": 100.0,
-                                          "color": "*textFieldBorderColor"
-                                        },
-                                        {
-                                          "type": "text",
-                                          "onlyText": true,
-                                          "orderBy": 2,
-                                          "alignment": "centerLeft",
-                                          "value": "Drop Point",
-                                          "style": {
-                                            "fontSize": 12,
-                                            "fontFamily": "RM",
-                                            "color": "*grey1"
-                                          }
-                                        },
-                                        {
-                                          "type": "rowController",
-                                          "orderBy": 2,
-                                          "children": [
-                                            {
-                                              "type": "text",
-                                              "onlyText": false,
-                                              "orderBy": 1,
-                                              "alignment": "centerLeft",
-                                              "margin": "0,5,0,0",
-                                              "reducedWidth": 80.0,
-                                              "value": "No: 4B/7, Sai Sadan, 1st Floor, MMDA 3rd Main Rd, Maduravoyal",
-                                              "key": "DropLocation",
-                                              "style": {
-                                                "fontSize": 11,
-                                                "fontFamily": "RM",
-                                                "color": "*primaryTextColor2"
-                                              }
-                                            }
-                                          ]
-                                        }
-                                      ]
-                                    }
-
-                                  ]
-                                }
-                              }
-                            ]
-                          }
+                  {
+                    "type": "visibilityController",
+                    "isVisible": false,
+                    "orderBy":2,
+                    "key":"ShowCancelledRidesNoData",
+                    "child":  {
+                      "type": "columnController",
+                      "mainAxisAlignment": "center",
+                      "crossAxisAlignment": "center",
+                      "orderBy": 2,
+                      "children": [
+                        {
+                          "type": "sizedBox",
+                          "orderBy": 1,
+                          "height": 100.0
+                        },
+                        {
+                          "type": "svgController",
+                          "orderBy": 1,
+                          "image": "assets/icons/noData.svg"
                         }
-                      },
-                      {
-                        "type": "sizedBox",
-                        "height": 10.0,
-                        "orderBy": 6
-                      }
-                    ]
+                      ]
+                    }
                   }
-                },
-                "value": [
-
                 ]
               }
 

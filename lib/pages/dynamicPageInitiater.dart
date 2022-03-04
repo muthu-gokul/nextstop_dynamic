@@ -37,6 +37,7 @@ class DynamicPageInitiaterState extends State<DynamicPageInitiater> implements M
   String guid="";
 
   var showLoader=false.obs;
+  var showLoader2=false.obs;
 
   parseJson() async{
     String data = await DefaultAssetBundle.of(context).loadString("assets/json/${widget.pageIdentifier}.json");
@@ -97,6 +98,7 @@ class DynamicPageInitiaterState extends State<DynamicPageInitiater> implements M
     print("initSS");
     if(fromUrl){
       showLoader.value=true;
+      showLoader2.value=true;
       await GetUiNotifier().getUiJson(widget.pageIdentifier,LOGINUSERID).then((value){
         showLoader.value=false;
       //  log("value $value");
@@ -144,7 +146,14 @@ class DynamicPageInitiaterState extends State<DynamicPageInitiater> implements M
               });
             });
           }
-          setState(() {});
+          showLoader2.value=false;
+          WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+            //setState(() {});
+          });
+
+        }
+        else{
+          showLoader2.value=false;
         }
       });
     }
@@ -226,38 +235,51 @@ class DynamicPageInitiaterState extends State<DynamicPageInitiater> implements M
       bottom: true,
       top: true,
       child: Scaffold(
+        backgroundColor: Colors.white,
         // resizeToAvoidBottomInset: false,
         body:Stack(
           children: [
-            parsedJson==null?Container(
-              child: Center(
-                child: Text("Page Not Found"),
-              ),
-            ): Container(
-              // alignment: Alignment.center,
-              alignment: parseAlignment(parsedJson['alignment']),
-              height: SizeConfig.screenHeight!-topPad,
-              width: SizeConfig.screenWidth,
-              color: Colors.white,
-              child:parsedJson.containsKey('isOwnWidget')?widgets[0]:
-              Obx(
-                      ()=>SingleChildScrollView(
-                    controller: scrollController,
-                    //physics: NeverScrollableScrollPhysics(),
-                    physics: widget.isScrollControll?keyboardVisible.value?AlwaysScrollableScrollPhysics():
-                    NeverScrollableScrollPhysics():AlwaysScrollableScrollPhysics(),
-                    child: Column(
-                      crossAxisAlignment: parseCrossAxisAlignment(parsedJson['crossAxisAlignment']),
-                      mainAxisAlignment: parseMainAxisAlignment(parsedJson['mainAxisAlignment']),
-                      mainAxisSize: keyboardVisible.value?MainAxisSize.min:MainAxisSize.min,
-                      children: [
-                        for(int i=0;i<widgets.length;i++)
-                          widgets[i],
-                      ],
+            Obx(
+                ()=>Visibility(
+                  visible:showLoader2.value? parsedJson==null:parsedJson==null,
+                  child: Container(
+                    child: Center(
+                      child: Text("Page Not Found"),
                     ),
-                  )
-              ),
+                  ),
+                )
             ),
+            Obx(
+                 ()=>Visibility(
+                  visible:showLoader2.value? parsedJson!=null:parsedJson!=null,
+                  child: Container(
+                    // alignment: Alignment.center,
+                    alignment: parseAlignment(parsedJson['alignment']),
+                    height: SizeConfig.screenHeight!-topPad,
+                    width: SizeConfig.screenWidth,
+                    color: Colors.white,
+                    child:parsedJson.containsKey('isOwnWidget')?widgets[0]:
+                    Obx(
+                            ()=>SingleChildScrollView(
+                          controller: scrollController,
+                          //physics: NeverScrollableScrollPhysics(),
+                          physics: widget.isScrollControll?keyboardVisible.value?AlwaysScrollableScrollPhysics():
+                          NeverScrollableScrollPhysics():AlwaysScrollableScrollPhysics(),
+                          child: Column(
+                            crossAxisAlignment: parseCrossAxisAlignment(parsedJson['crossAxisAlignment']),
+                            mainAxisAlignment: parseMainAxisAlignment(parsedJson['mainAxisAlignment']),
+                            mainAxisSize: keyboardVisible.value?MainAxisSize.min:MainAxisSize.min,
+                            children: [
+                              for(int i=0;i<widgets.length;i++)
+                                widgets[i],
+                            ],
+                          ),
+                        )
+                    ),
+                  ),
+                )
+            ),
+
 
             Obx(
                 ()=>Visibility(

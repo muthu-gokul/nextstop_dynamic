@@ -211,6 +211,12 @@ List<dynamic> getWidgets(List parsed,MyCallback myCallback){
     else if(element['type']=='ratingBarController'){
       widgets.add(RatingBarController(map: element, myCallback: myCallback,));
     }
+    else if(element['type']=='swipeListViewBuilderController'){
+      widgets.add(SwipeListViewBuilderController(map: element, myCallback: myCallback,));
+    }
+    else if(element['type']=='swipeSliverListController'){
+      widgets.add(SwipeSliverListController(map: element, myCallback: myCallback,));
+    }
   });
   return widgets;
 }
@@ -337,6 +343,12 @@ Widget getChild(Map mapp, {MyCallback? myCallback}){
   }
   else if(map['type']=='ratingBarController'){
     widget=  RatingBarController(map: map, myCallback: myCallback!,);
+  }
+  else if(map['type']=='swipeListViewBuilderController'){
+    widget=  SwipeListViewBuilderController(map: map, myCallback: myCallback!,);
+  }
+  else if(map['type']=='swipeSliverListController'){
+    widget=  SwipeSliverListController(map: map, myCallback: myCallback!,);
   }
   return widget;
 
