@@ -81,6 +81,14 @@
         "eventName": "OpenDialer",
         "mobileNumber": ""
       }
+    },
+    {
+      "key": "ShowNotification",
+      "value": false
+    },
+    {
+      "key": "NotificationCount",
+      "value": "7"
     }
   ],
   "Widgets": [
@@ -119,13 +127,12 @@
             "orderBy": 101,
             "child": {
               "type": "button",
-              "key": "NotificationCount",
-              "height": 35,
-              "pixelWidth": 35,
+              "height": 40,
+              "pixelWidth": 40,
               "shape": "circle",
               "color": "*primaryColor",
               "alignment": "center",
-              "margin": "0,10,20,0",
+              "margin": "0,10,10,0",
               "boxShadow": {
                 "color": "*primaryColor",
                 "x": 0.0,
@@ -142,7 +149,38 @@
                     "icon": "notification",
                     "orderBy": 1,
                     "color": "#F1AC3D",
-                    "size": 20.0
+                    "size": 25.0
+                  },
+                  {
+                    "type": "visibilityController",
+                    "isVisible": false,
+                    "orderBy":1,
+                    "key":"ShowNotification",
+                    "child": {
+                      "type": "positionController",
+                      "right": 3,
+                      "top": 5,
+                      "child": {
+                        "type": "button",
+                        "borderRadius": "50,50,50,50",
+                        "padding": "3,2,3,2",
+                        "color": "*primaryTextColor2",
+                        "alignment": "center",
+                        "shape": "circle",
+                        "child": {
+                          "type": "text",
+                          "onlyText": true,
+                          "alignment": "center",
+                          "value": "7",
+                          "key": "NotificationCount",
+                          "style": {
+                            "fontSize": 10,
+                            "color": "ffffff",
+                            "fontFamily": "RR"
+                          }
+                        }
+                      }
+                    }
                   }
                 ]
               },

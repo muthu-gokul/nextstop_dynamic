@@ -9,6 +9,7 @@ import '../notifier/getUiNotifier.dart';
 import 'package:get/get.dart';
 
 import '../constants.dart';
+import '../utils/colorUtil.dart';
 
 var keyboardVisible = false.obs;
 class DynamicPageInitiater extends StatefulWidget {
@@ -34,6 +35,8 @@ class DynamicPageInitiaterState extends State<DynamicPageInitiater> implements M
   var parsedJson;
 
   String guid="";
+
+  var showLoader=false.obs;
 
   parseJson() async{
     String data = await DefaultAssetBundle.of(context).loadString("assets/json/${widget.pageIdentifier}.json");
@@ -93,12 +96,15 @@ class DynamicPageInitiaterState extends State<DynamicPageInitiater> implements M
   Future<dynamic> initSS() async{
     print("initSS");
     if(fromUrl){
+      showLoader.value=true;
       await GetUiNotifier().getUiJson(widget.pageIdentifier,LOGINUSERID).then((value){
+        showLoader.value=false;
       //  log("value $value");
         if(value!="null" && value.toString().isNotEmpty){
           var parsed=jsonDecode(value);
           //  print(parsed['table'][0]['jsonData']);
           parsedJson=jsonDecode(parsed['Table'][0]['PageJson']);
+          widgets.clear();
          // print(parsedJson);
           guid=parsedJson['Guid'];
           if(widget.myCallback==null){
@@ -147,6 +153,40 @@ class DynamicPageInitiaterState extends State<DynamicPageInitiater> implements M
     }
   }
 
+  Future<dynamic> getValueArray() async{
+    if(fromUrl){
+      showLoader.value=true;
+      await GetUiNotifier().getUiJson(widget.pageIdentifier,LOGINUSERID).then((value){
+        showLoader.value=false;
+        if(value!="null" && value.toString().isNotEmpty){
+          var parsed=jsonDecode(value);
+          parsedJson=jsonDecode(parsed['Table'][0]['PageJson']);
+          guid=parsedJson['Guid'];
+
+          if(parsedJson.containsKey('queryString')){
+            queryString=parsedJson['queryString'];
+          }
+          if(parsedJson.containsKey('valueArray')){
+            valueArray=parsedJson['valueArray'];
+          }
+
+
+          if(widget.fromQueryString.isNotEmpty){
+            widget.fromQueryString.forEach((element) {
+              findWidgetByKey(widgets,{"key":element['key']},(wid){
+                updateByWidgetType(wid.getType(),widget: wid,clickEvent: element);
+              });
+            });
+          }
+          if(valueArray.isNotEmpty){
+            reloadValueArray(valueArray);
+          }
+          //setState(() {});
+        }
+      });
+    }
+  }
+
   reloadValueArray(List<dynamic> valueArray){
     valueArray.forEach((element) {
       findWidgetByKey(widgets,{"key":element['key']},(wid){
@@ -187,31 +227,58 @@ class DynamicPageInitiaterState extends State<DynamicPageInitiater> implements M
       top: true,
       child: Scaffold(
         // resizeToAvoidBottomInset: false,
-        body:parsedJson==null?Container(): Container(
-         // alignment: Alignment.center,
-          alignment: parseAlignment(parsedJson['alignment']),
-          height: SizeConfig.screenHeight!-topPad,
-          width: SizeConfig.screenWidth,
-          color: Colors.white,
-          child:parsedJson.containsKey('isOwnWidget')?widgets[0]:
-          Obx(
-              ()=>SingleChildScrollView(
-                controller: scrollController,
-                //physics: NeverScrollableScrollPhysics(),
-                physics: widget.isScrollControll?keyboardVisible.value?AlwaysScrollableScrollPhysics():
-                NeverScrollableScrollPhysics():AlwaysScrollableScrollPhysics(),
-                child: Column(
-                  crossAxisAlignment: parseCrossAxisAlignment(parsedJson['crossAxisAlignment']),
-                  mainAxisAlignment: parseMainAxisAlignment(parsedJson['mainAxisAlignment']),
-                  mainAxisSize: keyboardVisible.value?MainAxisSize.min:MainAxisSize.min,
-                  children: [
-                    for(int i=0;i<widgets.length;i++)
-                      widgets[i],
-                  ],
-                ),
-              )
-          ),
-        ),
+        body:Stack(
+          children: [
+            parsedJson==null?Container(
+              child: Center(
+                child: Text("Page Not Found"),
+              ),
+            ): Container(
+              // alignment: Alignment.center,
+              alignment: parseAlignment(parsedJson['alignment']),
+              height: SizeConfig.screenHeight!-topPad,
+              width: SizeConfig.screenWidth,
+              color: Colors.white,
+              child:parsedJson.containsKey('isOwnWidget')?widgets[0]:
+              Obx(
+                      ()=>SingleChildScrollView(
+                    controller: scrollController,
+                    //physics: NeverScrollableScrollPhysics(),
+                    physics: widget.isScrollControll?keyboardVisible.value?AlwaysScrollableScrollPhysics():
+                    NeverScrollableScrollPhysics():AlwaysScrollableScrollPhysics(),
+                    child: Column(
+                      crossAxisAlignment: parseCrossAxisAlignment(parsedJson['crossAxisAlignment']),
+                      mainAxisAlignment: parseMainAxisAlignment(parsedJson['mainAxisAlignment']),
+                      mainAxisSize: keyboardVisible.value?MainAxisSize.min:MainAxisSize.min,
+                      children: [
+                        for(int i=0;i<widgets.length;i++)
+                          widgets[i],
+                      ],
+                    ),
+                  )
+              ),
+            ),
+
+            Obx(
+                ()=>Visibility(
+                  visible: showLoader.value,
+                  child:  Container(
+                    alignment: Alignment.center,
+                    height: SizeConfig.screenHeight,
+                    width: SizeConfig.screenWidth,
+                    color: Colors.white,
+                    child: Column(
+                      children: [
+                        SizedBox(height: 2,),
+                        LinearProgressIndicator(color: ColorUtil.primaryColor,backgroundColor: ColorUtil.primaryColor.withOpacity(0.5),)
+                      ],
+                    ),
+                  ),
+                )
+            )
+
+          ],
+        )
       ),
     );
   }

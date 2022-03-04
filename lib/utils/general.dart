@@ -27,7 +27,8 @@ class General{
     var val="";
     Get.defaultDialog(
         title: "",
-        content: CircularProgressIndicator()
+        content: CircularProgressIndicator(),
+        barrierDismissible: false,
     );
     await GetUiNotifier().postUiJson( LOGINUSERID, pageId, res,clickEvent).then((value){
       Get.back();

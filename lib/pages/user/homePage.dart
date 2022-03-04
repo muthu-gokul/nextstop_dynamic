@@ -207,70 +207,17 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver,Common,
                 )
               ],
             ),
-            /*body: selectedPage.value==0?profilePage:
-            selectedPage.value==1?BookingPage(myCallback: this):
-            selectedPage.value==2?MyTrips(myCallback: this,):
-            selectedPage.value==4?Container(
-              height: SizeConfig.screenHeight,
-              width: SizeConfig.screenWidth,
-              child: Column(
-                children: [
-                  SizedBox(height: 20,),
-                  Row(
-                    children: [
-                      NavIcon(ontap: this, map: {
-                          "type":"navIcon",
-                          "orderBy": "1",
-                          "color": "*primaryColor",
-                          "strokeColor": "ffffff",
-                          "margin": "20,0,0,0",
-                          "padding": "10,0,0,0",
-                          "borderRadius": "10,10,10,10",
-                          "width":40,
-                          "height":35,
-                          "clickEvent": {
-                            "eventName": "OpenDrawer"
-                          }
-                        }),
-                        Spacer()
-                    ],
-                  ),
-                  SizedBox(height: 20,),
-                  Text("Current Version: ${packageInfo.version}"),
-                  SizedBox(height: 20,),
-                  TextButton(onPressed: (){
-                    log("vv  ${packageInfo.version} ");
-                    FirebaseDatabase.instance.ref().child("AppInfo").get().then((dataSnapshot){
-                    
-                     var map = Map<dynamic, dynamic>.from(dataSnapshot.value as Map);
-                      if(map['version']!=packageInfo.version){
-                        launch(map['url']);
-                      }
-                      else{
-                        Get.defaultDialog(title: "",titleStyle: TextStyle(height: 0),radius: 10,middleText: "No Updates Available",middleTextStyle: TextStyle(fontFamily: "RR",fontSize: 20,));
-                      }
-                    });
-                   // launch("https://drive.google.com/file/d/10aAtCPpcE2D_7-Pq88DbtAQLBc3sU5Y2/view?usp=sharing");
-                  }, child: Text("Update"))
-                ],
-              ),
-            ):
-
-
-            selectedPage.value==99?Container(
-              alignment: Alignment.center,
-              child: Column(
-                children: [
-                  LinearProgressIndicator(color: ColorUtil.primaryColor,backgroundColor: ColorUtil.primaryColor.withOpacity(0.5),)
-
-                ],
-              ),
-            ):
-            Container(),*/
             drawer: Container(
               height: SizeConfig.screenHeight,
-              width: SizeConfig.screenWidth,
-              color: primaryColor,
+              width: SizeConfig.screenWidth!*0.7,
+              decoration: BoxDecoration(
+                  //color: isLoad.value?Colors.white:primaryColor,
+                  color: primaryColor,
+                  borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(15),
+                    bottomRight: Radius.circular(15),
+                  )
+              ),
               child: Column(
                 children: [
                   SizedBox(height: 5,),
@@ -312,6 +259,9 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver,Common,
           scaffoldKey.currentState!.openEndDrawer();
           if(selectedPage.value==1){
             determinePosition();
+          }
+          else if(selectedPage.value==2){
+            myTrips.reloadPage();
           }
         }
         else if(clickEvent['eventName']=='OpenDrawer'){

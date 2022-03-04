@@ -1,7 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'callBack/general.dart';
 import 'callBack/myCallback.dart';
 import 'utils.dart';
+import 'package:get/get.dart';
 
 class ListViewBuilderController extends StatelessWidget implements MyCallback2{
   Map map;
@@ -11,26 +14,37 @@ class ListViewBuilderController extends StatelessWidget implements MyCallback2{
   {
     updateValues(map['value']);
   }
+
+  var isLoad=false.obs;
+
   updateValues(List values){
-    values.forEach((element) {
-      widgets.add(map.containsKey('childd')?getChild(map['childd'],myCallback: myCallback):Container());
-      element.forEach((k, v) {
-        func1ByKey(widgets[widgets.length-1], {"key":"$k"}, (wid){
-          updateByWidgetType(wid.getType(),widget: wid,clickEvent: {"key":"$k","value":v});
+    isLoad.value=true;
+    widgets.clear();
+    Timer(Duration(milliseconds: 100), (){
+      values.forEach((element) {
+        widgets.add(map.containsKey('childd')?getChild(map['childd'],myCallback: myCallback):Container());
+        element.forEach((k, v) {
+          func1ByKey(widgets[widgets.length-1], {"key":"$k"}, (wid){
+            updateByWidgetType(wid.getType(),widget: wid,clickEvent: {"key":"$k","value":v});
+          });
         });
       });
+      isLoad.value=false;
     });
+
   }
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: widgets.length,
-      shrinkWrap: true,
-      physics: map.containsKey('physics')?parseScrollPhysics(map['physics']):NeverScrollableScrollPhysics(),
-      scrollDirection: map.containsKey('direction')?parseAxis(map['direction']):Axis.vertical,
-      itemBuilder: (ctx,i){
-        return widgets[i];
-      },
+    return Obx(
+        ()=>ListView.builder(
+          itemCount: widgets.length,
+          shrinkWrap:isLoad.value? true:true,
+          physics: map.containsKey('physics')?parseScrollPhysics(map['physics']):NeverScrollableScrollPhysics(),
+          scrollDirection: map.containsKey('direction')?parseAxis(map['direction']):Axis.vertical,
+          itemBuilder: (ctx,i){
+            return widgets[i];
+          },
+        )
     );
   }
 

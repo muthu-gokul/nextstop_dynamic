@@ -63,3 +63,4 @@ added slivers
 3. added intrinsic controller
 4. reduced width in Text and button
 5. added rating bar
+6.listview controller timer added in updateValue

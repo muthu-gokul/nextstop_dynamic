@@ -213,7 +213,7 @@
       },
       "value": [
         {
-          "imagePath": "assets/icons/user.svg",
+          "imagePath": "assets/icons/user-woBg.svg",
           "title": "End User",
           "value": [
             {
@@ -223,7 +223,7 @@
           ]
         },
         {
-          "imagePath": "assets/icons/driver.svg",
+          "imagePath": "assets/icons/driver-woBg.svg",
           "title": "Driver",
           "value": [
             {

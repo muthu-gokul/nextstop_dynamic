@@ -75,7 +75,7 @@ class UserRoleController extends StatelessWidget implements MyCallback2{
             onTap: (){
               selectedIndex.value=i;
               map['selectedIndex']=selectedIndex.value;
-              //log("tap ${mainWidget[i]}");
+              //log("tap ${map.containsKey("unSelectOpacity")? i==selectedIndex.value?1:map["unSelectOpacity"] :1}");
               int k=0;
               mainWidget.forEach((ele){
                 ele.forEach((e){
@@ -115,20 +115,22 @@ class UserRoleController extends StatelessWidget implements MyCallback2{
               // ontap.ontap(map['eventName']);
             //  ontap.ontap(map['clickEvent']);
             },
-            child: AnimatedOpacity(
-              duration: const Duration(milliseconds: 300),
-              curve: Curves.easeIn,
-              opacity: map.containsKey("unSelectOpacity")? i==selectedIndex.value?1:map["unSelectOpacity"] :1,
-              child: Container(
-                color: Colors.transparent,
-                margin: parseEdgeInsetsGeometry(map['margin']),
-                child: Column(
-                  children: [
-                     for(int j=0;j<mainWidget[i].length;j++)
-                       mainWidget[i][j]
-                  ],
-                ),
-              ),
+            child: Obx(
+                ()=>AnimatedOpacity(
+                  duration: const Duration(milliseconds: 300),
+                  curve: i==selectedIndex.value?Curves.easeIn:Curves.easeIn,
+                  opacity: map.containsKey("unSelectOpacity")? i==selectedIndex.value?1:map["unSelectOpacity"] :1,
+                  child: Container(
+                    color: Colors.transparent,
+                    margin: parseEdgeInsetsGeometry(map['margin']),
+                    child: Column(
+                      children: [
+                        for(int j=0;j<mainWidget[i].length;j++)
+                          mainWidget[i][j]
+                      ],
+                    ),
+                  ),
+                )
             ),
             /*child: Container(
               margin: parseEdgeInsetsGeometry(map['margin']),

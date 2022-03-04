@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dynamicparsers/customControllers/callBack/myCallback.dart';
 import 'package:flutter/material.dart';
 import 'package:nextstop_dynamic/utils/common.dart';
@@ -39,5 +41,11 @@ class MyTrips extends StatelessWidget with Common,MyCallback{
           guid: General.myTripsPageIdentifier
       );
     }
+  }
+
+  @override
+  reloadPage() {
+    log("reload User Trips");
+    dynamicPageInitiater.dynamicPageInitiaterState.getValueArray();
   }
 }

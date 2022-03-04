@@ -145,8 +145,15 @@ class _HomePageDriver2State extends State<HomePageDriver2> with WidgetsBindingOb
             drawer: Obx(
                 ()=>Container(
                   height: SizeConfig.screenHeight,
-                  width: SizeConfig.screenWidth,
-                  color: isLoad.value?Colors.white:primaryColor,
+                  width: SizeConfig.screenWidth!*0.7,
+                  decoration: BoxDecoration(
+                    color: isLoad.value?Colors.white:primaryColor,
+                    borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(15),
+                      bottomRight: Radius.circular(15),
+                    )
+                  ),
+
                   child: Column(
                     children: [
                       SizedBox(height: 5,),
@@ -185,6 +192,9 @@ class _HomePageDriver2State extends State<HomePageDriver2> with WidgetsBindingOb
           }
           else if(selectedPage.value==0){
             profilePageDriver.reloadPage();
+          }
+          else if(selectedPage.value==2){
+            driverMyTrips.reloadPage();
           }
         }
         else if(clickEvent[General.eventName]=='OpenDrawer'){

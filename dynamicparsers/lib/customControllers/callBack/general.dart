@@ -240,7 +240,13 @@ updateByWidgetType(String widgetType,{var widget,Map? clickEvent}){
     }
     break;
     case 'ratingBarController':{
-      widget.ratingOutput.value=clickEvent!['rating'];
+      if(clickEvent!['value'].runtimeType==int){
+        widget.ratingOutput.value=clickEvent['value'].toDouble();
+      }
+      else{
+        widget.ratingOutput.value=clickEvent['value'];
+      }
+
     }
     break;
     default: {

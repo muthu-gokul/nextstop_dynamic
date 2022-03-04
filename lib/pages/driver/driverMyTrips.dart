@@ -50,7 +50,8 @@ class DriverMyTrips extends StatelessWidget with Common, MyCallback{
 
   @override
   reloadPage() {
-    dynamicPageInitiater.dynamicPageInitiaterState.initSS();
+    log("driver triops rtelad");
+    dynamicPageInitiater.dynamicPageInitiaterState.getValueArray();
   }
 
   @override
@@ -64,4 +65,6 @@ class DriverMyTrips extends StatelessWidget with Common, MyCallback{
       General().showAlertPopUp("${parsed['TblOutPut'][0]['@Message']}");
     }
   }
+
+
 }

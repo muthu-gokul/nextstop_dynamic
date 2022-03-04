@@ -44,3 +44,4 @@
         1. Profile screen email edit with reload option
         2. new orders reload previous page
         3. your trips design changed
+        4. notification count
