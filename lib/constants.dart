@@ -5,7 +5,7 @@ import 'model/parameterMode.dart';
 List<ParameterModel> parameters=[];
 bool fromUrl=true;
 bool isDriver=false;
-bool fromLocalIp=true;
+bool fromLocalIp=false;
 
 int LOGINUSERID=0;
 

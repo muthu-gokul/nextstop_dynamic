@@ -11,7 +11,8 @@ import 'package:get/get.dart';
 class ListViewBuilderController extends StatelessWidget implements MyCallback2{
   Map map;
   MyCallback myCallback;
-  List widgets=[];
+  // List widgets=[];
+  var widgets=[].obs;
   ListViewBuilderController({required this.map,required this.myCallback})
   {
     updateValues(map['value']);
@@ -21,8 +22,8 @@ class ListViewBuilderController extends StatelessWidget implements MyCallback2{
 
   updateValues(List values){
     widgets.clear();
-    isLoad.value=true;
-    Timer(Duration(milliseconds: 200), (){
+   // isLoad.value=true;
+    //Timer(Duration(milliseconds: 200), (){
       values.forEach((element) {
         widgets.add(map.containsKey('childd')?getChild(map['childd'],myCallback: myCallback):Container());
         element.forEach((k, v) {
@@ -31,14 +32,15 @@ class ListViewBuilderController extends StatelessWidget implements MyCallback2{
           });
         });
       });
-      isLoad.value=false;
-    });
+   //   isLoad.value=false;
+   // });
   }
   @override
   Widget build(BuildContext context) {
     return Obx(
         ()=>ListView.builder(
-          itemCount:isLoad.value?0: widgets.length,
+      //    itemCount:isLoad.value?0: widgets.length,
+          itemCount: widgets.length,
           shrinkWrap: true,
           physics: map.containsKey('physics')?parseScrollPhysics(map['physics']):NeverScrollableScrollPhysics(),
           scrollDirection: map.containsKey('direction')?parseAxis(map['direction']):Axis.vertical,

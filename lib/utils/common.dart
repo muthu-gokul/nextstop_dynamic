@@ -141,7 +141,6 @@ class Common{
       var parsed=jsonDecode(a);
       General().showAlertPopUp(parsed['TblOutPut'][0]['@Message']);
     }
-
   }
 
   formSubmitMethodTFE(dynamic guid,List<dynamic> widgets,Map clickEvent,List queryString,{MyCallback? myCallback}){

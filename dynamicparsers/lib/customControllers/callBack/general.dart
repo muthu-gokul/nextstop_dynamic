@@ -279,7 +279,7 @@ updateByWidgetType(String widgetType,{var widget,Map? clickEvent}){
         widget.sv.value=null;
       }
       else{
-        widget.sv.value=clickEvent!['value'];
+        widget.sv.value=clickEvent['value'];
       }
 
     }
