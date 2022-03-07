@@ -198,9 +198,42 @@
         }
       }
     },
+
+    {
+      "type": "rowController",
+      "orderBy": 11,
+      "children": [
+        {
+          "type": "spacerController",
+          "orderBy": 1
+        },
+        {
+          "type": "button",
+          "orderBy": 2,
+          "height": 50,
+          "alignment": "centerRight",
+          "margin": "0,0,10,0",
+          "clickEvent": {
+            "eventName": "Navigation",
+            "typeOfNavigation": 1,
+            "navigateToPage": "ForgotPassword"
+          },
+          "child": {
+            "type": "text",
+            "onlyText": true,
+            "value": "Forgot Password ?",
+            "style": {
+              "color": "*primaryTextColor3",
+              "fontSize": 14.0,
+              "fontFamily": "RR"
+            }
+          }
+        }
+      ]
+    },
     {
       "type":"sizedBox",
-      "orderBy": "11",
+      "orderBy": 12,
       "height":20
     },
     {

@@ -274,7 +274,14 @@ updateByWidgetType(String widgetType,{var widget,Map? clickEvent}){
     }
     break;
     case 'customPopup':{
-      widget.sv.value=clickEvent!['value'];
+    //  log("cc ${clickEvent!['value']}");
+      if(clickEvent!['value'].isEmpty){
+        widget.sv.value=null;
+      }
+      else{
+        widget.sv.value=clickEvent!['value'];
+      }
+
     }
     break;
     case 'expansionTileController':{

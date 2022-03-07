@@ -19,6 +19,7 @@ import 'package:get/get.dart';
 
 import '../pages/driver/bankDetails.dart';
 import '../pages/driver/newRides.dart';
+import '../pages/forgotPassword.dart';
 import '../styles/style.dart';
 class General{
 
@@ -57,6 +58,8 @@ class General{
         return RegistrationPage();
       case 'Login':
         return LoginPage();
+      case 'ForgotPassword':
+        return ForgotPassword();
       case 'HomePageDriver':
         return HomePageDriver2();
       case 'ManageDocuments':
@@ -120,6 +123,7 @@ class General{
   static String driverTripHomePageIdentifier="DRIV-ERTR-IPHO-ME33";
   static String driverMyTripsPageIdentifier="YOUR-TRIP-DRIV-ER89";
   static String driverNewTripsIdentifier="NEWO-RDER-SDRIV-4343";
+  static String forgotPasswordIdentifier="FORG-OTPA-SSWO-RD23";
 
 
 

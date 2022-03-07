@@ -40,6 +40,8 @@ class DynamicPageInitiaterState extends State<DynamicPageInitiater> implements M
   var showLoader2=false.obs;
 
   parseJson() async{
+    //showLoader.value=true;
+    showLoader2.value=true;
     String data = await DefaultAssetBundle.of(context).loadString("assets/json/${widget.pageIdentifier}.json");
     parsedJson=jsonDecode(data);
 
@@ -84,14 +86,19 @@ class DynamicPageInitiaterState extends State<DynamicPageInitiater> implements M
         });
       });
     }
+    showLoader.value=false;
+    showLoader2.value=false;
 /*    if(widget.myCallback==null){
       widgets=getWidgets(parsedJson['Widgets'],this);
     }
     else{
       widgets=getWidgets(parsedJson['Widgets'],widget.myCallback!);
     }*/
-
+  WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
     setState(() {});
+  });
+
+   // setState(() {});
     //log("${parsedJson}");
   }
   Future<dynamic> initSS() async{
