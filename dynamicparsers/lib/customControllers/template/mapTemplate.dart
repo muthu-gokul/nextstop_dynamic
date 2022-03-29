@@ -1,5 +1,7 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:developer';
+
 
 import 'package:date_format/date_format.dart';
 import 'package:dynamicparsers/customControllers/callBack/general.dart';
@@ -11,6 +13,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 
 import 'package:flutter_date_pickers/flutter_date_pickers.dart' as dp;
@@ -881,7 +884,7 @@ class MapTemplate3State extends State<MapTemplate3>  implements MyCallback,MyCal
         delim1 +  placemarks.first.thoroughfare.toString()+
         delim2+placemarks.first.subLocality.toString()+
         delim3 +placemarks.first.administrativeArea.toString();
-    log("$location ${placemarks.first}");
+   // log("$location ${placemarks.first}");
     widget.myCallback.onMapLocationChanged(
         {
           "key":isPickUpLocation.value?"PickUp":"Drop",
@@ -927,7 +930,7 @@ class MapTemplate3State extends State<MapTemplate3>  implements MyCallback,MyCal
 }
 
 
-
+//Testing
 GlobalKey<MapSampleState> mapKey=GlobalKey();
 
 class MapSample extends StatefulWidget {
@@ -936,9 +939,6 @@ class MapSample extends StatefulWidget {
   List widgets=[];
   MapSample({Key? key,required this.map,required this.myCallback}) : super(key: key);
 
-/*  final MapSampleState mapSampleState=MapSampleState();
-  @override
-  MapSampleState createState() => mapSampleState;*/
   @override
   State<MapSample> createState() => MapSampleState();
   getType(){
@@ -946,9 +946,6 @@ class MapSample extends StatefulWidget {
   }
   reload(){
     mapKey.currentState!.getPos();
-    // print("mainRElaod");
-    // MapSampleState()._goToTheLake();
-  //  _goToTheLake();
   }
 }
 
@@ -966,6 +963,107 @@ class MapSampleState extends State<MapSample> {
       tilt: 59.440717697143555,
       zoom: 19.151926040649414);
 
+  var polylines = <Polyline>[].obs;
+  var markers = <Marker>[].obs;
+  PolylinePoints polylinePoints = PolylinePoints();
+
+//  RxMap<PolylineId, Polyline> polylines = <PolylineId, Polyline>{}.obs;
+//13.388860,52.517037;13.397634,52.529407
+  //-74.0060152,40.7127281;-77.0501718249326,38.88933725
+//13.06505253819526, 80.17747072600484  ;   13.069316144944787, 80.19487311926038
+  //13.014570027023268, 80.13510176865319
+/*  LatLng startLocation = LatLng(13.388860, 52.517037);
+  LatLng endLocation = LatLng(13.397634, 52.529407);*/
+
+  LatLng startLocation = LatLng(13.06505253819526, 80.17747072600484);
+  LatLng endLocation = LatLng(13.014570027023268, 80.13510176865319);
+  getDirections() async {
+    polylines.clear();
+    double totalDistance=0.0;
+    List<LatLng> polylineCoordinates = [];
+    String url="https://router.project-osrm.org/route/v1/driving/${startLocation.longitude},${startLocation.latitude};${endLocation.longitude},${endLocation.latitude}?overview=false&steps=true";
+    log("url ${Uri.parse(url)}");
+    final response = await http.get(Uri.parse(url));
+    log("res ${response.body}");
+    var parsedRoute=jsonDecode(response.body);
+    if(parsedRoute['code']=='Ok'){
+      polylineCoordinates.add(startLocation);
+      var steps=parsedRoute['routes'][0]['legs'][0]['steps'];
+      log("steps ${steps.length}");
+      steps.forEach((step){
+        totalDistance=totalDistance+step['distance'];
+        List  intersections=step['intersections'];
+        intersections.forEach((intersection) {
+          log("intersec $intersection");
+          polylineCoordinates.add(LatLng(intersection['location'][1], intersection['location'][0]));
+        });
+      });
+      polylineCoordinates.add(endLocation);
+    }
+
+   /* PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
+      "AIzaSyCgWfUF_HEBqd5qjN7afJADJcZJOwXOgao",
+      PointLatLng(startLocation.latitude, startLocation.longitude),
+      PointLatLng(endLocation.latitude, endLocation.longitude),
+      travelMode: TravelMode.driving,
+    );*/
+
+    // polylineCoordinates.add(LatLng(40.712118, -74.005737));
+    // polylineCoordinates.add(LatLng(38.890174, -77.050262));
+    log("totalDistance $totalDistance");
+    addPolyLine(polylineCoordinates);
+  }
+
+  addPolyLine(List<LatLng> polylineCoordinates) {
+    PolylineId id = const PolylineId("poly");
+    Polyline polyline = Polyline(
+      polylineId: id,
+      color: Colors.deepPurpleAccent,
+      points: polylineCoordinates,
+      width: 5,
+      startCap: Cap.roundCap,
+      endCap: Cap.roundCap,
+      jointType: JointType.round,
+      geodesic: true
+    );
+   // polylines[id] = polyline;
+    polylines.add(polyline);
+  }
+
+  addMarkers() async {
+    markers.clear();
+    markers.add(Marker(
+        markerId: MarkerId(startLocation.toString()),
+        position: startLocation,
+        visible: true,
+        infoWindow: InfoWindow(
+          title: 'Starting Point ',
+          snippet: 'Start Marker',
+        ),
+        icon: await BitmapDescriptor.fromAssetImage(ImageConfiguration(size: Size(100, 100)), 'assets/icons/location-01.png') //Icon for Marker
+    ));
+
+    markers.add(Marker(
+        markerId: MarkerId(endLocation.toString()),
+        position: endLocation,
+        visible: true,
+        infoWindow: InfoWindow(
+          title: 'Destination Point ',
+          snippet: 'Destination Marker',
+        ),
+        icon: await BitmapDescriptor.fromAssetImage(ImageConfiguration(size: Size(100, 100)),'assets/icons/location-02.png') //Icon for Marker
+    ));
+
+    final GoogleMapController controller = await _controller.future;
+    controller.animateCamera(CameraUpdate.newCameraPosition(
+        CameraPosition(
+            zoom: 12.4746,
+            target: LatLng(startLocation.latitude, startLocation.longitude)
+        )
+     )
+    );
+
+  }
 
   @override
   void initState() {
@@ -981,8 +1079,8 @@ class MapSampleState extends State<MapSample> {
 
 
   getPos() async{
-    position=await determinePosition();
-    animateCamera(position);
+    // position=await determinePosition();
+    // animateCamera(position);
   }
 
   animateCamera(Position? position ) async{
@@ -1011,13 +1109,33 @@ class MapSampleState extends State<MapSample> {
     return Scaffold(
       body: Stack(
         children: [
-          GoogleMap(
-            mapType: MapType.normal,
-            initialCameraPosition: _kGooglePlex,
-            onMapCreated: (GoogleMapController controller) {
-              _controller.complete(controller);
-            },
-          ),
+         Obx(
+             ()=> GoogleMap(
+               mapType: MapType.normal,
+               initialCameraPosition: _kGooglePlex,
+               markers: Set<Marker>.of(markers.value),
+               polylines: Set<Polyline>.of(polylines.value),
+               onMapCreated: (GoogleMapController controller) {
+                 _controller.complete(controller);
+                 getDirections();
+               },
+             ),
+         ),
+          Positioned(
+            top: 50,
+            child: GestureDetector(
+              onTap: (){
+                print("Hi");
+                getDirections();
+                addMarkers();
+              },
+              child: Container(
+                height: 80,
+                width: 80,
+                color: Colors.red,
+              ),
+            ),
+          )
 
         ],
       ),

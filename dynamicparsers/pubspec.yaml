@@ -22,7 +22,7 @@ dependencies:
   flutter_date_pickers:
   flutter_svg:
   flutter_rating_bar:
-
+  http:
 
 
 dev_dependencies:

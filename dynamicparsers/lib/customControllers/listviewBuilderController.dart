@@ -264,7 +264,7 @@ class SwipeSliverListController extends StatelessWidget implements MyCallback2{
                           child: Icon(Icons.delete_outline,color: Colors.red,size: 20,),
                         ),
                         onTap: (handler,i) async {
-                          print("cc $index");
+                         // print("cc $index");
                           if(map["swipeDeleteButtonEvent"].containsKey("changeValuesArray")){
                             map["swipeDeleteButtonEvent"]['changeValuesArray'].forEach((ele){
                               func1ByKey(widgets[index], {"key":"${ele['toFindKey']}"}, (wid){

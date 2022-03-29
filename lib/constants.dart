@@ -3,7 +3,7 @@
 import 'model/parameterMode.dart';
 
 List<ParameterModel> parameters=[];
-bool fromUrl=true;
+bool fromUrl=false;
 bool isDriver=false;
 bool fromLocalIp=false;
 

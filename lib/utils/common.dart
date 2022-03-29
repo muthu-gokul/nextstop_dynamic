@@ -105,7 +105,6 @@ class Common{
               barrierDismissible: wid.map['barrierDismissible']/*clickEvent['dialogWidget']['barrierDismissible']*/,
             );
           });
-
         }
         else if(clickEvent[General.eventName]=="findDialogWidget"){//for api call from dialog
           findWidgetByKey(widgets, {"key":clickEvent['toFindKey']}, (wid){

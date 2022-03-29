@@ -11,11 +11,11 @@
     },
     {
       "key": "RideDetails",
-      "value": true
+      "value": false
     },
     {
       "key": "AcceptRejectBtn",
-      "value": true
+      "value": false
     },
     {
       "key": "Name",
@@ -236,7 +236,7 @@
                   },
                   {
                     "type": "visibilityController",
-                    "isVisible": true,
+                    "isVisible": false,
                     "key": "DriverDetails",
                     "orderBy": 2,
                     "child": {
@@ -713,7 +713,7 @@
                         },
                         {
                           "type": "visibilityController",
-                          "isVisible": true,
+                          "isVisible": false,
                           "orderBy": 3,
                           "key": "AcceptRejectBtn",
                           "child": {
@@ -794,7 +794,7 @@
                         },
                         {
                           "type": "visibilityController",
-                          "isVisible": true,
+                          "isVisible": false,
                           "orderBy": 4,
                           "key": "EndRideBtn",
                           "child": {
