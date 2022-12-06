@@ -201,7 +201,6 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver,Common,
                   child: Column(
                     children: [
                       LinearProgressIndicator(color: ColorUtil.primaryColor,backgroundColor: ColorUtil.primaryColor.withOpacity(0.5),)
-
                     ],
                   ),
                 )
